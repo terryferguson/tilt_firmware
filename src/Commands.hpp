@@ -71,6 +71,9 @@ enum class Command : std::uint32_t {
 
   /** Home the linear actuators - 34 */
   HOME,
+
+  /** Command to toggle the limit switch - 35 */
+  TOGGLE_LIMIT_RANGE,
 };
 
 #endif // _COMMANDS_HPP_
