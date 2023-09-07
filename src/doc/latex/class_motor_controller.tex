@@ -1,0 +1,258 @@
+\hypertarget{class_motor_controller}{}\doxysection{Motor\+Controller Class Reference}
+\label{class_motor_controller}\index{MotorController@{MotorController}}
+
+
+This is the controller of the motors.  
+
+
+
+
+{\ttfamily \#include $<$Motor\+Controller.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_motor_controller_a20288d902c9ef0cda030718dfa2f3cb6}{Motor\+Controller}} (const int pwm\+Frequency=PWM\+\_\+\+FREQUENCY, const int pwm\+Resolution=PWM\+\_\+\+RESOLUTION\+\_\+\+BITS, const int \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{default\+Speed}}=DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED, const int current\+Increase\+Limit=DEFAULT\+\_\+\+CURRENT\+\_\+\+INCREASE\+\_\+\+LIMIT)
+\begin{DoxyCompactList}\small\item\em This class controls the motors connected to the microcontoller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_ab2fb4b5942170e2cc8fc3be4ede9da57}\label{class_motor_controller_ab2fb4b5942170e2cc8fc3be4ede9da57}} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Load the stored position preferences into RAM and initialize the motors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_a7b87fc5678b3994a39918a76202be0cf}\label{class_motor_controller_a7b87fc5678b3994a39918a76202be0cf}} 
+void {\bfseries extend} ()
+\begin{DoxyCompactList}\small\item\em Tell the motorized system to extend. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}\label{class_motor_controller_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}} 
+void {\bfseries retract} ()
+\begin{DoxyCompactList}\small\item\em Tell the motorized system to retract. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_a317ce58ea93ea1329de5b87391560082}\label{class_motor_controller_a317ce58ea93ea1329de5b87391560082}} 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Tell the motorized system to stop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_ae18fc3e4763dbaba71846be69af6f608}\label{class_motor_controller_ae18fc3e4763dbaba71846be69af6f608}} 
+void {\bfseries home} ()
+\begin{DoxyCompactList}\small\item\em Home the linear actuator to recalibrate the position sensor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_a5300f11bcf37c1c08c529978818cf050}\label{class_motor_controller_a5300f11bcf37c1c08c529978818cf050}} 
+void {\bfseries zero} ()
+\begin{DoxyCompactList}\small\item\em Clear all position information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}{set\+Speed}} (int new\+Speed)
+\begin{DoxyCompactList}\small\item\em Smoothly change to the newly requested speed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_motor_controller_add201a7e452d3c44703bf1ac6aac587e}{get\+Speed}} () const
+\begin{DoxyCompactList}\small\item\em Get the system speed. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_motor_controller_a6d94459f0e674807e4556afca3b34413}{counts\+Are\+Unequal}} (void) const
+\begin{DoxyCompactList}\small\item\em Indicates whether the motor counts are unequal. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_controller_aa4412ba310bcb5e34bebc50d660025ec}\label{class_motor_controller_aa4412ba310bcb5e34bebc50d660025ec}} 
+void {\bfseries report} ()
+\begin{DoxyCompactList}\small\item\em Report debugging information to the serial console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_controller_a721ec0badfe038b6fc7f9d52241acd96}{save\+Position}} (const int slot, const int position\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Save a position to the preferences slot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_controller_aecc3d8d28295d30f34d8f3b736243877}{set\+Pos}} (const int new\+Pos)
+\begin{DoxyCompactList}\small\item\em Move the motors to the given position. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_motor_controller_aef6d99d0d2ee996fb357e0fdd4fff65f}{is\+Stopped}} () const
+\begin{DoxyCompactList}\small\item\em Check whether the system is in a STOP state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_controller_ab7a076be5cc48c2af65ef2d32a4fe6bc}{update}} (const float deltaT=0.\+0f)
+\begin{DoxyCompactList}\small\item\em Perform one update interval for the motor system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_motor_controller_a3aa95272d56064038e6cab32ba62b4b4}{K\+\_\+p}} = 100000
+\item 
+float \mbox{\hyperlink{class_motor_controller_a27c40687dcddbda2e3ebb5bdc4007ff4}{K\+\_\+i}} = 0.\+1f
+\item 
+float \mbox{\hyperlink{class_motor_controller_a48328ef6c985bf5bc02a489af3d54172}{e\+Integral}} = 0.\+0f
+\item 
+int \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{default\+Speed}} = DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED
+\item 
+int \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}} = 0
+\item 
+int \mbox{\hyperlink{class_motor_controller_ae9008f7115e4f9060c311a3970d8b50f}{current\+Increase\+Tolerance}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the controller of the motors. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_motor_controller_a20288d902c9ef0cda030718dfa2f3cb6}\label{class_motor_controller_a20288d902c9ef0cda030718dfa2f3cb6}} 
+\index{MotorController@{MotorController}!MotorController@{MotorController}}
+\index{MotorController@{MotorController}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{MotorController()}{MotorController()}}
+{\footnotesize\ttfamily Motor\+Controller\+::\+Motor\+Controller (\begin{DoxyParamCaption}\item[{const int}]{pwm\+Frequency = {\ttfamily PWM\+\_\+FREQUENCY},  }\item[{const int}]{pwm\+Resolution = {\ttfamily PWM\+\_\+RESOLUTION\+\_\+BITS},  }\item[{const int}]{default\+Speed = {\ttfamily DEFAULT\+\_\+MOTOR\+\_\+SPEED},  }\item[{const int}]{current\+Increase\+Limit = {\ttfamily DEFAULT\+\_\+CURRENT\+\_\+INCREASE\+\_\+LIMIT} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This class controls the motors connected to the microcontoller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pwm\+Frequency} & The frequency of the PWM signal to the motors \\
+\hline
+{\em pwm\+Resolution} & The bitdepth resolution of the PWM signal to the motors \\
+\hline
+{\em default\+Speed} & The default speed of the motors that the control program starts them off with \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_motor_controller_a6d94459f0e674807e4556afca3b34413}\label{class_motor_controller_a6d94459f0e674807e4556afca3b34413}} 
+\index{MotorController@{MotorController}!countsAreUnequal@{countsAreUnequal}}
+\index{countsAreUnequal@{countsAreUnequal}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{countsAreUnequal()}{countsAreUnequal()}}
+{\footnotesize\ttfamily bool Motor\+Controller\+::counts\+Are\+Unequal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Indicates whether the motor counts are unequal. 
+
+\begin{DoxyReturn}{Returns}
+True if the motor counts are different, false otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_controller_add201a7e452d3c44703bf1ac6aac587e}\label{class_motor_controller_add201a7e452d3c44703bf1ac6aac587e}} 
+\index{MotorController@{MotorController}!getSpeed@{getSpeed}}
+\index{getSpeed@{getSpeed}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
+{\footnotesize\ttfamily int Motor\+Controller\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get the system speed. 
+
+\begin{DoxyReturn}{Returns}
+The average speed of the system 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_controller_aef6d99d0d2ee996fb357e0fdd4fff65f}\label{class_motor_controller_aef6d99d0d2ee996fb357e0fdd4fff65f}} 
+\index{MotorController@{MotorController}!isStopped@{isStopped}}
+\index{isStopped@{isStopped}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{isStopped()}{isStopped()}}
+{\footnotesize\ttfamily bool Motor\+Controller\+::is\+Stopped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Check whether the system is in a STOP state. 
+
+\begin{DoxyReturn}{Returns}
+True if the system is in a STOP state, else false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_controller_a721ec0badfe038b6fc7f9d52241acd96}\label{class_motor_controller_a721ec0badfe038b6fc7f9d52241acd96}} 
+\index{MotorController@{MotorController}!savePosition@{savePosition}}
+\index{savePosition@{savePosition}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{savePosition()}{savePosition()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::save\+Position (\begin{DoxyParamCaption}\item[{const int}]{slot,  }\item[{const int}]{position\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Save a position to the preferences slot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & The selected slot to save the position information to \\
+\hline
+{\em position\+\_\+value} & The position value in hall sensor pulses to save to the selected slot \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_motor_controller_aecc3d8d28295d30f34d8f3b736243877}\label{class_motor_controller_aecc3d8d28295d30f34d8f3b736243877}} 
+\index{MotorController@{MotorController}!setPos@{setPos}}
+\index{setPos@{setPos}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::set\+Pos (\begin{DoxyParamCaption}\item[{const int}]{new\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Move the motors to the given position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Pos} & The new target position for the motors in hall sensor pulses \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}\label{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}} 
+\index{MotorController@{MotorController}!setSpeed@{setSpeed}}
+\index{setSpeed@{setSpeed}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::set\+Speed (\begin{DoxyParamCaption}\item[{int}]{new\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Smoothly change to the newly requested speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Speed} & The new speed to target \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_motor_controller_ab7a076be5cc48c2af65ef2d32a4fe6bc}\label{class_motor_controller_ab7a076be5cc48c2af65ef2d32a4fe6bc}} 
+\index{MotorController@{MotorController}!update@{update}}
+\index{update@{update}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::update (\begin{DoxyParamCaption}\item[{const float}]{deltaT = {\ttfamily 0.0f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Perform one update interval for the motor system. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em deltaT} & The amount of time that has passed since the last update \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_motor_controller_ae9008f7115e4f9060c311a3970d8b50f}\label{class_motor_controller_ae9008f7115e4f9060c311a3970d8b50f}} 
+\index{MotorController@{MotorController}!currentIncreaseTolerance@{currentIncreaseTolerance}}
+\index{currentIncreaseTolerance@{currentIncreaseTolerance}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{currentIncreaseTolerance}{currentIncreaseTolerance}}
+{\footnotesize\ttfamily int Motor\+Controller\+::current\+Increase\+Tolerance}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ DEFAULT\_CURRENT\_INCREASE\_LIMIT}
+
+\end{DoxyCode}
+Maxim1um current increase limit for motor cutoff \mbox{\Hypertarget{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}\label{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}} 
+\index{MotorController@{MotorController}!defaultSpeed@{defaultSpeed}}
+\index{defaultSpeed@{defaultSpeed}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{defaultSpeed}{defaultSpeed}}
+{\footnotesize\ttfamily int Motor\+Controller\+::default\+Speed = DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED}
+
+The default speed to operate the motors at on startup \mbox{\Hypertarget{class_motor_controller_a48328ef6c985bf5bc02a489af3d54172}\label{class_motor_controller_a48328ef6c985bf5bc02a489af3d54172}} 
+\index{MotorController@{MotorController}!eIntegral@{eIntegral}}
+\index{eIntegral@{eIntegral}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{eIntegral}{eIntegral}}
+{\footnotesize\ttfamily float Motor\+Controller\+::e\+Integral = 0.\+0f}
+
+The integral error coefficient for the PID controller ~\newline
+ \mbox{\Hypertarget{class_motor_controller_a27c40687dcddbda2e3ebb5bdc4007ff4}\label{class_motor_controller_a27c40687dcddbda2e3ebb5bdc4007ff4}} 
+\index{MotorController@{MotorController}!K\_i@{K\_i}}
+\index{K\_i@{K\_i}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{K\_i}{K\_i}}
+{\footnotesize\ttfamily float Motor\+Controller\+::\+K\+\_\+i = 0.\+1f}
+
+The intagral gain for the PID controller ~\newline
+ \mbox{\Hypertarget{class_motor_controller_a3aa95272d56064038e6cab32ba62b4b4}\label{class_motor_controller_a3aa95272d56064038e6cab32ba62b4b4}} 
+\index{MotorController@{MotorController}!K\_p@{K\_p}}
+\index{K\_p@{K\_p}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{K\_p}{K\_p}}
+{\footnotesize\ttfamily int Motor\+Controller\+::\+K\+\_\+p = 100000}
+
+The proprotional gain for the PID controller ~\newline
+ \mbox{\Hypertarget{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}\label{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}} 
+\index{MotorController@{MotorController}!speed@{speed}}
+\index{speed@{speed}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int Motor\+Controller\+::speed = 0}
+
+Current target speed 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_motor_controller_8hpp}{Motor\+Controller.\+hpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,419 @@
+\hypertarget{_motor_controller_8hpp_source}{}\doxysection{Motor\+Controller.\+hpp}
+\mbox{\hyperlink{_motor_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_MOTOR\_CONTROLLER\_HPP\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_MOTOR\_CONTROLLER\_HPP\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Preferences.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_motor_8hpp}{Motor.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_p_i_d_controller_8hpp}{PIDController.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_pin_macros_8hpp}{PinMacros.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ NUMBER\_OF\_MOTORS\ 2}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ ALL\_MOTORS(operation)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ for\ (int\ motor\ =\ 0;\ motor\ <\ NUMBER\_OF\_MOTORS;\ motor++)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ operation\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ALL\_MOTORS\_COMMAND(command)\ ALL\_MOTORS(motors[motor].command();)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ RESET\_SOFT\_MOVEMENT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \ pwmUpdateAmount\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ lastPWMUpdate\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ softStart\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ targetSpeed\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ eIntegral\ =\ 0.0f;}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ RESTORE\_POSITION(slot)\ motor\_controller.setPos(savedPositions[slot]);}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SERIAL\_SAVE\_POSITION(slot)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ if\ (Serial.available()\ >\ 0)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ int\ new\_pos\ =\ Serial.parseInt();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ motor\_controller.savePosition(slot,\ new\_pos);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \}}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_motor_controller}{MotorController}}\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{class_motor}{Motor}}\ motors[NUMBER\_OF\_MOTORS];}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{enum}\ MotorRoles\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ LEADER,\ \ }
+\DoxyCodeLine{00056\ \ \ \ \ FOLLOWER\ }
+\DoxyCodeLine{00057\ \ \ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{comment}{//\ const\ int\ motorPulseTotals[2]\ =\ \{8060,\ 8057\};}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ motorPulseTotals[2]\ =\ \{2055,\ 2050\};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{int}\ laggingIndex\ =\ 0;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{int}\ leadingIndex\ =\ 0;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{int}\ softStart\ =\ -\/1;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{int}\ lastPWMUpdate\ =\ -\/1;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordtype}{int}\ targetSpeed\ =\ -\/1;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{float}\ pwmUpdateAmount\ =}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ -\/1.0f;}
+\DoxyCodeLine{00084\ \ \ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{int}\ lastPrintTime\ =\ -\/1;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ printDelta\ =\ 333000;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ PIDController\ pidController;}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{class_direction}{Direction}}\ systemDirection\ =}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ Direction::STOP;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \ \ \mbox{\hyperlink{class_direction}{Direction}}\ requestedDirection\ =}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ Direction::STOP;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00102\ \ \ \textcolor{keywordtype}{int}\ pwmFrequency\ =}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ PWM\_FREQUENCY;\ }
+\DoxyCodeLine{00104\ \ \ }
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordtype}{int}\ pwmResolution\ =\ PWM\_RESOLUTION\_BITS;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keywordtype}{int}\ initialCurrentReadings[NUMBER\_OF\_MOTORS]\ =\ \{0,\ 0\};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ Preferences\ positionStorage;\ \textcolor{comment}{//}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \ \ \textcolor{keywordtype}{void}\ loadPositions()\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ slot\ =\ 0;\ slot\ <\ NUM\_POSITION\_SLOTS;\ slot++)\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ savedPositions[slot]\ =}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ positionStorage.getInt(save\_position\_slot\_names[slot]);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{void}\ immediateHalt()\ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ =\ targetSpeed\ =\ 0;}
+\DoxyCodeLine{00123\ \ \ \ \ systemDirection\ =\ Direction::STOP;}
+\DoxyCodeLine{00124\ \ \ \ \ requestedDirection\ =\ Direction::STOP;}
+\DoxyCodeLine{00125\ \ \ \ \ RESET\_SOFT\_MOVEMENT}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ ALL\_MOTORS(motors[motor].\mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ =\ 0;)}
+\DoxyCodeLine{00128\ \ \ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{void}\ initializeMotors()\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ ALL\_MOTORS\_COMMAND(\mbox{\hyperlink{class_motor_controller_ab2fb4b5942170e2cc8fc3be4ede9da57}{initialize}})}
+\DoxyCodeLine{00133\ \ \ \ \ immediateHalt();}
+\DoxyCodeLine{00134\ \ \ \}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_motor_controller_a3aa95272d56064038e6cab32ba62b4b4}{K\_p}}\ =\ 100000;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_motor_controller_a27c40687dcddbda2e3ebb5bdc4007ff4}{K\_i}}\ =\ 0.1f;}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_motor_controller_a48328ef6c985bf5bc02a489af3d54172}{eIntegral}}\ =\ 0.0f;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00148\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}}\ =\ DEFAULT\_MOTOR\_SPEED;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00151\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ =\ 0;\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_motor_controller_ae9008f7115e4f9060c311a3970d8b50f}{currentIncreaseTolerance}}\ =}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ DEFAULT\_CURRENT\_INCREASE\_LIMIT;\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00164\ \ \ \mbox{\hyperlink{class_motor_controller_a20288d902c9ef0cda030718dfa2f3cb6}{MotorController}}(}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ pwmFrequency\ =\ PWM\_FREQUENCY,}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ pwmResolution\ =\ PWM\_RESOLUTION\_BITS,}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}}\ =\ DEFAULT\_MOTOR\_SPEED,}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ currentIncreaseLimit\ =\ DEFAULT\_CURRENT\_INCREASE\_LIMIT)}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ :\ pwmFrequency(pwmFrequency),}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ pwmResolution(pwmResolution),}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}}(\mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}}),}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_ae9008f7115e4f9060c311a3970d8b50f}{currentIncreaseTolerance}}(currentIncreaseLimit)\ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}})\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ buf[256];}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ sprintf(}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ buf,}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Controller\ Params:\ Frequency:\ \%d\ -\/\ Resolution:\ \%d\ -\/\ Duty\ Cycle:\ \%d\(\backslash\)n"{}},}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ pwmFrequency,\ pwmResolution,\ \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ Serial.println(buf);}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_ab2fb4b5942170e2cc8fc3be4ede9da57}{initialize}}()\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ Read\ in\ saved\ positions}}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ Open\ in\ read-\/write\ mode}}
+\DoxyCodeLine{00188\ \ \ \ \ motors[0]\ =}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor}{Motor}}(\textcolor{stringliteral}{"{}Leader"{}},}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_RPWM\_PIN,}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_LPWM\_PIN,}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_R\_EN\_PIN,}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_L\_EN\_PIN,}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_HALL1\_PIN,}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_HALL2\_PIN,}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_LIS\_PIN,}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR1\_RIS\_PIN,}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ motorPulseTotals[0],}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PWM\_FREQUENCY,}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}},}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pwmResolution);}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ motors[1]\ =}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor}{Motor}}(\textcolor{stringliteral}{"{}Follower"{}},}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_RPWM\_PIN,}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_LPWM\_PIN,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_R\_EN\_PIN,}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_L\_EN\_PIN,}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_HALL1\_PIN,}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_HALL2\_PIN,}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_LIS\_PIN,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MotorPin::MOTOR2\_RIS\_PIN,}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ motorPulseTotals[1],}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PWM\_FREQUENCY,}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}},}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pwmResolution);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ positionStorage.begin(\textcolor{stringliteral}{"{}evox-\/tilt"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00219\ \ \ \ \ loadPositions();}
+\DoxyCodeLine{00220\ \ \ \ \ initializeMotors();}
+\DoxyCodeLine{00221\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}System\ initialized."{}});}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ ALL\_MOTORS(initialCurrentReadings[motor]\ =\ motors[motor].getCurrent();)}
+\DoxyCodeLine{00224\ \ \ \}}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00227\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_a7b87fc5678b3994a39918a76202be0cf}{extend}}()\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ SET\_TO\_ANALOG\_PIN\_FUNC(SPEED\_POT\_PIN,\ this-\/>setSpeed,\ 0,\ 2\ <<}}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{comment}{//\ PWM\_RESOLUTION\_BITS\ -\/\ 1);}}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}{setSpeed}}(\mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}});}
+\DoxyCodeLine{00231\ \ \ \ \ ALL\_MOTORS\_COMMAND(\mbox{\hyperlink{class_motor_controller_a7b87fc5678b3994a39918a76202be0cf}{extend}})}
+\DoxyCodeLine{00232\ \ \ \ \ systemDirection\ =\ Direction::EXTEND;}
+\DoxyCodeLine{00233\ \ \ \ \ requestedDirection\ =\ Direction::EXTEND;}
+\DoxyCodeLine{00234\ \ \ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00237\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}{retract}}()\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ SET\_TO\_ANALOG\_PIN\_FUNC(SPEED\_POT\_PIN,\ this-\/>setSpeed,\ 0,\ 2\ <<}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{//\ PWM\_RESOLUTION\_BITS\ -\/\ 1);}}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}{setSpeed}}(\mbox{\hyperlink{class_motor_controller_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{defaultSpeed}});}
+\DoxyCodeLine{00241\ \ \ \ \ ALL\_MOTORS\_COMMAND(\mbox{\hyperlink{class_motor_controller_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}{retract}})}
+\DoxyCodeLine{00242\ \ \ \ \ systemDirection\ =\ Direction::RETRACT;}
+\DoxyCodeLine{00243\ \ \ \ \ requestedDirection\ =\ Direction::RETRACT;}
+\DoxyCodeLine{00244\ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00247\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_a317ce58ea93ea1329de5b87391560082}{stop}}()\ \{}
+\DoxyCodeLine{00248\ \ \ \ \ RESET\_SOFT\_MOVEMENT}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}{setSpeed}}(0);}
+\DoxyCodeLine{00251\ \ \ \ \ requestedDirection\ =\ Direction::STOP;}
+\DoxyCodeLine{00252\ \ \ \}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00255\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_ae18fc3e4763dbaba71846be69af6f608}{home}}()\ \{\ ALL\_MOTORS\_COMMAND(\mbox{\hyperlink{class_motor_controller_ae18fc3e4763dbaba71846be69af6f608}{home}})\ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00258\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_a5300f11bcf37c1c08c529978818cf050}{zero}}()\ \{\ ALL\_MOTORS\_COMMAND(\mbox{\hyperlink{class_motor_controller_a5300f11bcf37c1c08c529978818cf050}{zero}})\ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00262\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}{setSpeed}}(\textcolor{keywordtype}{int}\ newSpeed)\ \{}
+\DoxyCodeLine{00263\ \ \ \ \ targetSpeed\ =\ newSpeed;}
+\DoxyCodeLine{00264\ \ \ \ \ softStart\ =\ lastPWMUpdate\ =\ micros();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ difference\ between\ the\ current\ speed\ and\ the\ requested}}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{comment}{//\ speed\ and\ divide\ that\ difference\ by\ the\ number\ of\ update\ steps\ to\ get}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{comment}{//\ the\ PWM\ duty\ cycle\ increase/decrease\ per\ step.}}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ This\ will\ usually\ have\ a\ fractional\ part,\ so\ we\ make\ it\ a\ float\ value.\ We}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{//\ handle\ the\ rounding\ and\ conversion\ to\ an\ integer\ in\ the\ update\ method.}}
+\DoxyCodeLine{00272\ \ \ \ \ pwmUpdateAmount\ =}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ ceil((\textcolor{keywordtype}{float})abs(targetSpeed\ -\/\ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}})\ /\ SOFT\_MOVEMENT\_UPDATE\_STEPS);}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{comment}{//\ If\ the\ new\ speed\ is\ lower,\ make\ it\ negative,\ as\ we\ add\ the}}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{//\ pwmUpdateAmount\ to\ the\ speed}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordflow}{if}\ (targetSpeed\ <\ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}})\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ pwmUpdateAmount\ =\ -\/pwmUpdateAmount;}
+\DoxyCodeLine{00279\ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}})\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}MotorController\(\backslash\)n"{}}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"{}}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}setSpeed(\%d)\(\backslash\)n"{}}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}speed:\ \%3d\(\backslash\)n"{}}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\ speed:\ \%3d\(\backslash\)n"{}}}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pwmUpdateAmount:\ \%3.6f\(\backslash\)n\(\backslash\)n"{}},}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ newSpeed,}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}},}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targetSpeed,}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pwmUpdateAmount);}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00297\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_motor_controller_add201a7e452d3c44703bf1ac6aac587e}{getSpeed}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ average}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordflow}{return}\ (motors[0].\mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ +\ motors[1].\mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}})\ /\ 2;}
+\DoxyCodeLine{00300\ \ \ \}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00304\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_motor_controller_a6d94459f0e674807e4556afca3b34413}{countsAreUnequal}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keywordtype}{bool}\ areUnequal\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00306\ \ \ \ \ ALL\_MOTORS(areUnequal\ \&=\ motors[motor].pos\ ==\ motors[motor].lastPos;)}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keywordflow}{return}\ areUnequal;}
+\DoxyCodeLine{00308\ \ \ \}}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_aa4412ba310bcb5e34bebc50d660025ec}{report}}()\ \{}
+\DoxyCodeLine{00312\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}MotorController\(\backslash\)n-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)nSpeed:\ \%d\(\backslash\)nTarget\ "{}}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Speed:\ \%d\(\backslash\)nK\_p:\ \%d\(\backslash\)nK\_i:\ \%f\(\backslash\)neIntegral:\%f\(\backslash\)npwmUpdateAmont:\ \%f\ \(\backslash\)n"{}},}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}},\ targetSpeed,\ \mbox{\hyperlink{class_motor_controller_a3aa95272d56064038e6cab32ba62b4b4}{K\_p}},\ \mbox{\hyperlink{class_motor_controller_a27c40687dcddbda2e3ebb5bdc4007ff4}{K\_i}},\ \mbox{\hyperlink{class_motor_controller_a48328ef6c985bf5bc02a489af3d54172}{eIntegral}},\ pwmUpdateAmount);}
+\DoxyCodeLine{00315\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Leading\ motor:\ "{}});}
+\DoxyCodeLine{00316\ \ \ \ \ Serial.println(motor\_roles[leadingIndex]);}
+\DoxyCodeLine{00317\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Lagging\ motor:\ "{}});}
+\DoxyCodeLine{00318\ \ \ \ \ Serial.println(motor\_roles[laggingIndex]);}
+\DoxyCodeLine{00319\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)n\(\backslash\)n"{}});}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ ALL\_MOTORS\_COMMAND(displayInfo)}
+\DoxyCodeLine{00322\ \ \ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00325\ \textcolor{comment}{\ \ void\ pidReport(const\ float\ deltaT)\ const\ \{}}
+\DoxyCodeLine{00326\ \textcolor{comment}{\ \ \ \ int\ leaderPos\ =\ motors[0].pos;}}
+\DoxyCodeLine{00327\ \textcolor{comment}{\ \ \ \ int\ followerPos\ =\ motors[1].pos;}}
+\DoxyCodeLine{00328\ \textcolor{comment}{\ \ \ \ int\ followerSpeed\ =\ motors[1].speed;}}
+\DoxyCodeLine{00329\ \textcolor{comment}{\ \ \ \ Direction\ dir\ =\ motors[1].dir;}}
+\DoxyCodeLine{00330\ \textcolor{comment}{}}
+\DoxyCodeLine{00331\ \textcolor{comment}{\ \ \ \ pidController.report(leaderPos,\ followerPos,\ deltaT,\ followerSpeed,\ dir);}}
+\DoxyCodeLine{00332\ \textcolor{comment}{\ \ \}}}
+\DoxyCodeLine{00333\ \textcolor{comment}{}}
+\DoxyCodeLine{00334\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00340\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_a721ec0badfe038b6fc7f9d52241acd96}{savePosition}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ slot,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ position\_value)\ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordflow}{if}\ (slot\ >\ 0\ \&\&\ slot\ <\ NUM\_POSITION\_SLOTS\ \&\&\ position\_value\ >\ -\/1)\ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ ALL\_MOTORS(motors[motor].\mbox{\hyperlink{class_motor_controller_aecc3d8d28295d30f34d8f3b736243877}{setPos}}(position\_value);)}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ savedPositions[slot\ -\/\ 1]\ =\ position\_value;}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ positionStorage.putInt(save\_position\_slot\_names[slot],\ position\_value);}
+\DoxyCodeLine{00345\ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00350\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_aecc3d8d28295d30f34d8f3b736243877}{setPos}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ newPos)\ \{\ ALL\_MOTORS(motors[motor].\mbox{\hyperlink{class_motor_controller_aecc3d8d28295d30f34d8f3b736243877}{setPos}}(newPos);)\ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00354\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_motor_controller_aef6d99d0d2ee996fb357e0fdd4fff65f}{isStopped}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ systemDirection\ ==\ Direction::STOP;\ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00358\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_motor_controller_ab7a076be5cc48c2af65ef2d32a4fe6bc}{update}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ deltaT\ =\ 0.0f)\ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{comment}{//\ Only\ update\ PID\ if\ we're\ not\ stopped}}
+\DoxyCodeLine{00360\ \ \ \ \ \textcolor{keywordflow}{if}\ (Direction::STOP\ !=\ systemDirection)\ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ ALL\_MOTORS\_COMMAND(readPos)}
+\DoxyCodeLine{00362\ }
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (Direction::EXTEND\ ==\ systemDirection)\ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (motors[LEADER].getNormalizedPos()\ <}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ motors[FOLLOWER].getNormalizedPos())\ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ laggingIndex\ =\ LEADER;}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ leadingIndex\ =\ FOLLOWER;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ laggingIndex\ =\ FOLLOWER;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ leadingIndex\ =\ LEADER;}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (motors[LEADER].getNormalizedPos()\ >}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ motors[FOLLOWER].getNormalizedPos())\ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ laggingIndex\ =\ LEADER;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ leadingIndex\ =\ FOLLOWER;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ laggingIndex\ =\ FOLLOWER;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ leadingIndex\ =\ LEADER;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00382\ \ \ \ \ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \ \ \ \ \textcolor{comment}{//\ Difference\ between\ current\ speed\ and\ target\ speed}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ speedDelta\ =\ abs(\mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ -\/\ targetSpeed);}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{comment}{//\ Get\ current\ time}}
+\DoxyCodeLine{00388\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ currentTime\ =\ micros();}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{comment}{//\ Time\ since\ soft\ move\ has\ started}}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ moveTimeDelta\ =\ currentTime\ -\/\ softStart;}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{comment}{//\ Time\ since\ PWM\ duty\ cycle\ (speed)\ was\ last\ modified}}
+\DoxyCodeLine{00394\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ updateTimeDelta\ =\ currentTime\ -\/\ lastPWMUpdate;}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{comment}{//\ If\ we\ have\ a\ target\ speed}}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordflow}{if}\ (targetSpeed\ >=\ 0)\ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \textcolor{comment}{//\ Are\ we\ ready\ to\ update?}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (updateTimeDelta\ >=\ SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS)\ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ so,\ first\ check\ if\ the\ distance\ to\ target\ is\ less\ than\ our\ step}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ amount.\ Or\ if\ the\ time\ to\ ramp\ up\ has\ expired}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (speedDelta\ <\ abs(pwmUpdateAmount)\ ||}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ moveTimeDelta\ >=\ SOFT\_MOVEMENT\_MICROS)\ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ so,\ then\ set\ the\ current\ speed\ to\ target\ speed\ and\ reset\ state}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ =\ targetSpeed;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ RESET\_SOFT\_MOVEMENT}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ the\ requested\ direction\ is\ to\ stop,\ the\ finally\ update\ the\ system}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ direction\ to\ stop}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (requestedDirection\ ==\ Direction::STOP)\ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ systemDirection\ =\ Direction::STOP;}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}})\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}System\ Direction:\ STOP"{}});}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ timeSinceSoftStart\ =\ (double)\ (micros()\ -\/\ softStart)\ /\ (\textcolor{keywordtype}{double})\ MICROS\_IN\_MS;}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Soft\ Movement\ PWM\ Update\ -\/\ "{}}}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}speed:\ \%d\ -\/\ "{}}}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\ speed:\ \%d\ -\/\ "{}}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}time\ since\ soft\ start:\ \%f\ ms\ -\/\ "{}}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pwmUpdateAmount:\ \%f\(\backslash\)n"{}},}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}},}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targetSpeed,}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ timeSinceSoftStart,}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pwmUpdateAmount);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tell\ all\ motors\ to\ stop}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ immediateHalt();}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Otherwise,\ add\ the\ PWM\ update\ ammount\ to\ the\ current\ duty\ cycle}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (speed)\ Round\ the\ result\ and\ then\ convert\ to\ an\ integer}}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ newSpeed\ =\ (float)\mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ +\ pwmUpdateAmount;}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ =\ (int)floorf(newSpeed);}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ just\ updated,\ so\ update\ last\ update\ timestamp}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ lastPWMUpdate\ =\ micros();}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ timeSinceSoftStart\ =\ (double)\ (micros()\ -\/\ softStart)\ /\ (\textcolor{keywordtype}{double})\ MICROS\_IN\_MS;}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}})\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Soft\ Movement\ PWM\ Update\ -\/\ "{}}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}speed:\ \%d\ -\/\ "{}}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}target\ speed:\ \%d\ -\/\ "{}}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}time\ since\ soft\ start:\ \%f\ ms\ -\/\ "{}}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}pwmUpdateAmount:\ \%f\(\backslash\)n"{}},}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}},}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ targetSpeed,}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ timeSinceSoftStart,}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ pwmUpdateAmount);}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00454\ \ \ \ \ \}}
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00457\ \textcolor{comment}{int\ maxCurrent\ =\ max(motors[leadingIndex].getCurrent(),}}
+\DoxyCodeLine{00458\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ motors[laggingIndex].getCurrent());}}
+\DoxyCodeLine{00459\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{comment}{//\ The\ error\ is\ the\ difference\ between\ the\ normalization\ of\ positions\ of}}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{comment}{//\ the\ two\ motors}}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ error\ =\ abs(motors[laggingIndex].getNormalizedPos()\ -\/}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ motors[leadingIndex].getNormalizedPos());}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{comment}{//\ Add\ the\ error\ from\ this\ timestep\ to\ the\ integral\ term}}
+\DoxyCodeLine{00467\ \ \ \ \ \mbox{\hyperlink{class_motor_controller_a48328ef6c985bf5bc02a489af3d54172}{eIntegral}}\ +=\ error\ *\ deltaT;}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ adjusted\ speed\ to\ set\ to\ the\ faster\ motor}}
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{comment}{//const\ int\ adjustedSpeed\ =\ speed\ -\/\ int((error\ *\ K\_p)\ +\ (K\_i\ *\ eIntegral));}}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ adjustedSpeed\ =\ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}}\ -\/\ int((error\ *\ \mbox{\hyperlink{class_motor_controller_a3aa95272d56064038e6cab32ba62b4b4}{K\_p}}));}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \textcolor{comment}{//\ Slow\ down\ the\ faster\ motor,\ keeping\ the\ value\ in\ the\ acceptable\ range}}
+\DoxyCodeLine{00474\ \ \ \ \ motors[leadingIndex].\mbox{\hyperlink{class_motor_a68b835dd35395fbab7b32eb0bbc12283}{speed}}\ =}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ constrain(adjustedSpeed,\ 0,\ 2\ <<\ pwmResolution);}
+\DoxyCodeLine{00476\ \ \ \ \ motors[laggingIndex].\mbox{\hyperlink{class_motor_a68b835dd35395fbab7b32eb0bbc12283}{speed}}\ =\ \mbox{\hyperlink{class_motor_controller_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}};}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{comment}{//\ Update\ the\ motors\ with\ the\ adjustments}}
+\DoxyCodeLine{00479\ \ \ \ \ ALL\_MOTORS\_COMMAND(\mbox{\hyperlink{class_motor_controller_ab7a076be5cc48c2af65ef2d32a4fe6bc}{update}})}
+\DoxyCodeLine{00480\ \ \ \}}
+\DoxyCodeLine{00481\ \};}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MOTOR\_CONTROLLER\_HPP\_}}
+
+\end{DoxyCode}

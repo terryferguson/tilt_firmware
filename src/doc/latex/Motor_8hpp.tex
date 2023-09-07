@@ -1,0 +1,45 @@
+\doxysection{Motor.\+hpp File Reference}
+\hypertarget{Motor_8hpp}{}\label{Motor_8hpp}\index{Motor.hpp@{Motor.hpp}}
+{\ttfamily \#include "{}Pin\+Macros.\+hpp"{}}\newline
+{\ttfamily \#include "{}defs.\+hpp"{}}\newline
+{\ttfamily \#include $<$ESP32\+Encoder.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{classMotor}{Motor}}
+\begin{DoxyCompactList}\small\item\em This class represents the motor controlled by the microcontroller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{Motor_8hpp_ad23213a97a0a8d76e7cbcf503520d59d}\label{Motor_8hpp_ad23213a97a0a8d76e7cbcf503520d59d} 
+\#define {\bfseries READ\+\_\+\+POSITION\+\_\+\+ENCODER}()~this-\/$>$pos = distance\+Sensor.\+get\+Count();
+\item 
+\#define \mbox{\hyperlink{Motor_8hpp_a59c50d99a487b73404c203a1dec09fc2}{MOVE\+\_\+\+TO\+\_\+\+POS}}(setpoint,  min\+\_\+delta,  buffer)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{Motor_8hpp_aa1755ddcacd4dcebcf9280fdcb598e3a}\label{Motor_8hpp_aa1755ddcacd4dcebcf9280fdcb598e3a} 
+int {\bfseries current\+PWMChannel} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{Motor_8hpp_a59c50d99a487b73404c203a1dec09fc2}\label{Motor_8hpp_a59c50d99a487b73404c203a1dec09fc2} 
+\index{Motor.hpp@{Motor.hpp}!MOVE\_TO\_POS@{MOVE\_TO\_POS}}
+\index{MOVE\_TO\_POS@{MOVE\_TO\_POS}!Motor.hpp@{Motor.hpp}}
+\doxysubsubsection{\texorpdfstring{MOVE\_TO\_POS}{MOVE\_TO\_POS}}
+{\footnotesize\ttfamily \#define MOVE\+\_\+\+TO\+\_\+\+POS(\begin{DoxyParamCaption}\item[{}]{setpoint,  }\item[{}]{min\+\_\+delta,  }\item[{}]{buffer }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (abs(pos\ -\/\ setpoint)\ >\ min\_delta)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ if\ (pos\ <\ setpoint)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ desiredPos\ =\ setpoint\ -\/\ buffer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (pos\ >\ newPos)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ desiredPos\ =\ setpoint\ +\ buffer;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}

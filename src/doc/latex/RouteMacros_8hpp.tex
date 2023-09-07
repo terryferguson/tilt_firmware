@@ -1,0 +1,76 @@
+\doxysection{Route\+Macros.\+hpp File Reference}
+\hypertarget{RouteMacros_8hpp}{}\label{RouteMacros_8hpp}\index{RouteMacros.hpp@{RouteMacros.hpp}}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{RouteMacros_8hpp_aa799ae3e0ee809f6341a324c8a2e3912}{SET\+\_\+\+TILT}}(n)
+\item 
+\Hypertarget{RouteMacros_8hpp_a2e0abe798fad67ba446d3ed7582f3432}\label{RouteMacros_8hpp_a2e0abe798fad67ba446d3ed7582f3432} 
+\#define {\bfseries DEF\+\_\+\+HANDLER}(func)~\mbox{[}$\,$\mbox{]}(Async\+Web\+Server\+Request \texorpdfstring{$\ast$}{*}request) \{ func \}
+\item 
+\#define \mbox{\hyperlink{RouteMacros_8hpp_aa694d714bcf262500f333753746e0227}{LOAD\+\_\+\+SAVED\+\_\+\+POSITION}}(position,  response\+\_\+text)
+\item 
+\#define \mbox{\hyperlink{RouteMacros_8hpp_a580357cffe97789cf9d3d03d76ff7c50}{MOTOR\+\_\+\+COMMAND}}(command,  response\+\_\+text)
+\item 
+\#define \mbox{\hyperlink{RouteMacros_8hpp_a45e0be0dc5b78d2a2197ad533fc7cef3}{SET\+\_\+\+POS\+\_\+\+HANDLER}}(slot)
+\item 
+\Hypertarget{RouteMacros_8hpp_a535b106c27049eaf35d4ce7c3b9bdb64}\label{RouteMacros_8hpp_a535b106c27049eaf35d4ce7c3b9bdb64} 
+\#define {\bfseries STATIC\+\_\+\+FILE}(filename,  file\+\_\+type)~  request-\/$>$send(SPIFFS, filename, file\+\_\+type);
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{RouteMacros_8hpp_aa694d714bcf262500f333753746e0227}\label{RouteMacros_8hpp_aa694d714bcf262500f333753746e0227} 
+\index{RouteMacros.hpp@{RouteMacros.hpp}!LOAD\_SAVED\_POSITION@{LOAD\_SAVED\_POSITION}}
+\index{LOAD\_SAVED\_POSITION@{LOAD\_SAVED\_POSITION}!RouteMacros.hpp@{RouteMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{LOAD\_SAVED\_POSITION}{LOAD\_SAVED\_POSITION}}
+{\footnotesize\ttfamily \#define LOAD\+\_\+\+SAVED\+\_\+\+POSITION(\begin{DoxyParamCaption}\item[{}]{position,  }\item[{}]{response\+\_\+text }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ motor\_controller.setPos(savedPositions[position]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/plain"{}},\ response\_text);}
+
+\end{DoxyCode}
+\Hypertarget{RouteMacros_8hpp_a580357cffe97789cf9d3d03d76ff7c50}\label{RouteMacros_8hpp_a580357cffe97789cf9d3d03d76ff7c50} 
+\index{RouteMacros.hpp@{RouteMacros.hpp}!MOTOR\_COMMAND@{MOTOR\_COMMAND}}
+\index{MOTOR\_COMMAND@{MOTOR\_COMMAND}!RouteMacros.hpp@{RouteMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_COMMAND}{MOTOR\_COMMAND}}
+{\footnotesize\ttfamily \#define MOTOR\+\_\+\+COMMAND(\begin{DoxyParamCaption}\item[{}]{command,  }\item[{}]{response\+\_\+text }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ motor\_controller.command();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/plain"{}},\ response\_text);}
+
+\end{DoxyCode}
+\Hypertarget{RouteMacros_8hpp_a45e0be0dc5b78d2a2197ad533fc7cef3}\label{RouteMacros_8hpp_a45e0be0dc5b78d2a2197ad533fc7cef3} 
+\index{RouteMacros.hpp@{RouteMacros.hpp}!SET\_POS\_HANDLER@{SET\_POS\_HANDLER}}
+\index{SET\_POS\_HANDLER@{SET\_POS\_HANDLER}!RouteMacros.hpp@{RouteMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{SET\_POS\_HANDLER}{SET\_POS\_HANDLER}}
+{\footnotesize\ttfamily \#define SET\+\_\+\+POS\+\_\+\+HANDLER(\begin{DoxyParamCaption}\item[{}]{slot }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ String\ inputMessage1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ SET\_TILT(slot)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/plain"{}},\ inputMessage1);}
+
+\end{DoxyCode}
+\Hypertarget{RouteMacros_8hpp_aa799ae3e0ee809f6341a324c8a2e3912}\label{RouteMacros_8hpp_aa799ae3e0ee809f6341a324c8a2e3912} 
+\index{RouteMacros.hpp@{RouteMacros.hpp}!SET\_TILT@{SET\_TILT}}
+\index{SET\_TILT@{SET\_TILT}!RouteMacros.hpp@{RouteMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{SET\_TILT}{SET\_TILT}}
+{\footnotesize\ttfamily \#define SET\+\_\+\+TILT(\begin{DoxyParamCaption}\item[{}]{n }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (request-\/>hasParam(PARAM\_INPUT\_1))\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ inputMessage1\ =\ request-\/>getParam(PARAM\_INPUT\_1)-\/>value();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ new\_pos\ =\ inputMessage1.toInt();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ motor\_controller.savePosition(n,\ new\_pos);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ inputMessage1\ =\ \textcolor{stringliteral}{"{}Error:\ No\ position\ sent."{}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \}}
+
+\end{DoxyCode}

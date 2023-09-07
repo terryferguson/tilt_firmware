@@ -1,0 +1,103 @@
+\hypertarget{_commands_8hpp}{}\doxysection{Commands.\+hpp File Reference}
+\label{_commands_8hpp}\index{Commands.hpp@{Commands.hpp}}
+{\ttfamily \#include $<$cstdint$>$}\newline
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27e}{Command}} \+: std\+::uint32\+\_\+t \{ \newline
+\mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eac3be3694d35cb5aeacf8299eee3d9da2}{RETRACT}} = 17
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eafb3e95efc27c9a8cac26dc3a59286c9a}{EXTEND}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ead02a38d7ff75e9aed743437fd9539a44}{REPORT}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea615a46af313786fc4e349f34118be111}{STOP}}
+, \newline
+\mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea94fcb9768332b5ddd90cfbbe2034efbf}{SAVE\+\_\+\+TILT\+\_\+1}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eaae94a115a3eed6dd1eb78be027ce57c3}{SAVE\+\_\+\+TILT\+\_\+2}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea0697ea242280bb9412b804e7d20f0c1a}{SAVE\+\_\+\+TILT\+\_\+3}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea8fd7e49334f67e1a049d85125b207e64}{SAVE\+\_\+\+TILT\+\_\+4}}
+, \newline
+\mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea7ba4785cab7791684ff5e338a7ca593f}{SAVE\+\_\+\+TILT\+\_\+5}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea3d2501b7ab3d938ff31c5a6382c7a2b2}{GET\+\_\+\+TILT\+\_\+1}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eacd1e9806a1001eff3716448af2f2c718}{GET\+\_\+\+TILT\+\_\+2}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea65c9ee90b5194d725de93d12fc76783e}{GET\+\_\+\+TILT\+\_\+3}}
+, \newline
+\mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eabdbcb5f36563cd31f4ea95f1a537173c}{GET\+\_\+\+TILT\+\_\+4}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea8f039e4066efe8f2443925d57d657318}{GET\+\_\+\+TILT\+\_\+5}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea529e9e0beb5f85d1f132917c1a09860c}{ZERO}}
+, \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea10386e3df245d122a199a25f2a92e075}{SYSTEM\+\_\+\+RESET}}
+ \}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27e}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27e}} 
+\index{Commands.hpp@{Commands.hpp}!Command@{Command}}
+\index{Command@{Command}!Commands.hpp@{Commands.hpp}}
+\doxysubsubsection{\texorpdfstring{Command}{Command}}
+{\footnotesize\ttfamily enum class \mbox{\hyperlink{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27e}{Command}} \+: std\+::uint32\+\_\+t\hspace{0.3cm}{\ttfamily [strong]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{RETRACT@{RETRACT}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!RETRACT@{RETRACT}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eac3be3694d35cb5aeacf8299eee3d9da2}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eac3be3694d35cb5aeacf8299eee3d9da2}} 
+RETRACT&Command to tell motors to retract -\/ 17 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EXTEND@{EXTEND}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!EXTEND@{EXTEND}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eafb3e95efc27c9a8cac26dc3a59286c9a}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eafb3e95efc27c9a8cac26dc3a59286c9a}} 
+EXTEND&Command to tell motors to extend -\/ 18 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{REPORT@{REPORT}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!REPORT@{REPORT}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ead02a38d7ff75e9aed743437fd9539a44}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ead02a38d7ff75e9aed743437fd9539a44}} 
+REPORT&Command to tell tell the motor controller to report its state -\/ 19 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STOP@{STOP}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!STOP@{STOP}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea615a46af313786fc4e349f34118be111}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea615a46af313786fc4e349f34118be111}} 
+STOP&Command to tell the motor controller to stop -\/ 20 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAVE\_TILT\_1@{SAVE\_TILT\_1}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!SAVE\_TILT\_1@{SAVE\_TILT\_1}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea94fcb9768332b5ddd90cfbbe2034efbf}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea94fcb9768332b5ddd90cfbbe2034efbf}} 
+SAVE\+\_\+\+TILT\+\_\+1&Save value to stored position slot 1 -\/ 21 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAVE\_TILT\_2@{SAVE\_TILT\_2}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!SAVE\_TILT\_2@{SAVE\_TILT\_2}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eaae94a115a3eed6dd1eb78be027ce57c3}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eaae94a115a3eed6dd1eb78be027ce57c3}} 
+SAVE\+\_\+\+TILT\+\_\+2&Save value to stored position slot 2 -\/ 22 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAVE\_TILT\_3@{SAVE\_TILT\_3}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!SAVE\_TILT\_3@{SAVE\_TILT\_3}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea0697ea242280bb9412b804e7d20f0c1a}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea0697ea242280bb9412b804e7d20f0c1a}} 
+SAVE\+\_\+\+TILT\+\_\+3&Save value to stored position slot 3 -\/ 23 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAVE\_TILT\_4@{SAVE\_TILT\_4}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!SAVE\_TILT\_4@{SAVE\_TILT\_4}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea8fd7e49334f67e1a049d85125b207e64}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea8fd7e49334f67e1a049d85125b207e64}} 
+SAVE\+\_\+\+TILT\+\_\+4&Save value to stored position slot 4 -\/ 24 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SAVE\_TILT\_5@{SAVE\_TILT\_5}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!SAVE\_TILT\_5@{SAVE\_TILT\_5}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea7ba4785cab7791684ff5e338a7ca593f}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea7ba4785cab7791684ff5e338a7ca593f}} 
+SAVE\+\_\+\+TILT\+\_\+5&Save value to stored position slot 5 -\/ 25 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_TILT\_1@{GET\_TILT\_1}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!GET\_TILT\_1@{GET\_TILT\_1}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea3d2501b7ab3d938ff31c5a6382c7a2b2}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea3d2501b7ab3d938ff31c5a6382c7a2b2}} 
+GET\+\_\+\+TILT\+\_\+1&Get value from stored position slot 1 -\/ 26 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_TILT\_2@{GET\_TILT\_2}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!GET\_TILT\_2@{GET\_TILT\_2}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eacd1e9806a1001eff3716448af2f2c718}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eacd1e9806a1001eff3716448af2f2c718}} 
+GET\+\_\+\+TILT\+\_\+2&Get value from stored position slot 2 -\/ 27 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_TILT\_3@{GET\_TILT\_3}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!GET\_TILT\_3@{GET\_TILT\_3}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea65c9ee90b5194d725de93d12fc76783e}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea65c9ee90b5194d725de93d12fc76783e}} 
+GET\+\_\+\+TILT\+\_\+3&Get value from stored position slot 3 -\/ 28 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_TILT\_4@{GET\_TILT\_4}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!GET\_TILT\_4@{GET\_TILT\_4}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eabdbcb5f36563cd31f4ea95f1a537173c}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27eabdbcb5f36563cd31f4ea95f1a537173c}} 
+GET\+\_\+\+TILT\+\_\+4&Get value from stored position slot 4 -\/ 29 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GET\_TILT\_5@{GET\_TILT\_5}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!GET\_TILT\_5@{GET\_TILT\_5}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea8f039e4066efe8f2443925d57d657318}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea8f039e4066efe8f2443925d57d657318}} 
+GET\+\_\+\+TILT\+\_\+5&Get value from stored position slot 5 -\/ 30 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ZERO@{ZERO}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!ZERO@{ZERO}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea529e9e0beb5f85d1f132917c1a09860c}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea529e9e0beb5f85d1f132917c1a09860c}} 
+ZERO&Command to tell tell the motor controller to reset position counters -\/ 31 \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SYSTEM\_RESET@{SYSTEM\_RESET}!Commands.hpp@{Commands.hpp}}\index{Commands.hpp@{Commands.hpp}!SYSTEM\_RESET@{SYSTEM\_RESET}}}\mbox{\Hypertarget{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea10386e3df245d122a199a25f2a92e075}\label{_commands_8hpp_a2aeb8afa367393535b95c19b9f06b27ea10386e3df245d122a199a25f2a92e075}} 
+SYSTEM\+\_\+\+RESET&Command to tell tell the microcontroller to reset -\/ 32 \\
+\hline
+
+\end{DoxyEnumFields}

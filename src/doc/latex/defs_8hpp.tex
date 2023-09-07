@@ -1,0 +1,84 @@
+\doxysection{defs.\+hpp File Reference}
+\hypertarget{defs_8hpp}{}\label{defs_8hpp}\index{defs.hpp@{defs.hpp}}
+{\ttfamily \#include "{}Commands.\+hpp"{}}\newline
+{\ttfamily \#include "{}Motor\+Pins.\+hpp"{}}\newline
+{\ttfamily \#include "{}Control\+Pins.\+hpp"{}}\newline
+{\ttfamily \#include "{}Direction.\+hpp"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{defs_8hpp_a8677cc3aaa35e7f860928085b74c161c}\label{defs_8hpp_a8677cc3aaa35e7f860928085b74c161c} 
+\#define {\bfseries FORMAT\+\_\+\+SPIFFS\+\_\+\+IF\+\_\+\+FAILED}~true
+\item 
+\Hypertarget{defs_8hpp_ad34c78cf45bd8aa6019fc77dd993f77a}\label{defs_8hpp_ad34c78cf45bd8aa6019fc77dd993f77a} 
+\#define {\bfseries NUM\+\_\+\+POSITION\+\_\+\+SLOTS}~5
+\item 
+\Hypertarget{defs_8hpp_a6177eb86ee16a1956c81749e4e332cf0}\label{defs_8hpp_a6177eb86ee16a1956c81749e4e332cf0} 
+\#define {\bfseries PWM\+\_\+\+FREQUENCY}~15000
+\item 
+\Hypertarget{defs_8hpp_a9b5900094403e54163d766bd324b56fc}\label{defs_8hpp_a9b5900094403e54163d766bd324b56fc} 
+\#define {\bfseries PWM\+\_\+\+RESOLUTION\+\_\+\+BITS}~8
+\item 
+\Hypertarget{defs_8hpp_a01b7c84ef09e42d33170b4f151eda72e}\label{defs_8hpp_a01b7c84ef09e42d33170b4f151eda72e} 
+\#define {\bfseries ADC\+\_\+\+RESOLUTION\+\_\+\+BITS}~12
+\item 
+\Hypertarget{defs_8hpp_a8e3de4244f70752f35fb95b3fea8dc88}\label{defs_8hpp_a8e3de4244f70752f35fb95b3fea8dc88} 
+\#define {\bfseries DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED}~192
+\item 
+\Hypertarget{defs_8hpp_ad632bdd8e6402ac32b06d2cb78d870a4}\label{defs_8hpp_ad632bdd8e6402ac32b06d2cb78d870a4} 
+\#define {\bfseries MICROS\+\_\+\+IN\+\_\+\+MS}~1000
+\item 
+\Hypertarget{defs_8hpp_ac9802030e65389981d688ea724eb22aa}\label{defs_8hpp_ac9802030e65389981d688ea724eb22aa} 
+\#define {\bfseries SOFT\+\_\+\+MOVEMENT\+\_\+\+TIME\+\_\+\+MS}~2000
+\item 
+\Hypertarget{defs_8hpp_aefc64b473eb0e746220346363e350151}\label{defs_8hpp_aefc64b473eb0e746220346363e350151} 
+\#define {\bfseries SOFT\+\_\+\+MOVEMENT\+\_\+\+MICROS}~(SOFT\+\_\+\+MOVEMENT\+\_\+\+TIME\+\_\+\+MS \texorpdfstring{$\ast$}{*} MICROS\+\_\+\+IN\+\_\+\+MS)
+\item 
+\Hypertarget{defs_8hpp_ab6cee2d4a4bbc2b98204caff321f2fe5}\label{defs_8hpp_ab6cee2d4a4bbc2b98204caff321f2fe5} 
+\#define {\bfseries SOFT\+\_\+\+MOVEMENT\+\_\+\+PWM\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MICROS}~20000
+\item 
+\Hypertarget{defs_8hpp_adf4a884da119dfd169c56c6fb266cff8}\label{defs_8hpp_adf4a884da119dfd169c56c6fb266cff8} 
+\#define {\bfseries SOFT\+\_\+\+MOVEMENT\+\_\+\+UPDATE\+\_\+\+STEPS}~  (SOFT\+\_\+\+MOVEMENT\+\_\+\+MICROS / SOFT\+\_\+\+MOVEMENT\+\_\+\+PWM\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MICROS)
+\item 
+\Hypertarget{defs_8hpp_ac2cd96d53dd3ba6407db6766c3d92b26}\label{defs_8hpp_ac2cd96d53dd3ba6407db6766c3d92b26} 
+\#define {\bfseries MAX\+\_\+\+SPEED}~(1 $<$$<$ (PWM\+\_\+\+RESOLUTION\+\_\+\+BITS)-\/1)
+\item 
+\Hypertarget{defs_8hpp_ad5f5efaa5cb771bd06da4bfe6046809e}\label{defs_8hpp_ad5f5efaa5cb771bd06da4bfe6046809e} 
+\#define {\bfseries MIN\+\_\+\+SPEED}~(1 $<$$<$ (PWM\+\_\+\+RESOLUTION\+\_\+\+BITS)-\/1) \texorpdfstring{$\ast$}{*} -\/1
+\item 
+\Hypertarget{defs_8hpp_a91f5af028cd707fcddafff4416925b21}\label{defs_8hpp_a91f5af028cd707fcddafff4416925b21} 
+\#define {\bfseries MAX\+\_\+\+ADC\+\_\+\+VALUE}~(1 $<$$<$ (ADC\+\_\+\+RESOLUTION\+\_\+\+BITS))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{defs_8hpp_ab7b8d4434e693fed973ce8b78e9d5a6f}\label{defs_8hpp_ab7b8d4434e693fed973ce8b78e9d5a6f} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries motor\+\_\+roles} \mbox{[}2\mbox{]} = \{"{}LEADER"{}, "{}FOLLOWER"{}\}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{defs_8hpp_a4f3f73f84b09a711e5bb4b29ecf6b199}{save\+\_\+position\+\_\+slot\+\_\+names}} \mbox{[}NUM\+\_\+\+POSITION\+\_\+\+SLOTS\mbox{]}
+\item 
+\Hypertarget{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d}\label{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d} 
+int {\bfseries saved\+Positions} \mbox{[}NUM\+\_\+\+POSITION\+\_\+\+SLOTS\mbox{]} = \{0, 0, 0, 0, 0\}
+\item 
+\Hypertarget{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}\label{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a} 
+bool {\bfseries debug\+Enabled} = true
+\begin{DoxyCompactList}\small\item\em Indicates whether debug messages should be sent to serial. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a9fb2aacf737e76b7c2b1fa0a065a8942}\label{defs_8hpp_a9fb2aacf737e76b7c2b1fa0a065a8942} 
+bool {\bfseries pid\+\_\+on} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{defs_8hpp_a4f3f73f84b09a711e5bb4b29ecf6b199}\label{defs_8hpp_a4f3f73f84b09a711e5bb4b29ecf6b199} 
+\index{defs.hpp@{defs.hpp}!save\_position\_slot\_names@{save\_position\_slot\_names}}
+\index{save\_position\_slot\_names@{save\_position\_slot\_names}!defs.hpp@{defs.hpp}}
+\doxysubsubsection{\texorpdfstring{save\_position\_slot\_names}{save\_position\_slot\_names}}
+{\footnotesize\ttfamily const char\texorpdfstring{$\ast$}{*} save\+\_\+position\+\_\+slot\+\_\+names\mbox{[}NUM\+\_\+\+POSITION\+\_\+\+SLOTS\mbox{]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{stringliteral}{"{}tilt-\/1"{}},\ \textcolor{stringliteral}{"{}tilt-\/2"{}},\ \textcolor{stringliteral}{"{}tilt-\/3"{}},\ \textcolor{stringliteral}{"{}tilt-\/4"{}},\ \textcolor{stringliteral}{"{}tilt-\/5"{}},}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}

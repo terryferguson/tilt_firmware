@@ -1,0 +1,28 @@
+var classMotorController =
+[
+    [ "MotorController", "classMotorController.html#a20288d902c9ef0cda030718dfa2f3cb6", null ],
+    [ "countsAreUnequal", "classMotorController.html#a6d94459f0e674807e4556afca3b34413", null ],
+    [ "extend", "classMotorController.html#a7b87fc5678b3994a39918a76202be0cf", null ],
+    [ "getSpeed", "classMotorController.html#add201a7e452d3c44703bf1ac6aac587e", null ],
+    [ "home", "classMotorController.html#ae18fc3e4763dbaba71846be69af6f608", null ],
+    [ "initialize", "classMotorController.html#ab2fb4b5942170e2cc8fc3be4ede9da57", null ],
+    [ "isStopped", "classMotorController.html#aef6d99d0d2ee996fb357e0fdd4fff65f", null ],
+    [ "report", "classMotorController.html#aa4412ba310bcb5e34bebc50d660025ec", null ],
+    [ "retract", "classMotorController.html#a82c8ae39bfeb8cea8e851d8e4c1fd8ef", null ],
+    [ "savePosition", "classMotorController.html#a721ec0badfe038b6fc7f9d52241acd96", null ],
+    [ "setPos", "classMotorController.html#aecc3d8d28295d30f34d8f3b736243877", null ],
+    [ "setSpeed", "classMotorController.html#a8b7c0ce938bd1fd25ed8f8c98e5eecdd", null ],
+    [ "stop", "classMotorController.html#a317ce58ea93ea1329de5b87391560082", null ],
+    [ "update", "classMotorController.html#ab7a076be5cc48c2af65ef2d32a4fe6bc", null ],
+    [ "zero", "classMotorController.html#a5300f11bcf37c1c08c529978818cf050", null ],
+    [ "currentIncreaseTolerance", "classMotorController.html#ae9008f7115e4f9060c311a3970d8b50f", null ],
+    [ "defaultSpeed", "classMotorController.html#ad0b0c6eec67c0eae5bc0fbccf4d12ac9", null ],
+    [ "eIntegral", "classMotorController.html#a48328ef6c985bf5bc02a489af3d54172", null ],
+    [ "K_i", "classMotorController.html#a27c40687dcddbda2e3ebb5bdc4007ff4", null ],
+    [ "K_p", "classMotorController.html#a3aa95272d56064038e6cab32ba62b4b4", null ],
+    [ "leftCurrent", "classMotorController.html#a24dc64a574d43f8f089d92f952ec09ba", null ],
+    [ "motors", "classMotorController.html#adbaa77262e1fc583ec099c4ba4bb6247", null ],
+    [ "rightCurrent", "classMotorController.html#ade4a1c0633be15763515ce631b1e3f90", null ],
+    [ "speed", "classMotorController.html#a1d04910ab52d613a2e75c0d9f2b07fef", null ],
+    [ "systemDirection", "classMotorController.html#a8438575e3b3d6e8a460e11ee8efdbdc8", null ]
+];

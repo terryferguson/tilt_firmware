@@ -1,0 +1,59 @@
+\doxysection{Current\+Sense Class Reference}
+\hypertarget{classCurrentSense}{}\label{classCurrentSense}\index{CurrentSense@{CurrentSense}}
+
+
+This implements the current sense functionality for the motors.  
+
+
+
+
+{\ttfamily \#include $<$Current\+Sense.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classCurrentSense_a1e5a3514853db375e18c4db5f7ded590}\label{classCurrentSense_a1e5a3514853db375e18c4db5f7ded590} 
+{\bfseries Current\+Sense} (const \mbox{\hyperlink{classControlPin}{Control\+Pin}} p\+Current\+Sense\+Pin=Control\+Pin\+::\+CURRENT\+\_\+\+SENSE\+\_\+\+PIN, const double p\+Logic\+Voltage=5.\+0, const int32\+\_\+t p\+Max\+Adc\+Value=MAX\+\_\+\+ADC\+\_\+\+VALUE)
+\item 
+\Hypertarget{classCurrentSense_ada9cc6fd254fa17d1c3b5f67bc0096ab}\label{classCurrentSense_ada9cc6fd254fa17d1c3b5f67bc0096ab} 
+void {\bfseries initialize} ()
+\item 
+int \mbox{\hyperlink{classCurrentSense_a3ee919f39b0d70a7da1b540ed87ea1aa}{get\+Current}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This implements the current sense functionality for the motors. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classCurrentSense_a3ee919f39b0d70a7da1b540ed87ea1aa}\label{classCurrentSense_a3ee919f39b0d70a7da1b540ed87ea1aa} 
+\index{CurrentSense@{CurrentSense}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!CurrentSense@{CurrentSense}}
+\doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
+{\footnotesize\ttfamily int Current\+Sense\+::get\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculates the average current.
+
+\begin{DoxyReturn}{Returns}
+the average current of the sampling
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{CurrentSense_8hpp}{Current\+Sense.\+hpp}}\end{DoxyCompactItemize}

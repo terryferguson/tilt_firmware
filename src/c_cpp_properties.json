@@ -1,0 +1,100 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "${workspaceFolder}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        },
+        
+        {
+            "name": "Arduino",
+            "brouse" : {
+                "path" :[
+                ]
+            },
+            "includePath": [
+                "${workspaceFolder}/**",
+                "C:\\Users\\${env:Username}\\AppData\\Local\\Arduino15\\",
+                "C:\\Users\\${env:Username}\\Documents\\Arduino\\libraries"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64",
+            "forcedInclude": [
+                "C:\\Users\\${env:Username}\\AppData\\Local\\Arduino15\\packages\\arduino\\hardware\\avr\\1.6.21\\cores\\arduino\\Arduino.h"
+            ]
+        },
+        
+        {
+            "name": "Arduino-avr-standart",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include",
+                    "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard",
+                    "C:\\Users\\${env:Username}\\Documents\\Arduino\\libraries"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "${workspaceFolder}",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\tools\\avr\\avr\\include",
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\variants\\standard",
+                "C:\\Users\\${env:Username}\\Documents\\Arduino\\libraries"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "msvc-x64"
+        },
+        {          
+            "name": "Arduino-esp32",
+            "includePath": [
+                "C:\\Users\\${env:Username}\\OneDrive\\Documents\\ArduinoData\\packages\\esp32\\hardware\\esp32\\2.0.6\\cores\\esp32\\**",
+                "C:\\Users\\${env:Username}\\OneDrive\\Documents\\ArduinoData\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\**",
+                "${workspaceRoot}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:\\Users\\${env:Username}\\OneDrive\\Documents\\ArduinoData\\packages\\esp32\\hardware\\esp32\\2.0.6\\cores\\esp32",
+                    "C:\\Users\\${env:Username}\\OneDrive\\Documents\\ArduinoData\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            } 
+          }
+    ],
+    "version": 4
+}

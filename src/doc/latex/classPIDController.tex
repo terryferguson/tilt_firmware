@@ -1,0 +1,45 @@
+\doxysection{PIDController Class Reference}
+\hypertarget{classPIDController}{}\label{classPIDController}\index{PIDController@{PIDController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classPIDController_a7922c6d8df578328b3b730059ad07eff}\label{classPIDController_a7922c6d8df578328b3b730059ad07eff} 
+{\bfseries PIDController} (float kp=0.\+1, float ti=0.\+002, float td=0.\+01, float u\+Max=255.\+0)
+\item 
+\Hypertarget{classPIDController_a6d0e1e8c269d9941c78a5814b86ea3d0}\label{classPIDController_a6d0e1e8c269d9941c78a5814b86ea3d0} 
+void {\bfseries set\+Params} (float kp\+In, float kd\+In, float ki\+In, float u\+Max\+In=255.\+0)
+\item 
+void \mbox{\hyperlink{classPIDController_afee8d68c453ec8086c60f0e9524c2071}{evaluate}} (int value, int target, float deltaT, int \&speed, \mbox{\hyperlink{classDirection}{Direction}} \&dir)
+\item 
+\Hypertarget{classPIDController_a9f598d502a158a2fbcc20380ea09334e}\label{classPIDController_a9f598d502a158a2fbcc20380ea09334e} 
+void {\bfseries report} (const int value, const int target, const float deltaT, const int speed, const \mbox{\hyperlink{classDirection}{Direction}} dir) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPIDController_afee8d68c453ec8086c60f0e9524c2071}\label{classPIDController_afee8d68c453ec8086c60f0e9524c2071} 
+\index{PIDController@{PIDController}!evaluate@{evaluate}}
+\index{evaluate@{evaluate}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{evaluate()}{evaluate()}}
+{\footnotesize\ttfamily void PIDController\+::evaluate (\begin{DoxyParamCaption}\item[{int}]{value,  }\item[{int}]{target,  }\item[{float}]{deltaT,  }\item[{int \&}]{speed,  }\item[{\mbox{\hyperlink{classDirection}{Direction}} \&}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A function to compute the control signal
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The current value \\
+\hline
+{\em target} & The target value \\
+\hline
+{\em deltaT} & The time step \\
+\hline
+{\em speed} & The reference to the speed variable \\
+\hline
+{\em dir} & The reference to the direction variable \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+PIDController.\+hpp\end{DoxyCompactItemize}

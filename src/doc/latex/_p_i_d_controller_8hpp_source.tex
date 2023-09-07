@@ -1,0 +1,77 @@
+\hypertarget{_p_i_d_controller_8hpp_source}{}\doxysection{PIDController.\+hpp}
+\mbox{\hyperlink{_p_i_d_controller_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_PID\_CONTROLLER\_HPP\_\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_PID\_CONTROLLER\_HPP\_\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_p_i_d_controller}{PIDController}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{float}\ kp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller\ path\ proportional\ gain}}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{float}\ ti;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller's\ integrator\ time\ constant}}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{float}\ td;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller's\ derivative\ time\ constant}}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{float}\ uMax;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ magnitude\ of\ control\ signal}}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{float}\ ePrev,\ eIntegral;\ \textcolor{comment}{//\ Storage}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{class_p_i_d_controller}{PIDController}}(\textcolor{keywordtype}{float}\ kp\ =\ 0.1,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ti\ =\ 0.002,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ td\ =\ 0.01,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ uMax\ =\ 255.0)}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ :\ kp(kp),\ ti(ti),\ td(td),\ uMax(uMax),\ ePrev(0.0),\ eIntegral(0.0)\ \{\}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \textcolor{comment}{//\ A\ function\ to\ set\ the\ parameters}}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{void}\ setParams(\textcolor{keywordtype}{float}\ kpIn,\ \textcolor{keywordtype}{float}\ kdIn,\ \textcolor{keywordtype}{float}\ kiIn,\ \textcolor{keywordtype}{float}\ uMaxIn\ =\ 255.0)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ kp\ =\ kpIn;}
+\DoxyCodeLine{00028\ \ \ \ \ td\ =\ kdIn;}
+\DoxyCodeLine{00029\ \ \ \ \ ti\ =\ kiIn;}
+\DoxyCodeLine{00030\ \ \ \ \ uMax\ =\ uMaxIn;}
+\DoxyCodeLine{00031\ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{comment}{//\ A\ function\ to\ compute\ the\ control\ signal}}
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{void}\ evaluate(\textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ target,\ \textcolor{keywordtype}{float}\ deltaT,\ \textcolor{keywordtype}{int}\&\ speed,\ \mbox{\hyperlink{class_direction}{Direction}}\&\ dir)\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \textcolor{comment}{//\ error}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ e\ =\ target\ -\/\ value;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ derivative}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{float}\ dedt\ =\ (e\ -\/\ ePrev)\ /\ (deltaT);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ integral}}
+\DoxyCodeLine{00042\ \ \ \ \ eIntegral\ =\ eIntegral\ +\ e\ *\ deltaT;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ control\ signal}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{float}\ u\ =\ kp\ *\ e\ +\ td\ *\ dedt\ +\ ti\ *\ eIntegral;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//\ motor\ power}}
+\DoxyCodeLine{00048\ \ \ \ \ speed\ =\ (int)fabs(u);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordflow}{if}\ (speed\ >\ uMax)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ speed\ =\ uMax;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ motor\ direction}}
+\DoxyCodeLine{00054\ \ \ \ \ dir\ =\ Direction::EXTEND;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{if}\ (u\ <\ 0)\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ dir\ =\ Direction::RETRACT;}
+\DoxyCodeLine{00057\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (u\ ==\ 0)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ dir\ =\ Direction::STOP;}
+\DoxyCodeLine{00059\ \ \ \ \ \}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ store\ previous\ error}}
+\DoxyCodeLine{00063\ \ \ \ \ ePrev\ =\ e;}
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{void}\ report(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ target,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ deltaT,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ speed,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_direction}{Direction}}\ dir)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[256];\ \textcolor{comment}{//\ Diagnostic\ messages}}
+\DoxyCodeLine{00068\ \ \ \ \ sprintf(buf,\ \textcolor{stringliteral}{"{}PID\ params:\ value:\%d\ target:\ \%d,\ deltaT:\ \%f,\ speed:\ \%d,\ dir:\ \%s"{}},\ value,\ target,\ deltaT,\ speed,\ \mbox{\hyperlink{_direction_8hpp_a66ee0bd2ff8592573ed299a7582f086d}{directions}}[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(dir)]);}
+\DoxyCodeLine{00069\ \ \ \ \ Serial.println(buf);}
+\DoxyCodeLine{00070\ \ \ \}}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_PID\_CONTROLLER\_HPP\_\_}}
+
+\end{DoxyCode}

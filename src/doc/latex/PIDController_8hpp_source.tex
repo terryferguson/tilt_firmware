@@ -1,0 +1,69 @@
+\doxysection{PIDController.\+hpp}
+\hypertarget{PIDController_8hpp_source}{}\label{PIDController_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_PID\_CONTROLLER\_HPP\_\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_PID\_CONTROLLER\_HPP\_\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPIDController}{PIDController}}\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{float}\ kp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller\ path\ proportional\ gain}}
+\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{float}\ ti;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller's\ integrator\ time\ constant}}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{float}\ td;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller's\ derivative\ time\ constant}}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{float}\ uMax;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ magnitude\ of\ control\ signal}}
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{float}\ ePrev,\ eIntegral;\ \textcolor{comment}{//\ Storage}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{classPIDController}{PIDController}}(\textcolor{keywordtype}{float}\ kp\ =\ 0.1,}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ti\ =\ 0.002,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ td\ =\ 0.01,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ uMax\ =\ 255.0)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ :\ kp(kp),\ ti(ti),\ td(td),\ uMax(uMax),\ ePrev(0.0),\ eIntegral(0.0)\ \{\}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{comment}{//\ A\ function\ to\ set\ the\ parameters}}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{void}\ setParams(\textcolor{keywordtype}{float}\ kpIn,\ \textcolor{keywordtype}{float}\ kdIn,\ \textcolor{keywordtype}{float}\ kiIn,\ \textcolor{keywordtype}{float}\ uMaxIn\ =\ 255.0)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ kp\ =\ kpIn;}
+\DoxyCodeLine{00029\ \ \ \ \ td\ =\ kdIn;}
+\DoxyCodeLine{00030\ \ \ \ \ ti\ =\ kiIn;}
+\DoxyCodeLine{00031\ \ \ \ \ uMax\ =\ uMaxIn;}
+\DoxyCodeLine{00032\ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPIDController_afee8d68c453ec8086c60f0e9524c2071}{evaluate}}(\textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ target,\ \textcolor{keywordtype}{float}\ deltaT,\ \textcolor{keywordtype}{int}\&\ speed,\ \mbox{\hyperlink{classDirection}{Direction}}\&\ dir)\ \{}
+\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//\ error}}
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{int}\ e\ =\ target\ -\/\ value;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{comment}{//\ derivative}}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{float}\ dedt\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(e\ -\/\ ePrev)\ /\ deltaT;}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ integral}}
+\DoxyCodeLine{00051\ \ \ eIntegral\ +=\ e\ *\ deltaT;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ control\ signal}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{float}\ u\ =\ kp\ *\ e\ +\ td\ *\ dedt\ +\ ti\ *\ eIntegral;}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{comment}{//\ motor\ power}}
+\DoxyCodeLine{00057\ \ \ speed\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(fabs(u));}
+\DoxyCodeLine{00058\ \ \ speed\ =\ speed\ >\ uMax\ ?\ uMax\ :\ speed;}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ motor\ direction}}
+\DoxyCodeLine{00061\ \ \ dir\ =\ u\ <\ 0\ ?\ Direction::RETRACT\ :\ u\ >\ 0\ ?\ Direction::EXTEND\ :\ Direction::STOP;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ store\ previous\ error}}
+\DoxyCodeLine{00064\ \ \ ePrev\ =\ e;}
+\DoxyCodeLine{00065\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{void}\ report(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ target,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ deltaT,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ speed,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classDirection}{Direction}}\ dir)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[256];\ \textcolor{comment}{//\ Diagnostic\ messages}}
+\DoxyCodeLine{00069\ \ \ \ \ sprintf(buf,\ \textcolor{stringliteral}{"{}PID\ params:\ value:\%d\ target:\ \%d,\ deltaT:\ \%f,\ speed:\ \%d,\ dir:\ \%s"{}},\ value,\ target,\ deltaT,\ speed,\ \mbox{\hyperlink{Direction_8hpp_a66ee0bd2ff8592573ed299a7582f086d}{directions}}[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(dir)]);}
+\DoxyCodeLine{00070\ \ \ \ \ Serial.println(buf);}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ \};}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_PID\_CONTROLLER\_HPP\_\_}}
+
+\end{DoxyCode}

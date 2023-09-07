@@ -1,0 +1,63 @@
+\hypertarget{_pin_macros_8hpp}{}\doxysection{Pin\+Macros.\+hpp File Reference}
+\label{_pin_macros_8hpp}\index{PinMacros.hpp@{PinMacros.hpp}}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_a776f20d60075376e393c82f91b694490}\label{_pin_macros_8hpp_a776f20d60075376e393c82f91b694490}} 
+\#define {\bfseries FSET\+\_\+\+TO\+\_\+\+ANALOG\+\_\+\+PIN}(pin,  var\+\_\+to\+\_\+set,  range\+\_\+min,  range\+\_\+max)~    var\+\_\+to\+\_\+set = \mbox{\hyperlink{_pin_macros_8hpp_ae191e193234145f67a5acafe9cd7b6b3}{fmap}}(analog\+Read(pin), 0, 4096, range\+\_\+min, range\+\_\+max)
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_adbcab9e940958eff9908c02f40bec9a3}\label{_pin_macros_8hpp_adbcab9e940958eff9908c02f40bec9a3}} 
+\#define {\bfseries SET\+\_\+\+TO\+\_\+\+ANALOG\+\_\+\+PIN}(pin,  var\+\_\+to\+\_\+set,  range\+\_\+min,  range\+\_\+max)~    var\+\_\+to\+\_\+set = map(analog\+Read(pin), 0, 4096, range\+\_\+min, range\+\_\+max)
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_aa94fbc85102be44afcf8bb91666365c1}\label{_pin_macros_8hpp_aa94fbc85102be44afcf8bb91666365c1}} 
+\#define {\bfseries SET\+\_\+\+TO\+\_\+\+ANALOG\+\_\+\+PIN\+\_\+\+FUNC}(pin,  func,  range\+\_\+min,  range\+\_\+max)~func(map(analog\+Read(pin), 0, 4096, range\+\_\+min, range\+\_\+max))
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_aa83e4bee78852fdb314719a938f3969a}\label{_pin_macros_8hpp_aa83e4bee78852fdb314719a938f3969a}} 
+\#define {\bfseries motor\+Pin\+Write}(pin,  value)~  digital\+Write(static\+\_\+cast$<$std\+::uint8\+\_\+t$>$(pin), value)
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_aa83e4bee78852fdb314719a938f3969a}\label{_pin_macros_8hpp_aa83e4bee78852fdb314719a938f3969a}} 
+\#define {\bfseries motor\+Pin\+Write}(pin,  value)~  digital\+Write(static\+\_\+cast$<$std\+::uint8\+\_\+t$>$(pin), value)
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_a48cbb45b0648eae6fc18c9c4444ed2d0}\label{_pin_macros_8hpp_a48cbb45b0648eae6fc18c9c4444ed2d0}} 
+\#define {\bfseries motor\+Pin\+Mode}(pin,  value)~  pin\+Mode(static\+\_\+cast$<$std\+::uint8\+\_\+t$>$(pin), value)
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_a8e54b235b87f913187596fe4529f6ceb}\label{_pin_macros_8hpp_a8e54b235b87f913187596fe4529f6ceb}} 
+\#define {\bfseries motor\+Attach\+Pin}(pin,  channel)~  ledc\+Attach\+Pin(static\+\_\+cast$<$std\+::uint8\+\_\+t$>$(pin), channel)
+\item 
+\mbox{\Hypertarget{_pin_macros_8hpp_a5ec0b2ec9b3b28197d30defa40b59b47}\label{_pin_macros_8hpp_a5ec0b2ec9b3b28197d30defa40b59b47}} 
+\#define {\bfseries motor\+Analog\+Read}(pin)~  analog\+Read(static\+\_\+cast$<$std\+::uint8\+\_\+t$>$(pin))
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{_pin_macros_8hpp_ae191e193234145f67a5acafe9cd7b6b3}{fmap}} (float x, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max)
+\begin{DoxyCompactList}\small\item\em Map 12-\/bit ADC value to a value within defined range. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_pin_macros_8hpp_ae191e193234145f67a5acafe9cd7b6b3}\label{_pin_macros_8hpp_ae191e193234145f67a5acafe9cd7b6b3}} 
+\index{PinMacros.hpp@{PinMacros.hpp}!fmap@{fmap}}
+\index{fmap@{fmap}!PinMacros.hpp@{PinMacros.hpp}}
+\doxysubsubsection{\texorpdfstring{fmap()}{fmap()}}
+{\footnotesize\ttfamily float fmap (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{in\+\_\+min,  }\item[{float}]{in\+\_\+max,  }\item[{float}]{out\+\_\+min,  }\item[{float}]{out\+\_\+max }\end{DoxyParamCaption})}
+
+
+
+Map 12-\/bit ADC value to a value within defined range. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & 12-\/bit ADC value \\
+\hline
+{\em in\+\_\+min} & Minimum input value \\
+\hline
+{\em in\+\_\+max} & Maximum input value \\
+\hline
+{\em out\+\_\+min} & Minimum output value \\
+\hline
+{\em out\+\_\+max} & Maximum output value \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Mapped output value for input value 
+\end{DoxyReturn}

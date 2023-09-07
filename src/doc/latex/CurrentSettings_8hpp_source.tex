@@ -1,0 +1,29 @@
+\doxysection{Current\+Settings.\+hpp}
+\hypertarget{CurrentSettings_8hpp_source}{}\label{CurrentSettings_8hpp_source}\mbox{\hyperlink{CurrentSettings_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_CURRENT\_SETTINGS\_HPP\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_CURRENT\_SETTINGS\_HPP\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ADC\_BITS\ 12}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ ADC\_MAX\ (2\ <<\ ADC\_BITS)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ LOGICAL\_LEVEL\_VOLTAGE\ 3.3f}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ DEFAULT\_CURRENT\_INCREASE\_LIMIT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ ((int)((0.07\ *\ LOGICAL\_LEVEL\_VOLTAGE)\ *\ ADC\_MAX))}}
+\DoxyCodeLine{00014\ \ \ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ CURRENT\_INCREASE\_LIMIT\_MAX\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\ \ ((int)((0.15\ *\ LOGICAL\_LEVEL\_VOLTAGE)\ *\ ADC\_MAX))}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{CurrentSettings_8hpp_a1cd90167f6fd401747ff5c7ad87ad7d5}{currentIncreseExceedsThreshold}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ currentSensePin,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ baseValue,}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ threshold)\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{int}\ currentValue\ =\ analogRead(currentSensePin);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordflow}{return}\ (currentValue\ -\/\ baseValue)\ >=\ threshold;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_CURRENT\_SETTINGS\_HPP\_}}
+
+\end{DoxyCode}

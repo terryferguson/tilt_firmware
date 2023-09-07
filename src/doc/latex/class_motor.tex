@@ -1,0 +1,218 @@
+\hypertarget{class_motor}{}\doxysection{Motor Class Reference}
+\label{class_motor}\index{Motor@{Motor}}
+
+
+This class represents the motor controlled by the microcontroller.  
+
+
+
+
+{\ttfamily \#include $<$Motor.\+hpp$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_motor_af6106b4c506411265c5face762b6c004}{Motor}} ()
+\item 
+\mbox{\hyperlink{class_motor_a458103bdf4a0c621515b7f77771c72d0}{Motor}} (const char $\ast$name, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} rpwm, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} lpwm, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} r\+\_\+en, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} l\+\_\+en, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} hall\+\_\+1, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} hall\+\_\+2, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} l\+IS\+\_\+pin, const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}} r\+IS\+\_\+pin, const int total\+Pulses, const int freq=PWM\+\_\+\+FREQUENCY, const int def\+Speed=70, const int pwm\+Res=8)
+\begin{DoxyCompactList}\small\item\em The constructor for the motor controlled by the microcontroller. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_ad00e6117ced4b2bc47661319afb2cfbe}\label{class_motor_ad00e6117ced4b2bc47661319afb2cfbe}} 
+void {\bfseries initialize} ()
+\begin{DoxyCompactList}\small\item\em Initialize motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_ac8da33f8f7b7f55d372cae88b2ef6969}\label{class_motor_ac8da33f8f7b7f55d372cae88b2ef6969}} 
+void {\bfseries drive} (const \mbox{\hyperlink{class_direction}{Direction}} motor\+Direction, const int specified\+Speed=0)
+\item 
+\mbox{\Hypertarget{class_motor_ae0576b7e9b1bfb078479f0c27711c7c4}\label{class_motor_ae0576b7e9b1bfb078479f0c27711c7c4}} 
+void {\bfseries extend} ()
+\begin{DoxyCompactList}\small\item\em Tell the motor to rotate in the direction of extension. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_ac02e8a217dfb40e2711a22ddc1ba894b}\label{class_motor_ac02e8a217dfb40e2711a22ddc1ba894b}} 
+void {\bfseries retract} ()
+\begin{DoxyCompactList}\small\item\em Tell the motor to rotate in the direction of retraction. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_a015fd5308d4d27e5dcf7f9ea3d5c03f6}\label{class_motor_a015fd5308d4d27e5dcf7f9ea3d5c03f6}} 
+void {\bfseries stop} ()
+\begin{DoxyCompactList}\small\item\em Tell the motor to stop. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_aeadf074ec4959a7700cdca4f977353d1}\label{class_motor_aeadf074ec4959a7700cdca4f977353d1}} 
+void {\bfseries zero} ()
+\begin{DoxyCompactList}\small\item\em Zero out position information for this motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_ae8e0845a9284fbf8013137bf6b1f9293}\label{class_motor_ae8e0845a9284fbf8013137bf6b1f9293}} 
+void {\bfseries home} ()
+\begin{DoxyCompactList}\small\item\em Perform the homing routine to calibrate the position sensor for this motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_a4a8212a194bed2d600241a0916fbdef2}\label{class_motor_a4a8212a194bed2d600241a0916fbdef2}} 
+void {\bfseries update} (const int new\+Speed=(MAX\+\_\+\+SPEED+1))
+\begin{DoxyCompactList}\small\item\em Update the position information for this motor and move it. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_motor_a2eca6eecd6c37eb8ba1e684ae5bc22f3}{set\+Pos}} (const int new\+Pos)
+\begin{DoxyCompactList}\small\item\em Set a new target position for this motor. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_a44328fc48d1094813741d4670dd81f2f}\label{class_motor_a44328fc48d1094813741d4670dd81f2f}} 
+void {\bfseries read\+Pos} ()
+\begin{DoxyCompactList}\small\item\em Read rotary encoder value into position variable. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_motor_a2758ae40e957841c76c3f22cb4dcc764}{get\+Normalized\+Pos}} () const
+\begin{DoxyCompactList}\small\item\em Get a normalized indicaton of the position of this motor based on its total range. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_addd71950a81fc023e4dc68019af77af3}\label{class_motor_addd71950a81fc023e4dc68019af77af3}} 
+void {\bfseries display\+Info} ()
+\item 
+int \mbox{\hyperlink{class_motor_ab84a374f1efa46be16568b298bd58b8c}{get\+Current}} () const
+\begin{DoxyCompactList}\small\item\em Get an analog value proportional to the current used by the motor. The max of the two channels is returned. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_motor_ab1790b4d635fe8db8c6e22554b61c52f}\label{class_motor_ab1790b4d635fe8db8c6e22554b61c52f}} 
+void {\bfseries set\+Speed} (int new\+Speed)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_motor_afddc50db870be11e6ed2739953e0be77}{pos}}
+\item 
+int \mbox{\hyperlink{class_motor_acb9b2a43b000bc91f36f707867ee23aa}{last\+Pos}}
+\item 
+int \mbox{\hyperlink{class_motor_a68b835dd35395fbab7b32eb0bbc12283}{speed}} = 255
+\item 
+int \mbox{\hyperlink{class_motor_abba93e1697f40e91177c442e78b16812}{max\+Pulses}} = -\/1
+\item 
+\mbox{\Hypertarget{class_motor_a7ae1e382e1380762a33d2c735e84397f}\label{class_motor_a7ae1e382e1380762a33d2c735e84397f}} 
+\mbox{\hyperlink{class_direction}{Direction}} {\bfseries dir} = Direction\+::\+STOP
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This class represents the motor controlled by the microcontroller. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_motor_af6106b4c506411265c5face762b6c004}\label{class_motor_af6106b4c506411265c5face762b6c004}} 
+\index{Motor@{Motor}!Motor@{Motor}}
+\index{Motor@{Motor}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Motor\+::\+Motor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The direction of the motor rotation \mbox{\Hypertarget{class_motor_a458103bdf4a0c621515b7f77771c72d0}\label{class_motor_a458103bdf4a0c621515b7f77771c72d0}} 
+\index{Motor@{Motor}!Motor@{Motor}}
+\index{Motor@{Motor}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{Motor()}{Motor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Motor\+::\+Motor (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{rpwm,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{lpwm,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{r\+\_\+en,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{l\+\_\+en,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{hall\+\_\+1,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{hall\+\_\+2,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{l\+IS\+\_\+pin,  }\item[{const \mbox{\hyperlink{_motor_pins_8hpp_a34577b75fa9962e1ebcd78e36af1ce60}{Motor\+Pin}}}]{r\+IS\+\_\+pin,  }\item[{const int}]{total\+Pulses,  }\item[{const int}]{freq = {\ttfamily PWM\+\_\+FREQUENCY},  }\item[{const int}]{def\+Speed = {\ttfamily 70},  }\item[{const int}]{pwm\+Res = {\ttfamily 8} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+The constructor for the motor controlled by the microcontroller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of this motor for debug prints \\
+\hline
+{\em rpwm} & The right PWM signal pin \\
+\hline
+{\em lpwm} & The left PWM signal pin \\
+\hline
+{\em r\+\_\+en} & The right PWM enable pin \\
+\hline
+{\em l\+\_\+en} & The left PWM enable pin \\
+\hline
+{\em hall\+\_\+1} & The pin for hall sensor 1 \\
+\hline
+{\em hall\+\_\+2} & The pin for hall sensor 2 \\
+\hline
+{\em l\+IS\+\_\+pin} & The pin for left current sensor \\
+\hline
+{\em r\+IS\+\_\+pin} & The pin for right current sensor \\
+\hline
+{\em total\+Pulses} & The total number of pulses from full retraction to full extension \\
+\hline
+{\em freq} & The frequency of the PWM signal \\
+\hline
+{\em def\+Speed} & The default motor speed \\
+\hline
+{\em pwm\+Res} & The PWM bitdepth resolution \\
+\hline
+\end{DoxyParams}
+Copy name of linear actuator into ID field
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_motor_ab84a374f1efa46be16568b298bd58b8c}\label{class_motor_ab84a374f1efa46be16568b298bd58b8c}} 
+\index{Motor@{Motor}!getCurrent@{getCurrent}}
+\index{getCurrent@{getCurrent}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
+{\footnotesize\ttfamily int Motor\+::get\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get an analog value proportional to the current used by the motor. The max of the two channels is returned. 
+
+\begin{DoxyReturn}{Returns}
+The larger of the two current values used by the motor 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_a2758ae40e957841c76c3f22cb4dcc764}\label{class_motor_a2758ae40e957841c76c3f22cb4dcc764}} 
+\index{Motor@{Motor}!getNormalizedPos@{getNormalizedPos}}
+\index{getNormalizedPos@{getNormalizedPos}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{getNormalizedPos()}{getNormalizedPos()}}
+{\footnotesize\ttfamily float Motor\+::get\+Normalized\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Get a normalized indicaton of the position of this motor based on its total range. 
+
+\begin{DoxyReturn}{Returns}
+A fraction that represents how much of total extension we are currently at 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_motor_a2eca6eecd6c37eb8ba1e684ae5bc22f3}\label{class_motor_a2eca6eecd6c37eb8ba1e684ae5bc22f3}} 
+\index{Motor@{Motor}!setPos@{setPos}}
+\index{setPos@{setPos}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
+{\footnotesize\ttfamily void Motor\+::set\+Pos (\begin{DoxyParamCaption}\item[{const int}]{new\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Set a new target position for this motor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Pos} & The new target position to move the motor to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_motor_acb9b2a43b000bc91f36f707867ee23aa}\label{class_motor_acb9b2a43b000bc91f36f707867ee23aa}} 
+\index{Motor@{Motor}!lastPos@{lastPos}}
+\index{lastPos@{lastPos}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{lastPos}{lastPos}}
+{\footnotesize\ttfamily int Motor\+::last\+Pos}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ 0}
+
+\end{DoxyCode}
+The current position of the motor based on hall sensor pulses \mbox{\Hypertarget{class_motor_abba93e1697f40e91177c442e78b16812}\label{class_motor_abba93e1697f40e91177c442e78b16812}} 
+\index{Motor@{Motor}!maxPulses@{maxPulses}}
+\index{maxPulses@{maxPulses}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{maxPulses}{maxPulses}}
+{\footnotesize\ttfamily int Motor\+::max\+Pulses = -\/1}
+
+The current speed of the motor. The duty cycle of the PWM signal is speed/(2$^\wedge$pwm\+Resolution -\/ 1) \mbox{\Hypertarget{class_motor_afddc50db870be11e6ed2739953e0be77}\label{class_motor_afddc50db870be11e6ed2739953e0be77}} 
+\index{Motor@{Motor}!pos@{pos}}
+\index{pos@{pos}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{pos}{pos}}
+{\footnotesize\ttfamily int Motor\+::pos}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \ \ 0}
+
+\end{DoxyCode}
+The motor position encoder (quadrature signal from 2 hall sensors) \mbox{\Hypertarget{class_motor_a68b835dd35395fbab7b32eb0bbc12283}\label{class_motor_a68b835dd35395fbab7b32eb0bbc12283}} 
+\index{Motor@{Motor}!speed@{speed}}
+\index{speed@{speed}!Motor@{Motor}}
+\doxysubsubsection{\texorpdfstring{speed}{speed}}
+{\footnotesize\ttfamily int Motor\+::speed = 255}
+
+The last position of the motor based on hall sensor pulses 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_motor_8hpp}{Motor.\+hpp}}\end{DoxyCompactItemize}

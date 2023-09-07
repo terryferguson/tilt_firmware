@@ -1,0 +1,11 @@
+{
+  "additionalFiles": "../../../..,../../../..,../../../..,../../../../../../..,../../../../../../..,../../../../..,../../..,../../..,../../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..,../..",
+  "builtInToolsFolders": "",
+  "compiler.optimization_flags": "-Os",
+  "customBuildProperties": "",
+  "fqbn": "esp32:esp32:esp32:JTAGAdapter=default,PSRAM=disabled,PartitionScheme=default,CPUFreq=240,FlashMode=qio,FlashFreq=80,FlashSize=4M,UploadSpeed=921600,LoopCore=1,EventsCore=1,DebugLevel=none,EraseFlash=none",
+  "hardwareFolders": "/home/terry/.arduino15/packages,/home/terry/Arduino/hardware",
+  "otherLibrariesFolders": "/home/terry/Arduino/libraries",
+  "runtime.ide.version": "10607",
+  "sketchLocation": "/home/terry/Projects/motor_control_firmware"
+}
