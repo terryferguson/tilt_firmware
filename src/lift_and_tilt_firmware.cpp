@@ -71,7 +71,7 @@ String makeJson() {
                       ",\"ki\":" + ki +
                       ",\"limit_range\":\"" + limit_range + "\"" +
                       ",\"pid_on\":\"" + pid_on + "\"" +
-                      ",\"direction\":\"" + direction + "\"" +
+                      ",\"system_direction\":\"" + direction + "\"" +
                       ",\"kp\":" + kp +
                       ",\"min_current\":" + min_current +
                       ",\"alarm_current_velocity\":" + alarm_current_velocity +
@@ -157,6 +157,7 @@ void setup()
   server.on("/retract", HTTP_GET,
             DEF_HANDLER(MOTOR_COMMAND(retract, "Retracting")));
   server.on("/reset", HTTP_GET, DEF_HANDLER(ESP.restart();));
+  server.on("/toggle-limit-range", HTTP_GET, DEF_HANDLER(limit_range = !limit_range;));
   server.on("/stop", HTTP_GET, DEF_HANDLER(MOTOR_COMMAND(stop, "Stopping")));
 
   server.on("/get-tilt/1", HTTP_GET,
