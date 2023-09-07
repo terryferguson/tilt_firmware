@@ -46,35 +46,38 @@ AsyncWebServer server(80);
 // Create a websocket server for updates
 AsyncWebSocket ws("/ws");
 
-String makeJsonResponse() {
-  String speed(motor_controller.speed);
-  String ki(motor_controller.K_i);
-  String kp(motor_controller.K_p);
-  String leader_pos(motor_controller.motors[0].pos);
-  String follower_pos(motor_controller.motors[1].pos);
-  String leader_current(motor_controller.leaderCurrent);
-  String follower_current(motor_controller.followerCurrent);
-  String min_current(motor_controller.minCurrent);
-  String alarm_current_velocity(motor_controller.alarmCurrentVelocity);
-  String system_direction(directions[static_cast<int>(motor_controller.systemDirection)]);
-
-  String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
-                    ",\"follower_current\":" + follower_current +
-                    ",\"speed\":" + speed +
-                    ",\"ki\":" + ki +
-                    ",\"kp\":" + kp +
-                    ",\"system_direction\":\"" + system_direction + "\"" +
-                    ",\"min_current\":" + min_current +
-                    ",\"alarm_current_velocity\":" + alarm_current_velocity +
-                    ",\"leader_pos\": " + leader_pos +
-                    ",\"follower_pos\": " + follower_pos + "}";
-
-  return response;
-}
-
 void notFound(AsyncWebServerRequest *request)
 {
   request->send(404, "text/plain", "Not found");
+}
+
+String makeJson() {
+  String speed(motor_controller.speed);
+    String ki(motor_controller.K_i);
+    String kp(motor_controller.K_p);
+    String leader_pos(motor_controller.motors[0].pos);
+    String follower_pos(motor_controller.motors[1].pos);
+    String leader_current(motor_controller.leaderCurrent);
+    String follower_current(motor_controller.followerCurrent);
+    String min_current(motor_controller.minCurrent);
+    String alarm_current_velocity(motor_controller.alarmCurrentVelocity);
+    String limit_range(limit_range ? "true" : "false");
+    String pid_on(pid_on ? "true" : "false");
+    String direction(directions[static_cast<int>(motor_controller.systemDirection)]);
+
+    String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
+                      ",\"follower_current\":" + follower_current +
+                      ",\"speed\":" + speed +
+                      ",\"ki\":" + ki +
+                      ",\"limit_range\":\"" + limit_range + "\"" +
+                      ",\"pid_on\":\"" + pid_on + "\"" +
+                      ",\"direction\":\"" + direction + "\"" +
+                      ",\"kp\":" + kp +
+                      ",\"min_current\":" + min_current +
+                      ",\"alarm_current_velocity\":" + alarm_current_velocity +
+                      ",\"leader_pos\": " + leader_pos +
+                      ",\"follower_pos\": " + follower_pos + "}";
+    return response;  
 }
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {}
@@ -246,7 +249,7 @@ void setup()
 
   server.on("/get-stats", HTTP_GET, [](AsyncWebServerRequest *request)
             {
-    String response = makeJsonResponse();
+    String response = makeJson();
 
     request->send(200, "application/json", response.c_str()); });
 
@@ -353,7 +356,10 @@ void loop()
       pid_on = !pid_on;
       break;
     case Command::HOME:
-      // motor_controller.home();
+      motor_controller.home();
+      break;
+    case Command::TOGGLE_LIMIT_RANGE:
+      limit_range = !limit_range;
       break;
     default:
       break;
@@ -376,7 +382,7 @@ void loop()
     display_motor_info();
     lastPrintTimeStamp = timestamp;
 
-    String response = makeJsonResponse();
+    const String response = makeJson();
 
     ws.textAll(response);
   }

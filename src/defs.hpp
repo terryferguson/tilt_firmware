@@ -31,7 +31,7 @@ bool debugEnabled = true;
 
 #define ADC_RESOLUTION_BITS 12
 
-#define DEFAULT_MOTOR_SPEED 80
+#define DEFAULT_MOTOR_SPEED 192
 
 #define MICROS_IN_MS 1000
 
@@ -51,8 +51,7 @@ bool debugEnabled = true;
 #define MAX_ADC_VALUE (1 << (ADC_RESOLUTION_BITS))
 
 bool pid_on = true;
-
-bool is_lift_column = true;
+bool limit_range = true;
 
 
 #endif // _DEFS_HPP_
