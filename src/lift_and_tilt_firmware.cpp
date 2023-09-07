@@ -356,7 +356,7 @@ void loop()
       pid_on = !pid_on;
       break;
     case Command::HOME:
-      motor_controller.home();
+      // motor_controller.home();
       break;
     case Command::TOGGLE_LIMIT_RANGE:
       limit_range = !limit_range;
