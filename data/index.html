@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Motor Firmware</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <script>
+    var gateway = `ws://${window.location.hostname}/ws`;
+    var websocket;
+    window.addEventListener("load", onLoad);
+    var systemDirection = document.getElementById("system-direction");
+    var speedSlider = document.getElementById("speed-slider");
+    var speedOutput = document.getElementById("speed-value");
+    var currentSlider = document.getElementById("current-slider");
+    var currentOutput = document.getElementById("current-value");
+    var currentVelocitySlider = document.getElementById(
+      "current-velocity-slider"
+    );
+    var currentVelocityOutput = document.getElementById(
+      "current-velocity-value"
+    );
+    var kpSlider = document.getElementById("kp-slider");
+    var kpOutput = document.getElementById("kp-value");
+    var kiSlider = document.getElementById("ki-slider");
+    var kiOutput = document.getElementById("ki-value");
+    var leaderPos = document.getElementById("leader-pos");
+    var followerPos = document.getElementById("follower-pos");
+    var leaderCurrent = document.getElementById("leader_current");
+    var followerCurrent = document.getElementById("follower-current");
+
+    function initWebSocket() {
+      console.log("Trying to open a WebSocket connection...");
+      websocket = new WebSocket(gateway);
+      websocket.onopen = onOpen;
+      websocket.onclose = onClose;
+      websocket.onmessage = onMessage; // <-- add this line
+    }
+    function onOpen(event) {
+      console.log("Connection opened");
+    }
+    function onClose(event) {
+      console.log("Connection closed");
+      setTimeout(initWebSocket, 2000);
+    }
+    function onMessage(event) {
+      const data = JSON.parse(event.data);
+
+      var systemDirection = document.getElementById("system-direction");
+    var speedSlider = document.getElementById("speed-slider");
+    var speedOutput = document.getElementById("speed-value");
+    var currentSlider = document.getElementById("current-slider");
+    var currentOutput = document.getElementById("current-value");
+    var currentVelocitySlider = document.getElementById(
+      "current-velocity-slider"
+    );
+    var currentVelocityOutput = document.getElementById(
+      "current-velocity-value"
+    );
+    var kpSlider = document.getElementById("kp-slider");
+    var kpOutput = document.getElementById("kp-value");
+    var kiSlider = document.getElementById("ki-slider");
+    var kiOutput = document.getElementById("ki-value");
+    var leaderPos = document.getElementById("leader-pos");
+    var followerPos = document.getElementById("follower-pos");
+    var leaderCurrent = document.getElementById("leader_current");
+    var followerCurrent = document.getElementById("follower-current");
+
+      const {
+        system_direction,
+        speed,
+        kp,
+        ki,
+        leader_pos,
+        follower_pos,
+        leader_current,
+        follower_current,
+        alarm_current_velocity,
+        min_current,
+      } = data;
+
+      if (data.type === "stats") {
+        systemDirection.innerHTML = system_direction;
+
+        speedSlider.value = speed;
+        speedOutput.innerHTML = speed;
+
+        kpSlider.value = kp;
+        kpOutput.innerHTML = kp;
+
+        kiSlider.value = ki;
+        kiOutput.innerHTML = ki;
+
+        leaderPos.innerHTML = leader_pos;
+        followerPos.innerHTML = follower_pos;
+
+        currentOutput.innerHTML = `${min_current} mA`;
+        currentSlider.value = min_current;
+
+        currentVelocityOutput.innerHTML = `${alarm_current_velocity} mA/s`;
+        currentVelocitySlider.value = alarm_current_velocity;
+
+        leaderCurrent.innerHTML = `${leader_current} mA`;
+        followerCurrent.innerHTML = `${follower_current} mA`;
+      }
+    }
+
+    async function getStats() {
+      var systemDirection = document.getElementById("system-direction");
+      var speedSlider = document.getElementById("speed-slider");
+      var speedOutput = document.getElementById("speed-value");
+      var kpSlider = document.getElementById("kp-slider");
+      var kpOutput = document.getElementById("kp-value");
+      var kiSlider = document.getElementById("ki-slider");
+      var kiOutput = document.getElementById("ki-value");
+      var leaderPos = document.getElementById("leader-pos");
+      var followerPos = document.getElementById("follower-pos");
+      var currentSlider = document.getElementById("current-slider");
+      var currentOutput = document.getElementById("current-value");
+      var leaderCurrent = document.getElementById("leader_current");
+      var followerCurrent = document.getElementById("follower-current");
+      var currentVelocitySlider = document.getElementById(
+        "current-velocity-slider"
+      );
+      var currentVelocityOutput = document.getElementById(
+        "current-velocity-value"
+      );
+
+      try {
+        const response = await fetch("/get-stats");
+        const data = await response.json();
+
+        const {
+          system_direction,
+          speed,
+          kp,
+          ki,
+          leader_pos,
+          follower_pos,
+          leader_current,
+          follower_current,
+          alarm_current_velocity,
+          min_current,
+        } = data;
+
+        if (data.type === "stats") {
+          systemDirection.innerHTML = system_direction;
+
+          speedSlider.value = speed;
+          speedOutput.innerHTML = speed;
+
+          kpSlider.value = kp;
+          kpOutput.innerHTML = kp;
+
+          kiSlider.value = ki;
+          kiOutput.innerHTML = ki;
+
+          leaderPos.innerHTML = leader_pos;
+          followerPos.innerHTML = follower_pos;
+
+          currentOutput.innerHTML = `${min_current} mA`;
+          currentSlider.value = min_current;
+
+          currentVelocityOutput.innerHTML = `${alarm_current_velocity} mA/s`;
+          currentVelocitySlider.value = alarm_current_velocity;
+
+          leaderCurrent.innerHTML = `${leader_current} mA`;
+          followerCurrent.innerHTML = `${follower_current} mA`;
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    async function init() {
+      const getElement = (id) => document.getElementById(id);
+
+      var speedSlider = document.getElementById("speed-slider");
+      var speedOutput = document.getElementById("speed-value");
+      var currentSlider = document.getElementById("current-slider");
+      var currentOutput = document.getElementById("current-value");
+      var currentVelocitySlider = document.getElementById(
+        "current-velocity-slider"
+      );
+      var currentVelocityOutput = document.getElementById(
+        "current-velocity-value"
+      );
+      var kpSlider = document.getElementById("kp-slider");
+      var kpOutput = document.getElementById("kp-value");
+      var kiSlider = document.getElementById("ki-slider");
+      var kiOutput = document.getElementById("ki-value");
+      var leaderPos = document.getElementById("leader-pos");
+      var followerPos = document.getElementById("follower-pos");
+      var leaderCurrent = document.getElementById("leader_current");
+      var followerCurrent = document.getElementById("follower-current");
+
+      await getStats();
+    }
+
+    function extend() {
+      fetch("/extend");
+    }
+
+    function retract() {
+      fetch("/retract");
+    }
+
+    function stop() {
+      fetch("/stop");
+    }
+
+    function resetMCU() {
+      fetch("/reset");
+      setTimeout(() => window.location.reload(), 2000);
+    }
+
+    function setPos() {
+      var pos = document.getElementsByName("position")[0].value;
+      const url = "/set?pos=" + pos;
+      console.log(url);
+      fetch(url);
+    }
+
+    function setSpeed() {
+      var speedSlider = document.getElementById("speed-slider");
+      const url = "/speed?val=" + speedSlider.value;
+      console.log(url);
+      fetch(url);
+    }
+
+    function setKp() {
+      var kpSlider = document.getElementById("kp-slider");
+      const url = "/kp?val=" + kpSlider.value;
+      console.log(url);
+      fetch(url);
+    }
+
+    function setKi() {
+      var kiSlider = document.getElementById("ki-slider");
+      const url = "/ki?val=" + kiSlider.value / 10000.0;
+      console.log(url);
+      fetch(url);
+    }
+
+    function setCurrent() {
+      var currentVelocitySlider = document.getElementById(
+        "current-velocity-slider"
+      );
+      const url = "/min-current?val=" + currentSlider.value;
+      console.log(url);
+      fetch(url);
+    }
+
+    function setCurrentVelocity() {
+      var kiSlider = document.getElementById("current-velocity-value");
+      const url = "/alarm-current-velocity?val=" + currentVelocitySlider.value;
+      console.log(url);
+      fetch(url);
+    }
+
+    function onLoad(event) {
+      initWebSocket();
+      init();
+    }
+  </script>
+  <body>
+    <h1>Motor Control</h1>
+    <main class="grid-container">
+      <section class="set-controls">
+        <section>System Direction: <span id="system-direction"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Alarm State: <span id="alarm-state"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Leader Pos: <span id="leader-pos"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Follower Pos: <span id="follower-pos"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Leader Current: <span id="leader_current"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Follower Current: <span id="follower-current"></span></section>
+      </section>
+      <section class="main-controls">
+        <p>
+          <button onclick="extend()" class="btn btn-outline">EXTEND</button>
+        </p>
+        <p>
+          <button onclick="retract()" class="btn btn-outline">RETRACT</button>
+        </p>
+        <p><button onclick="stop()" class="btn btn-outline">STOP</button></p>
+      </section>
+
+      <section class="set-controls">
+        <h3>Position value</h3>
+        <p>
+          <input class="text" type="text" name="position" placeholder="0" />
+        </p>
+        <p>
+          <button onclick="setPos()" class="btn-outline btn-condensed">
+            Set Position
+          </button>
+        </p>
+      </section>
+
+      <section class="set-controls">
+        <h3>Speed value</h3>
+        <p>
+          <input id="speed-slider" type="range" min="0" max="255" value="100" />
+        </p>
+        <p>Speed: <span id="speed-value"></span></p>
+      </section>
+
+      <section class="set-controls">
+        <h3>Min Current</h3>
+        <p>
+          <input
+            id="current-slider"
+            type="range"
+            min="1"
+            max="4000"
+            value="500"
+          />
+        </p>
+        <p>Current: <span id="current-value"></span></p>
+      </section>
+
+      <section class="set-controls">
+        <h3>Alarm Current Velocity (mA/s)</h3>
+        <p>
+          <input
+            id="current-velocity-slider"
+            type="range"
+            min="50"
+            max="2500"
+            value="200"
+          />
+        </p>
+        <p>mA/s: <span id="current-velocity-value"></span></p>
+      </section>
+
+      <section class="set-controls">
+        <h3>K<sub>p</sub> value</h3>
+        <p>
+          <input
+            id="kp-slider"
+            type="range"
+            min="30000"
+            max="300000"
+            value="100000"
+          />
+        </p>
+        <p>K<sub>p</sub>: <span id="kp-value"></span></p>
+      </section>
+
+      <section class="set-controls">
+        <h3>K<sub>i</sub> value</h3>
+        <p>
+          <input id="ki-slider" type="range" min=0" max="30000" value="1000" />
+        </p>
+        <p>K<sub>i</sub>: <span id="ki-value"></span></p>
+      </section>
+
+      <section class="main-controls">
+        <p>
+          <button onclick="resetMCU()" class="btn-outline btn-danger">
+            RESET MCU
+          </button>
+        </p>
+      </section>
+    </main>
+  </body>
+  <script>
+    init();
+
+    var systemDirection = document.getElementById("system-direction");
+    var speedSlider = document.getElementById("speed-slider");
+    var speedOutput = document.getElementById("speed-value");
+    var kpSlider = document.getElementById("kp-slider");
+    var kpOutput = document.getElementById("kp-value");
+    var kiSlider = document.getElementById("ki-slider");
+    var kiOutput = document.getElementById("ki-value");
+    var currentSlider = document.getElementById("current-slider");
+    var currentOutput = document.getElementById("current-value");
+    var currentVelocitySlider = document.getElementById(
+      "current-velocity-slider"
+    );
+    var currentVelocityOutput = document.getElementById(
+      "current-velocity-value"
+    );
+
+    currentOutput.innerHTML = currentSlider.value;
+    currentVelocityOutput.innerHTML = currentVelocitySlider.value;
+
+    currentSlider.oninput = function () {
+      currentOutput.innerHTML = this.value;
+    };
+
+    currentSlider.onmouseup = function () {
+      setCurrent();
+    };
+
+    currentVelocitySlider.oninput = function () {
+      currentVelocityOutput.innerHTML = this.value;
+    };
+
+    currentVelocitySlider.onmouseup = function () {
+      setCurrentVelocity();
+    };
+
+    speedOutput.innerHTML = speedSlider.value;
+    kpOutput.innerHTML = kpSlider.value;
+    kiOutput.innerHTML = kiSlider.value / 10000.0;
+
+    speedSlider.oninput = function () {
+      speedOutput.innerHTML = this.value;
+    };
+
+    speedSlider.onmouseup = function () {
+      setSpeed();
+    };
+
+    kpSlider.oninput = function () {
+      kpOutput.innerHTML = this.value;
+    };
+
+    kpSlider.onmouseup = function () {
+      setKp();
+    };
+
+    kiSlider.oninput = function () {
+      kiOutput.innerHTML = this.value / 10000.0;
+    };
+
+    kiSlider.onmouseup = function () {
+      setKi();
+    };
+
+    onLoad();
+  </script>
+</html>
