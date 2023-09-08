@@ -133,6 +133,7 @@ public:
                   pwmLChannel);
 
     pinMode(bottomLimitPin, INPUT_PULLUP);
+    pinMode(topLimitPin, INPUT_PULLUP);
 
     motorPinMode(r_EN_Pin, OUTPUT);
     motorPinMode(l_EN_Pin, OUTPUT);
@@ -185,21 +186,6 @@ public:
    */
   void drive(const Direction motorDirection, const int specifiedSpeed = 0)
   {
-    const int reachedBottom = digitalRead(bottomLimitPin) == LOW;
-
-    if ((reachedBottom && dir == Direction::RETRACT) || (((pos >= totalPulseCount) && (dir == Direction::EXTEND))))
-    {
-      Serial.printf("Motor out of range!\n");
-      dir = Direction::STOP;
-      ledcWrite(pwmRChannel, 0);
-      ledcWrite(pwmLChannel, 0);
-      motorPinWrite(r_EN_Pin, LOW);
-      motorPinWrite(l_EN_Pin, LOW);
-      speed = 0;
-      lastPos = pos;
-      READ_POSITION_ENCODER()
-      return;
-    }
     const int driveSpeed = specifiedSpeed > 0 ? specifiedSpeed : speed;
 
     motorPinWrite(r_EN_Pin, HIGH);
@@ -260,12 +246,27 @@ public:
   /// @brief Update the position information for this motor and move it
   void update(const int newSpeed = (MAX_SPEED + 1))
   {
-    // const bool bottomReached = digitalRead(bottomLimitPin) == HIGH;
+    /* Limit switches are normally open, so they should be HIGH when triggered
+     * as their port is set to INPUT_PULLUP, so they are pulled high when closed.
+     */
+    const bool bottomReached = digitalRead(bottomLimitPin) == HIGH;
+    const bool topReached = digitalRead(topLimitPin) == HIGH;
 
-    outOfRange =  ((pos >= totalPulseCount) && (dir == Direction::EXTEND));
+    /* Don't make the limit switches stop movement completely, of course. Only
+     * stop movement if they column is moving in the direction of the limit switch.
+     */
+    const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
+    const bool goingPastTop = topReached && dir == Direction::EXTEND;
+
+    // Temporary since the top limit switch is not installed as of now.
+    const bool tempPulseTopLimit = (pos >= totalPulseCount) && (dir == Direction::EXTEND);
+
+    // Check whether motor is out of range
+    outOfRange = goingPastBottom || goingPastTop || tempPulseTopLimit;
 
     // Serial.printf("Out of Range: %d", outOfRange);
 
+    // If this motor is out of range then stop it
     if (outOfRange)
     {
       Serial.printf("Disabled due to range\n");
