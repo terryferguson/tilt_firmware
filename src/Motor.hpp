@@ -11,6 +11,9 @@
 #include <ESP32Encoder.h>
 #include <cstring>
 
+#define MOTOR1_LIMIT 32
+#define MOTOR2_LIMIT 33
+
 #define READ_POSITION_ENCODER() this->pos = distanceSensor.getCount();
 #define MOVE_TO_POS(setpoint, min_delta, buffer) \
   if (abs(pos - setpoint) > min_delta)           \
@@ -72,6 +75,11 @@ public:
   int totalPulseCount = 0; /** The total number of pulses from full retraction
                               to full extension */
 
+  int bottomLimitPin = -1;
+  int topLimitPin = -1;
+
+  bool outOfRange = false;
+
   Direction dir = Direction::STOP; /** The direction of the motor rotation */
 
   Motor() {} // end default constructor
@@ -94,10 +102,10 @@ public:
         const MotorPin r_en, const MotorPin l_en, const MotorPin hall_1,
         const MotorPin hall_2, const adc1_channel_t currentSensePin,
         const int totalPulses, const int freq = PWM_FREQUENCY,
-        const int defSpeed = 70, const int pwmRes = 8)
+        const int defSpeed = 70, const int pwmRes = 8, const int bottomLimitPin = -1)
       : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),
         hall_1_Pin(hall_1), hall_2_Pin(hall_2), currentSensePin(currentSensePin), totalPulseCount(totalPulses), frequency(freq),
-        speed(defSpeed), pwmResolution(pwmRes)
+        speed(defSpeed), pwmResolution(pwmRes), bottomLimitPin(bottomLimitPin), outOfRange(false)
   {
     /// Copy name of linear actuator into ID field
     strncpy(id, name, sizeof(id) - 1);
@@ -124,6 +132,8 @@ public:
     Serial.printf("Attaching pin %d to LPWM Channel %d\n\n", lPWM_Pin,
                   pwmLChannel);
 
+    pinMode(bottomLimitPin, INPUT_PULLUP);
+
     motorPinMode(r_EN_Pin, OUTPUT);
     motorPinMode(l_EN_Pin, OUTPUT);
 
@@ -140,6 +150,8 @@ public:
 
     currentSense.initialize(currentSensePin);
 
+    int val = digitalRead(bottomLimitPin);
+
     if (debugEnabled)
     {
       Serial.printf("Motor: %s\n"
@@ -154,9 +166,10 @@ public:
                     "LPWM Pin:     %5d\n"
                     "Hall 1 Pin:   %5d\n"
                     "Hall 2 Pin:   %5d\n"
-                    "Max Position: %5d\n\n",
+                    "Max Position: %5d\n\n"
+                    "Bottom Reached: %5d\n\n",
                     id, frequency, pwmResolution, speed, pos, r_EN_Pin, l_EN_Pin, rPWM_Pin,
-                    lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount);
+                    lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount, val);
       Serial.printf("RPWM Channel %d - LPWM Channel: %d\n\n", pwmRChannel,
                     pwmLChannel);
     }
@@ -172,7 +185,9 @@ public:
    */
   void drive(const Direction motorDirection, const int specifiedSpeed = 0)
   {
-    if (((pos <= 0) && (dir == Direction::RETRACT)) || (((pos >= totalPulseCount) && (dir == Direction::EXTEND))))
+    const int reachedBottom = digitalRead(bottomLimitPin) == LOW;
+
+    if ((reachedBottom && dir == Direction::RETRACT) || (((pos >= totalPulseCount) && (dir == Direction::EXTEND))))
     {
       Serial.printf("Motor out of range!\n");
       dir = Direction::STOP;
@@ -245,9 +260,15 @@ public:
   /// @brief Update the position information for this motor and move it
   void update(const int newSpeed = (MAX_SPEED + 1))
   {
-    if (((pos <= 1) && (dir == Direction::RETRACT))
-    || (((pos >= totalPulseCount) && (dir == Direction::EXTEND))))
+    // const bool bottomReached = digitalRead(bottomLimitPin) == HIGH;
+
+    outOfRange =  ((pos >= totalPulseCount) && (dir == Direction::EXTEND));
+
+    // Serial.printf("Out of Range: %d", outOfRange);
+
+    if (outOfRange)
     {
+      Serial.printf("Disabled due to range\n");
       dir = Direction::STOP;
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);

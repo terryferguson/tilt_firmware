@@ -74,6 +74,8 @@ enum class Command : std::uint32_t {
 
   /** Command to toggle the limit switch - 35 */
   TOGGLE_LIMIT_RANGE,
+
+  READ_LIMIT,
 };
 
 #endif // _COMMANDS_HPP_

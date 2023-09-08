@@ -72,6 +72,8 @@
     var followerPos = document.getElementById("follower-pos");
     var leaderCurrent = document.getElementById("leader_current");
     var followerCurrent = document.getElementById("follower-current");
+    var leaderCurrentVelocity = document.getElementById("leader_current_velocity");
+    var followerCurrentVelocity = document.getElementById("follower-current-velocity");
 
       const {
         system_direction,
@@ -81,9 +83,12 @@
         leader_pos,
         follower_pos,
         leader_current,
+        follower_current_velocity,
+        leader_current_velocity,
         follower_current,
         alarm_current_velocity,
         min_current,
+        pid_on,
       } = data;
 
       if (data.type === "stats") {
@@ -109,6 +114,9 @@
 
         leaderCurrent.innerHTML = `${leader_current} mA`;
         followerCurrent.innerHTML = `${follower_current} mA`;
+
+        leaderCurrentVelocity.innerHTML = `${leader_current_velocity} mA/s`;
+        followerCurrentVelocity.innerHTML = `${follower_current_velocity} mA/s`;
       }
     }
 
@@ -126,6 +134,8 @@
       var currentOutput = document.getElementById("current-value");
       var leaderCurrent = document.getElementById("leader_current");
       var followerCurrent = document.getElementById("follower-current");
+      var leaderCurrentVelocity = document.getElementById("leader_current_velocity");
+    var followerCurrentVelocity = document.getElementById("follower-current-velocity");
       var currentVelocitySlider = document.getElementById(
         "current-velocity-slider"
       );
@@ -146,8 +156,11 @@
           follower_pos,
           leader_current,
           follower_current,
+          follower_current_velocity,
+        leader_current_velocity,
           alarm_current_velocity,
           min_current,
+          pid_on,
         } = data;
 
         if (data.type === "stats") {
@@ -173,6 +186,9 @@
 
           leaderCurrent.innerHTML = `${leader_current} mA`;
           followerCurrent.innerHTML = `${follower_current} mA`;
+
+          leaderCurrentVelocity.innerHTML = `${leader_current_velocity} mA/s`;
+        followerCurrentVelocity.innerHTML = `${follower_current_velocity} mA/s`;
         }
       } catch (error) {
         console.log(error);
@@ -199,6 +215,8 @@
       var followerPos = document.getElementById("follower-pos");
       var leaderCurrent = document.getElementById("leader_current");
       var followerCurrent = document.getElementById("follower-current");
+      var leaderCurrentVelocity = document.getElementById("leader_current_velocity");
+      var followerCurrentVelocity = document.getElementById("follower-current-velocity");
 
       await getStats();
     }
@@ -289,6 +307,12 @@
       </section>
       <section class="set-controls">
         <section>Follower Current: <span id="follower-current"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Leader Current Velocity: <span id="leader_current_velocity"></span></section>
+      </section>
+      <section class="set-controls">
+        <section>Follower Current Velocity: <span id="follower-current-velocity"></span></section>
       </section>
       <section class="main-controls">
         <p>

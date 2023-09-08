@@ -32,7 +32,7 @@ const char *password = "superocean537";
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-const long minPrintTimeDelta = 500000L;
+const long minPrintTimeDelta = 200000L;
 
 #define MICROS_IN_SECONDS (1 * 1000 * 1000)
 
@@ -64,6 +64,8 @@ String makeJson() {
     String limit_range(limit_range ? "true" : "false");
     String pid_on(pid_on ? "true" : "false");
     String direction(directions[static_cast<int>(motor_controller.systemDirection)]);
+    String leader_current_velocity(motor_controller.leaderCurrentVelocity);
+    String follower_current_velocity(motor_controller.followerCurrentVelocity);
 
     String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
                       ",\"follower_current\":" + follower_current +
@@ -75,6 +77,8 @@ String makeJson() {
                       ",\"kp\":" + kp +
                       ",\"min_current\":" + min_current +
                       ",\"alarm_current_velocity\":" + alarm_current_velocity +
+                       ",\"leader_current_velocity\":" + leader_current_velocity +
+                      ",\"follower_current_velocity\":" + follower_current_velocity +
                       ",\"leader_pos\": " + leader_pos +
                       ",\"follower_pos\": " + follower_pos + "}";
     return response;  
@@ -294,6 +298,8 @@ void setup()
 
 void loop()
 {
+  int fBottom, lBottom = 0;
+
   if (Serial.available() > 0)
   {
     Command cmd = static_cast<Command>(Serial.parseInt());
@@ -361,6 +367,11 @@ void loop()
       break;
     case Command::TOGGLE_LIMIT_RANGE:
       limit_range = !limit_range;
+      break;
+    case Command::READ_LIMIT:
+      lBottom = digitalRead(MOTOR1_LIMIT);
+      fBottom = digitalRead(MOTOR2_LIMIT);
+      Serial.printf("Bottom 1: %d, Bottom 2: %d\n", lBottom, fBottom);
       break;
     default:
       break;

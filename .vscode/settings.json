@@ -1,3 +1,6 @@
 {
-    "arduino.analyzeOnSettingChange": true
+    "arduino.analyzeOnSettingChange": true,
+    "files.associations": {
+        "cstring": "cpp"
+    }
 }

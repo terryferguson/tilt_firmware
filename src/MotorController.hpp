@@ -89,6 +89,11 @@ private:
   /** Interval of time to pass between debug serial prints in microseconds  */
   const int printDelta = 500000;
 
+  /** Interval of time to pass between current updates microseconds  */
+  const int currentUpdateInterval = 500000;
+
+  int lastCurrentUpdate = -1;
+
   // PIDController pidController;
 
   /// @brief The requested system level direction
@@ -137,7 +142,7 @@ private:
 
 public:
   /** The proprotional gain for the PID controller  */
-  int K_p = 10000;
+  int K_p = 80000;
 
   /** The intagral gain for the PID controller  */
   float K_i = 0.1f;
@@ -158,11 +163,23 @@ public:
   /** Follower motor current */
   int followerCurrent = 0;
 
+  /** Last leader current reading */
+  int lastLeaderCurrent = 0;
+
+  /** Last follower current reading */
+  int lastFollowerCurrent = 0;
+
+  /** Leader current velocity */
+  int leaderCurrentVelocity = 0;
+
+  /*  Follower current velocity */
+  int followerCurrentVelocity = 0;
+
   /** Minimum current for alarm system for motors to enable  */
-  int minCurrent = 1000;
+  int minCurrent = 4000;
 
   /** Current velocity limit for alarm system for motors to enable  */
-  int alarmCurrentVelocity = 200;
+  int alarmCurrentVelocity = 3000;
 
   /** Maxim1um current increase limit for
             motor cutoff */
@@ -210,21 +227,23 @@ public:
               MotorPin::MOTOR1_R_EN_PIN, MotorPin::MOTOR1_L_EN_PIN,
               MotorPin::MOTOR1_HALL1_PIN, MotorPin::MOTOR1_HALL2_PIN,
               LEADER_CURRENT_SENSE_PIN,
-              motorPulseTotals[0], PWM_FREQUENCY, defaultSpeed, pwmResolution);
+              motorPulseTotals[0], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR1_LIMIT);
 
     motors[1] =
         Motor("Follower", MotorPin::MOTOR2_RPWM_PIN, MotorPin::MOTOR2_LPWM_PIN,
               MotorPin::MOTOR2_R_EN_PIN, MotorPin::MOTOR2_L_EN_PIN,
               MotorPin::MOTOR2_HALL1_PIN, MotorPin::MOTOR2_HALL2_PIN,
               FOLLOWER_CURRENT_SENSE_PIN,
-              motorPulseTotals[1], PWM_FREQUENCY, defaultSpeed, pwmResolution);
+              motorPulseTotals[1], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR2_LIMIT);
 
     positionStorage.begin("evox-tilt", false);
     loadPositions();
     initializeMotors();
-    Serial.println("System initialized.");
+    
+    leaderCurrent = motors[LEADER].getCurrent();
+    followerCurrent = motors[FOLLOWER].getCurrent();
 
-    ALL_MOTORS(initialCurrentReadings[motor] = motors[motor].getCurrent();)
+    Serial.println("System initialized.");
   }
 
   /// @brief Tell the motorized system to extend
@@ -268,6 +287,10 @@ public:
   /// @param newSpeed The new speed to target
   void setSpeed(int newSpeed)
   {
+    if (newSpeed < 75) {
+      newSpeed = 75;
+    }
+
     targetSpeed = newSpeed;
     softStart = lastPWMUpdate = micros();
 
@@ -277,6 +300,10 @@ public:
     //
     // This will usually have a fractional part, so we make it a float value. We
     // handle the rounding and conversion to an integer in the update method.
+    if (speed < 75) {
+      speed = 75;
+    }
+
     pwmUpdateAmount =
         ceil((float)abs(targetSpeed - speed) / SOFT_MOVEMENT_UPDATE_STEPS);
 
@@ -385,6 +412,21 @@ public:
     }
   }
 
+  void updateCurrentReadings(const int elapsedTime)
+  {
+    // Save the last current readings
+    lastLeaderCurrent = leaderCurrent;
+    lastFollowerCurrent = followerCurrent;
+
+    // Update the readings
+    leaderCurrent = motors[LEADER].getCurrent();
+    followerCurrent = motors[FOLLOWER].getCurrent();
+
+    // Update current change velocity
+    leaderCurrentVelocity = static_cast<int>(static_cast<double>(ceil(leaderCurrent - lastLeaderCurrent) * (1000000.0 / elapsedTime)));
+    followerCurrentVelocity = static_cast<int>(static_cast<double>(ceil(followerCurrent - lastFollowerCurrent) * (1000000.0 / elapsedTime)));
+  }
+
   void doPid(const float deltaT = 0.0f)
   {
     const float error = abs(motors[laggingIndex].getNormalizedPos() -
@@ -412,6 +454,7 @@ public:
    */
   bool currentAlarmTriggered() const
   {
+
     if ((leaderCurrent > minCurrent || followerCurrent > minCurrent) && systemDirection != Direction::STOP)
     {
       return true;
@@ -421,6 +464,15 @@ public:
 
   void update(const float deltaT = 0.0f)
   {
+    const int currentTime = micros();
+    const int currentUpdateDelta = currentTime - lastCurrentUpdate;
+
+    if (currentUpdateDelta >= currentUpdateInterval) {
+      updateCurrentReadings(currentUpdateDelta);
+      lastCurrentUpdate = currentTime;
+    }
+
+    
     if (Direction::STOP == systemDirection)
     {
       for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
@@ -460,16 +512,21 @@ public:
       }
     }
 
-    if (!pid_on)
+    if (!pid_on && (requestedDirection != Direction::STOP && systemDirection != Direction::STOP)) {
+      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
     {
-      motors[leadingIndex].speed = 75;
-      motors[laggingIndex].speed = 75;
-      ALL_MOTORS_COMMAND(update);
-      return;
+      if (motors[motor].pos < motors[motor].totalPulseCount && motors[motor].dir == Direction::EXTEND || motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT)
+      {
+        motors[motor].speed = 75;
+        motors[motor].speed = 75;
+        motors[motor].update();
+      } else {
+        motors[motor].update();
+      }
+    }
     }
 
     const int speedDelta = abs(speed - targetSpeed);
-    const int currentTime = micros();
     const int moveTimeDelta = currentTime - softStart;
     const int updateTimeDelta = currentTime - lastPWMUpdate;
 
@@ -548,7 +605,7 @@ public:
 
     if (currentAlarmTriggered())
     {
-      stop();
+      //stop();
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
@@ -556,15 +613,7 @@ public:
 
     for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
     {
-      if (motors[motor].pos < motors[motor].totalPulseCount && motors[motor].dir == Direction::EXTEND || motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT)
-      {
         motors[motor].update();
-      }
-      else
-      {
-        motors[motor].disable();
-        motors[motor].update();
-      }
     }
   }
 };

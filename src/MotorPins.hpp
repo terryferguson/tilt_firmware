@@ -39,12 +39,6 @@ enum class MotorPin : std::uint8_t {
   /** Hall 2 sensor pin */
   MOTOR1_HALL2_PIN = 23,
 
-  /** Left motor channel current sense pin  */
-  MOTOR1_LIS_PIN = 31,
-
-  /** Right motor channel current sense pin  */
-  MOTOR1_RIS_PIN = 32,
-
   /** Motor RPWM Pin for extension square wave */
   MOTOR2_RPWM_PIN = 5,
 
@@ -62,9 +56,6 @@ enum class MotorPin : std::uint8_t {
 
   /** Hall 2 sensor pin */
   MOTOR2_HALL2_PIN = 13,
-
-  /** Left motor channel current sense pin  */
-  MOTOR2_LIS_PIN = 16,
 
    /** Right motor channel current sense pin  */
   MOTOR2_RIS_PIN = 11,
