@@ -248,11 +248,11 @@ public:
   /// @brief Update the position information for this motor and move it
   void update(const int newSpeed = (MAX_SPEED + 1))
   {
-    /* Limit switches are normally open, so they should be HIGH when triggered
+    /* Limit switches are normally open, so they should be HIGH when released
      * as their port is set to INPUT_PULLUP, so they are pulled LOW when closed.
      */
     const bool bottomReached = digitalRead(bottomLimitPin) == LOW;
-    const bool topReached = digitalRead(topLimitPin) == LOW;
+    const bool topReached = pos >= 2800;
 
     /* Don't make the limit switches stop movement completely, of course. Only
      * stop movement if the column is moving in the direction of the limit switch.
@@ -269,8 +269,8 @@ public:
     if (outOfRange)
     {
       Serial.printf("Disabled due to range\n");
-      Serial.printf("Top Reached: %d\n", topReached);
       Serial.printf("Bottom Reached: %d\n", bottomReached);
+      Serial.printf("Top Reached: %d\n", topReached);
       Serial.printf("Going Past Bottom: %d\n", goingPastBottom);
       Serial.printf("Going Past Top: %d\n", goingPastTop);
       dir = Direction::STOP;
