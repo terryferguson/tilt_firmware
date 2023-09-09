@@ -457,6 +457,13 @@ public:
 
   void update(const float deltaT = 0.0f)
   {
+    if ((motors[LEADER].getNormalizedPos() < 0.1 && motors[LEADER].dir == Direction::RETRACT)
+        || (motors[FOLLOWER].getNormalizedPos() < 0.1 && motors[FOLLOWER].dir == Direction::RETRACT)
+        || (motors[LEADER].getNormalizedPos() > 0.9 && motors[LEADER].dir == Direction::EXTEND)
+        || (motors[FOLLOWER].getNormalizedPos() > 0.9 && motors[FOLLOWER].dir == Direction::EXTEND)) {
+      currentUpdateInterval = 50000;
+    }
+        
     const int currentTime = micros();
     const int currentUpdateDelta = currentTime - lastCurrentUpdate;
 
@@ -574,13 +581,6 @@ public:
       {
         speed = targetSpeed;
         RESET_SOFT_MOVEMENT
-
-        if ((motors[LEADER].getNormalizedPos() < 0.1 && motors[LEADER].dir == Direction::RETRACT)
-            || (motors[FOLLOWER].getNormalizedPos() < 0.1 && motors[FOLLOWER].dir == Direction::RETRACT)
-            || (motors[LEADER].getNormalizedPos() > 0.9 && motors[LEADER].dir == Direction::EXTEND)
-            || (motors[FOLLOWER].getNormalizedPos() > 0.9 && motors[FOLLOWER].dir == Direction::EXTEND)) {
-          currentUpdateInterval = 50000;
-        }
 
         if (requestedDirection == Direction::STOP)
         {
