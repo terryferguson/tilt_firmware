@@ -269,6 +269,10 @@ public:
     if (outOfRange)
     {
       Serial.printf("Disabled due to range\n");
+      Serial.printf("Top Reached: %d\n", topReached);
+      Serial.printf("Bottom Reached: %d\n", bottomReached);
+      Serial.printf("Going Past Bottom: %d\n", goingPastBottom);
+      Serial.printf("Going Past Top: %d\n", goingPastTop);
       dir = Direction::STOP;
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
