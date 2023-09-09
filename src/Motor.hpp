@@ -13,6 +13,8 @@
 
 #define MOTOR1_LIMIT 32
 #define MOTOR2_LIMIT 33
+#define MOTOR1_TLIMIT 34
+#define MOTOR2_TLIMIT 35
 
 #define READ_POSITION_ENCODER() this->pos = distanceSensor.getCount();
 #define MOVE_TO_POS(setpoint, min_delta, buffer) \
@@ -102,10 +104,10 @@ public:
         const MotorPin r_en, const MotorPin l_en, const MotorPin hall_1,
         const MotorPin hall_2, const adc1_channel_t currentSensePin,
         const int totalPulses, const int freq = PWM_FREQUENCY,
-        const int defSpeed = 70, const int pwmRes = 8, const int bottomLimitPin = -1)
+        const int defSpeed = 70, const int pwmRes = 8, const int bottomLimitPin = -1,  const int topLimitPin = -1)
       : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),
         hall_1_Pin(hall_1), hall_2_Pin(hall_2), currentSensePin(currentSensePin), totalPulseCount(totalPulses), frequency(freq),
-        speed(defSpeed), pwmResolution(pwmRes), bottomLimitPin(bottomLimitPin), outOfRange(false)
+        speed(defSpeed), pwmResolution(pwmRes), bottomLimitPin(bottomLimitPin), topLimitPin(topLimitPin), outOfRange(false)
   {
     /// Copy name of linear actuator into ID field
     strncpy(id, name, sizeof(id) - 1);
@@ -247,22 +249,19 @@ public:
   void update(const int newSpeed = (MAX_SPEED + 1))
   {
     /* Limit switches are normally open, so they should be HIGH when triggered
-     * as their port is set to INPUT_PULLUP, so they are pulled high when closed.
+     * as their port is set to INPUT_PULLUP, so they are pulled LOW when closed.
      */
-    const bool bottomReached = digitalRead(bottomLimitPin) == HIGH;
-    const bool topReached = digitalRead(topLimitPin) == HIGH;
+    const bool bottomReached = digitalRead(bottomLimitPin) == LOW;
+    const bool topReached = digitalRead(topLimitPin) == LOW;
 
     /* Don't make the limit switches stop movement completely, of course. Only
-     * stop movement if they column is moving in the direction of the limit switch.
+     * stop movement if the column is moving in the direction of the limit switch.
      */
     const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
     const bool goingPastTop = topReached && dir == Direction::EXTEND;
 
-    // Temporary since the top limit switch is not installed as of now.
-    const bool tempPulseTopLimit = (pos >= totalPulseCount) && (dir == Direction::EXTEND);
-
     // Check whether motor is out of range
-    outOfRange = goingPastBottom || goingPastTop || tempPulseTopLimit;
+    outOfRange = goingPastBottom || goingPastTop;
 
     // Serial.printf("Out of Range: %d", outOfRange);
 

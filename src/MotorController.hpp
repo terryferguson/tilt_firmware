@@ -27,7 +27,8 @@
   lastPWMUpdate = -1;       \
   softStart = -1;           \
   targetSpeed = -1;         \
-  eIntegral = 0.0f;
+  eIntegral = 0.0f;         \
+  currentUpdateInterval = 500000;
 
 #define RESTORE_POSITION(slot) motor_controller.setPos(savedPositions[slot]);
 
@@ -58,7 +59,7 @@ private:
     FOLLOWER /** The follower motor that is speed-matched to the leader motor */
   };
 
-  const int motorPulseTotals[2] = {2600, 2600};
+  const int motorPulseTotals[2] = {2900, 2900};
 
   /// @brief Hall sensor pulse totals for the motor travel limit feature
   // const int motorPulseTotals[2] = {2055, 2050};
@@ -90,7 +91,7 @@ private:
   const int printDelta = 500000;
 
   /** Interval of time to pass between current updates microseconds  */
-  const int currentUpdateInterval = 500000;
+  int currentUpdateInterval = 500000;
 
   int lastCurrentUpdate = -1;
 
@@ -120,6 +121,7 @@ private:
 
     ALL_MOTORS(motors[motor].speed = 0;)
     ALL_MOTORS(motors[motor].dir = Direction::STOP;)
+    currentUpdateInterval = 500000;
   }
 
   /// @brief Load the position preferences slots from ROM into memory
@@ -227,19 +229,19 @@ public:
               MotorPin::MOTOR1_R_EN_PIN, MotorPin::MOTOR1_L_EN_PIN,
               MotorPin::MOTOR1_HALL1_PIN, MotorPin::MOTOR1_HALL2_PIN,
               LEADER_CURRENT_SENSE_PIN,
-              motorPulseTotals[0], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR1_LIMIT);
+              motorPulseTotals[0], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR1_LIMIT, MOTOR1_TLIMIT);
 
     motors[1] =
         Motor("Follower", MotorPin::MOTOR2_RPWM_PIN, MotorPin::MOTOR2_LPWM_PIN,
               MotorPin::MOTOR2_R_EN_PIN, MotorPin::MOTOR2_L_EN_PIN,
               MotorPin::MOTOR2_HALL1_PIN, MotorPin::MOTOR2_HALL2_PIN,
               FOLLOWER_CURRENT_SENSE_PIN,
-              motorPulseTotals[1], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR2_LIMIT);
+              motorPulseTotals[1], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR2_LIMIT, MOTOR2_TLIMIT);
 
     positionStorage.begin("evox-tilt", false);
     loadPositions();
     initializeMotors();
-    
+
     leaderCurrent = motors[LEADER].getCurrent();
     followerCurrent = motors[FOLLOWER].getCurrent();
 
@@ -251,6 +253,7 @@ public:
   {
     // SET_TO_ANALOG_PIN_FUNC(SPEED_POT_PIN, this->setSpeed, 0, 2 <<
     // PWM_RESOLUTION_BITS - 1);
+    RESET_SOFT_MOVEMENT
     setSpeed(defaultSpeed);
     ALL_MOTORS_COMMAND(extend)
     systemDirection = Direction::EXTEND;
@@ -262,6 +265,7 @@ public:
   {
     // SET_TO_ANALOG_PIN_FUNC(SPEED_POT_PIN, this->setSpeed, 0, 2 <<
     // PWM_RESOLUTION_BITS - 1);
+    RESET_SOFT_MOVEMENT
     setSpeed(defaultSpeed);
     ALL_MOTORS_COMMAND(retract)
     systemDirection = Direction::RETRACT;
@@ -287,7 +291,8 @@ public:
   /// @param newSpeed The new speed to target
   void setSpeed(int newSpeed)
   {
-    if (newSpeed < 75) {
+    if (newSpeed < 75)
+    {
       newSpeed = 75;
     }
 
@@ -300,7 +305,8 @@ public:
     //
     // This will usually have a fractional part, so we make it a float value. We
     // handle the rounding and conversion to an integer in the update method.
-    if (speed < 75) {
+    if (speed < 75)
+    {
       speed = 75;
     }
 
@@ -427,19 +433,6 @@ public:
     followerCurrentVelocity = static_cast<int>(static_cast<double>(ceil(followerCurrent - lastFollowerCurrent) * (1000000.0 / elapsedTime)));
   }
 
-  void doPid(const float deltaT = 0.0f)
-  {
-    const float error = abs(motors[laggingIndex].getNormalizedPos() -
-                            motors[leadingIndex].getNormalizedPos());
-
-    eIntegral += error * deltaT;
-
-    const int adjustedSpeed = speed - int((error * K_p));
-
-    motors[leadingIndex].speed = constrain(adjustedSpeed, 0, 2 << pwmResolution);
-    motors[laggingIndex].speed = speed;
-  }
-
   /// @brief Check whether the system is in a STOP state
   /// @return True if the system is in a STOP state, else false
   bool isStopped() const { return systemDirection == Direction::STOP; }
@@ -467,12 +460,16 @@ public:
     const int currentTime = micros();
     const int currentUpdateDelta = currentTime - lastCurrentUpdate;
 
-    if (currentUpdateDelta >= currentUpdateInterval) {
+    if (currentUpdateDelta >= currentUpdateInterval)
+    {
       updateCurrentReadings(currentUpdateDelta);
       lastCurrentUpdate = currentTime;
+      Serial.printf("Leader Motor Current: %d\n", leaderCurrent);
+      Serial.printf("Leader current velocity: %d\n", leaderCurrentVelocity);
+      Serial.printf("Follower Motor Current: %d\n", followerCurrent);
+      Serial.printf("Follower current velocity: %d\n", followerCurrentVelocity);
     }
 
-    
     if (Direction::STOP == systemDirection)
     {
       for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
@@ -512,18 +509,21 @@ public:
       }
     }
 
-    if (!pid_on && (requestedDirection != Direction::STOP && systemDirection != Direction::STOP)) {
-      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
+    if (!pid_on && (requestedDirection != Direction::STOP && systemDirection != Direction::STOP))
     {
-      if (motors[motor].pos < motors[motor].totalPulseCount && motors[motor].dir == Direction::EXTEND || motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT)
+      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
       {
-        motors[motor].speed = 75;
-        motors[motor].speed = 75;
-        motors[motor].update();
-      } else {
-        motors[motor].update();
+        if (motors[motor].pos < motors[motor].totalPulseCount && motors[motor].dir == Direction::EXTEND || motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT)
+        {
+          motors[motor].speed = 75;
+          motors[motor].speed = 75;
+          motors[motor].update();
+        }
+        else
+        {
+          motors[motor].update();
+        }
       }
-    }
     }
 
     const int speedDelta = abs(speed - targetSpeed);
@@ -575,6 +575,13 @@ public:
         speed = targetSpeed;
         RESET_SOFT_MOVEMENT
 
+        if ((motors[LEADER].getNormalizedPos() < 0.1 && motors[LEADER].dir == Direction::RETRACT)
+            || (motors[FOLLOWER].getNormalizedPos() < 0.1 && motors[FOLLOWER].dir == Direction::RETRACT)
+            || (motors[LEADER].getNormalizedPos() > 0.9 && motors[LEADER].dir == Direction::EXTEND)
+            || (motors[FOLLOWER].getNormalizedPos() > 0.9 && motors[FOLLOWER].dir == Direction::EXTEND)) {
+          currentUpdateInterval = 50000;
+        }
+
         if (requestedDirection == Direction::STOP)
         {
           systemDirection = Direction::STOP;
@@ -600,12 +607,20 @@ public:
 
     if (pid_on)
     {
-      doPid(deltaT);
+      const float error = abs(motors[laggingIndex].getNormalizedPos() -
+                              motors[leadingIndex].getNormalizedPos());
+
+      eIntegral += error * deltaT;
+
+      const int adjustedSpeed = speed - int((error * K_p));
+
+      motors[leadingIndex].speed = constrain(adjustedSpeed, 0, 2 << pwmResolution);
+      motors[laggingIndex].speed = speed;
     }
 
     if (currentAlarmTriggered())
     {
-      //stop();
+      // stop();
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
@@ -613,7 +628,7 @@ public:
 
     for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
     {
-        motors[motor].update();
+      motors[motor].update();
     }
   }
 };

@@ -298,7 +298,7 @@ void setup()
 
 void loop()
 {
-  int fBottom, lBottom = 0;
+  int fBottom, lBottom, fTop, lTop = 0;
 
   if (Serial.available() > 0)
   {
@@ -371,7 +371,9 @@ void loop()
     case Command::READ_LIMIT:
       lBottom = digitalRead(MOTOR1_LIMIT);
       fBottom = digitalRead(MOTOR2_LIMIT);
-      Serial.printf("Bottom 1: %d, Bottom 2: %d\n", lBottom, fBottom);
+      lTop = digitalRead(MOTOR1_TLIMIT);
+      fTop = digitalRead(MOTOR2_TLIMIT);
+      Serial.printf("Bottom 1: %d, Bottom 2: %d, Top 1: %d, Top 2: %d\n", lBottom, fBottom, lTop, fTop);
       break;
     default:
       break;
