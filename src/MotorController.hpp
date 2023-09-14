@@ -3,8 +3,8 @@
 #ifndef _MOTOR_CONTROLLER_HPP_
 #define _MOTOR_CONTROLLER_HPP_
 
-#include <math.h>
 #include <Preferences.h>
+#include <math.h>
 
 #include "CurrentSettings.hpp"
 #include "Motor.hpp"
@@ -14,29 +14,27 @@
 
 #define NUMBER_OF_MOTORS 2
 
-#define ALL_MOTORS(operation)                            \
-  for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) \
-  {                                                      \
-    operation                                            \
+#define ALL_MOTORS(operation)                                                  \
+  for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {                     \
+    operation                                                                  \
   }
 
 #define ALL_MOTORS_COMMAND(command) ALL_MOTORS(motors[motor].command();)
 
-#define RESET_SOFT_MOVEMENT \
-  pwmUpdateAmount = 0;      \
-  lastPWMUpdate = -1;       \
-  softStart = -1;           \
-  targetSpeed = -1;         \
-  eIntegral = 0.0f;         \
+#define RESET_SOFT_MOVEMENT                                                    \
+  pwmUpdateAmount = 0;                                                         \
+  lastPWMUpdate = -1;                                                          \
+  softStart = -1;                                                              \
+  targetSpeed = -1;                                                            \
+  eIntegral = 0.0f;                                                            \
   currentUpdateInterval = 500000;
 
 #define RESTORE_POSITION(slot) motor_controller.setPos(savedPositions[slot]);
 
-#define SERIAL_SAVE_POSITION(slot)                \
-  if (Serial.available() > 0)                     \
-  {                                               \
-    int new_pos = Serial.parseInt();              \
-    motor_controller.savePosition(slot, new_pos); \
+#define SERIAL_SAVE_POSITION(slot)                                             \
+  if (Serial.available() > 0) {                                                \
+    int new_pos = Serial.parseInt();                                           \
+    motor_controller.savePosition(slot, new_pos);                              \
   }
 
 /** @class MotorController
@@ -48,18 +46,16 @@
  *
  * @version 0.1
  */
-class MotorController
-{
+class MotorController {
 private:
   /// @enum MotorRoles
   /// @brief The roles of this motor for this PID control
-  enum MotorRoles
-  {
+  enum MotorRoles {
     LEADER,  /** The leader motor that is speed-matched */
     FOLLOWER /** The follower motor that is speed-matched to the leader motor */
   };
 
-  const int motorPulseTotals[2] = {2900, 2900};
+  const int motorPulseTotals[2] = {2800, 2800};
 
   /// @brief Hall sensor pulse totals for the motor travel limit feature
   // const int motorPulseTotals[2] = {2055, 2050};
@@ -87,9 +83,6 @@ private:
   /** The last time a debug serial print was sent */
   int lastPrintTime = -1;
 
-  /** Interval of time to pass between debug serial prints in microseconds  */
-  const int printDelta = 500000;
-
   /** Interval of time to pass between current updates microseconds  */
   int currentUpdateInterval = 500000;
 
@@ -106,14 +99,11 @@ private:
   /** The PWM bitdepth resolution */
   int pwmResolution = PWM_RESOLUTION_BITS;
 
-  int initialCurrentReadings[NUMBER_OF_MOTORS] = {0, 0};
-
   int desiredPos = -1;
 
   Preferences positionStorage; //
 
-  void immediateHalt()
-  {
+  void immediateHalt() {
     speed = targetSpeed = 0;
     systemDirection = Direction::STOP;
     requestedDirection = Direction::STOP;
@@ -125,18 +115,15 @@ private:
   }
 
   /// @brief Load the position preferences slots from ROM into memory
-  void loadPositions()
-  {
-    for (int slot = 0; slot < NUM_POSITION_SLOTS; slot++)
-    {
+  void loadPositions() {
+    for (int slot = 0; slot < NUM_POSITION_SLOTS; slot++) {
       savedPositions[slot] =
           positionStorage.getInt(save_position_slot_names[slot]);
     }
   }
 
   /// @brief Initialize the motors and then set them to halt immediately
-  void initializeMotors()
-  {
+  void initializeMotors() {
     RESET_SOFT_MOVEMENT
     ALL_MOTORS_COMMAND(initialize)
     immediateHalt();
@@ -178,10 +165,13 @@ public:
   int followerCurrentVelocity = 0;
 
   /** Minimum current for alarm system for motors to enable  */
-  int minCurrent = 4000;
+  int minCurrent = 600;
+
+  /** Current delay for overcurrent alarm system */
+  int currentAlarmDelay = 250000;
 
   /** Current velocity limit for alarm system for motors to enable  */
-  int alarmCurrentVelocity = 3000;
+  int alarmCurrentVelocity = 10000;
 
   /** Maxim1um current increase limit for
             motor cutoff */
@@ -199,14 +189,14 @@ public:
   /// motors
   /// @param defaultSpeed The default speed of the motors that the control
   /// program starts them off with
-  MotorController(const int pwmFrequency = PWM_FREQUENCY,
-                  const int pwmResolution = PWM_RESOLUTION_BITS,
-                  const int defaultSpeed = DEFAULT_MOTOR_SPEED,
-                  const int currentIncreaseLimit = DEFAULT_CURRENT_INCREASE_LIMIT)
+  MotorController(
+      const int pwmFrequency = PWM_FREQUENCY,
+      const int pwmResolution = PWM_RESOLUTION_BITS,
+      const int defaultSpeed = DEFAULT_MOTOR_SPEED,
+      const int currentIncreaseLimit = DEFAULT_CURRENT_INCREASE_LIMIT)
       : pwmFrequency(pwmFrequency), pwmResolution(pwmResolution),
         defaultSpeed(defaultSpeed),
-        currentIncreaseTolerance(currentIncreaseLimit)
-  {
+        currentIncreaseTolerance(currentIncreaseLimit) {
     char buf[256];
     sprintf(
         buf,
@@ -220,23 +210,22 @@ public:
 
   /// @brief Load the stored position preferences into RAM and initialize the
   /// motors
-  void initialize()
-  {
+  void initialize() {
     // Read in saved positions
     // Open in read-write mode
     motors[0] =
         Motor("Leader", MotorPin::MOTOR1_RPWM_PIN, MotorPin::MOTOR1_LPWM_PIN,
               MotorPin::MOTOR1_R_EN_PIN, MotorPin::MOTOR1_L_EN_PIN,
               MotorPin::MOTOR1_HALL1_PIN, MotorPin::MOTOR1_HALL2_PIN,
-              LEADER_CURRENT_SENSE_PIN,
-              motorPulseTotals[0], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR1_LIMIT, MOTOR1_TLIMIT);
+              LEADER_CURRENT_SENSE_PIN, motorPulseTotals[0], PWM_FREQUENCY,
+              defaultSpeed, pwmResolution, MOTOR1_LIMIT, MOTOR1_TLIMIT);
 
     motors[1] =
         Motor("Follower", MotorPin::MOTOR2_RPWM_PIN, MotorPin::MOTOR2_LPWM_PIN,
               MotorPin::MOTOR2_R_EN_PIN, MotorPin::MOTOR2_L_EN_PIN,
               MotorPin::MOTOR2_HALL1_PIN, MotorPin::MOTOR2_HALL2_PIN,
-              FOLLOWER_CURRENT_SENSE_PIN,
-              motorPulseTotals[1], PWM_FREQUENCY, defaultSpeed, pwmResolution, MOTOR2_LIMIT, MOTOR2_TLIMIT);
+              FOLLOWER_CURRENT_SENSE_PIN, motorPulseTotals[1], PWM_FREQUENCY,
+              defaultSpeed, pwmResolution, MOTOR2_LIMIT, MOTOR2_TLIMIT);
 
     positionStorage.begin("evox-tilt", false);
     loadPositions();
@@ -249,10 +238,7 @@ public:
   }
 
   /// @brief Tell the motorized system to extend
-  void extend()
-  {
-    // SET_TO_ANALOG_PIN_FUNC(SPEED_POT_PIN, this->setSpeed, 0, 2 <<
-    // PWM_RESOLUTION_BITS - 1);
+  void extend() {
     RESET_SOFT_MOVEMENT
     setSpeed(defaultSpeed);
     ALL_MOTORS_COMMAND(extend)
@@ -261,10 +247,7 @@ public:
   }
 
   /// @brief Tell the motorized system to retract
-  void retract()
-  {
-    // SET_TO_ANALOG_PIN_FUNC(SPEED_POT_PIN, this->setSpeed, 0, 2 <<
-    // PWM_RESOLUTION_BITS - 1);
+  void retract() {
     RESET_SOFT_MOVEMENT
     setSpeed(defaultSpeed);
     ALL_MOTORS_COMMAND(retract)
@@ -273,8 +256,7 @@ public:
   }
 
   /// @brief Tell the motorized system to stop
-  void stop()
-  {
+  void stop() {
     RESET_SOFT_MOVEMENT
 
     setSpeed(0);
@@ -289,10 +271,8 @@ public:
 
   /// @brief Smoothly change to the newly requested speed
   /// @param newSpeed The new speed to target
-  void setSpeed(int newSpeed)
-  {
-    if (newSpeed < 75)
-    {
+  void setSpeed(int newSpeed) {
+    if (newSpeed < 75) {
       newSpeed = 75;
     }
 
@@ -305,8 +285,7 @@ public:
     //
     // This will usually have a fractional part, so we make it a float value. We
     // handle the rounding and conversion to an integer in the update method.
-    if (speed < 75)
-    {
+    if (speed < 75) {
       speed = 75;
     }
 
@@ -315,13 +294,11 @@ public:
 
     // If the new speed is lower, make it negative, as we add the
     // pwmUpdateAmount to the speed
-    if (targetSpeed < speed)
-    {
+    if (targetSpeed < speed) {
       pwmUpdateAmount = -pwmUpdateAmount;
     }
 
-    if (debugEnabled)
-    {
+    if (debugEnabled) {
       Serial.printf("MotorController\n"
                     "------------\n"
                     "setSpeed(%d)\n"
@@ -334,24 +311,21 @@ public:
 
   /// @brief Get the system speed
   /// @return The average speed of the system
-  int getSpeed() const
-  {
+  int getSpeed() const {
     // Return the average
     return (motors[0].speed + motors[1].speed) / 2;
   }
 
   /// @brief Indicates whether the motor counts are unequal
   /// @return True if the motor counts are different, false otherwise
-  bool countsAreUnequal(void) const
-  {
+  bool countsAreUnequal(void) const {
     bool areUnequal = true;
     ALL_MOTORS(areUnequal &= motors[motor].pos == motors[motor].lastPos;)
     return areUnequal;
   }
 
   /// @brief Report debugging information to the serial console
-  void report()
-  {
+  void report() {
     ALL_MOTORS_COMMAND(readPos)
     Serial.printf(
         "MotorController\n--------------------\nSpeed: %d\nTarget "
@@ -379,23 +353,22 @@ public:
 
   */
 
-  void printCurrent()
-  {
-    leaderCurrent = motors[LEADER].getCurrent();
-    followerCurrent = motors[FOLLOWER].getCurrent();
+  void printCurrent() {
+    if (motorsStopped()) {
+      leaderCurrent = motors[LEADER].getCurrent();
+      followerCurrent = motors[FOLLOWER].getCurrent();
 
-    Serial.printf("Leader Current: %d\n", leaderCurrent);
-    Serial.printf("Follower Current: %d\n", followerCurrent);
+      Serial.printf("Leader Current: %d\n", leaderCurrent);
+      Serial.printf("Follower Current: %d\n", followerCurrent);
+    }
   }
 
   /// @brief Save a position to the preferences slot
   /// @param slot The selected slot to save the position information to
   /// @param position_value The position value in hall sensor pulses to save to
   /// the selected slot
-  void savePosition(const int slot, const int position_value)
-  {
-    if (slot > 0 && slot < NUM_POSITION_SLOTS && position_value > -1)
-    {
+  void savePosition(const int slot, const int position_value) {
+    if (slot > 0 && slot < NUM_POSITION_SLOTS && position_value > -1) {
       ALL_MOTORS(motors[motor].setPos(position_value);)
       savedPositions[slot - 1] = position_value;
       positionStorage.putInt(save_position_slot_names[slot], position_value);
@@ -404,22 +377,17 @@ public:
 
   /// @brief Move the motors to the given position
   /// @param newPos The new target position for the motors in hall sensor pulses
-  void setPos(const int newPos)
-  {
+  void setPos(const int newPos) {
     desiredPos = newPos;
 
-    if (motors[LEADER].pos < desiredPos)
-    {
+    if (motors[LEADER].pos < desiredPos) {
       extend();
-    }
-    else if (motors[LEADER].pos > desiredPos)
-    {
+    } else if (motors[LEADER].pos > desiredPos) {
       retract();
     }
   }
 
-  void updateCurrentReadings(const int elapsedTime)
-  {
+  void updateCurrentReadings(const int elapsedTime) {
     // Save the last current readings
     lastLeaderCurrent = leaderCurrent;
     lastFollowerCurrent = followerCurrent;
@@ -429,13 +397,20 @@ public:
     followerCurrent = motors[FOLLOWER].getCurrent();
 
     // Update current change velocity
-    leaderCurrentVelocity = static_cast<int>(static_cast<double>(ceil(leaderCurrent - lastLeaderCurrent) * (1000000.0 / elapsedTime)));
-    followerCurrentVelocity = static_cast<int>(static_cast<double>(ceil(followerCurrent - lastFollowerCurrent) * (1000000.0 / elapsedTime)));
+    leaderCurrentVelocity = static_cast<int>(static_cast<double>(
+        ceil(leaderCurrent - lastLeaderCurrent) * (1000000.0 / elapsedTime)));
+    followerCurrentVelocity = static_cast<int>(
+        static_cast<double>(ceil(followerCurrent - lastFollowerCurrent) *
+                            (1000000.0 / elapsedTime)));
   }
 
   /// @brief Check whether the system is in a STOP state
   /// @return True if the system is in a STOP state, else false
   bool isStopped() const { return systemDirection == Direction::STOP; }
+
+  bool motorsStopped() const {
+    return motors[LEADER].isStopped() && motors[FOLLOWER].isStopped();
+  }
 
   /// @brief Perform one update interval for the motor system
   /// @param deltaT The amount of time that has passed since the last update
@@ -445,89 +420,79 @@ public:
    *
    * @return true if the current alarm is triggered, false otherwise
    */
-  bool currentAlarmTriggered() const
-  {
+  bool currentAlarmTriggered() const {
 
-    if ((leaderCurrent > minCurrent || followerCurrent > minCurrent) && systemDirection != Direction::STOP)
-    {
+    if ((leaderCurrent > minCurrent || followerCurrent > minCurrent) &&
+        systemDirection == Direction::RETRACT) {
       return true;
     }
     return false;
   }
 
-  void update(const float deltaT = 0.0f)
-  {
-    if ((motors[LEADER].getNormalizedPos() < 0.1 && motors[LEADER].dir == Direction::RETRACT)
-        || (motors[FOLLOWER].getNormalizedPos() < 0.1 && motors[FOLLOWER].dir == Direction::RETRACT)
-        || (motors[LEADER].getNormalizedPos() > 0.9 && motors[LEADER].dir == Direction::EXTEND)
-        || (motors[FOLLOWER].getNormalizedPos() > 0.9 && motors[FOLLOWER].dir == Direction::EXTEND)) {
-      currentUpdateInterval = 50000;
+  void update(const float deltaT = 0.0f) {
+    if ((motors[LEADER].getNormalizedPos() < 0.1 &&
+         motors[LEADER].dir == Direction::RETRACT) ||
+        (motors[FOLLOWER].getNormalizedPos() < 0.1 &&
+         motors[FOLLOWER].dir == Direction::RETRACT) ||
+        (motors[LEADER].getNormalizedPos() > 0.9 &&
+         motors[LEADER].dir == Direction::EXTEND) ||
+        (motors[FOLLOWER].getNormalizedPos() > 0.9 &&
+         motors[FOLLOWER].dir == Direction::EXTEND)) {
+      currentUpdateInterval = 10000;
     }
-        
+
     const int currentTime = micros();
     const int currentUpdateDelta = currentTime - lastCurrentUpdate;
 
-    if (currentUpdateDelta >= currentUpdateInterval)
-    {
+    if (currentUpdateDelta >= currentUpdateInterval) {
       updateCurrentReadings(currentUpdateDelta);
       lastCurrentUpdate = currentTime;
-      Serial.printf("Leader Motor Current: %d\n", leaderCurrent);
-      Serial.printf("Leader current velocity: %d\n", leaderCurrentVelocity);
-      Serial.printf("Follower Motor Current: %d\n", followerCurrent);
-      Serial.printf("Follower current velocity: %d\n", followerCurrentVelocity);
+      if (!motorsStopped()) {
+        Serial.printf("Leader Motor Current: %d\n", leaderCurrent);
+        Serial.printf("Leader current velocity: %d\n", leaderCurrentVelocity);
+        Serial.printf("Follower Motor Current: %d\n", followerCurrent);
+        Serial.printf("Follower current velocity: %d\n",
+                      followerCurrentVelocity);
+      }
     }
 
-    if (Direction::STOP == systemDirection)
-    {
-      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
-      {
+    if (Direction::STOP == systemDirection) {
+      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {
         motors[motor].disable();
         motors[motor].update();
       }
       return;
     }
 
-    if (Direction::EXTEND == systemDirection)
-    {
+    if (Direction::EXTEND == systemDirection) {
       if (motors[LEADER].getNormalizedPos() <
-          motors[FOLLOWER].getNormalizedPos())
-      {
+          motors[FOLLOWER].getNormalizedPos()) {
         laggingIndex = MotorRoles::LEADER;
         leadingIndex = MotorRoles::FOLLOWER;
-      }
-      else
-      {
+      } else {
         laggingIndex = MotorRoles::FOLLOWER;
         leadingIndex = MotorRoles::LEADER;
       }
-    }
-    else if (Direction::RETRACT == systemDirection)
-    {
+    } else if (Direction::RETRACT == systemDirection) {
       if (motors[LEADER].getNormalizedPos() >
-          motors[FOLLOWER].getNormalizedPos())
-      {
+          motors[FOLLOWER].getNormalizedPos()) {
         laggingIndex = MotorRoles::LEADER;
         leadingIndex = MotorRoles::FOLLOWER;
-      }
-      else
-      {
+      } else {
         laggingIndex = MotorRoles::FOLLOWER;
         leadingIndex = MotorRoles::LEADER;
       }
     }
 
-    if (!pid_on && (requestedDirection != Direction::STOP && systemDirection != Direction::STOP))
-    {
-      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
-      {
-        if (motors[motor].pos < motors[motor].totalPulseCount && motors[motor].dir == Direction::EXTEND || motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT)
-        {
-          motors[motor].speed = 75;
+    if (!pid_on && (requestedDirection != Direction::STOP &&
+                    systemDirection != Direction::STOP)) {
+      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {
+        if (motors[motor].pos < motors[motor].totalPulseCount &&
+                motors[motor].dir == Direction::EXTEND ||
+            motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT) {
           motors[motor].speed = 75;
           motors[motor].update();
-        }
-        else
-        {
+        } else {
           motors[motor].update();
         }
       }
@@ -537,12 +502,9 @@ public:
     const int moveTimeDelta = currentTime - softStart;
     const int updateTimeDelta = currentTime - lastPWMUpdate;
 
-    if (desiredPos != -1)
-    {
-      if (abs(desiredPos - motors[LEADER].pos) < 20)
-      {
-        if (debugEnabled)
-        {
+    if (desiredPos != -1) {
+      if (abs(desiredPos - motors[LEADER].pos) < 20) {
+        if (debugEnabled) {
           Serial.printf("Desired Pos: %d - REACHED\n", desiredPos);
         }
         desiredPos = -1;
@@ -550,16 +512,13 @@ public:
       }
     }
 
-    if (targetSpeed >= 0)
-    {
-      if (updateTimeDelta < SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS)
-      {
+    if (targetSpeed >= 0) {
+      if (updateTimeDelta < SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS) {
         return;
       }
 
       if (speedDelta >= abs(pwmUpdateAmount) &&
-          moveTimeDelta < SOFT_MOVEMENT_MICROS)
-      {
+          moveTimeDelta < SOFT_MOVEMENT_MICROS) {
         const float newSpeed = (float)speed + pwmUpdateAmount;
         speed = (int)floorf(newSpeed);
         lastPWMUpdate = micros();
@@ -567,27 +526,23 @@ public:
         const double timeSinceSoftStart =
             (double)(micros() - softStart) / (double)MICROS_IN_MS;
 
-        if (false)
-        {
+        if (false) {
           Serial.printf("Soft Movement PWM Update - "
                         "speed: %d - "
                         "target speed: %d - "
                         "time since soft start: %f ms - "
                         "pwmUpdateAmount: %f\n",
-                        speed, targetSpeed, timeSinceSoftStart, pwmUpdateAmount);
+                        speed, targetSpeed, timeSinceSoftStart,
+                        pwmUpdateAmount);
         }
-      }
-      else
-      {
+      } else {
         speed = targetSpeed;
         RESET_SOFT_MOVEMENT
 
-        if (requestedDirection == Direction::STOP)
-        {
+        if (requestedDirection == Direction::STOP) {
           systemDirection = Direction::STOP;
 
-          if (false)
-          {
+          if (false) {
             Serial.println("System Direction: STOP");
             const double timeSinceSoftStart =
                 (double)(micros() - softStart) / (double)MICROS_IN_MS;
@@ -597,7 +552,8 @@ public:
                           "target speed: %d - "
                           "time since soft start: %f ms - "
                           "pwmUpdateAmount: %f\n",
-                          speed, targetSpeed, timeSinceSoftStart, pwmUpdateAmount);
+                          speed, targetSpeed, timeSinceSoftStart,
+                          pwmUpdateAmount);
           }
 
           immediateHalt();
@@ -605,8 +561,7 @@ public:
       }
     }
 
-    if (pid_on)
-    {
+    if (pid_on) {
       const float error = abs(motors[laggingIndex].getNormalizedPos() -
                               motors[leadingIndex].getNormalizedPos());
 
@@ -614,20 +569,19 @@ public:
 
       const int adjustedSpeed = speed - int((error * K_p));
 
-      motors[leadingIndex].speed = constrain(adjustedSpeed, 0, 2 << pwmResolution);
+      motors[leadingIndex].speed =
+          constrain(adjustedSpeed, 0, 2 << pwmResolution);
       motors[laggingIndex].speed = speed;
     }
 
-    if (currentAlarmTriggered())
-    {
+    if (currentAlarmTriggered()) {
       // stop();
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
     }
 
-    for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++)
-    {
+    for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {
       motors[motor].update();
     }
   }

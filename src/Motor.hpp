@@ -3,13 +3,13 @@
 #ifndef _MOTOR_HPP_
 #define _MOTOR_HPP_
 
-#include <driver/adc.h>
-#include "PinMacros.hpp"
-#include "defs.hpp"
 #include "ControlPins.hpp"
 #include "CurrentSense.hpp"
+#include "PinMacros.hpp"
+#include "defs.hpp"
 #include <ESP32Encoder.h>
 #include <cstring>
+#include <driver/adc.h>
 
 #define MOTOR1_LIMIT 32
 #define MOTOR2_LIMIT 33
@@ -17,17 +17,13 @@
 #define MOTOR2_TLIMIT 35
 
 #define READ_POSITION_ENCODER() this->pos = distanceSensor.getCount();
-#define MOVE_TO_POS(setpoint, min_delta, buffer) \
-  if (abs(pos - setpoint) > min_delta)           \
-  {                                              \
-    if (pos < setpoint)                          \
-    {                                            \
-      desiredPos = setpoint - buffer;            \
-    }                                            \
-    else if (pos > newPos)                       \
-    {                                            \
-      desiredPos = setpoint + buffer;            \
-    }                                            \
+#define MOVE_TO_POS(setpoint, min_delta, buffer)                               \
+  if (abs(pos - setpoint) > min_delta) {                                       \
+    if (pos < setpoint) {                                                      \
+      desiredPos = setpoint - buffer;                                          \
+    } else if (pos > newPos) {                                                 \
+      desiredPos = setpoint + buffer;                                          \
+    }                                                                          \
   }
 
 int currentPWMChannel = 0;
@@ -39,12 +35,11 @@ int currentPWMChannel = 0;
  * @author Terry Paul Ferguson
  * @version 0.1
  */
-class Motor
-{
+class Motor {
 private:
-  char id[16];                                /** The name of this motor for debug prints */
-  int pwmRChannel = -1;                       /** The right PWM channel - Extension */
-  int pwmLChannel = -1;                       /** The left PWM channel - Retraction */
+  char id[16];          /** The name of this motor for debug prints */
+  int pwmRChannel = -1; /** The right PWM channel - Extension */
+  int pwmLChannel = -1; /** The left PWM channel - Retraction */
   MotorPin rPWM_Pin = MotorPin::UNASSIGNED;   /** The right PWM pin */
   MotorPin lPWM_Pin = MotorPin::UNASSIGNED;   /** The left PWM pin */
   MotorPin r_EN_Pin = MotorPin::UNASSIGNED;   /** The right PWM enable pin */
@@ -54,12 +49,12 @@ private:
   MotorPin l_is_pin =
       MotorPin::UNASSIGNED; /** The pin for left PWM current sensor */
   MotorPin r_is_pin =
-      MotorPin::UNASSIGNED;                        /** The pin for right PWM current sensor */
+      MotorPin::UNASSIGNED; /** The pin for right PWM current sensor */
   adc1_channel_t currentSensePin = ADC1_CHANNEL_0; /** The current sense pin */
-  int frequency = PWM_FREQUENCY;                   /** The frequency of the PWM signal in hertz */
-  int pwmResolution = 8;                           /** The PWM bitdepth resolution */
+  int frequency = PWM_FREQUENCY; /** The frequency of the PWM signal in hertz */
+  int pwmResolution = 8;         /** The PWM bitdepth resolution */
   int desiredPos =
-      -1;                  /** The desired position of the motor (-1 if none exists) */
+      -1; /** The desired position of the motor (-1 if none exists) */
 
   ESP32Encoder distanceSensor; /** The motor position encoder (quadrature signal
                                   from 2 hall sensors) */
@@ -70,7 +65,7 @@ public:
   int pos =
       0; /** The current position of the motor based on hall sensor pulses */
   int lastPos =
-      0;           /** The last position of the motor based on hall sensor pulses */
+      0; /** The last position of the motor based on hall sensor pulses */
   int speed = 255; /** The current speed of the motor. The duty cycle of the PWM
                       signal is speed/(2^pwmResolution - 1) */
   int maxPulses = -1;
@@ -104,22 +99,23 @@ public:
         const MotorPin r_en, const MotorPin l_en, const MotorPin hall_1,
         const MotorPin hall_2, const adc1_channel_t currentSensePin,
         const int totalPulses, const int freq = PWM_FREQUENCY,
-        const int defSpeed = 70, const int pwmRes = 8, const int bottomLimitPin = -1,  const int topLimitPin = -1)
+        const int defSpeed = 70, const int pwmRes = 8,
+        const int bottomLimitPin = -1, const int topLimitPin = -1)
       : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),
-        hall_1_Pin(hall_1), hall_2_Pin(hall_2), currentSensePin(currentSensePin), totalPulseCount(totalPulses), frequency(freq),
-        speed(defSpeed), pwmResolution(pwmRes), bottomLimitPin(bottomLimitPin), topLimitPin(topLimitPin), outOfRange(false)
-  {
+        hall_1_Pin(hall_1), hall_2_Pin(hall_2),
+        currentSensePin(currentSensePin), totalPulseCount(totalPulses),
+        frequency(freq), speed(defSpeed), pwmResolution(pwmRes),
+        bottomLimitPin(bottomLimitPin), topLimitPin(topLimitPin),
+        outOfRange(false) {
     /// Copy name of linear actuator into ID field
     strncpy(id, name, sizeof(id) - 1);
     id[sizeof(id) - 1] = '\0';
   } // end constructor
 
   /// @brief Initialize motor
-  void initialize()
-  {
+  void initialize() {
     // At least two channels are needed for the linear actuator motor
-    if (currentPWMChannel > -1 && currentPWMChannel < 14)
-    {
+    if (currentPWMChannel > -1 && currentPWMChannel < 14) {
       pwmRChannel = currentPWMChannel++;
       pwmLChannel = currentPWMChannel++;
     }
@@ -155,8 +151,7 @@ public:
 
     int val = digitalRead(bottomLimitPin);
 
-    if (debugEnabled)
-    {
+    if (debugEnabled) {
       Serial.printf("Motor: %s\n"
                     "-------------------\n"
                     "Frequency:    %5d\n"
@@ -171,8 +166,9 @@ public:
                     "Hall 2 Pin:   %5d\n"
                     "Max Position: %5d\n\n"
                     "Bottom Reached: %5d\n\n",
-                    id, frequency, pwmResolution, speed, pos, r_EN_Pin, l_EN_Pin, rPWM_Pin,
-                    lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount, val);
+                    id, frequency, pwmResolution, speed, pos, r_EN_Pin,
+                    l_EN_Pin, rPWM_Pin, lPWM_Pin, hall_1_Pin, hall_2_Pin,
+                    totalPulseCount, val);
       Serial.printf("RPWM Channel %d - LPWM Channel: %d\n\n", pwmRChannel,
                     pwmLChannel);
     }
@@ -186,15 +182,13 @@ public:
    * driven (default: 0)
    *
    */
-  void drive(const Direction motorDirection, const int specifiedSpeed = 0)
-  {
+  void drive(const Direction motorDirection, const int specifiedSpeed = 0) {
     const int driveSpeed = specifiedSpeed > 0 ? specifiedSpeed : speed;
 
     motorPinWrite(r_EN_Pin, HIGH);
     motorPinWrite(l_EN_Pin, HIGH);
 
-    switch (motorDirection)
-    {
+    switch (motorDirection) {
     case Direction::EXTEND:
       ledcWrite(pwmRChannel, driveSpeed);
       ledcWrite(pwmLChannel, 0);
@@ -218,44 +212,40 @@ public:
   } // end drive
 
   /// @brief Tell the motor to rotate in the direction of extension
-  void extend()
-  {
+  void extend() {
     // Works as a toggle
     dir = (dir != Direction::EXTEND) ? Direction::EXTEND : Direction::STOP;
   }
 
   /// @brief Tell the motor to rotate in the direction of retraction
-  void retract()
-  {
+  void retract() {
     // Works as a toggle
     dir = (dir != Direction::RETRACT) ? Direction::RETRACT : Direction::STOP;
   }
 
   /// @brief Tell the motor to stop
-  void disable()
-  {
+  void disable() {
     // Works as a toggle
     dir = Direction::STOP;
   }
 
   /// @brief Zero out position information for this motor
-  void zero()
-  {
+  void zero() {
     distanceSensor.clearCount();
     lastPos = pos = 0;
   }
 
   /// @brief Update the position information for this motor and move it
-  void update(const int newSpeed = (MAX_SPEED + 1))
-  {
+  void update(const int newSpeed = (MAX_SPEED + 1)) {
     /* Limit switches are normally open, so they should be HIGH when released
      * as their port is set to INPUT_PULLUP, so they are pulled LOW when closed.
      */
     const bool bottomReached = digitalRead(bottomLimitPin) == LOW;
-    const bool topReached = pos >= 2800;
+    const bool topReached = pos >= totalPulseCount;
 
     /* Don't make the limit switches stop movement completely, of course. Only
-     * stop movement if the column is moving in the direction of the limit switch.
+     * stop movement if the column is moving in the direction of the limit
+     * switch.
      */
     const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
     const bool goingPastTop = topReached && dir == Direction::EXTEND;
@@ -266,13 +256,14 @@ public:
     // Serial.printf("Out of Range: %d", outOfRange);
 
     // If this motor is out of range then stop it
-    if (outOfRange)
-    {
+    if (outOfRange) {
+      /*
       Serial.printf("Disabled due to range\n");
       Serial.printf("Bottom Reached: %d\n", bottomReached);
       Serial.printf("Top Reached: %d\n", topReached);
       Serial.printf("Going Past Bottom: %d\n", goingPastBottom);
       Serial.printf("Going Past Top: %d\n", goingPastTop);
+      */
       dir = Direction::STOP;
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
@@ -283,20 +274,16 @@ public:
       READ_POSITION_ENCODER()
       return;
     }
-    if (newSpeed > MAX_SPEED || newSpeed < 0)
-    {
+    if (newSpeed > MAX_SPEED || newSpeed < 0) {
       drive(dir, this->speed);
-    }
-    else
-    {
+    } else {
       drive(dir, newSpeed);
     }
   }
 
   /// @brief Set a new target position for this motor
   /// @param newPos The new target position to move the motor to
-  void setPos(const int newPos)
-  {
+  void setPos(const int newPos) {
     READ_POSITION_ENCODER()
     MOVE_TO_POS(newPos, 15, 40)
   }
@@ -308,8 +295,7 @@ public:
   /// its total range
   /// @return A fraction that represents how much of total extension we are
   /// currently at
-  float getNormalizedPos() const
-  {
+  float getNormalizedPos() const {
     if (totalPulseCount == 0)
       return 0.0f;
     return static_cast<float>(pos) / static_cast<float>(totalPulseCount);
@@ -324,20 +310,18 @@ public:
    *
    * @throws None
    */
-  void displayInfo()
-  {
-    Serial.printf("Motor %s - Direction: %s, pos: %d\n", id, directions[static_cast<int>(dir)],
-                  pos);
+  void displayInfo() {
+    Serial.printf("Motor %s - Direction: %s, pos: %d\n", id,
+                  directions[static_cast<int>(dir)], pos);
     Serial.printf("Motor %s - Speed: %d, desired pos: %d\n", id, speed,
                   desiredPos);
     Serial.printf("Motor %s - Max hall position: %d \n\n", id, totalPulseCount);
   }
 
   /// @return The current used by the motor
-  int getCurrent() const
-  {
-    return currentSense.getCurrent();
-  }
+  int getCurrent() const { return currentSense.getCurrent(); }
+
+  bool isStopped() const { return dir == Direction::STOP; }
 
   void setSpeed(int newSpeed) { speed = newSpeed; }
 }; // end class Motor
