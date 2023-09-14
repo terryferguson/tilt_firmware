@@ -368,6 +368,8 @@ public:
     return areUnequal;
   }
 
+  void zero() { ALL_MOTORS_COMMAND(zero) }
+
   /// @brief Report debugging information to the serial console
   void report() {
     ALL_MOTORS_COMMAND(readPos)

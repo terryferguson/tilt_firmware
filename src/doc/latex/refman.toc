@@ -6,90 +6,107 @@
 \contentsline {chapter}{\numberline {3}Class Documentation}{5}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Command\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Type Class Reference}{5}{section.3.1}%
 \contentsline {subsection}{\numberline {3.1.1}Detailed Description}{5}{subsection.3.1.1}%
-\contentsline {section}{\numberline {3.2}Direction Class Reference}{5}{section.3.2}%
+\contentsline {section}{\numberline {3.2}Control\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pin Class Reference}{5}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}Detailed Description}{6}{subsection.3.2.1}%
-\contentsline {section}{\numberline {3.3}Motor Class Reference}{6}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{7}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Constructor \& Destructor Documentation}{7}{subsection.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.2.1}Motor()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{7}{subsubsection.3.3.2.1}%
-\contentsline {subsubsection}{\numberline {3.3.2.2}Motor()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{7}{subsubsection.3.3.2.2}%
-\contentsline {subsection}{\numberline {3.3.3}Member Function Documentation}{8}{subsection.3.3.3}%
-\contentsline {subsubsection}{\numberline {3.3.3.1}getCurrent()}{8}{subsubsection.3.3.3.1}%
-\contentsline {subsubsection}{\numberline {3.3.3.2}getNormalizedPos()}{8}{subsubsection.3.3.3.2}%
-\contentsline {subsubsection}{\numberline {3.3.3.3}setPos()}{8}{subsubsection.3.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Member Data Documentation}{9}{subsection.3.3.4}%
-\contentsline {subsubsection}{\numberline {3.3.4.1}lastPos}{9}{subsubsection.3.3.4.1}%
-\contentsline {subsubsection}{\numberline {3.3.4.2}maxPulses}{9}{subsubsection.3.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.3.4.3}pos}{9}{subsubsection.3.3.4.3}%
-\contentsline {subsubsection}{\numberline {3.3.4.4}speed}{9}{subsubsection.3.3.4.4}%
-\contentsline {section}{\numberline {3.4}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{10}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{11}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Constructor \& Destructor Documentation}{11}{subsection.3.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.2.1}MotorController()}{11}{subsubsection.3.4.2.1}%
-\contentsline {subsection}{\numberline {3.4.3}Member Function Documentation}{11}{subsection.3.4.3}%
-\contentsline {subsubsection}{\numberline {3.4.3.1}countsAreUnequal()}{11}{subsubsection.3.4.3.1}%
-\contentsline {subsubsection}{\numberline {3.4.3.2}getSpeed()}{12}{subsubsection.3.4.3.2}%
-\contentsline {subsubsection}{\numberline {3.4.3.3}isStopped()}{12}{subsubsection.3.4.3.3}%
-\contentsline {subsubsection}{\numberline {3.4.3.4}savePosition()}{12}{subsubsection.3.4.3.4}%
-\contentsline {subsubsection}{\numberline {3.4.3.5}setPos()}{12}{subsubsection.3.4.3.5}%
-\contentsline {subsubsection}{\numberline {3.4.3.6}setSpeed()}{13}{subsubsection.3.4.3.6}%
-\contentsline {subsubsection}{\numberline {3.4.3.7}update()}{13}{subsubsection.3.4.3.7}%
-\contentsline {subsection}{\numberline {3.4.4}Member Data Documentation}{13}{subsection.3.4.4}%
-\contentsline {subsubsection}{\numberline {3.4.4.1}currentIncreaseTolerance}{13}{subsubsection.3.4.4.1}%
-\contentsline {subsubsection}{\numberline {3.4.4.2}defaultSpeed}{14}{subsubsection.3.4.4.2}%
-\contentsline {subsubsection}{\numberline {3.4.4.3}eIntegral}{14}{subsubsection.3.4.4.3}%
-\contentsline {subsubsection}{\numberline {3.4.4.4}K\_i}{14}{subsubsection.3.4.4.4}%
-\contentsline {subsubsection}{\numberline {3.4.4.5}K\_p}{14}{subsubsection.3.4.4.5}%
-\contentsline {subsubsection}{\numberline {3.4.4.6}speed}{14}{subsubsection.3.4.4.6}%
-\contentsline {section}{\numberline {3.5}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins Class Reference}{14}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{15}{subsection.3.5.1}%
-\contentsline {section}{\numberline {3.6}PIDController Class Reference}{15}{section.3.6}%
-\contentsline {chapter}{\numberline {4}File Documentation}{17}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Commands.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{17}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Enumeration Type Documentation}{17}{subsection.4.1.1}%
-\contentsline {subsubsection}{\numberline {4.1.1.1}Command}{17}{subsubsection.4.1.1.1}%
-\contentsline {section}{\numberline {4.2}Commands.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{18}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Settings.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{18}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Function Documentation}{19}{subsection.4.3.1}%
-\contentsline {subsubsection}{\numberline {4.3.1.1}currentIncreseExceedsThreshold()}{19}{subsubsection.4.3.1.1}%
-\contentsline {section}{\numberline {4.4}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Settings.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{19}{section.4.4}%
-\contentsline {section}{\numberline {4.5}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{20}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}Variable Documentation}{20}{subsection.4.5.1}%
-\contentsline {subsubsection}{\numberline {4.5.1.1}save\_position\_slot\_names}{20}{subsubsection.4.5.1.1}%
-\contentsline {section}{\numberline {4.6}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{21}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Direction.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{21}{section.4.7}%
-\contentsline {subsection}{\numberline {4.7.1}Enumeration Type Documentation}{21}{subsection.4.7.1}%
-\contentsline {subsubsection}{\numberline {4.7.1.1}Direction}{21}{subsubsection.4.7.1.1}%
-\contentsline {section}{\numberline {4.8}Direction.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{22}{section.4.8}%
-\contentsline {section}{\numberline {4.9}Motor.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{22}{section.4.9}%
-\contentsline {subsection}{\numberline {4.9.1}Macro Definition Documentation}{22}{subsection.4.9.1}%
-\contentsline {subsubsection}{\numberline {4.9.1.1}MOVE\_TO\_POS}{23}{subsubsection.4.9.1.1}%
-\contentsline {section}{\numberline {4.10}Motor.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{23}{section.4.10}%
-\contentsline {section}{\numberline {4.11}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{26}{section.4.11}%
-\contentsline {subsection}{\numberline {4.11.1}Macro Definition Documentation}{27}{subsection.4.11.1}%
-\contentsline {subsubsection}{\numberline {4.11.1.1}ALL\_MOTORS}{27}{subsubsection.4.11.1.1}%
-\contentsline {subsubsection}{\numberline {4.11.1.2}RESET\_SOFT\_MOVEMENT}{27}{subsubsection.4.11.1.2}%
-\contentsline {subsubsection}{\numberline {4.11.1.3}SERIAL\_SAVE\_POSITION}{28}{subsubsection.4.11.1.3}%
-\contentsline {section}{\numberline {4.12}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{28}{section.4.12}%
-\contentsline {section}{\numberline {4.13}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{33}{section.4.13}%
-\contentsline {subsection}{\numberline {4.13.1}Enumeration Type Documentation}{33}{subsection.4.13.1}%
-\contentsline {subsubsection}{\numberline {4.13.1.1}MotorPin}{33}{subsubsection.4.13.1.1}%
-\contentsline {section}{\numberline {4.14}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{34}{section.4.14}%
-\contentsline {section}{\numberline {4.15}PIDController.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{34}{section.4.15}%
-\contentsline {section}{\numberline {4.16}PIDController.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{34}{section.4.16}%
-\contentsline {section}{\numberline {4.17}Pin\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{35}{section.4.17}%
-\contentsline {subsection}{\numberline {4.17.1}Function Documentation}{36}{subsection.4.17.1}%
-\contentsline {subsubsection}{\numberline {4.17.1.1}fmap()}{36}{subsubsection.4.17.1.1}%
-\contentsline {section}{\numberline {4.18}Pin\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{36}{section.4.18}%
-\contentsline {section}{\numberline {4.19}Potentiometer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{37}{section.4.19}%
-\contentsline {subsection}{\numberline {4.19.1}Enumeration Type Documentation}{37}{subsection.4.19.1}%
-\contentsline {subsubsection}{\numberline {4.19.1.1}PotentiometerPins}{37}{subsubsection.4.19.1.1}%
-\contentsline {section}{\numberline {4.20}Potentiometer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{37}{section.4.20}%
-\contentsline {section}{\numberline {4.21}Route\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{38}{section.4.21}%
-\contentsline {subsection}{\numberline {4.21.1}Macro Definition Documentation}{38}{subsection.4.21.1}%
-\contentsline {subsubsection}{\numberline {4.21.1.1}LOAD\_SAVED\_POSITION}{38}{subsubsection.4.21.1.1}%
-\contentsline {subsubsection}{\numberline {4.21.1.2}MOTOR\_COMMAND}{38}{subsubsection.4.21.1.2}%
-\contentsline {subsubsection}{\numberline {4.21.1.3}SET\_POS\_HANDLER}{39}{subsubsection.4.21.1.3}%
-\contentsline {subsubsection}{\numberline {4.21.1.4}SET\_TILT}{39}{subsubsection.4.21.1.4}%
-\contentsline {section}{\numberline {4.22}Route\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{39}{section.4.22}%
-\contentsline {chapter}{Index}{41}{section*.24}%
+\contentsline {section}{\numberline {3.3}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sense Class Reference}{6}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Detailed Description}{6}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Member Function Documentation}{6}{subsection.3.3.2}%
+\contentsline {subsubsection}{\numberline {3.3.2.1}getCurrent()}{6}{subsubsection.3.3.2.1}%
+\contentsline {section}{\numberline {3.4}Direction Class Reference}{7}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Detailed Description}{7}{subsection.3.4.1}%
+\contentsline {section}{\numberline {3.5}Motor Class Reference}{7}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Detailed Description}{8}{subsection.3.5.1}%
+\contentsline {subsection}{\numberline {3.5.2}Constructor \& Destructor Documentation}{9}{subsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.2.1}Motor()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{9}{subsubsection.3.5.2.1}%
+\contentsline {subsubsection}{\numberline {3.5.2.2}Motor()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{9}{subsubsection.3.5.2.2}%
+\contentsline {subsection}{\numberline {3.5.3}Member Function Documentation}{9}{subsection.3.5.3}%
+\contentsline {subsubsection}{\numberline {3.5.3.1}displayInfo()}{9}{subsubsection.3.5.3.1}%
+\contentsline {subsubsection}{\numberline {3.5.3.2}drive()}{11}{subsubsection.3.5.3.2}%
+\contentsline {subsubsection}{\numberline {3.5.3.3}getCurrent()}{11}{subsubsection.3.5.3.3}%
+\contentsline {subsubsection}{\numberline {3.5.3.4}getNormalizedPos()}{11}{subsubsection.3.5.3.4}%
+\contentsline {subsubsection}{\numberline {3.5.3.5}setPos()}{11}{subsubsection.3.5.3.5}%
+\contentsline {subsection}{\numberline {3.5.4}Member Data Documentation}{12}{subsection.3.5.4}%
+\contentsline {subsubsection}{\numberline {3.5.4.1}lastPos}{12}{subsubsection.3.5.4.1}%
+\contentsline {subsubsection}{\numberline {3.5.4.2}maxPulses}{12}{subsubsection.3.5.4.2}%
+\contentsline {subsubsection}{\numberline {3.5.4.3}pos}{12}{subsubsection.3.5.4.3}%
+\contentsline {subsubsection}{\numberline {3.5.4.4}speed}{12}{subsubsection.3.5.4.4}%
+\contentsline {section}{\numberline {3.6}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{12}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Detailed Description}{14}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Constructor \& Destructor Documentation}{14}{subsection.3.6.2}%
+\contentsline {subsubsection}{\numberline {3.6.2.1}MotorController()}{14}{subsubsection.3.6.2.1}%
+\contentsline {subsection}{\numberline {3.6.3}Member Function Documentation}{14}{subsection.3.6.3}%
+\contentsline {subsubsection}{\numberline {3.6.3.1}countsAreUnequal()}{14}{subsubsection.3.6.3.1}%
+\contentsline {subsubsection}{\numberline {3.6.3.2}getSpeed()}{15}{subsubsection.3.6.3.2}%
+\contentsline {subsubsection}{\numberline {3.6.3.3}isStopped()}{15}{subsubsection.3.6.3.3}%
+\contentsline {subsubsection}{\numberline {3.6.3.4}savePosition()}{15}{subsubsection.3.6.3.4}%
+\contentsline {subsubsection}{\numberline {3.6.3.5}setPos()}{15}{subsubsection.3.6.3.5}%
+\contentsline {subsubsection}{\numberline {3.6.3.6}setSpeed()}{16}{subsubsection.3.6.3.6}%
+\contentsline {subsubsection}{\numberline {3.6.3.7}update()}{16}{subsubsection.3.6.3.7}%
+\contentsline {subsection}{\numberline {3.6.4}Member Data Documentation}{16}{subsection.3.6.4}%
+\contentsline {subsubsection}{\numberline {3.6.4.1}currentIncreaseTolerance}{16}{subsubsection.3.6.4.1}%
+\contentsline {subsubsection}{\numberline {3.6.4.2}defaultSpeed}{16}{subsubsection.3.6.4.2}%
+\contentsline {subsubsection}{\numberline {3.6.4.3}eIntegral}{16}{subsubsection.3.6.4.3}%
+\contentsline {subsubsection}{\numberline {3.6.4.4}K\_i}{17}{subsubsection.3.6.4.4}%
+\contentsline {subsubsection}{\numberline {3.6.4.5}K\_p}{17}{subsubsection.3.6.4.5}%
+\contentsline {subsubsection}{\numberline {3.6.4.6}leftCurrent}{17}{subsubsection.3.6.4.6}%
+\contentsline {subsubsection}{\numberline {3.6.4.7}rightCurrent}{17}{subsubsection.3.6.4.7}%
+\contentsline {subsubsection}{\numberline {3.6.4.8}speed}{17}{subsubsection.3.6.4.8}%
+\contentsline {section}{\numberline {3.7}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins Class Reference}{17}{section.3.7}%
+\contentsline {subsection}{\numberline {3.7.1}Detailed Description}{18}{subsection.3.7.1}%
+\contentsline {section}{\numberline {3.8}PIDController Class Reference}{18}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Member Function Documentation}{18}{subsection.3.8.1}%
+\contentsline {subsubsection}{\numberline {3.8.1.1}evaluate()}{18}{subsubsection.3.8.1.1}%
+\contentsline {chapter}{\numberline {4}File Documentation}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Commands.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{21}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Enumeration Type Documentation}{21}{subsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.1.1}Command}{21}{subsubsection.4.1.1.1}%
+\contentsline {section}{\numberline {4.2}Commands.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{22}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Control\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{22}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Enumeration Type Documentation}{23}{subsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.1.1}ControlPin}{23}{subsubsection.4.3.1.1}%
+\contentsline {section}{\numberline {4.4}Control\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{23}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sense.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{23}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Sense.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{23}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Settings.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{25}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Function Documentation}{25}{subsection.4.7.1}%
+\contentsline {subsubsection}{\numberline {4.7.1.1}currentIncreseExceedsThreshold()}{25}{subsubsection.4.7.1.1}%
+\contentsline {section}{\numberline {4.8}Current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Settings.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{25}{section.4.8}%
+\contentsline {section}{\numberline {4.9}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{26}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Variable Documentation}{26}{subsection.4.9.1}%
+\contentsline {subsubsection}{\numberline {4.9.1.1}save\_position\_slot\_names}{26}{subsubsection.4.9.1.1}%
+\contentsline {section}{\numberline {4.10}defs.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{27}{section.4.10}%
+\contentsline {section}{\numberline {4.11}Direction.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{27}{section.4.11}%
+\contentsline {subsection}{\numberline {4.11.1}Enumeration Type Documentation}{27}{subsection.4.11.1}%
+\contentsline {subsubsection}{\numberline {4.11.1.1}Direction}{27}{subsubsection.4.11.1.1}%
+\contentsline {section}{\numberline {4.12}Direction.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{28}{section.4.12}%
+\contentsline {section}{\numberline {4.13}Motor.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{28}{section.4.13}%
+\contentsline {subsection}{\numberline {4.13.1}Macro Definition Documentation}{29}{subsection.4.13.1}%
+\contentsline {subsubsection}{\numberline {4.13.1.1}MOVE\_TO\_POS}{29}{subsubsection.4.13.1.1}%
+\contentsline {section}{\numberline {4.14}Motor.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{29}{section.4.14}%
+\contentsline {section}{\numberline {4.15}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{32}{section.4.15}%
+\contentsline {subsection}{\numberline {4.15.1}Macro Definition Documentation}{33}{subsection.4.15.1}%
+\contentsline {subsubsection}{\numberline {4.15.1.1}ALL\_MOTORS}{33}{subsubsection.4.15.1.1}%
+\contentsline {subsubsection}{\numberline {4.15.1.2}RESET\_SOFT\_MOVEMENT}{33}{subsubsection.4.15.1.2}%
+\contentsline {subsubsection}{\numberline {4.15.1.3}SERIAL\_SAVE\_POSITION}{33}{subsubsection.4.15.1.3}%
+\contentsline {section}{\numberline {4.16}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{34}{section.4.16}%
+\contentsline {section}{\numberline {4.17}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{38}{section.4.17}%
+\contentsline {subsection}{\numberline {4.17.1}Enumeration Type Documentation}{38}{subsection.4.17.1}%
+\contentsline {subsubsection}{\numberline {4.17.1.1}MotorPin}{38}{subsubsection.4.17.1.1}%
+\contentsline {section}{\numberline {4.18}Motor\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{39}{section.4.18}%
+\contentsline {section}{\numberline {4.19}PIDController.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{40}{section.4.19}%
+\contentsline {section}{\numberline {4.20}Pin\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{40}{section.4.20}%
+\contentsline {subsection}{\numberline {4.20.1}Function Documentation}{41}{subsection.4.20.1}%
+\contentsline {subsubsection}{\numberline {4.20.1.1}fmap()}{41}{subsubsection.4.20.1.1}%
+\contentsline {section}{\numberline {4.21}Pin\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{41}{section.4.21}%
+\contentsline {section}{\numberline {4.22}Potentiometer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{42}{section.4.22}%
+\contentsline {subsection}{\numberline {4.22.1}Enumeration Type Documentation}{42}{subsection.4.22.1}%
+\contentsline {subsubsection}{\numberline {4.22.1.1}PotentiometerPins}{42}{subsubsection.4.22.1.1}%
+\contentsline {section}{\numberline {4.23}Potentiometer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Pins.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{42}{section.4.23}%
+\contentsline {section}{\numberline {4.24}Route\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp File Reference}{43}{section.4.24}%
+\contentsline {subsection}{\numberline {4.24.1}Macro Definition Documentation}{43}{subsection.4.24.1}%
+\contentsline {subsubsection}{\numberline {4.24.1.1}LOAD\_SAVED\_POSITION}{43}{subsubsection.4.24.1.1}%
+\contentsline {subsubsection}{\numberline {4.24.1.2}MOTOR\_COMMAND}{43}{subsubsection.4.24.1.2}%
+\contentsline {subsubsection}{\numberline {4.24.1.3}SET\_POS\_HANDLER}{43}{subsubsection.4.24.1.3}%
+\contentsline {subsubsection}{\numberline {4.24.1.4}SET\_TILT}{43}{subsubsection.4.24.1.4}%
+\contentsline {section}{\numberline {4.25}Route\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Macros.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}hpp}{44}{section.4.25}%
+\contentsline {chapter}{Index}{45}{section*.26}%

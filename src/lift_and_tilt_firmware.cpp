@@ -1,12 +1,12 @@
 #include <Arduino.h>
-#include <AsyncTCP.h>
-#include <ESP32Encoder.h>
-#include <ESPAsyncWebServer.h>
+// #include <AsyncTCP.h>
+// #include <ESP32Encoder.h>
+// #include <ESPAsyncWebServer.h>
 #include <Preferences.h>
 #include <SPIFFS.h>
 #include <WiFi.h>
 #include <ctime>
-#include <random>
+// #include <random>
 #include <stdint.h>
 
 #include "Commands.hpp"
@@ -38,7 +38,7 @@ const long minPrintTimeDelta = 200000L;
 
 MotorController motor_controller(PWM_FREQUENCY, PWM_RESOLUTION_BITS,
                                  DEFAULT_MOTOR_SPEED);
-
+/*
 void display_network_info(void);
 
 // Create AsyncWebServer object on port 80
@@ -85,16 +85,6 @@ String makeJson() {
 
 void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {}
 
-/**
- * Handles events from an asynchronous WebSocket.
- *
- * @param server The AsyncWebSocket server instance.
- * @param client The AsyncWebSocketClient instance representing the client.
- * @param type The type of event.
- * @param arg A pointer to additional event-specific data.
- * @param data A pointer to the received data.
- * @param len The length of the received data.
- */
 void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client,
              AwsEventType type, void *arg, uint8_t *data, size_t len) {
   if (type == WS_EVT_CONNECT) {
@@ -106,15 +96,16 @@ void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client,
     handleWebSocketMessage(arg, data, len);
   }
 }
+*/
 
 void setup() {
   Serial.begin(115200);
 
   motor_controller.initialize();
 
-  Serial.println("Attempting to connect to wifi.");
-
   // Connect to wifi
+  /*
+  Serial.println("Attempting to connect to wifi.");
   WiFi.mode(WIFI_STA); // Optional
   WiFi.begin(ssid, password);
 
@@ -128,6 +119,7 @@ void setup() {
   // put your setup code here, to run once:
   Serial.println("Online");
   display_network_info();
+  */
 
   // Initialize SPIFFS
   if (!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED)) {
@@ -135,9 +127,8 @@ void setup() {
     return;
   }
 
-  srand(std::time(nullptr));
-
   // Route for root / web page
+  /*
   server.on("/", HTTP_GET, DEF_HANDLER(STATIC_FILE("/index.html", String())));
 
   server.on("/style.css", HTTP_GET,
@@ -284,9 +275,10 @@ void setup() {
   ws.onEvent(onEvent);
   server.addHandler(&ws);
   // motor_controller.home();
+  server.begin();
+  */
 
   lastTimestamp = micros();
-  server.begin();
 }
 
 void loop() {

@@ -1,278 +1,314 @@
 \begin{theindex}
 
   \item {ALL\_MOTORS}
-    \subitem {MotorController.hpp}, \hyperpage{27}
+    \subitem {MotorController.hpp}, \hyperpage{33}
 
   \indexspace
 
   \item {Command}
-    \subitem {Commands.hpp}, \hyperpage{17}
-  \item {Commands.hpp}, \hyperpage{17}
-    \subitem {Command}, \hyperpage{17}
-    \subitem {EXTEND}, \hyperpage{17}
-    \subitem {GET\_TILT\_1}, \hyperpage{17}
-    \subitem {GET\_TILT\_2}, \hyperpage{18}
-    \subitem {GET\_TILT\_3}, \hyperpage{18}
-    \subitem {GET\_TILT\_4}, \hyperpage{18}
-    \subitem {GET\_TILT\_5}, \hyperpage{18}
-    \subitem {REPORT}, \hyperpage{17}
-    \subitem {RETRACT}, \hyperpage{17}
-    \subitem {SAVE\_TILT\_1}, \hyperpage{17}
-    \subitem {SAVE\_TILT\_2}, \hyperpage{17}
-    \subitem {SAVE\_TILT\_3}, \hyperpage{17}
-    \subitem {SAVE\_TILT\_4}, \hyperpage{17}
-    \subitem {SAVE\_TILT\_5}, \hyperpage{17}
-    \subitem {STOP}, \hyperpage{17}
-    \subitem {SYSTEM\_RESET}, \hyperpage{18}
-    \subitem {ZERO}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{21}
+  \item {Commands.hpp}, \hyperpage{21}
+    \subitem {Command}, \hyperpage{21}
+    \subitem {EXTEND}, \hyperpage{21}
+    \subitem {GET\_TILT\_1}, \hyperpage{21}
+    \subitem {GET\_TILT\_2}, \hyperpage{21}
+    \subitem {GET\_TILT\_3}, \hyperpage{21}
+    \subitem {GET\_TILT\_4}, \hyperpage{22}
+    \subitem {GET\_TILT\_5}, \hyperpage{22}
+    \subitem {REPORT}, \hyperpage{21}
+    \subitem {RETRACT}, \hyperpage{21}
+    \subitem {SAVE\_TILT\_1}, \hyperpage{21}
+    \subitem {SAVE\_TILT\_2}, \hyperpage{21}
+    \subitem {SAVE\_TILT\_3}, \hyperpage{21}
+    \subitem {SAVE\_TILT\_4}, \hyperpage{21}
+    \subitem {SAVE\_TILT\_5}, \hyperpage{21}
+    \subitem {STOP}, \hyperpage{21}
+    \subitem {SYSTEM\_RESET}, \hyperpage{22}
+    \subitem {TOGGLE\_PID}, \hyperpage{22}
+    \subitem {ZERO}, \hyperpage{22}
   \item {CommandType}, \hyperpage{5}
+  \item {ControlPin}, \hyperpage{5}
+    \subitem {ControlPins.hpp}, \hyperpage{23}
+  \item {ControlPins.hpp}, \hyperpage{22}
+    \subitem {ControlPin}, \hyperpage{23}
+    \subitem {LEFT\_CURRENT\_SENSE\_PIN}, \hyperpage{23}
+    \subitem {RIGHT\_CURRENT\_SENSE\_PIN}, \hyperpage{23}
+    \subitem {UNASSIGNED}, \hyperpage{23}
   \item {countsAreUnequal}
-    \subitem {MotorController}, \hyperpage{11}
+    \subitem {MotorController}, \hyperpage{14}
   \item {currentIncreaseTolerance}
-    \subitem {MotorController}, \hyperpage{13}
+    \subitem {MotorController}, \hyperpage{16}
   \item {currentIncreseExceedsThreshold}
-    \subitem {CurrentSettings.hpp}, \hyperpage{19}
-  \item {CurrentSettings.hpp}, \hyperpage{18}
-    \subitem {currentIncreseExceedsThreshold}, \hyperpage{19}
+    \subitem {CurrentSettings.hpp}, \hyperpage{25}
+  \item {CurrentSense}, \hyperpage{6}
+    \subitem {getCurrent}, \hyperpage{6}
+  \item {CurrentSense.hpp}, \hyperpage{23}
+  \item {CurrentSettings.hpp}, \hyperpage{25}
+    \subitem {currentIncreseExceedsThreshold}, \hyperpage{25}
 
   \indexspace
 
   \item {defaultSpeed}
-    \subitem {MotorController}, \hyperpage{13}
-  \item {defs.hpp}, \hyperpage{20}
-    \subitem {save\_position\_slot\_names}, \hyperpage{20}
-  \item {Direction}, \hyperpage{5}
-    \subitem {Direction.hpp}, \hyperpage{21}
-  \item {Direction.hpp}, \hyperpage{21}
-    \subitem {Direction}, \hyperpage{21}
-    \subitem {EXTEND}, \hyperpage{22}
-    \subitem {RETRACT}, \hyperpage{22}
-    \subitem {STOP}, \hyperpage{22}
+    \subitem {MotorController}, \hyperpage{16}
+  \item {defs.hpp}, \hyperpage{26}
+    \subitem {save\_position\_slot\_names}, \hyperpage{26}
+  \item {Direction}, \hyperpage{7}
+    \subitem {Direction.hpp}, \hyperpage{27}
+  \item {Direction.hpp}, \hyperpage{27}
+    \subitem {Direction}, \hyperpage{27}
+    \subitem {EXTEND}, \hyperpage{28}
+    \subitem {RETRACT}, \hyperpage{28}
+    \subitem {STOP}, \hyperpage{28}
+  \item {displayInfo}
+    \subitem {Motor}, \hyperpage{9}
+  \item {drive}
+    \subitem {Motor}, \hyperpage{11}
 
   \indexspace
 
   \item {eIntegral}
-    \subitem {MotorController}, \hyperpage{14}
+    \subitem {MotorController}, \hyperpage{16}
+  \item {evaluate}
+    \subitem {PIDController}, \hyperpage{18}
   \item {EXTEND}
-    \subitem {Commands.hpp}, \hyperpage{17}
-    \subitem {Direction.hpp}, \hyperpage{22}
+    \subitem {Commands.hpp}, \hyperpage{21}
+    \subitem {Direction.hpp}, \hyperpage{28}
 
   \indexspace
 
   \item {fmap}
-    \subitem {PinMacros.hpp}, \hyperpage{36}
+    \subitem {PinMacros.hpp}, \hyperpage{41}
 
   \indexspace
 
   \item {GET\_TILT\_1}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {GET\_TILT\_2}
-    \subitem {Commands.hpp}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {GET\_TILT\_3}
-    \subitem {Commands.hpp}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {GET\_TILT\_4}
-    \subitem {Commands.hpp}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{22}
   \item {GET\_TILT\_5}
-    \subitem {Commands.hpp}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{22}
   \item {getCurrent}
-    \subitem {Motor}, \hyperpage{8}
+    \subitem {CurrentSense}, \hyperpage{6}
+    \subitem {Motor}, \hyperpage{11}
   \item {getNormalizedPos}
-    \subitem {Motor}, \hyperpage{8}
+    \subitem {Motor}, \hyperpage{11}
   \item {getSpeed}
-    \subitem {MotorController}, \hyperpage{11}
+    \subitem {MotorController}, \hyperpage{14}
 
   \indexspace
 
   \item {isStopped}
-    \subitem {MotorController}, \hyperpage{12}
+    \subitem {MotorController}, \hyperpage{15}
 
   \indexspace
 
   \item {K\_i}
-    \subitem {MotorController}, \hyperpage{14}
+    \subitem {MotorController}, \hyperpage{16}
   \item {K\_p}
-    \subitem {MotorController}, \hyperpage{14}
+    \subitem {MotorController}, \hyperpage{17}
   \item {KP\_POT\_PIN}
-    \subitem {PotentiometerPins.hpp}, \hyperpage{37}
+    \subitem {PotentiometerPins.hpp}, \hyperpage{42}
 
   \indexspace
 
   \item {lastPos}
-    \subitem {Motor}, \hyperpage{9}
+    \subitem {Motor}, \hyperpage{12}
+  \item {LEFT\_CURRENT\_SENSE\_PIN}
+    \subitem {ControlPins.hpp}, \hyperpage{23}
+  \item {leftCurrent}
+    \subitem {MotorController}, \hyperpage{17}
   \item {LOAD\_SAVED\_POSITION}
-    \subitem {RouteMacros.hpp}, \hyperpage{38}
+    \subitem {RouteMacros.hpp}, \hyperpage{43}
 
   \indexspace
 
   \item {maxPulses}
+    \subitem {Motor}, \hyperpage{12}
+  \item {Motor}, \hyperpage{7}
+    \subitem {displayInfo}, \hyperpage{9}
+    \subitem {drive}, \hyperpage{11}
+    \subitem {getCurrent}, \hyperpage{11}
+    \subitem {getNormalizedPos}, \hyperpage{11}
+    \subitem {lastPos}, \hyperpage{12}
+    \subitem {maxPulses}, \hyperpage{12}
     \subitem {Motor}, \hyperpage{9}
-  \item {Motor}, \hyperpage{6}
-    \subitem {getCurrent}, \hyperpage{8}
-    \subitem {getNormalizedPos}, \hyperpage{8}
-    \subitem {lastPos}, \hyperpage{9}
-    \subitem {maxPulses}, \hyperpage{9}
-    \subitem {Motor}, \hyperpage{7}
-    \subitem {pos}, \hyperpage{9}
-    \subitem {setPos}, \hyperpage{8}
-    \subitem {speed}, \hyperpage{9}
-  \item {Motor.hpp}, \hyperpage{22}
-    \subitem {MOVE\_TO\_POS}, \hyperpage{22}
+    \subitem {pos}, \hyperpage{12}
+    \subitem {setPos}, \hyperpage{11}
+    \subitem {speed}, \hyperpage{12}
+  \item {Motor.hpp}, \hyperpage{28}
+    \subitem {MOVE\_TO\_POS}, \hyperpage{29}
   \item {MOTOR1\_HALL1\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR1\_HALL2\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR1\_L\_EN\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR1\_LIS\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR1\_LPWM\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{38}
   \item {MOTOR1\_R\_EN\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{38}
   \item {MOTOR1\_RIS\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR1\_RPWM\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{38}
   \item {MOTOR2\_HALL1\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_HALL2\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_L\_EN\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_LIS\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_LPWM\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_R\_EN\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_RIS\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR2\_RPWM\_PIN}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{39}
   \item {MOTOR\_COMMAND}
-    \subitem {RouteMacros.hpp}, \hyperpage{38}
-  \item {MotorController}, \hyperpage{10}
-    \subitem {countsAreUnequal}, \hyperpage{11}
-    \subitem {currentIncreaseTolerance}, \hyperpage{13}
-    \subitem {defaultSpeed}, \hyperpage{13}
-    \subitem {eIntegral}, \hyperpage{14}
-    \subitem {getSpeed}, \hyperpage{11}
-    \subitem {isStopped}, \hyperpage{12}
-    \subitem {K\_i}, \hyperpage{14}
-    \subitem {K\_p}, \hyperpage{14}
-    \subitem {MotorController}, \hyperpage{11}
-    \subitem {savePosition}, \hyperpage{12}
-    \subitem {setPos}, \hyperpage{12}
-    \subitem {setSpeed}, \hyperpage{13}
-    \subitem {speed}, \hyperpage{14}
-    \subitem {update}, \hyperpage{13}
-  \item {MotorController.hpp}, \hyperpage{26}
-    \subitem {ALL\_MOTORS}, \hyperpage{27}
-    \subitem {RESET\_SOFT\_MOVEMENT}, \hyperpage{27}
-    \subitem {SERIAL\_SAVE\_POSITION}, \hyperpage{27}
+    \subitem {RouteMacros.hpp}, \hyperpage{43}
+  \item {MotorController}, \hyperpage{12}
+    \subitem {countsAreUnequal}, \hyperpage{14}
+    \subitem {currentIncreaseTolerance}, \hyperpage{16}
+    \subitem {defaultSpeed}, \hyperpage{16}
+    \subitem {eIntegral}, \hyperpage{16}
+    \subitem {getSpeed}, \hyperpage{14}
+    \subitem {isStopped}, \hyperpage{15}
+    \subitem {K\_i}, \hyperpage{16}
+    \subitem {K\_p}, \hyperpage{17}
+    \subitem {leftCurrent}, \hyperpage{17}
+    \subitem {MotorController}, \hyperpage{14}
+    \subitem {rightCurrent}, \hyperpage{17}
+    \subitem {savePosition}, \hyperpage{15}
+    \subitem {setPos}, \hyperpage{15}
+    \subitem {setSpeed}, \hyperpage{15}
+    \subitem {speed}, \hyperpage{17}
+    \subitem {update}, \hyperpage{16}
+  \item {MotorController.hpp}, \hyperpage{32}
+    \subitem {ALL\_MOTORS}, \hyperpage{33}
+    \subitem {RESET\_SOFT\_MOVEMENT}, \hyperpage{33}
+    \subitem {SERIAL\_SAVE\_POSITION}, \hyperpage{33}
   \item {MotorPin}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
-  \item {MotorPins}, \hyperpage{14}
-  \item {MotorPins.hpp}, \hyperpage{33}
-    \subitem {MOTOR1\_HALL1\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_HALL2\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_L\_EN\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_LIS\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_LPWM\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_R\_EN\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_RIS\_PIN}, \hyperpage{33}
-    \subitem {MOTOR1\_RPWM\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_HALL1\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_HALL2\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_L\_EN\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_LIS\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_LPWM\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_R\_EN\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_RIS\_PIN}, \hyperpage{33}
-    \subitem {MOTOR2\_RPWM\_PIN}, \hyperpage{33}
-    \subitem {MotorPin}, \hyperpage{33}
-    \subitem {UNASSIGNED}, \hyperpage{33}
+    \subitem {MotorPins.hpp}, \hyperpage{38}
+  \item {MotorPins}, \hyperpage{17}
+  \item {MotorPins.hpp}, \hyperpage{38}
+    \subitem {MOTOR1\_HALL1\_PIN}, \hyperpage{39}
+    \subitem {MOTOR1\_HALL2\_PIN}, \hyperpage{39}
+    \subitem {MOTOR1\_L\_EN\_PIN}, \hyperpage{39}
+    \subitem {MOTOR1\_LIS\_PIN}, \hyperpage{39}
+    \subitem {MOTOR1\_LPWM\_PIN}, \hyperpage{38}
+    \subitem {MOTOR1\_R\_EN\_PIN}, \hyperpage{38}
+    \subitem {MOTOR1\_RIS\_PIN}, \hyperpage{39}
+    \subitem {MOTOR1\_RPWM\_PIN}, \hyperpage{38}
+    \subitem {MOTOR2\_HALL1\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_HALL2\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_L\_EN\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_LIS\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_LPWM\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_R\_EN\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_RIS\_PIN}, \hyperpage{39}
+    \subitem {MOTOR2\_RPWM\_PIN}, \hyperpage{39}
+    \subitem {MotorPin}, \hyperpage{38}
+    \subitem {UNASSIGNED}, \hyperpage{38}
   \item {MOVE\_TO\_POS}
-    \subitem {Motor.hpp}, \hyperpage{22}
+    \subitem {Motor.hpp}, \hyperpage{29}
 
   \indexspace
 
-  \item {PIDController}, \hyperpage{15}
-  \item {PIDController.hpp}, \hyperpage{34}
-  \item {PinMacros.hpp}, \hyperpage{35}
-    \subitem {fmap}, \hyperpage{36}
+  \item {PIDController}, \hyperpage{18}
+    \subitem {evaluate}, \hyperpage{18}
+  \item {PinMacros.hpp}, \hyperpage{40}
+    \subitem {fmap}, \hyperpage{41}
   \item {pos}
-    \subitem {Motor}, \hyperpage{9}
+    \subitem {Motor}, \hyperpage{12}
   \item {PotentiometerPins}
-    \subitem {PotentiometerPins.hpp}, \hyperpage{37}
-  \item {PotentiometerPins.hpp}, \hyperpage{37}
-    \subitem {KP\_POT\_PIN}, \hyperpage{37}
-    \subitem {PotentiometerPins}, \hyperpage{37}
-    \subitem {SPEED\_POT\_PIN}, \hyperpage{37}
+    \subitem {PotentiometerPins.hpp}, \hyperpage{42}
+  \item {PotentiometerPins.hpp}, \hyperpage{42}
+    \subitem {KP\_POT\_PIN}, \hyperpage{42}
+    \subitem {PotentiometerPins}, \hyperpage{42}
+    \subitem {SPEED\_POT\_PIN}, \hyperpage{42}
 
   \indexspace
 
   \item {REPORT}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {RESET\_SOFT\_MOVEMENT}
-    \subitem {MotorController.hpp}, \hyperpage{27}
+    \subitem {MotorController.hpp}, \hyperpage{33}
   \item {RETRACT}
-    \subitem {Commands.hpp}, \hyperpage{17}
-    \subitem {Direction.hpp}, \hyperpage{22}
-  \item {RouteMacros.hpp}, \hyperpage{38}
-    \subitem {LOAD\_SAVED\_POSITION}, \hyperpage{38}
-    \subitem {MOTOR\_COMMAND}, \hyperpage{38}
-    \subitem {SET\_POS\_HANDLER}, \hyperpage{38}
-    \subitem {SET\_TILT}, \hyperpage{39}
+    \subitem {Commands.hpp}, \hyperpage{21}
+    \subitem {Direction.hpp}, \hyperpage{28}
+  \item {RIGHT\_CURRENT\_SENSE\_PIN}
+    \subitem {ControlPins.hpp}, \hyperpage{23}
+  \item {rightCurrent}
+    \subitem {MotorController}, \hyperpage{17}
+  \item {RouteMacros.hpp}, \hyperpage{43}
+    \subitem {LOAD\_SAVED\_POSITION}, \hyperpage{43}
+    \subitem {MOTOR\_COMMAND}, \hyperpage{43}
+    \subitem {SET\_POS\_HANDLER}, \hyperpage{43}
+    \subitem {SET\_TILT}, \hyperpage{43}
 
   \indexspace
 
   \item {save\_position\_slot\_names}
-    \subitem {defs.hpp}, \hyperpage{20}
+    \subitem {defs.hpp}, \hyperpage{26}
   \item {SAVE\_TILT\_1}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {SAVE\_TILT\_2}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {SAVE\_TILT\_3}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {SAVE\_TILT\_4}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {SAVE\_TILT\_5}
-    \subitem {Commands.hpp}, \hyperpage{17}
+    \subitem {Commands.hpp}, \hyperpage{21}
   \item {savePosition}
-    \subitem {MotorController}, \hyperpage{12}
+    \subitem {MotorController}, \hyperpage{15}
   \item {SERIAL\_SAVE\_POSITION}
-    \subitem {MotorController.hpp}, \hyperpage{27}
+    \subitem {MotorController.hpp}, \hyperpage{33}
   \item {SET\_POS\_HANDLER}
-    \subitem {RouteMacros.hpp}, \hyperpage{38}
+    \subitem {RouteMacros.hpp}, \hyperpage{43}
   \item {SET\_TILT}
-    \subitem {RouteMacros.hpp}, \hyperpage{39}
+    \subitem {RouteMacros.hpp}, \hyperpage{43}
   \item {setPos}
-    \subitem {Motor}, \hyperpage{8}
-    \subitem {MotorController}, \hyperpage{12}
+    \subitem {Motor}, \hyperpage{11}
+    \subitem {MotorController}, \hyperpage{15}
   \item {setSpeed}
-    \subitem {MotorController}, \hyperpage{13}
+    \subitem {MotorController}, \hyperpage{15}
   \item {speed}
-    \subitem {Motor}, \hyperpage{9}
-    \subitem {MotorController}, \hyperpage{14}
+    \subitem {Motor}, \hyperpage{12}
+    \subitem {MotorController}, \hyperpage{17}
   \item {SPEED\_POT\_PIN}
-    \subitem {PotentiometerPins.hpp}, \hyperpage{37}
+    \subitem {PotentiometerPins.hpp}, \hyperpage{42}
   \item {STOP}
-    \subitem {Commands.hpp}, \hyperpage{17}
-    \subitem {Direction.hpp}, \hyperpage{22}
+    \subitem {Commands.hpp}, \hyperpage{21}
+    \subitem {Direction.hpp}, \hyperpage{28}
   \item {SYSTEM\_RESET}
-    \subitem {Commands.hpp}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{22}
+
+  \indexspace
+
+  \item {TOGGLE\_PID}
+    \subitem {Commands.hpp}, \hyperpage{22}
 
   \indexspace
 
   \item {UNASSIGNED}
-    \subitem {MotorPins.hpp}, \hyperpage{33}
+    \subitem {ControlPins.hpp}, \hyperpage{23}
+    \subitem {MotorPins.hpp}, \hyperpage{38}
   \item {update}
-    \subitem {MotorController}, \hyperpage{13}
+    \subitem {MotorController}, \hyperpage{16}
 
   \indexspace
 
   \item {ZERO}
-    \subitem {Commands.hpp}, \hyperpage{18}
+    \subitem {Commands.hpp}, \hyperpage{22}
 
 \end{theindex}

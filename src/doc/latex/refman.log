@@ -1,14 +1,14 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.12) (preloaded format=pdflatex 2023.1.22)  12 APR 2023 09:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.8.28)  14 SEP 2023 16:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./refman.tex
-(refman.tex
+**refman
+(./refman.tex
 LaTeX2e <2022-11-01> patch level 1
-L3 programming layer <2022-12-17>
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\book.cls
+L3 programming layer <2023-02-22>
+(/usr/share/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2022/07/02 v1.4n Standard LaTeX document class
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\bk10.clo
+(/usr/share/texmf-dist/tex/latex/base/bk10.clo
 File: bk10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
@@ -24,37 +24,30 @@ File: bk10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip49
 \bibindent=\dimen140
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\ifthen.sty
+(/usr/share/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tools\array.sty
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
 Rollback for package 'array' requested -> date 2016-10-06.
          Best approximation is the release introduced on 2016-10-06.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tools\array-2016-10-06.
-sty
+(/usr/share/texmf-dist/tex/latex/tools/array-2016-10-06.sty
 Package: array 2016/10/06 v2.4d Tabular extension package (FMi)
 \col@sep=\dimen141
 \extrarowheight=\dimen142
 \NC@list=\toks16
 \extratabsurround=\skip50
 \backup@length=\skip51
-)) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\fixltx2e.sty
-Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
-Applying: [2015/01/01] Old fixltx2e package on input line 46.
-
-Package fixltx2e Warning: fixltx2e is not required with releases after 2015
-(fixltx2e)                All fixes are now in the LaTeX kernel.
-(fixltx2e)                See the latexrelease package for details.
-
-Already applied: [0000/00/00] Old fixltx2e package on input line 53.
-) (doxygen.sty
+))
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+package info suppressed
+) (./doxygen.sty
 Package: doxygen 
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\alltt.sty
+(/usr/share/texmf-dist/tex/latex/base/alltt.sty
 Package: alltt 2021/01/29 v2.0g defines alltt environment
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
+(/usr/share/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count194
 \calc@Bcount=\count195
@@ -67,7 +60,7 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Ccount=\count196
 \calc@Cskip=\skip54
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
+(/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count197
 \float@exts=\toks17
@@ -75,29 +68,30 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@float@everytoks=\toks18
 \@floatcapt=\box52
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
-Package: verbatim 2020-07-07 v1.5u LaTeX2e package for verbatim enhancements
+(/usr/share/texmf-dist/tex/latex/tools/verbatim.sty
+Package: verbatim 2022-07-02 v1.5u LaTeX2e package for verbatim enhancements
 \every@verbatim=\toks19
 \verbatim@line=\toks20
 \verbatim@in@stream=\read2
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/xcolor\xcolor.sty
+(/usr/share/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2022/06/12 v2.14 LaTeX color extensions (UK)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: pdftex.def on input line 227.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
-) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/colortbl\colortbl.sty
+)
+(/usr/share/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2022/06/20 v1.0f Color table columns (DPC)
 \everycr=\toks21
 \minrowclearance=\skip55
 \rownum=\count198
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1353.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1357.
 Package xcolor Info: Model `RGB' extended on input line 1369.
@@ -107,7 +101,8 @@ Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1373.
 Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1374.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1375.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1376.
-) (longtable_doxygen.sty
+)
+(./longtable_doxygen.sty
 Package: longtable_doxygen 2014/10/28 v4.11 Multi-page Table package (DPC) - fr
 ozen version for doxygen
 \LTleft=\skip56
@@ -125,11 +120,11 @@ ozen version for doxygen
 \c@LT@tables=\count268
 \c@LT@chunks=\count269
 \LT@p@ftn=\toks22
-) (tabu_doxygen.sty
+) (./tabu_doxygen.sty
 Package: tabu_doxygen 2011/02/26 v2.8 - flexible LaTeX tabulars (FC), frozen ve
 rsion for doxygen
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/varwidth\varwidth.sty
+(/usr/share/texmf-dist/tex/latex/varwidth/varwidth.sty
 Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \@vwid@box=\box57
 \sift@deathcycles=\count270
@@ -158,10 +153,11 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \tabu@hleads=\box60
 \tabu@vleads=\box61
 \tabu@cellskip=\skip60
-) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/fancyvrb\fancyvrb.sty
+)
+(/usr/share/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2023/01/19 4.5a verbatim text (tvz,hv)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks25
 )
@@ -172,7 +168,7 @@ Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \FV@StepNumber=\count279
 \FV@OutFile=\write3
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tools\tabularx.sty
+(/usr/share/texmf-dist/tex/latex/tools/tabularx.sty
 Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 \TX@col@width=\dimen157
 \TX@old@table=\dimen158
@@ -182,7 +178,7 @@ Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
 \TX@cols=\count280
 \TX@ftn=\toks26
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
+(/usr/share/texmf-dist/tex/latex/tools/multicol.sty
 Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 \c@tracingmulticols=\count281
 \mult@box=\box63
@@ -251,14 +247,14 @@ Package: multicol 2021/11/30 v1.9d multicolumn formatting (FMi)
 \colbreak@box=\box107
 \mc@col@check@num=\count290
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \multirow@colwidth=\skip63
 \multirow@cntb=\count291
 \multirow@dima=\skip64
 \bigstrutjot=\dimen171
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hanging\hanging.sty
+(/usr/share/texmf-dist/tex/latex/hanging/hanging.sty
 Package: hanging 2009/09/02 v1.2b hanging paragraphs and punctuation
 \h@ngcommawd=\skip65
 \h@ngfstopwd=\skip66
@@ -269,43 +265,43 @@ Package: hanging 2009/09/02 v1.2b hanging paragraphs and punctuation
 \h@ngcolonwd=\skip71
 \h@ngscolonwd=\skip72
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifpdf.sty
+(/usr/share/texmf-dist/tex/generic/iftex/ifpdf.sty
 Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjustbox.sty
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjustbox.sty
 Package: adjustbox 2022/10/17 v1.3a Adjusting TeX boxes (trim, clip, ...)
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/xkeyval\xkeyval.sty
+
+(/usr/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkeyval.tex
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/xkeyval\xkvutils.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/share/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks27
 \XKV@tempa@toks=\toks28
 )
 \XKV@depth=\count292
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\adjcalc.sty
+(/usr/share/texmf-dist/tex/latex/adjustbox/adjcalc.sty
 Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
 -ends (calc, etex, pgfmath)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\trimclip.sty
+(/usr/share/texmf-dist/tex/latex/adjustbox/trimclip.sty
 Package: trimclip 2020/08/19 v1.2 Trim and clip general TeX material
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.c
-fg
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
@@ -313,8 +309,7 @@ Package graphics Info: Driver file: pdftex.def on input line 107.
 \Gin@req@height=\dimen172
 \Gin@req@width=\dimen173
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/collectbox\collectbox.s
-ty
+(/usr/share/texmf-dist/tex/latex/collectbox/collectbox.sty
 Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \collectedbox=\box108
 )
@@ -324,7 +319,7 @@ Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
 \tc@ury=\dimen177
 Package trimclip Info: Using driver 'tc-pdftex.def'.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/adjustbox\tc-pdftex.def
+(/usr/share/texmf-dist/tex/latex/adjustbox/tc-pdftex.def
 File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 ))
 \adjbox@Width=\dimen178
@@ -336,12 +331,14 @@ File: tc-pdftex.def 2019/01/04 v2.2 Clipping driver for pdftex
 \adjbox@pdepth=\dimen184
 \adjbox@ptotalheight=\dimen185
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/ifoddpage\ifoddpage.sty
+(/usr/share/texmf-dist/tex/latex/ifoddpage/ifoddpage.sty
 Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
 \c@checkoddpage=\count293
-)) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+))
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \@emptytoks=\toks29
 \symAMSa=\mathgroup4
@@ -350,19 +347,16 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/stackengine\stackengine
-.sty
+(/usr/share/texmf-dist/tex/latex/stackengine/stackengine.sty
 Package: stackengine 2021/07/22 v4.11\ Stacking text and objects in convenient 
 ways
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbox.sty
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count294
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/listofitems\listofitems
-.sty
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/listofitems\listofite
-ms.tex
+(/usr/share/texmf-dist/tex/generic/listofitems/listofitems.sty
+(/usr/share/texmf-dist/tex/generic/listofitems/listofitems.tex
 \loi_cnt_foreach_nest=\count295
 \loi_nestcnt=\count296
 )
@@ -382,7 +376,7 @@ sep char (CT)
 \@centerbox=\box114
 \c@ROWcellindex@=\count298
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/enumitem\enumitem.sty
+(/usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty
 Package: enumitem 2019/06/20 v3.9 Customized lists
 \labelindent=\skip77
 \enit@outerparindent=\dimen186
@@ -391,16 +385,13 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@count@id=\count299
 \enitdp@description=\count300
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/alphalph\alphalph.sty
+(/usr/share/texmf-dist/tex/generic/alphalph/alphalph.sty
 Package: alphalph 2019/12/09 v2.6 Convert numbers to letters (HO)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.s
-ty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/intcalc\intcalc.sty
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
-)) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/ulem\ulem.sty
+))
+(/usr/share/texmf-dist/tex/generic/ulem/ulem.sty
 \UL@box=\box116
 \UL@hyphenbox=\box117
 \UL@skip=\skip78
@@ -431,56 +422,49 @@ Package: ulem 2019/11/18
 \c@DoxyEnumeratexii=\count313
 \enitdp@DoxyEnumerate=\count314
 \enitdp@DoxyItemize=\count315
+\c@subsubsubsection=\count316
+\c@subsubsubsubsection=\count317
+\c@subsubsubsubsubsection=\count318
+\c@subsubsubsubsubsubsection=\count319
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\inputenc.sty
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks32
 \inpenc@posthook=\toks33
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
+(/usr/share/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\textcomp.sty
+(/usr/share/texmf-dist/tex/latex/base/textcomp.sty
 Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\wasysym.sty
+(/usr/share/texmf-dist/tex/latex/wasysym/wasysym.sty
 Package: wasysym 2020/01/19 v2.4 Wasy-2 symbol support package
 \symwasy=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 93.
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifxetex.sty
+(/usr/share/texmf-dist/tex/generic/iftex/ifxetex.sty
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\helvet.sty
+(/usr/share/texmf-dist/tex/latex/psnfss/helvet.sty
 Package: helvet 2020/03/25 PSNFSS-v9.3 (WaS) 
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\courier.sty
+(/usr/share/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2020/03/25 PSNFSS-v9.3 (WaS) 
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/sectsty\sectsty.sty
-Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
-les
-
-
-LaTeX Warning: Command \underbar  has changed.
-               Check if current package is valid.
-
-
-LaTeX Warning: Command \underline  has changed.
-               Check if current package is valid.
-
-) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 )
-\Gm@cnth=\count316
-\Gm@cntv=\count317
-\c@Gm@tempcnt=\count318
+\Gm@cnth=\count320
+\Gm@cntv=\count321
+\c@Gm@tempcnt=\count322
 \Gm@bindingoffset=\dimen190
 \Gm@wd@mp=\dimen191
 \Gm@odd@mp=\dimen192
@@ -490,17 +474,14 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@layouthoffset=\dimen196
 \Gm@layoutvoffset=\dimen197
 \Gm@dimlist=\toks34
-
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg))
-
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/changepage\changepage.s
-ty
+)
+(/usr/share/texmf-dist/tex/latex/changepage/changepage.sty
 Package: changepage 2009/10/20 v1.0c check page and change page layout
-\c@cp@cntr=\count319
-\cp@tempcnt=\count320
+\c@cp@cntr=\count323
+\cp@tempcnt=\count324
 LaTeX Info: Redefining \checkoddpage on input line 59.
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+(/usr/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 
 \f@nch@headwidth=\skip83
@@ -513,14 +494,14 @@ Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 \f@nch@O@olf=\skip90
 \f@nch@O@orf=\skip91
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/natbib\natbib.sty
+(/usr/share/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip92
 \bibsep=\skip93
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count321
+\c@NAT@ctr=\count325
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/tocloft\tocloft.sty
+(/usr/share/texmf-dist/tex/latex/tocloft/tocloft.sty
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has chapter divisions on input line 51.
 \cftparskip=\skip94
@@ -552,8 +533,8 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 \cftbeforefigskip=\skip120
 \cftfigindent=\skip121
 \cftfignumwidth=\skip122
-\c@lofdepth=\count322
-\c@lotdepth=\count323
+\c@lofdepth=\count326
+\c@lotdepth=\count327
 \cftbeforelottitleskip=\skip123
 \cftafterlottitleskip=\skip124
 \cftbeforetabskip=\skip125
@@ -565,165 +546,148 @@ Package tocloft Info: The document has chapter divisions on input line 51.
 
 
 Writing index file refman.idx
-
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/newunicodechar\newunico
-dechar.sty
+(/usr/share/texmf-dist/tex/latex/newunicodechar/newunicodechar.sty
 Package: newunicodechar 2018/04/08 v1.2 Defining Unicode characters
 )
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2023-02-07 v7.00v Hypertext links for LaTeX
 
-Package newunicodechar Warning: Redefining Unicode character on input line 117.
-
-
-
-Package newunicodechar Warning: Redefining Unicode character on input line 118.
-
-
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hyperref.sty
-Package: hyperref 2022-11-13 v7.00u Hypertext links for LaTeX
-
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds
-.sty
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
+(/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefine
-keys.sty
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/pdfescape\pdfescape.s
-ty
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
-) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hycolor\hycolor.sty
+)
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/letltxmacro\letltxmacro
-.sty
+(/usr/share/texmf-dist/tex/latex/letltxmacro/letltxmacro.sty
 Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/auxhook\auxhook.sty
+(/usr/share/texmf-dist/tex/latex/auxhook/auxhook.sty
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2022-05-17 v2.50 Cross-referencing by name of section
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/refcount\refcount.sty
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/gettitlestring\gettit
-lestring.sty
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count324
+\c@section@level=\count328
 )
 \@linkdim=\dimen198
-\Hy@linkcounter=\count325
-\Hy@pagecounter=\count326
- (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\pd1enc.def
-File: pd1enc.def 2022-11-13 v7.00u Hyperref: PDFDocEncoding definition (HO)
+\Hy@linkcounter=\count329
+\Hy@pagecounter=\count330
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2023-02-07 v7.00v Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/etexcmds\etexcmds.sty
+(/usr/share/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count327
- (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\puenc.def
-File: puenc.def 2022-11-13 v7.00u Hyperref: PDF Unicode definition (HO)
+\Hy@SavedSpaceFactor=\count331
+
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2023-02-07 v7.00v Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Hyper figures OFF on input line 4162.
-Package hyperref Info: Link nesting OFF on input line 4167.
-Package hyperref Info: Hyper index ON on input line 4170.
-Package hyperref Info: Plain pages OFF on input line 4177.
-Package hyperref Info: Backreferencing ON on input line 4180.
+Package hyperref Info: Hyper figures OFF on input line 4177.
+Package hyperref Info: Link nesting OFF on input line 4182.
+Package hyperref Info: Hyper index ON on input line 4185.
+Package hyperref Info: Plain pages OFF on input line 4192.
+Package hyperref Info: Backreferencing ON on input line 4195.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4410.
+Package hyperref Info: Bookmarks ON on input line 4425.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\backref.sty
+(/usr/share/texmf-dist/tex/latex/hyperref/backref.sty
 Package: backref 2021/02/04 v1.41 Bibliographical back referencing
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/rerunfilecheck\rerunfil
-echeck.sty
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\atveryend-ltx.sty
+(/usr/share/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/uniquecounter\uniquec
-ounter.sty
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/bigintcalc\bigintcalc
-.sty
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 85.
 ))
-\c@Hy@tempcnt=\count328
- (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
+\c@Hy@tempcnt=\count332
+
+(/usr/share/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4748.
+LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen199
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/generic/bitset\bitset.sty
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 )
-\Fld@menulength=\count329
+\Fld@menulength=\count333
 \Field@Width=\dimen256
 \Fld@charsize=\dimen257
-Package hyperref Info: Hyper figures OFF on input line 6027.
-Package hyperref Info: Link nesting OFF on input line 6032.
-Package hyperref Info: Hyper index ON on input line 6035.
-Package hyperref Info: backreferencing ON on input line 6040.
-Package hyperref Info: Link coloring OFF on input line 6047.
-Package hyperref Info: Link coloring with OCG OFF on input line 6052.
-Package hyperref Info: PDF/A mode OFF on input line 6057.
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing ON on input line 6055.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/base\atbegshi-ltx.sty
+(/usr/share/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count330
-\c@Item=\count331
-\c@Hfootnote=\count332
-
-
-LaTeX Warning: Command \LT@p@ftntext  has changed.
-               Check if current package is valid.
-
+\Hy@abspage=\count334
+\c@Item=\count335
+\c@Hfootnote=\count336
 )
 Package hyperref Info: Driver: hpdftex.
- (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\hpdftex.def
-File: hpdftex.def 2022-11-13 v7.00u Hyperref driver for pdfTeX
-\Fld@listcount=\count333
-\c@bookmark@seq@number=\count334
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2023-02-07 v7.00v Hyperref driver for pdfTeX
+\Fld@listcount=\count337
+\c@bookmark@seq@number=\count338
 \Hy@SectionHShift=\skip128
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 137.
-Package hyperref Info: Option `unicode' set `true' on input line 137.
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption.sty
+Package hyperref Info: Option `colorlinks' set `true' on input line 161.
+Package hyperref Info: Option `unicode' set `true' on input line 161.
+
+(/usr/share/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/03/12 v3.6j Customizing captions (AR)
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
+(/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
 \caption@tempdima=\dimen258
 \captionmargin=\dimen259
@@ -735,8 +699,8 @@ Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
 \caption@hangindent=\dimen265
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count335
-\c@continuedfloat=\count336
+\c@caption@flags=\count339
+\c@continuedfloat=\count340
 Package caption Info: changepage package is loaded.
 \caption@adjustwidth@hsize=\dimen266
 \caption@adjustwidth@linewidth=\dimen267
@@ -744,81 +708,75 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+(/usr/share/texmf-dist/tex/latex/caption/ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
-)) (C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/etoc\etoc.sty
-Package: etoc 2023/01/20 v1.1c Completely customisable TOCs (JFB)
+)) (./etoc_doxygen.sty
+Package: etoc_doxygen 2023/07/01 v1.2b Completely customisable TOCs (JFB)
 \Etoc@toctoks=\toks35
-\c@etoc@tocid=\count337
-\c@etoc@tocdepth=\count338
+\c@etoc@tocid=\count341
 \etoc@framed@titlebox=\box120
 \etoc@framed@contentsbox=\box121
 )
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 15
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 18
 3.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
+(/usr/share/texmf-dist/tex/latex/psnfss/t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 153.
+(Font)              scaled to size 8.99994pt on input line 183.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdf
-tex.def
-File: l3backend-pdftex.def 2022-10-26 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count339
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count342
 \l__pdf_internal_box=\box122
-) (refman.aux
+) (./refman.aux
 
-LaTeX Warning: Label `_pin_macros_8hpp_aa83e4bee78852fdb314719a938f3969a' multi
-ply defined.
+LaTeX Warning: Label `PinMacros_8hpp_aa83e4bee78852fdb314719a938f3969a' multipl
+y defined.
 
 )
 \openout1 = `refman.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 153.
-LaTeX Font Info:    ... okay on input line 153.
-
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
-ii
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 183.
+LaTeX Font Info:    ... okay on input line 183.
+ (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count340
+\scratchcounter=\count343
 \scratchdimen=\dimen268
 \scratchbox=\box123
-\nofMPsegments=\count341
-\nofMParguments=\count342
+\nofMPsegments=\count344
+\nofMParguments=\count345
 \everyMPshowfont=\toks36
-\MPscratchCnt=\count343
+\MPscratchCnt=\count346
 \MPscratchDim=\dimen269
-\MPnumerator=\count344
-\makeMPintoPDFobject=\count345
+\MPnumerator=\count347
+\makeMPintoPDFobject=\count348
 \everyMPtoPDFconversion=\toks37
-)
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
-ase.sty
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.c
-fg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
 ))
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -854,84 +812,78 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package backref Info: ** backref set up for natbib ** on input line 153.
-Package hyperref Info: Link coloring ON on input line 153.
-(refman.out) (refman.out)
+Package backref Info: ** backref set up for natbib ** on input line 183.
+Package hyperref Info: Link coloring ON on input line 183.
+(./refman.out) (./refman.out)
 \@outlinefile=\write5
 \openout5 = `refman.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 \Etoc@tf=\read4
-Package hyperref Info: Option `pageanchor' set `false' on input line 161.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 161.
+Package hyperref Info: Option `pageanchor' set `false' on input line 191.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 191.
 
-Package hyperref Info: Option `unicode' set `true' on input line 161.
+Package hyperref Info: Option `unicode' set `true' on input line 191.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 12.9599pt on input line 166.
+(Font)              scaled to size 12.9599pt on input line 196.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 168.
+(Font)              scaled to size 10.79993pt on input line 198.
  [1
 
 
-{C:/Users/fergu/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] [2
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
+/enc/dvips/base/8r.enc}] [2
 
 ]
 \tf@toc=\write6
 \openout6 = `refman.toc'.
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.99994pt on input line 174.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 174
+(Font)              scaled to size 8.99994pt on input line 204.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 204
 .
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 174
+LaTeX Font Info:    Trying to load font information for U+msb on input line 204
 .
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 17
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 20
 4.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
+(/usr/share/texmf-dist/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 174.
+(Font)              scaled to size 6.29996pt on input line 204.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 174.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 17
+(Font)              scaled to size 7.19995pt on input line 204.
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 20
 4.
 
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1pcr.fd
+(/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 174.
-
-[1] [2] [3] [4
+(Font)              scaled to size 6.29996pt on input line 204.
+ [1] [2] [3] [4
 
 ]
-Package hyperref Info: Option `pageanchor' set `true' on input line 177.
+Package hyperref Info: Option `pageanchor' set `true' on input line 207.
 
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 18.66588pt on input line 179.
+(Font)              scaled to size 18.66588pt on input line 209.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 18.66588pt on input line 179.
-LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 18.66588pt on input line 179.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 22.39185pt on input line 179.
+(Font)              scaled to size 18.66588pt on input line 209.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 22.39185pt on input line 179.
-LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 22.39185pt on input line 179.
-(annotated.tex
+(Font)              scaled to size 22.39185pt on input line 209.
+(./annotated.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 ) [1
@@ -940,11 +892,11 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ]
 Chapter 2.
-(files.tex) [3] [4
+(./files.tex) [3] [4
 
 ]
 Chapter 3.
-(class_command_type.tex
+(./classCommandType.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 14.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
@@ -961,13 +913,12 @@ Underfull \hbox (badness 10000) detected at line 22
 
 LaTeX Font Info:    Trying to load font information for TS1+phv on input line 2
 9.
-(C:\Users\fergu\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1phv.fd
+(/usr/share/texmf-dist/tex/latex/psnfss/ts1phv.fd
 File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 29.
-)
-(class_direction.tex
+) (./classControlPin.tex
 Underfull \hbox (badness 10000) detected at line 17
 [][][]
  []
@@ -977,40 +928,66 @@ Underfull \hbox (badness 10000) detected at line 22
 [][][]
  []
 
-[5]) (class_motor.tex
+[5]) (./classCurrentSense.tex
+Underfull \hbox (badness 10000) detected at line 28
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 33
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 47
+[][][]
+ []
+
+[6]) (./classDirection.tex
+Underfull \hbox (badness 10000) detected at line 17
+[][][]
+ []
+
+) (./classMotor.tex
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 8.09995pt on input line 18.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 18.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 18.
- [6]
-Underfull \hbox (badness 10000) detected at line 77
+ [7]
+Underfull \hbox (badness 10000) detected at line 75
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 80
+Underfull \hbox (badness 10000) detected at line 78
 [][][]
  []
 
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.19995pt on input line 89.
+(Font)              scaled to size 7.19995pt on input line 87.
+[8]
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 96.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 94.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 96.
-[7]
-Underfull \hbox (badness 10000) detected at line 144
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 94.
+ [9] [10]
+Underfull \hbox (badness 10000) detected at line 145
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 157
+Underfull \hbox (badness 10000) detected at line 174
 [][][]
  []
 
-[8]) (class_motor_controller.tex
+
+Underfull \hbox (badness 10000) detected at line 187
+[][][]
+ []
+
+[11]) (./classMotorController.tex
 Underfull \hbox (badness 5652) in paragraph at lines 15--16
 [][] \T1/phv/m/n/10 (const int pwm[]Frequency=PWM[]_[][]FREQUENCY, const int pw
 m[]Resolution=PWM[]_[][]
@@ -1022,32 +999,32 @@ Underfull \hbox (badness 1874) in paragraph at lines 15--16
 EED, const int current[]Increase[]
  []
 
-[9] [10]
-Underfull \hbox (badness 10000) detected at line 72
+[12] [13]
+Underfull \hbox (badness 10000) detected at line 82
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 77
+Underfull \hbox (badness 10000) detected at line 87
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 115
+Underfull \hbox (badness 10000) detected at line 125
 [][][]
  []
 
-[11]
-Underfull \hbox (badness 10000) detected at line 128
+[14]
+Underfull \hbox (badness 10000) detected at line 138
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 141
+Underfull \hbox (badness 10000) detected at line 151
 [][][]
  []
 
-[12] [13]) (class_motor_pins.tex
+[15] [16]) (./classMotorPins.tex
 Underfull \hbox (badness 10000) detected at line 19
 [][][]
  []
@@ -1057,115 +1034,112 @@ Underfull \hbox (badness 10000) detected at line 26
 [][][]
  []
 
-[14]
+[17]
 Underfull \hbox (badness 10000) detected at line 31
 [][][]
  []
 
-) (class_p_i_d_controller.tex) [15] [16
+) (./classPIDController.tex [18]) [19] [20
 
 ]
 Chapter 4.
-(_commands_8hpp.tex
+(./Commands_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[17]) (_commands_8hpp_source.tex) (_current_settings_8hpp.tex [18]
+[21]) (./Commands_8hpp_source.tex) (./ControlPins_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[22]) (./ControlPins_8hpp_source.tex) (./CurrentSense_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+) (./CurrentSense_8hpp_source.tex [23]) (./CurrentSettings_8hpp.tex [24]
 Underfull \hbox (badness 10000) detected at line 48
 [][][]
  []
 
-) (_current_settings_8hpp_source.tex) (defs_8hpp.tex
+) (./CurrentSettings_8hpp_source.tex [25]) (./defs_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
-[19]) (defs_8hpp_source.tex [20]) (_direction_8hpp.tex [21])
-(_direction_8hpp_source.tex) (_motor_8hpp.tex
+) (./defs_8hpp_source.tex [26]) (./Direction_8hpp.tex [27])
+(./Direction_8hpp_source.tex) (./Motor_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
-[22]) (_motor_8hpp_source.tex [23] [24] [25]) (_motor_controller_8hpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--8
+[28]) (./Motor_8hpp_source.tex [29] [30] [31]) (./MotorController_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--9
 
  []
 
-[26]) (_motor_controller_8hpp_source.tex [27] [28] [29] [30] [31] [32])
-(_motor_pins_8hpp.tex
+[32]) (./MotorController_8hpp_source.tex [33] [34] [35] [36] [37])
+(./MotorPins_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-
-Overfull \vbox (47.79926pt too high) has occurred while \output is active []
-
-
-[33]) (_motor_pins_8hpp_source.tex) (_p_i_d_controller_8hpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--6
-
- []
-
-) (_p_i_d_controller_8hpp_source.tex [34]) (_pin_macros_8hpp.tex [35]
+[38]) (./MotorPins_8hpp_source.tex) (./PIDController_8hpp_source.tex [39])
+(./PinMacros_8hpp.tex [40]
 Underfull \hbox (badness 10000) detected at line 61
 [][][]
  []
 
-) (_pin_macros_8hpp_source.tex [36
-pdfTeX warning (ext4): destination with the same identifier (name{_pin_macros_8
-hpp_aa83e4bee78852fdb314719a938f3969a}) has been already used, duplicate ignore
-d
+) (./PinMacros_8hpp_source.tex [41
+pdfTeX warning (ext4): destination with the same identifier (name{PinMacros_8hp
+p_aa83e4bee78852fdb314719a938f3969a}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.15 ...range\_min,\ range\_max)\ \(\backslash\)}}
-                                                  ])
-(_potentiometer_pins_8hpp.tex
+l.20 \DoxyCodeLine{00024\ }
+                           ]) (./PotentiometerPins_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (_potentiometer_pins_8hpp_source.tex [37]) (_route_macros_8hpp.tex [38])
-(_route_macros_8hpp_source.tex) [39] [40
+) (./PotentiometerPins_8hpp_source.tex) (./RouteMacros_8hpp.tex [42])
+(./RouteMacros_8hpp_source.tex [43]) [44] (./refman.ind
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 22.39185pt on input line 1.
+ [45
 
-] (refman.ind [41
 
 
-] [42] [43
-
-])
-(refman.aux)
+] [46] [47])
+(./refman.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 2976283E993E53A35F07903CCCC26E7F;18242.
+(rerunfilecheck)             Checksum: BD7A7F752AA6882214325D5695B37F29;21621.
  ) 
 Here is how much of TeX's memory you used:
- 18639 strings out of 476406
- 319911 string characters out of 2789567
- 1888787 words of memory out of 3000000
- 38253 multiletter control sequences out of 15000+600000
- 572153 words of font info for 104 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 99i,16n,117p,1312b,744s stack positions out of 10000i,1000n,20000p,200000b,80000s
-{C:/Users/fergu/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:
-/Users/fergu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi1
-0.pfb><C:/Users/fergu/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmmi7.pfb><C:/Users/fergu/AppData/Local/Programs/MiKTeX/fonts/type1/public/
-amsfonts/cm/cmsy10.pfb><C:/Users/fergu/AppData/Local/Programs/MiKTeX/fonts/type
-1/public/amsfonts/cm/cmsy7.pfb><C:/Users/fergu/AppData/Local/Programs/MiKTeX/fo
-nts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/fergu/AppData/Local/Programs/M
-iKTeX/fonts/type1/urw/courier/ucrb8a.pfb><C:/Users/fergu/AppData/Local/Programs
-/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/fergu/AppData/Local/Progra
-ms/MiKTeX/fonts/type1/urw/courier/ucrro8a.pfb><C:/Users/fergu/AppData/Local/Pro
-grams/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C:/Users/fergu/AppData/Local/
-Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8ac.pfb><C:/Users/fergu/AppData/Lo
-cal/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/fergu/AppData
-/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (49 pages, 424839 bytes).
+ 18847 strings out of 477985
+ 315888 string characters out of 5840058
+ 1885388 words of memory out of 5000000
+ 38251 multiletter control sequences out of 15000+600000
+ 568885 words of font info for 102 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 101i,16n,117p,1309b,744s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/t
+exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1
+/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
+.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/te
+xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1
+/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (53 pages, 243120 bytes).
 PDF statistics:
- 1556 PDF objects out of 1728 (max. 8388607)
- 337 named destinations out of 1000 (max. 500000)
- 753 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1848 PDF objects out of 2073 (max. 8388607)
+ 1737 compressed objects within 18 object streams
+ 386 named destinations out of 1000 (max. 500000)
+ 889 words of extra memory for PDF output out of 10000 (max. 10000000)
 
