@@ -560,25 +560,39 @@ public:
     }
   }
 
+  /**
+   * Update the leading and lagging indices based on the system direction.
+   */
   void updateLeadingAndLaggingIndicies() {
+    // Check if the system direction is to extend
     if (Direction::EXTEND == systemDirection) {
-      if (motors[LEADER].getNormalizedPos() <
-          motors[FOLLOWER].getNormalizedPos()) {
-        laggingIndex = MotorRoles::LEADER;
-        leadingIndex = MotorRoles::FOLLOWER;
-      } else {
-        laggingIndex = MotorRoles::FOLLOWER;
-        leadingIndex = MotorRoles::LEADER;
-      }
-    } else if (Direction::RETRACT == systemDirection) {
-      if (motors[LEADER].getNormalizedPos() >
-          motors[FOLLOWER].getNormalizedPos()) {
-        laggingIndex = MotorRoles::LEADER;
-        leadingIndex = MotorRoles::FOLLOWER;
-      } else {
-        laggingIndex = MotorRoles::FOLLOWER;
-        leadingIndex = MotorRoles::LEADER;
-      }
+      // Update the lagging index based on the normalized positions of the
+      // motors
+      laggingIndex = (motors[LEADER].getNormalizedPos() <
+                      motors[FOLLOWER].getNormalizedPos())
+                         ? MotorRoles::LEADER
+                         : MotorRoles::FOLLOWER;
+      // Update the leading index based on the normalized positions of the
+      // motors
+      leadingIndex = (motors[LEADER].getNormalizedPos() >=
+                      motors[FOLLOWER].getNormalizedPos())
+                         ? MotorRoles::LEADER
+                         : MotorRoles::FOLLOWER;
+    }
+    // Check if the system direction is to retract
+    else if (Direction::RETRACT == systemDirection) {
+      // Update the lagging index based on the normalized positions of the
+      // motors
+      laggingIndex = (motors[LEADER].getNormalizedPos() >
+                      motors[FOLLOWER].getNormalizedPos())
+                         ? MotorRoles::LEADER
+                         : MotorRoles::FOLLOWER;
+      // Update the leading index based on the normalized positions of the
+      // motors
+      leadingIndex = (motors[LEADER].getNormalizedPos() <=
+                      motors[FOLLOWER].getNormalizedPos())
+                         ? MotorRoles::LEADER
+                         : MotorRoles::FOLLOWER;
     }
   }
 
@@ -600,7 +614,7 @@ public:
     if (currentUpdateDelta >= currentUpdateInterval) {
       updateCurrentReadings(currentUpdateDelta);
       lastCurrentUpdate = currentTime;
-      if (!motorsStopped()) {
+      if (!motorsStopped() && debugEnabled) {
         Serial.printf("Leader Motor Current: %d\n", leaderCurrent);
         Serial.printf("Leader current velocity: %d\n", leaderCurrentVelocity);
         Serial.printf("Follower Motor Current: %d\n", followerCurrent);
@@ -616,6 +630,8 @@ public:
       }
       return;
     }
+
+    updateLeadingAndLaggingIndicies();
 
     const int speedDelta = abs(speed - targetSpeed);
     const int moveTimeDelta = currentTime - softStart;
