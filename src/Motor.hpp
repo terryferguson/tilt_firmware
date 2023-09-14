@@ -185,21 +185,22 @@ public:
   void drive(const Direction motorDirection, const int specifiedSpeed = 0) {
     const int driveSpeed = specifiedSpeed > 0 ? specifiedSpeed : speed;
 
-    motorPinWrite(r_EN_Pin, HIGH);
-    motorPinWrite(l_EN_Pin, HIGH);
-
     switch (motorDirection) {
     case Direction::EXTEND:
+      motorPinWrite(r_EN_Pin, HIGH);
+      motorPinWrite(l_EN_Pin, HIGH);
       ledcWrite(pwmRChannel, driveSpeed);
       ledcWrite(pwmLChannel, 0);
       break;
     case Direction::STOP:
-      ledcWrite(pwmRChannel, 0);
-      ledcWrite(pwmLChannel, 0);
       motorPinWrite(r_EN_Pin, LOW);
       motorPinWrite(l_EN_Pin, LOW);
+      ledcWrite(pwmRChannel, 0);
+      ledcWrite(pwmLChannel, 0);
       break;
     case Direction::RETRACT:
+      motorPinWrite(r_EN_Pin, HIGH);
+      motorPinWrite(l_EN_Pin, HIGH);
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, driveSpeed);
       break;
@@ -226,14 +227,13 @@ public:
   /// @brief Tell the motor to stop
   void disable() {
     // Works as a toggle
-    dir = Direction::STOP;
-    ledcWrite(pwmRChannel, 0);
-    ledcWrite(pwmLChannel, 0);
-    motorPinWrite(r_EN_Pin, LOW);
-    motorPinWrite(l_EN_Pin, LOW);
-    speed = 0;
-    lastPos = pos;
-    READ_POSITION_ENCODER()
+    if (dir != Direction::STOP) {
+      dir = Direction::STOP;
+      motorPinWrite(r_EN_Pin, LOW);
+      motorPinWrite(l_EN_Pin, LOW);
+      speed = 0;
+      Serial.printf("Disabled motor: %s\n", id);
+    }
   }
 
   /// @brief Zero out position information for this motor
@@ -242,40 +242,36 @@ public:
     lastPos = pos = 0;
   }
 
+  /**
+   * Check if the top has been reached.
+   *
+   * @return true if the top has been reached, false otherwise
+   */
+  bool topReached() const { return pos >= totalPulseCount; }
+
   /// @brief Update the position information for this motor and move it
   void update(const int newSpeed = (MAX_SPEED + 1)) {
     /* Limit switches are normally open, so they should be HIGH when released
      * as their port is set to INPUT_PULLUP, so they are pulled LOW when closed.
      */
-    const bool bottomReached = digitalRead(bottomLimitPin) == LOW;
-    const bool topReached = pos >= totalPulseCount;
-
+    // const bool bottomReached = digitalRead(bottomLimitPin) == LOW;
     /* Don't make the limit switches stop movement completely, of course. Only
      * stop movement if the column is moving in the direction of the limit
      * switch.
      */
-    const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
-    const bool goingPastTop = topReached && dir == Direction::EXTEND;
+    // const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
+    const bool goingPastTop = topReached() && dir == Direction::EXTEND;
 
     // Check whether motor is out of range
-    outOfRange = goingPastBottom || goingPastTop;
+    outOfRange = goingPastTop;
 
     // If this motor is out of range then stop it
-    if (outOfRange) {
-      /*
-      Serial.printf("Disabled due to range\n");
-      Serial.printf("Bottom Reached: %d\n", bottomReached);
-      Serial.printf("Top Reached: %d\n", topReached);
-      Serial.printf("Going Past Bottom: %d\n", goingPastBottom);
-      Serial.printf("Going Past Top: %d\n", goingPastTop);
-      */
-      dir = Direction::STOP;
+    if (dir == Direction::STOP) {
+      // Serial.printf("Disabled due to range\n");
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
       motorPinWrite(r_EN_Pin, LOW);
       motorPinWrite(l_EN_Pin, LOW);
-      speed = 0;
-      lastPos = pos;
       READ_POSITION_ENCODER()
       return;
     }

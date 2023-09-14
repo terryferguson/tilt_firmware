@@ -130,7 +130,7 @@ private:
 
 public:
   /** The proprotional gain for the PID controller  */
-  int K_p = 80000;
+  int K_p = 50000;
 
   /** The intagral gain for the PID controller  */
   float K_i = 0.1f;
@@ -164,7 +164,7 @@ public:
   int followerCurrentVelocity = 0;
 
   /** Minimum current for alarm system for motors to enable  */
-  int minCurrent = 600;
+  int minCurrent = 850;
 
   /** Current delay for overcurrent alarm system */
   int currentAlarmDelay = 250000;
@@ -236,67 +236,112 @@ public:
     Serial.println("System initialized.");
   }
 
-  /// @brief Tell the motorized system to extend
+  /**
+   * @brief Extends the motorized system.
+   *
+   * This function enables PID control, resets soft movement,
+   * sets the speed to the default speed, resets the out of range
+   * flag for all motors, sends the extend command to all motors,
+   * and sets the system direction and requested direction to extend.
+   */
   void extend() {
-    RESET_SOFT_MOVEMENT
-    setSpeed(defaultSpeed);
-    ALL_MOTORS_COMMAND(extend)
-    systemDirection = Direction::EXTEND;
-    requestedDirection = Direction::EXTEND;
+    pid_on = true;          // Enable PID control
+    RESET_SOFT_MOVEMENT;    // Reset soft movement
+    setSpeed(defaultSpeed); // Set the speed to the default speed
+    ALL_MOTORS(motors[motor].outOfRange =
+                   false;)      // Reset out of range flag for all motors
+    ALL_MOTORS_COMMAND(extend); // Send extend command to all motors
+    systemDirection = Direction::EXTEND;    // Set system direction to extend
+    requestedDirection = Direction::EXTEND; // Set requested direction to extend
   }
 
-  /// @brief Tell the motorized system to retract
+  /**
+   * @brief Retracts the motorized system.
+   *
+   * This function is used to tell the motorized system to retract.
+   * It sets the PID flag to true, resets the soft movement,
+   * sets the speed to the default speed, sets the outOfRange flag
+   * to false for all motors, sets the command to retract for all motors,
+   * sets the system direction and requested direction to retract.
+   */
   void retract() {
-    RESET_SOFT_MOVEMENT
-    setSpeed(defaultSpeed);
-    ALL_MOTORS_COMMAND(retract)
-    systemDirection = Direction::RETRACT;
-    requestedDirection = Direction::RETRACT;
+    pid_on = true;          ///< Set the PID flag to true
+    RESET_SOFT_MOVEMENT;    ///< Reset the soft movement
+    setSpeed(defaultSpeed); ///< Set the speed to the default speed
+    ALL_MOTORS(motors[motor].outOfRange =
+                   false;) ///< Set the outOfRange flag to false for all motors
+    ALL_MOTORS_COMMAND(retract) ///< Set the command to retract for all motors
+    systemDirection =
+        Direction::RETRACT; ///< Set the system direction to retract
+    requestedDirection =
+        Direction::RETRACT; ///< Set the requested direction to retract
   }
 
-  /// @brief Tell the motorized system to stop
+  /**
+   * @brief Stops the motorized system.
+   *
+   * This function stops the motorized system by resetting soft movement and
+   * setting the speed to 0.
+   */
   void stop() {
-    RESET_SOFT_MOVEMENT
-
+    RESET_SOFT_MOVEMENT;
     setSpeed(0);
     requestedDirection = Direction::STOP;
   }
 
-  /// @brief Home the linear actuator to recalibrate the position sensor
-  /// void home() { ALL_MOTORS_COMMAND(home) }
+  /// @brief Home the lift columns
+  ///
+  /// This function retracts all the motors and then waits until both the leader
+  /// and follower motors are out of range. Once both motors are out of range,
+  /// the function zeros the leader and follower motors and exits the loop.
+  ///
+  /// @note This function assumes that the `motors` array is already defined and
+  ///       contains the leader and follower motor objects.
+  void home() {
+    ALL_MOTORS_COMMAND(retract); ///< Retract all motors
 
-  /// @brief Clear all position information
-  void zero() { ALL_MOTORS_COMMAND(zero) }
+    for (;;) {
+      if (motors[LEADER].outOfRange && motors[FOLLOWER].outOfRange) {
+        motors[LEADER].zero();   ///< Zero the leader motor
+        motors[FOLLOWER].zero(); ///< Zero the follower motor
+        break;
+      }
+      update(); ///< Update the motor status
+    }
+  }
 
-  /// @brief Smoothly change to the newly requested speed
-  /// @param newSpeed The new speed to target
+  /**
+   * Set the speed of the motor.
+   *
+   * @param newSpeed The new speed value.
+   */
   void setSpeed(int newSpeed) {
+    // Ensure that the new speed is at least 75
     if (newSpeed < 75) {
       newSpeed = 75;
     }
 
+    // Update the target speed
     targetSpeed = newSpeed;
+
+    // Reset the soft start and last PWM update times
     softStart = lastPWMUpdate = micros();
 
-    // Calculate the difference between the current speed and the requested
-    // speed and divide that difference by the number of update steps to get
-    // the PWM duty cycle increase/decrease per step.
-    //
-    // This will usually have a fractional part, so we make it a float value. We
-    // handle the rounding and conversion to an integer in the update method.
+    // If the speed is less than the minimum, set to the minimum
     if (speed < 75) {
       speed = 75;
     }
 
+    // Calculate the amount to update the PWM duty cycle per step
     pwmUpdateAmount =
         ceil((float)abs(targetSpeed - speed) / SOFT_MOVEMENT_UPDATE_STEPS);
 
-    // If the new speed is lower, make it negative, as we add the
-    // pwmUpdateAmount to the speed
+    // If the new speed is lower, make the pwmUpdateAmount negative
     if (targetSpeed < speed) {
       pwmUpdateAmount = -pwmUpdateAmount;
     }
 
+    // Print debug information if debugEnabled is true
     if (debugEnabled) {
       Serial.printf("MotorController\n"
                     "------------\n"
@@ -352,11 +397,18 @@ public:
 
   */
 
+  /**
+   * Prints the current values of the leader and follower motors.
+   * Only prints the values if the motors are not stopped.
+   */
   void printCurrent() {
-    if (motorsStopped()) {
+    // Check if the motors are stopped
+    if (!motorsStopped()) {
+      // Get the current values of the leader and follower motors
       leaderCurrent = motors[LEADER].getCurrent();
       followerCurrent = motors[FOLLOWER].getCurrent();
 
+      // Print the current values
       Serial.printf("Leader Current: %d\n", leaderCurrent);
       Serial.printf("Follower Current: %d\n", followerCurrent);
     }
@@ -386,29 +438,46 @@ public:
     }
   }
 
+  // Update the current readings of the motors
+  // Parameters:
+  // - elapsedTime: the elapsed time in microseconds
   void updateCurrentReadings(const int elapsedTime) {
-    // Save the last current readings
-    lastLeaderCurrent = leaderCurrent;
-    lastFollowerCurrent = followerCurrent;
+    // Store the last readings of the leader and follower currents
+    const double lastLeaderCurrent = leaderCurrent;
+    const double lastFollowerCurrent = followerCurrent;
 
-    // Update the readings
+    // Get the current readings of the leader and follower motors
     leaderCurrent = motors[LEADER].getCurrent();
     followerCurrent = motors[FOLLOWER].getCurrent();
 
-    // Update current change velocity
-    leaderCurrentVelocity = static_cast<int>(static_cast<double>(
-        ceil(leaderCurrent - lastLeaderCurrent) * (1000000.0 / elapsedTime)));
+    // Calculate the time factor
+    const double timeFactor = 1000000.0 / elapsedTime;
+
+    // Calculate the velocities of the leader and follower currents
+    leaderCurrentVelocity = static_cast<int>(
+        (leaderCurrent - lastLeaderCurrent) * timeFactor + 0.5);
     followerCurrentVelocity = static_cast<int>(
-        static_cast<double>(ceil(followerCurrent - lastFollowerCurrent) *
-                            (1000000.0 / elapsedTime)));
+        (followerCurrent - lastFollowerCurrent) * timeFactor + 0.5);
   }
 
   /// @brief Check whether the system is in a STOP state
   /// @return True if the system is in a STOP state, else false
   bool isStopped() const { return systemDirection == Direction::STOP; }
 
+  /**
+   * Check if both motors are stopped.
+   *
+   * @return True if both motors are stopped, false otherwise.
+   */
   bool motorsStopped() const {
-    return motors[LEADER].isStopped() && motors[FOLLOWER].isStopped();
+    // Check if the leader motor is stopped
+    bool isLeaderStopped = motors[LEADER].isStopped();
+
+    // Check if the follower motor is stopped
+    bool isFollowerStopped = motors[FOLLOWER].isStopped();
+
+    // Return true if both motors are stopped
+    return isLeaderStopped && isFollowerStopped;
   }
 
   /// @brief Perform one update interval for the motor system
@@ -419,24 +488,109 @@ public:
    *
    * @return true if the current alarm is triggered, false otherwise
    */
-  bool currentAlarmTriggered() const {
+  bool currentAlarmTriggered() {
 
-    if ((leaderCurrent > minCurrent || followerCurrent > minCurrent) &&
-        systemDirection == Direction::RETRACT) {
-      return true;
+    // Initialize variable to store alarm status
+    bool currentAlarm = false;
+
+    // Check if leader motor current is above minimum and system direction is
+    // retract
+    if ((leaderCurrent > minCurrent) && systemDirection == Direction::RETRACT) {
+      // Set leader motor outOfRange flag to true
+      motors[LEADER].outOfRange = true;
+      // Set current alarm to true
+      currentAlarm = true;
     }
-    return false;
+
+    // Check if follower motor current is above minimum and system direction is
+    // retract
+    if ((followerCurrent > minCurrent) &&
+        systemDirection == Direction::RETRACT) {
+      // Set follower motor outOfRange flag to true
+      motors[FOLLOWER].outOfRange = true;
+      // Set current alarm to true
+      currentAlarm = true;
+    }
+
+    // Return the current alarm status
+    return currentAlarm;
   }
 
+  /**
+   * Check if the motors are close to the end of their range.
+   *
+   * @return True if either motor is close to the end of its range, false
+   * otherwise.
+   */
+  bool motorsCloseToEndOfRange() {
+    // Get the normalized position of the leader motor
+    double leaderPos = motors[LEADER].getNormalizedPos();
+
+    // Get the normalized position of the follower motor
+    double followerPos = motors[FOLLOWER].getNormalizedPos();
+
+    // Check if the leader motor is close to the end of its range
+    bool leaderCloseToEnd =
+        (leaderPos < 0.1 && motors[LEADER].dir == Direction::RETRACT) ||
+        (leaderPos > 0.9 && motors[LEADER].dir == Direction::EXTEND);
+
+    // Check if the follower motor is close to the end of its range
+    bool followerCloseToEnd =
+        (followerPos < 0.1 && motors[FOLLOWER].dir == Direction::RETRACT) ||
+        (followerPos > 0.9 && motors[FOLLOWER].dir == Direction::EXTEND);
+
+    // Return true if either motor is close to the end of its range
+    return leaderCloseToEnd || followerCloseToEnd;
+  }
+
+  /**
+   * Disable all motors, reset speed and direction variables,
+   * and turn off PID control. Print debug message if debugEnabled is true.
+   */
+  void handleCurrentAlarm() {
+    ALL_MOTORS_COMMAND(disable);
+    speed = targetSpeed = 0;
+    systemDirection = requestedDirection = Direction::STOP;
+    pid_on = false;
+
+    if (debugEnabled) {
+      Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!");
+      Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    }
+  }
+
+  void updateLeadingAndLaggingIndicies() {
+    if (Direction::EXTEND == systemDirection) {
+      if (motors[LEADER].getNormalizedPos() <
+          motors[FOLLOWER].getNormalizedPos()) {
+        laggingIndex = MotorRoles::LEADER;
+        leadingIndex = MotorRoles::FOLLOWER;
+      } else {
+        laggingIndex = MotorRoles::FOLLOWER;
+        leadingIndex = MotorRoles::LEADER;
+      }
+    } else if (Direction::RETRACT == systemDirection) {
+      if (motors[LEADER].getNormalizedPos() >
+          motors[FOLLOWER].getNormalizedPos()) {
+        laggingIndex = MotorRoles::LEADER;
+        leadingIndex = MotorRoles::FOLLOWER;
+      } else {
+        laggingIndex = MotorRoles::FOLLOWER;
+        leadingIndex = MotorRoles::LEADER;
+      }
+    }
+  }
+
+  /**
+   * Updates the state of the motor system.
+   *
+   * @param deltaT the time interval since the last update (default: 0.0f)
+   *
+   * @throws None
+   */
   void update(const float deltaT = 0.0f) {
-    if ((motors[LEADER].getNormalizedPos() < 0.1 &&
-         motors[LEADER].dir == Direction::RETRACT) ||
-        (motors[FOLLOWER].getNormalizedPos() < 0.1 &&
-         motors[FOLLOWER].dir == Direction::RETRACT) ||
-        (motors[LEADER].getNormalizedPos() > 0.9 &&
-         motors[LEADER].dir == Direction::EXTEND) ||
-        (motors[FOLLOWER].getNormalizedPos() > 0.9 &&
-         motors[FOLLOWER].dir == Direction::EXTEND)) {
+    if (motorsCloseToEndOfRange()) {
       currentUpdateInterval = 10000;
     }
 
@@ -461,40 +615,6 @@ public:
         motors[motor].update();
       }
       return;
-    }
-
-    if (Direction::EXTEND == systemDirection) {
-      if (motors[LEADER].getNormalizedPos() <
-          motors[FOLLOWER].getNormalizedPos()) {
-        laggingIndex = MotorRoles::LEADER;
-        leadingIndex = MotorRoles::FOLLOWER;
-      } else {
-        laggingIndex = MotorRoles::FOLLOWER;
-        leadingIndex = MotorRoles::LEADER;
-      }
-    } else if (Direction::RETRACT == systemDirection) {
-      if (motors[LEADER].getNormalizedPos() >
-          motors[FOLLOWER].getNormalizedPos()) {
-        laggingIndex = MotorRoles::LEADER;
-        leadingIndex = MotorRoles::FOLLOWER;
-      } else {
-        laggingIndex = MotorRoles::FOLLOWER;
-        leadingIndex = MotorRoles::LEADER;
-      }
-    }
-
-    if (!pid_on && (requestedDirection != Direction::STOP &&
-                    systemDirection != Direction::STOP)) {
-      for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {
-        if (motors[motor].pos < motors[motor].totalPulseCount &&
-                motors[motor].dir == Direction::EXTEND ||
-            motors[motor].pos > 0 && motors[motor].dir == Direction::RETRACT) {
-          motors[motor].speed = 75;
-          motors[motor].update();
-        } else {
-          motors[motor].update();
-        }
-      }
     }
 
     const int speedDelta = abs(speed - targetSpeed);
@@ -574,10 +694,7 @@ public:
     }
 
     if (currentAlarmTriggered()) {
-      immediateHalt();
-      Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
-      Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!\n");
-      Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
+      handleCurrentAlarm();
     }
 
     for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {

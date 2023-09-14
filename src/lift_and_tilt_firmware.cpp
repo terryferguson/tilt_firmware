@@ -24,11 +24,11 @@ void display_network_info(void);
 
 const char *PARAM_INPUT_1 = "pos";
 const char *VAL_PARAM = "val";
-// const char *ssid = "PLDTHOMEFIBRCDge4";
-// const char *password = "PLDTWIFI6Jg4G";
+const char *ssid = "FergusonFamily";
+const char *password = "Oikodomeo123456!";
 
-const char *ssid = "MySpectrumWiFi30-5G";
-const char *password = "superocean537";
+// const char *ssid = "MySpectrumWiFi30-5G";
+// const char *password = "superocean537";
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
@@ -380,13 +380,17 @@ void loop() {
   if (!motor_controller.motorsStopped() &&
       (printDeltaTime > minPrintTimeDelta)) {
     display_motor_info();
-    lastPrintTimeStamp = timestamp;
-
-    const String response = makeJson();
-
-    ws.textAll(response);
   }
 
+  /*
+    if (printDeltaTime > minPrintTimeDelta) {
+      lastPrintTimeStamp = timestamp;
+
+      const String response = makeJson();
+
+      ws.textAll(response);
+    }
+  */
   motor_controller.update(deltaT);
 }
 
