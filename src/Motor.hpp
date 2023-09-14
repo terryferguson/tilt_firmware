@@ -227,6 +227,13 @@ public:
   void disable() {
     // Works as a toggle
     dir = Direction::STOP;
+    ledcWrite(pwmRChannel, 0);
+    ledcWrite(pwmLChannel, 0);
+    motorPinWrite(r_EN_Pin, LOW);
+    motorPinWrite(l_EN_Pin, LOW);
+    speed = 0;
+    lastPos = pos;
+    READ_POSITION_ENCODER()
   }
 
   /// @brief Zero out position information for this motor
@@ -252,8 +259,6 @@ public:
 
     // Check whether motor is out of range
     outOfRange = goingPastBottom || goingPastTop;
-
-    // Serial.printf("Out of Range: %d", outOfRange);
 
     // If this motor is out of range then stop it
     if (outOfRange) {

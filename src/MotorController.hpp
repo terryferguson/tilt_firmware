@@ -109,8 +109,7 @@ private:
     requestedDirection = Direction::STOP;
     RESET_SOFT_MOVEMENT
 
-    ALL_MOTORS(motors[motor].speed = 0;)
-    ALL_MOTORS(motors[motor].dir = Direction::STOP;)
+    ALL_MOTORS_COMMAND(disable);
     currentUpdateInterval = 500000;
   }
 
@@ -575,7 +574,7 @@ public:
     }
 
     if (currentAlarmTriggered()) {
-      // stop();
+      immediateHalt();
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!\n");
       Serial.printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
