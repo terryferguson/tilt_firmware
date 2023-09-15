@@ -73,7 +73,7 @@ public:
                               to full extension */
 
   int bottomLimitPin = -1;
-  int topLimitPin = -1;
+  int currentLimit = -1;
 
   bool outOfRange = false;
 
@@ -100,12 +100,12 @@ public:
         const MotorPin hall_2, const adc1_channel_t currentSensePin,
         const int totalPulses, const int freq = PWM_FREQUENCY,
         const int defSpeed = 70, const int pwmRes = 8,
-        const int bottomLimitPin = -1, const int topLimitPin = -1)
+        const int bottomLimitPin = -1, const int currentLimit = -1)
       : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),
         hall_1_Pin(hall_1), hall_2_Pin(hall_2),
         currentSensePin(currentSensePin), totalPulseCount(totalPulses),
         frequency(freq), speed(defSpeed), pwmResolution(pwmRes),
-        bottomLimitPin(bottomLimitPin), topLimitPin(topLimitPin),
+        bottomLimitPin(bottomLimitPin), currentLimit(currentLimit),
         outOfRange(false) {
     /// Copy name of linear actuator into ID field
     strncpy(id, name, sizeof(id) - 1);
@@ -131,7 +131,6 @@ public:
                   pwmLChannel);
 
     pinMode(bottomLimitPin, INPUT_PULLUP);
-    pinMode(topLimitPin, INPUT_PULLUP);
 
     motorPinMode(r_EN_Pin, OUTPUT);
     motorPinMode(l_EN_Pin, OUTPUT);
@@ -269,12 +268,15 @@ public:
      * stop movement if the column is moving in the direction of the limit
      * switch.
      */
-    // const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
+    READ_POSITION_ENCODER()
+
+    const bool goingPastBottom =
+        getCurrent() >= currentLimit && dir == Direction::RETRACT;
 
     const bool goingPastTop = topReached() && dir == Direction::EXTEND;
 
     // Check whether motor is out of range
-    outOfRange = goingPastTop;
+    outOfRange = goingPastTop || goingPastBottom;
 
     // If this motor is out of range then stop it
     if (outOfRange || dir == Direction::STOP) {

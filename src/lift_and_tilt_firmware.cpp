@@ -24,8 +24,8 @@ void display_network_info(void);
 
 const char *PARAM_INPUT_1 = "pos";
 const char *VAL_PARAM = "val";
-const char *ssid = "FergusonFamily";
-const char *password = "Oikodomeo123456!";
+// const char *ssid = "FergusonFamily";
+// const char *password = "Oikodomeo123456!";
 
 // const char *ssid = "MySpectrumWiFi30-5G";
 // const char *password = "superocean537";
@@ -392,6 +392,7 @@ void display_motor_info(void) {
   }
 }
 
+/*
 void display_network_info(void) {
   if (WiFi.status() == WL_CONNECTED) {
     Serial.print("[*] Network information for ");
@@ -409,3 +410,4 @@ void display_network_info(void) {
     Serial.println(WiFi.localIP());
   }
 }
+*/

@@ -224,7 +224,7 @@ public:
                       defaultSpeed,               // Default speed
                       pwmResolution,              // PWM resolution
                       MOTOR1_LIMIT,               // Motor bottom limit
-                      MOTOR1_TLIMIT               // Motor top limit
+                      minCurrent // Motor current limit for bottom finding
     );
 
     // Initialize the follower motor
@@ -241,7 +241,7 @@ public:
                       defaultSpeed,               // Default speed
                       pwmResolution,              // PWM resolution
                       MOTOR2_LIMIT,               // Motor bottom limit
-                      MOTOR2_TLIMIT               // Motor top limit
+                      minCurrent // Motor current limit for bottom finding
     );
 
     // Begin position storage
@@ -375,13 +375,6 @@ public:
     }
   }
 
-  /// @brief Get the system speed
-  /// @return The average speed of the system
-  int getSpeed() const {
-    // Return the average
-    return (motors[0].speed + motors[1].speed) / 2;
-  }
-
   /**
    * @brief Checks if the motor counts are unequal.
    * @return True if the motor counts are different, false otherwise.
@@ -394,7 +387,14 @@ public:
 
   void zero() { ALL_MOTORS_COMMAND(zero) }
 
-  /// @brief Report debugging information to the serial console
+  /**
+   * @brief Reports the current state of the motor controller to the serial
+   * console.
+   *
+   * @return void
+   *
+   * @throws None
+   */
   void report() {
     ALL_MOTORS_COMMAND(readPos)
     Serial.printf(
@@ -568,7 +568,7 @@ public:
   }
 
   /**
-   * Disable all motors, reset speed and direction variables,
+   * @brief Disable all motors, reset speed and direction variables,
    * and turn off PID control. Print debug message if debugEnabled is true.
    */
   void handleCurrentAlarm() {
@@ -590,6 +590,8 @@ public:
       Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!");
       Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
+
+    report();
   }
 
   /**
@@ -700,6 +702,7 @@ public:
           systemDirection = Direction::STOP;
 
           immediateHalt();
+          report();
         }
       }
     }
