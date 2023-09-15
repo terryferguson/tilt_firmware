@@ -31,7 +31,7 @@ bool debugEnabled = true;
 
 #define ADC_RESOLUTION_BITS 12
 
-#define DEFAULT_MOTOR_SPEED 255
+#define DEFAULT_MOTOR_SPEED 192
 
 #define MICROS_IN_MS 1000
 

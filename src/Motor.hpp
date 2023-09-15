@@ -180,37 +180,46 @@ public:
    * @param motorDirection the direction in which the motor should be driven
    * @param specifiedSpeed the specified speed at which the motor should be
    * driven (default: 0)
-   *
    */
   void drive(const Direction motorDirection, const int specifiedSpeed = 0) {
+    // Set the drive speed based on the specified speed or the default speed
     const int driveSpeed = specifiedSpeed > 0 ? specifiedSpeed : speed;
 
     switch (motorDirection) {
     case Direction::EXTEND:
+      // Drive the motor in the extend direction
       motorPinWrite(r_EN_Pin, HIGH);
       motorPinWrite(l_EN_Pin, HIGH);
       ledcWrite(pwmRChannel, driveSpeed);
       ledcWrite(pwmLChannel, 0);
       break;
+
     case Direction::STOP:
+      // Stop the motor
       motorPinWrite(r_EN_Pin, LOW);
       motorPinWrite(l_EN_Pin, LOW);
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
       break;
+
     case Direction::RETRACT:
+      // Drive the motor in the retract direction
       motorPinWrite(r_EN_Pin, HIGH);
       motorPinWrite(l_EN_Pin, HIGH);
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, driveSpeed);
       break;
+
     default:
       break;
-    } // end direction handler
+    }
 
+    // Update the last position variable
     lastPos = pos;
-    READ_POSITION_ENCODER()
-  } // end drive
+
+    // Read the position from the encoder
+    READ_POSITION_ENCODER();
+  }
 
   /// @brief Tell the motor to rotate in the direction of extension
   void extend() {
@@ -261,7 +270,7 @@ public:
      * switch.
      */
     // const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
-    READ_POSITION_ENCODER()
+
     const bool goingPastTop = topReached() && dir == Direction::EXTEND;
 
     // Check whether motor is out of range

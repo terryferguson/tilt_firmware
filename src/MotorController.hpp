@@ -130,7 +130,7 @@ private:
 
 public:
   /** The proprotional gain for the PID controller  */
-  int K_p = 44000;
+  int K_p = 39500;
 
   /** The intergal gain for the PID controller  */
   float K_i = 0.1f;
@@ -507,9 +507,6 @@ public:
     return isLeaderStopped && isFollowerStopped;
   }
 
-  /// @brief Perform one update interval for the motor system
-  /// @param deltaT The amount of time that has passed since the last update
-
   /**
    * Checks if the current alarm is triggered.
    *
@@ -603,7 +600,13 @@ public:
     if (Direction::EXTEND == systemDirection) {
       // Update the lagging index based on the normalized positions of the
       // motors
-      laggingIndex = (motors[LEADER].getNormalizedPos() >=
+      laggingIndex = (motors[LEADER].getNormalizedPos() <
+                      motors[FOLLOWER].getNormalizedPos())
+                         ? MotorRoles::LEADER
+                         : MotorRoles::FOLLOWER;
+      // Update the leading index based on the normalized positions of the
+      // motors
+      leadingIndex = (motors[LEADER].getNormalizedPos() >=
                       motors[FOLLOWER].getNormalizedPos())
                          ? MotorRoles::LEADER
                          : MotorRoles::FOLLOWER;
