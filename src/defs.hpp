@@ -6,9 +6,9 @@
 #define FORMAT_SPIFFS_IF_FAILED true
 
 #include "Commands.hpp"
-#include "MotorPins.hpp"
 #include "ControlPins.hpp"
 #include "Direction.hpp"
+#include "MotorPins.hpp"
 
 //@brief String representations of the motor roles at instantiation
 const char *motor_roles[2] = {"LEADER", "FOLLOWER"};
@@ -19,7 +19,7 @@ const char *save_position_slot_names[NUM_POSITION_SLOTS] = {
 };
 
 //@brief Storage for position in hall sensor pusles relative to initial position
-//when powered on
+// when powered on
 int savedPositions[NUM_POSITION_SLOTS] = {0, 0, 0, 0, 0};
 
 /// @brief Indicates whether debug messages should be sent to serial
@@ -31,15 +31,15 @@ bool debugEnabled = true;
 
 #define ADC_RESOLUTION_BITS 12
 
-#define DEFAULT_MOTOR_SPEED 192
+#define DEFAULT_MOTOR_SPEED 255
 
 #define MICROS_IN_MS 1000
 
-#define SOFT_MOVEMENT_TIME_MS 2000
+#define SOFT_MOVEMENT_TIME_MS 500
 
 #define SOFT_MOVEMENT_MICROS (SOFT_MOVEMENT_TIME_MS * MICROS_IN_MS)
 
-#define SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS 20000
+#define SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS 10000
 
 #define SOFT_MOVEMENT_UPDATE_STEPS                                             \
   (SOFT_MOVEMENT_MICROS / SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS)
@@ -52,6 +52,5 @@ bool debugEnabled = true;
 
 bool pid_on = true;
 bool limit_range = true;
-
 
 #endif // _DEFS_HPP_

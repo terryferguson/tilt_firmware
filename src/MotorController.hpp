@@ -55,7 +55,7 @@ private:
     FOLLOWER /** The follower motor that is speed-matched to the leader motor */
   };
 
-  const int motorPulseTotals[2] = {2800, 2800};
+  const int motorPulseTotals[2] = {2845, 2845};
 
   /// @brief Hall sensor pulse totals for the motor travel limit feature
   // const int motorPulseTotals[2] = {2055, 2050};
@@ -84,7 +84,7 @@ private:
   int lastPrintTime = -1;
 
   /** Interval of time to pass between current updates microseconds  */
-  int currentUpdateInterval = 500000;
+  int currentUpdateInterval = 200000;
 
   int lastCurrentUpdate = -1;
 
@@ -110,7 +110,7 @@ private:
     RESET_SOFT_MOVEMENT
 
     ALL_MOTORS_COMMAND(disable);
-    currentUpdateInterval = 500000;
+    currentUpdateInterval = 200000;
   }
 
   /// @brief Load the position preferences slots from ROM into memory
@@ -130,9 +130,9 @@ private:
 
 public:
   /** The proprotional gain for the PID controller  */
-  int K_p = 50000;
+  int K_p = 44000;
 
-  /** The intagral gain for the PID controller  */
+  /** The intergal gain for the PID controller  */
   float K_i = 0.1f;
 
   /** The integral error coefficient for the PID controller  */
@@ -197,42 +197,69 @@ public:
         defaultSpeed(defaultSpeed),
         currentIncreaseTolerance(currentIncreaseLimit) {
     char buf[256];
-    sprintf(
-        buf,
+    snprintf(
+        buf, 256,
         "Controller Params: Frequency: %d - Resolution: %d - Duty Cycle: %d\n",
         pwmFrequency, pwmResolution, defaultSpeed);
     Serial.println(buf);
     speed = targetSpeed = 0;
-    Direction systemDirection = Direction::STOP;
+    systemDirection = Direction::STOP;
     ALL_MOTORS(motors[motor].speed = 0;)
   }
 
   /// @brief Load the stored position preferences into RAM and initialize the
   /// motors
   void initialize() {
-    // Read in saved positions
-    // Open in read-write mode
-    motors[0] =
-        Motor("Leader", MotorPin::MOTOR1_RPWM_PIN, MotorPin::MOTOR1_LPWM_PIN,
-              MotorPin::MOTOR1_R_EN_PIN, MotorPin::MOTOR1_L_EN_PIN,
-              MotorPin::MOTOR1_HALL1_PIN, MotorPin::MOTOR1_HALL2_PIN,
-              LEADER_CURRENT_SENSE_PIN, motorPulseTotals[0], PWM_FREQUENCY,
-              defaultSpeed, pwmResolution, MOTOR1_LIMIT, MOTOR1_TLIMIT);
+    // Initialize the leader motor
+    motors[0] = Motor("Leader",                   // Motor name
+                      MotorPin::MOTOR1_RPWM_PIN,  // Right PWM pin
+                      MotorPin::MOTOR1_LPWM_PIN,  // Left PWM pin
+                      MotorPin::MOTOR1_R_EN_PIN,  // Right enable pin
+                      MotorPin::MOTOR1_L_EN_PIN,  // Left enable pin
+                      MotorPin::MOTOR1_HALL1_PIN, // Hall sensor 1 pin
+                      MotorPin::MOTOR1_HALL2_PIN, // Hall sensor 2 pin
+                      LEADER_CURRENT_SENSE_PIN,   // Current sense pin
+                      motorPulseTotals[0],        // Motor pulse total
+                      PWM_FREQUENCY,              // PWM frequency
+                      defaultSpeed,               // Default speed
+                      pwmResolution,              // PWM resolution
+                      MOTOR1_LIMIT,               // Motor bottom limit
+                      MOTOR1_TLIMIT               // Motor top limit
+    );
 
-    motors[1] =
-        Motor("Follower", MotorPin::MOTOR2_RPWM_PIN, MotorPin::MOTOR2_LPWM_PIN,
-              MotorPin::MOTOR2_R_EN_PIN, MotorPin::MOTOR2_L_EN_PIN,
-              MotorPin::MOTOR2_HALL1_PIN, MotorPin::MOTOR2_HALL2_PIN,
-              FOLLOWER_CURRENT_SENSE_PIN, motorPulseTotals[1], PWM_FREQUENCY,
-              defaultSpeed, pwmResolution, MOTOR2_LIMIT, MOTOR2_TLIMIT);
+    // Initialize the follower motor
+    motors[1] = Motor("Follower",                 // Motor name
+                      MotorPin::MOTOR2_RPWM_PIN,  // Right PWM pin
+                      MotorPin::MOTOR2_LPWM_PIN,  // Left PWM pin
+                      MotorPin::MOTOR2_R_EN_PIN,  // Right enable pin
+                      MotorPin::MOTOR2_L_EN_PIN,  // Left enable pin
+                      MotorPin::MOTOR2_HALL1_PIN, // Hall sensor 1 pin
+                      MotorPin::MOTOR2_HALL2_PIN, // Hall sensor 2 pin
+                      FOLLOWER_CURRENT_SENSE_PIN, // Current sense pin
+                      motorPulseTotals[1],        // Motor pulse total
+                      PWM_FREQUENCY,              // PWM frequency
+                      defaultSpeed,               // Default speed
+                      pwmResolution,              // PWM resolution
+                      MOTOR2_LIMIT,               // Motor bottom limit
+                      MOTOR2_TLIMIT               // Motor top limit
+    );
 
+    // Begin position storage
     positionStorage.begin("evox-tilt", false);
+
+    // Load the stored positions
     loadPositions();
+
+    // Initialize the motors
     initializeMotors();
 
+    // Get the current of the leader motor
     leaderCurrent = motors[LEADER].getCurrent();
+
+    // Get the current of the follower motor
     followerCurrent = motors[FOLLOWER].getCurrent();
 
+    // Print system initialization message
     Serial.println("System initialized.");
   }
 
@@ -280,12 +307,17 @@ public:
   /**
    * @brief Stops the motorized system.
    *
-   * This function stops the motorized system by resetting soft movement and
+   * This function stops the motorized system by resetting the soft movement and
    * setting the speed to 0.
    */
   void stop() {
+    // Reset the soft movement
     RESET_SOFT_MOVEMENT;
+
+    // Set the speed to 0
     setSpeed(0);
+
+    // Update the requested direction to STOP
     requestedDirection = Direction::STOP;
   }
 
@@ -316,21 +348,11 @@ public:
    * @param newSpeed The new speed value.
    */
   void setSpeed(int newSpeed) {
-    // Ensure that the new speed is at least 75
-    if (newSpeed < 75) {
-      newSpeed = 75;
-    }
-
     // Update the target speed
     targetSpeed = newSpeed;
 
     // Reset the soft start and last PWM update times
     softStart = lastPWMUpdate = micros();
-
-    // If the speed is less than the minimum, set to the minimum
-    if (speed < 75) {
-      speed = 75;
-    }
 
     // Calculate the amount to update the PWM duty cycle per step
     pwmUpdateAmount =
@@ -360,8 +382,10 @@ public:
     return (motors[0].speed + motors[1].speed) / 2;
   }
 
-  /// @brief Indicates whether the motor counts are unequal
-  /// @return True if the motor counts are different, false otherwise
+  /**
+   * @brief Checks if the motor counts are unequal.
+   * @return True if the motor counts are different, false otherwise.
+   */
   bool countsAreUnequal(void) const {
     bool areUnequal = true;
     ALL_MOTORS(areUnequal &= motors[motor].pos == motors[motor].lastPos;)
@@ -401,7 +425,8 @@ public:
 
   /**
    * Prints the current values of the leader and follower motors.
-   * Only prints the values if the motors are not stopped.
+   *
+   * @return void
    */
   void printCurrent() {
     // Check if the motors are stopped
@@ -550,11 +575,19 @@ public:
    * and turn off PID control. Print debug message if debugEnabled is true.
    */
   void handleCurrentAlarm() {
+    // Disable all motors
     ALL_MOTORS_COMMAND(disable);
+
+    // Reset speed and target speed variables
     speed = targetSpeed = 0;
+
+    // Reset system direction and requested direction variables
     systemDirection = requestedDirection = Direction::STOP;
+
+    // Turn off PID control
     pid_on = false;
 
+    // Print debug message if debugEnabled is true
     if (debugEnabled) {
       Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!");
@@ -570,13 +603,7 @@ public:
     if (Direction::EXTEND == systemDirection) {
       // Update the lagging index based on the normalized positions of the
       // motors
-      laggingIndex = (motors[LEADER].getNormalizedPos() <
-                      motors[FOLLOWER].getNormalizedPos())
-                         ? MotorRoles::LEADER
-                         : MotorRoles::FOLLOWER;
-      // Update the leading index based on the normalized positions of the
-      // motors
-      leadingIndex = (motors[LEADER].getNormalizedPos() >=
+      laggingIndex = (motors[LEADER].getNormalizedPos() >=
                       motors[FOLLOWER].getNormalizedPos())
                          ? MotorRoles::LEADER
                          : MotorRoles::FOLLOWER;
@@ -622,6 +649,9 @@ public:
         Serial.printf("Follower Motor Current: %d\n", followerCurrent);
         Serial.printf("Follower current velocity: %d\n",
                       followerCurrentVelocity);
+        if (currentAlarmTriggered()) {
+          handleCurrentAlarm();
+        }
       }
     }
 
@@ -659,39 +689,12 @@ public:
         const float newSpeed = (float)speed + pwmUpdateAmount;
         speed = (int)floorf(newSpeed);
         lastPWMUpdate = micros();
-
-        const double timeSinceSoftStart =
-            (double)(micros() - softStart) / (double)MICROS_IN_MS;
-
-        if (false) {
-          Serial.printf("Soft Movement PWM Update - "
-                        "speed: %d - "
-                        "target speed: %d - "
-                        "time since soft start: %f ms - "
-                        "pwmUpdateAmount: %f\n",
-                        speed, targetSpeed, timeSinceSoftStart,
-                        pwmUpdateAmount);
-        }
       } else {
         speed = targetSpeed;
         RESET_SOFT_MOVEMENT
 
         if (requestedDirection == Direction::STOP) {
           systemDirection = Direction::STOP;
-
-          if (false) {
-            Serial.println("System Direction: STOP");
-            const double timeSinceSoftStart =
-                (double)(micros() - softStart) / (double)MICROS_IN_MS;
-
-            Serial.printf("Soft Movement PWM Update - "
-                          "speed: %d - "
-                          "target speed: %d - "
-                          "time since soft start: %f ms - "
-                          "pwmUpdateAmount: %f\n",
-                          speed, targetSpeed, timeSinceSoftStart,
-                          pwmUpdateAmount);
-          }
 
           immediateHalt();
         }
@@ -709,10 +712,6 @@ public:
       motors[leadingIndex].speed =
           constrain(adjustedSpeed, 0, 2 << pwmResolution);
       motors[laggingIndex].speed = speed;
-    }
-
-    if (currentAlarmTriggered()) {
-      handleCurrentAlarm();
     }
 
     for (int motor = 0; motor < NUMBER_OF_MOTORS; motor++) {

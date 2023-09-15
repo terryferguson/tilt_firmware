@@ -233,6 +233,7 @@ public:
       motorPinWrite(l_EN_Pin, LOW);
       speed = 0;
       Serial.printf("Disabled motor: %s\n", id);
+      READ_POSITION_ENCODER()
     }
   }
 
@@ -260,19 +261,20 @@ public:
      * switch.
      */
     // const bool goingPastBottom = bottomReached && dir == Direction::RETRACT;
+    READ_POSITION_ENCODER()
     const bool goingPastTop = topReached() && dir == Direction::EXTEND;
 
     // Check whether motor is out of range
     outOfRange = goingPastTop;
 
     // If this motor is out of range then stop it
-    if (dir == Direction::STOP) {
+    if (outOfRange || dir == Direction::STOP) {
       // Serial.printf("Disabled due to range\n");
+      dir = Direction::STOP;
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
       motorPinWrite(r_EN_Pin, LOW);
       motorPinWrite(l_EN_Pin, LOW);
-      READ_POSITION_ENCODER()
       return;
     }
     if (newSpeed > MAX_SPEED || newSpeed < 0) {
