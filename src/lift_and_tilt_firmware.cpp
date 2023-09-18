@@ -32,7 +32,7 @@ const char *VAL_PARAM = "val";
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-const long minPrintTimeDelta = 200000L;
+const long minPrintTimeDelta = 500000L;
 
 #define MICROS_IN_SECONDS (1 * 1000 * 1000)
 

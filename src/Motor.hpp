@@ -232,7 +232,11 @@ public:
     dir = (dir != Direction::RETRACT) ? Direction::RETRACT : Direction::STOP;
   }
 
-  /// @brief Tell the motor to stop
+  /**
+   * @brief Disables the motor.
+   * If the motor is already stopped, this function does nothing.
+   * Otherwise, it stops the motor, sets the speed to 0, and logs a message.
+   */
   void disable() {
     // Works as a toggle
     if (dir != Direction::STOP) {
@@ -241,11 +245,13 @@ public:
       motorPinWrite(l_EN_Pin, LOW);
       speed = 0;
       Serial.printf("Disabled motor: %s\n", id);
-      READ_POSITION_ENCODER()
+      READ_POSITION_ENCODER();
     }
   }
 
-  /// @brief Zero out position information for this motor
+  /** @brief Reset the distance sensor count and position variables for the
+   * motor to zero
+   */
   void zero() {
     distanceSensor.clearCount();
     lastPos = pos = 0;
@@ -258,29 +264,28 @@ public:
    */
   bool topReached() const { return pos >= totalPulseCount; }
 
-  /// @brief Update the position information for this motor and move it
+  /**
+   * @brief Update the state of the motor.
+   *
+   * @param newSpeed the new speed value to set (default: MAX_SPEED + 1)
+   *
+   * @throws None
+   */
   void update(const int newSpeed = (MAX_SPEED + 1)) {
-    /* Limit switches are normally open, so they should be HIGH when released
-     * as their port is set to INPUT_PULLUP, so they are pulled LOW when closed.
-     */
-    // const bool bottomReached = digitalRead(bottomLimitPin) == LOW;
-    /* Don't make the limit switches stop movement completely, of course. Only
-     * stop movement if the column is moving in the direction of the limit
-     * switch.
-     */
     READ_POSITION_ENCODER()
 
+    // Check if the motor is going past the bottom limit
     const bool goingPastBottom =
         getCurrent() >= currentLimit && dir == Direction::RETRACT;
 
+    // Check if the motor is going past the top limit
     const bool goingPastTop = topReached() && dir == Direction::EXTEND;
 
-    // Check whether motor is out of range
+    // Check whether the motor is out of range
     outOfRange = goingPastTop || goingPastBottom;
 
-    // If this motor is out of range then stop it
+    // If the motor is out of range or in the STOP direction, stop it
     if (outOfRange || dir == Direction::STOP) {
-      // Serial.printf("Disabled due to range\n");
       dir = Direction::STOP;
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
@@ -288,6 +293,8 @@ public:
       motorPinWrite(l_EN_Pin, LOW);
       return;
     }
+
+    // Set the motor speed based on the input
     if (newSpeed > MAX_SPEED || newSpeed < 0) {
       drive(dir, this->speed);
     } else {
@@ -302,7 +309,7 @@ public:
     MOVE_TO_POS(newPos, 15, 40)
   }
 
-  /// @brief Read rotary encoder value into position variable
+  /// @brief Read the position of the motor
   void readPos() { READ_POSITION_ENCODER() }
 
   /// @brief Get a normalized indicaton of the position of this motor based on
@@ -335,9 +342,23 @@ public:
   /// @return The current used by the motor
   int getCurrent() const { return currentSense.getCurrent(); }
 
+  /**
+   * Checks if the current motor is in a stopped state.
+   *
+   * @return true if the motor is in a stopped state, false otherwise.
+   */
   bool isStopped() const { return dir == Direction::STOP; }
 
-  void setSpeed(int newSpeed) { speed = newSpeed; }
+  /**
+   * Set the speed to the specified value.
+   *
+   * @param newSpeed The new speed value.
+   */
+  void setSpeed(int newSpeed) {
+    // Constrain the new speed value between 0 and the maximum value allowed by
+    // the PWM resolution.
+    speed = constrain(newSpeed, 0, (2 << PWM_RESOLUTION_BITS) - 1);
+  }
 }; // end class Motor
 
 #endif // _MOTOR_HPP_

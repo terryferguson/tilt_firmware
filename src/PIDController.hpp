@@ -8,71 +8,72 @@
 #include <math.h>
 #include <stdio.h>
 
-
+/** @class PIDController
+ *
+ *  @brief This is the  PID controller for motor synchronization
+ *
+ * @author Terry Paul Ferguson
+ * @author terry@terryferguson.us
+ *
+ * @version 0.1
+ */
 class PIDController {
 private:
-  float kp;               // the controller path proportional gain
-  float ti;               // the controller's integrator time constant
-  float td;               // the controller's derivative time constant
-  float uMax;             // Maximum magnitude of control signal
-  float ePrev, eIntegral; // Storage
+  int K_p;  // the controller path proportional gain
+  int uMax; // Maximum magnitude of control signal
 
 public:
-  PIDController(float kp = 0.1, float ti = 0.002, float td = 0.01,
-                float uMax = 255.0)
-      : kp(kp), ti(ti), td(td), uMax(uMax), ePrev(0.0), eIntegral(0.0) {}
+  PIDController(float kp = 39500, float uMax = 255.0) : K_p(kp), uMax(uMax) {
+    if (debugEnabled) {
+      Serial.println("PID Controller Initialized");
+      Serial.printf("PID Parameters:\n");
+      Serial.printf("K_p: %d\n", K_p);
+      Serial.printf("Max Speed: %d\n", uMax);
+      Serial.println("---------------------------");
+    }
+  }
 
   // A function to set the parameters
-  void setParams(float kpIn, float kdIn, float kiIn, float uMaxIn = 255.0) {
-    kp = kpIn;
-    td = kdIn;
-    ti = kiIn;
+  void setParams(int kpIn, int uMaxIn = 255.0) {
+    K_p = kpIn;
     uMax = uMaxIn;
   }
 
   /**
-   * A function to compute the control signal
+   * Compute the adjusted speed based on the current value, target value, and
+   * speed.
    *
-   * @param value The current value
-   * @param target The target value
-   * @param deltaT The time step
+   * @param leader The leader motor
+   * @param follower The follower motor
    * @param speed The reference to the speed variable
-   * @param dir The reference to the direction variable
+   * @return The adjusted speed
    */
-  void evaluate(int value, int target, float deltaT, int &speed,
-                Direction &dir) {
+  int adjustSpeed(const Motor &leader, const Motor &follower, int speed) {
     // Calculate the error between the target value and the current value
-    int e = target - value;
-
-    // Calculate the derivative of the error
-    float dedt = static_cast<float>(e - ePrev) / deltaT;
-
-    // Calculate the integral of the error
-    eIntegral += e * deltaT;
+    const float leadingMotorPosition = leader.getNormalizedPos();
+    const float laggingMotorPosition = follower.getNormalizedPos();
+    const float error = fabs(leadingMotorPosition - laggingMotorPosition);
 
     // Calculate the control signal
-    float u = kp * e + td * dedt + ti * eIntegral;
+    const float u = speed - (error * K_p);
 
-    // Calculate the motor power
-    speed = static_cast<int>(fabs(u));
-    speed = speed > uMax ? uMax : speed;
+    // Calculate the motor power using a ternary operator
+    int adjustedSpeed = static_cast<int>(fabs(u));
+    adjustedSpeed = adjustedSpeed > uMax ? uMax : adjustedSpeed;
 
-    // Determine the motor direction based on the control signal
-    dir = u < 0   ? Direction::RETRACT
-          : u > 0 ? Direction::EXTEND
-                  : Direction::STOP;
-
-    // Store the current error for the next iteration
-    ePrev = e;
+    return adjustedSpeed;
   }
 
-  void report(const int value, const int target, const float deltaT,
-              const int speed, const Direction dir) const {
-    char buf[256]; // Diagnostic messages
-    sprintf(buf,
-            "PID params: value:%d target: %d, deltaT: %f, speed: %d, dir: %s",
-            value, target, deltaT, speed, directions[static_cast<int>(dir)]);
-    Serial.println(buf);
+  /**
+   * Reports the PID parameters.
+   *
+   * @return void
+   */
+  void report() {
+    Serial.printf("\nPID Parameters:\n");
+    Serial.println("---------------------------");
+    Serial.printf("K_p: %d\n", K_p);
+    Serial.printf("Max Value: %d\n\n", uMax);
   }
 };
 
