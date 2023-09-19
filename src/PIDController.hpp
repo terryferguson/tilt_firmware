@@ -23,7 +23,7 @@ private:
   int uMax; // Maximum magnitude of control signal
 
 public:
-  PIDController(float kp = 39500, float uMax = 255.0) : K_p(kp), uMax(uMax) {
+  PIDController(float kp = 39500, int uMax = MAX_SPEED) : K_p(kp), uMax(uMax) {
     if (debugEnabled) {
       Serial.println("PID Controller Initialized");
       Serial.printf("PID Parameters:\n");
@@ -34,7 +34,7 @@ public:
   }
 
   // A function to set the parameters
-  void setParams(int kpIn, int uMaxIn = 255.0) {
+  void setParams(int kpIn, int uMaxIn = MAX_SPEED) {
     K_p = kpIn;
     uMax = uMaxIn;
   }
@@ -52,20 +52,20 @@ public:
     // Calculate the error between the target value and the current value
     const float leadingMotorPosition = leader.getNormalizedPos();
     const float laggingMotorPosition = follower.getNormalizedPos();
-    const float error = fabs(leadingMotorPosition - laggingMotorPosition);
+    const float error = fabs(laggingMotorPosition - leadingMotorPosition);
 
     // Calculate the control signal
-    const float u = speed - (error * K_p);
+    const int u = speed - static_cast<int>(error * K_p);
 
     // Calculate the motor power using a ternary operator
-    int adjustedSpeed = static_cast<int>(fabs(u));
-    adjustedSpeed = adjustedSpeed > uMax ? uMax : adjustedSpeed;
+    int adjustedSpeed = static_cast<int>(u);
+    adjustedSpeed = constrain(adjustedSpeed, 0, uMax);
 
     return adjustedSpeed;
   }
 
   /**
-   * Reports the PID parameters.
+   * @brief Reports the PID parameters.
    *
    * @return void
    */

@@ -10,7 +10,6 @@
 #include <stdint.h>
 
 #include "Commands.hpp"
-#include "CurrentSettings.hpp"
 #include "Motor.hpp"
 #include "MotorController.hpp"
 #include "PinMacros.hpp"
@@ -29,6 +28,13 @@ const long minPrintTimeDelta = 500000L;
 MotorController motor_controller(PWM_FREQUENCY, PWM_RESOLUTION_BITS,
                                  DEFAULT_MOTOR_SPEED);
 
+/**
+ * Initializes the setup of the the firmware.
+ *
+ * @return void
+ *
+ * @throws None
+ */
 void setup() {
   Serial.begin(115200);
 
@@ -43,6 +49,12 @@ void setup() {
   lastTimestamp = micros();
 }
 
+/**
+ * Loop function that handles serial commands, updates the motor controller,
+ * and displays motor information.
+ *
+ * @return void
+ */
 void loop() {
   int fBottom, lBottom, fTop, lTop = 0;
 
@@ -115,17 +127,12 @@ void loop() {
     case Command::READ_LIMIT:
       lBottom = digitalRead(MOTOR1_LIMIT);
       fBottom = digitalRead(MOTOR2_LIMIT);
-      lTop = digitalRead(MOTOR1_TLIMIT);
-      fTop = digitalRead(MOTOR2_TLIMIT);
-      Serial.printf("Bottom 1: %d, Bottom 2: %d, Top 1: %d, Top 2: %d\n",
-                    lBottom, fBottom, lTop, fTop);
+      Serial.printf("Bottom 1: %d, Bottom 2: %d\n", lBottom, fBottom);
       break;
     default:
       break;
     }
   }
-
-  // ws.cleanupClients();
 
   const long timestamp = micros();
   const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
@@ -139,6 +146,11 @@ void loop() {
   motor_controller.update(deltaT);
 }
 
+/**
+ * Displays the motor information if debug mode is enabled.
+ *
+ * @throws None
+ */
 void display_motor_info(void) {
   if (debugEnabled) {
     motor_controller.report();

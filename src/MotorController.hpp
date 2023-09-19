@@ -6,7 +6,6 @@
 #include <Preferences.h>
 #include <math.h>
 
-#include "CurrentSettings.hpp"
 #include "Motor.hpp"
 #include "PIDController.hpp"
 #include "PinMacros.hpp"
@@ -159,17 +158,13 @@ public:
   int followerCurrentVelocity = 0;
 
   /** Minimum current for alarm system for motors to enable  */
-  int minCurrent = 850;
+  int minCurrent = 900;
 
   /** Current delay for overcurrent alarm system */
   int currentAlarmDelay = 250000;
 
   /** Current velocity limit for alarm system for motors to enable  */
   int alarmCurrentVelocity = 10000;
-
-  /** @brief Maximium current increase limit for
-            motor cutoff */
-  int currentIncreaseTolerance = DEFAULT_CURRENT_INCREASE_LIMIT;
 
   /** @brief The motors controlled by this motor controller instance */
   Motor motors[NUMBER_OF_MOTORS];
@@ -183,14 +178,11 @@ public:
   /// motors
   /// @param defaultSpeed The default speed of the motors that the control
   /// program starts them off with
-  MotorController(
-      const int pwmFrequency = PWM_FREQUENCY,
-      const int pwmResolution = PWM_RESOLUTION_BITS,
-      const int defaultSpeed = DEFAULT_MOTOR_SPEED,
-      const int currentIncreaseLimit = DEFAULT_CURRENT_INCREASE_LIMIT)
+  MotorController(const int pwmFrequency = PWM_FREQUENCY,
+                  const int pwmResolution = PWM_RESOLUTION_BITS,
+                  const int defaultSpeed = DEFAULT_MOTOR_SPEED)
       : pwmFrequency(pwmFrequency), pwmResolution(pwmResolution),
-        defaultSpeed(defaultSpeed),
-        currentIncreaseTolerance(currentIncreaseLimit) {
+        defaultSpeed(defaultSpeed) {
     char buf[256];
     snprintf(
         buf, 256,
@@ -255,7 +247,7 @@ public:
     followerCurrent = motors[FOLLOWER].getCurrent();
 
     // Set parameters for PID controller to defaults
-    pidController.setParams(K_p, 2 << PWM_RESOLUTION_BITS);
+    pidController.setParams(K_p, (1 << PWM_RESOLUTION_BITS) - 1);
 
     // Print system initialization message
     Serial.println("System initialized.");
@@ -328,20 +320,52 @@ public:
   /// @note This function assumes that the `motors` array is already defined and
   ///       contains the leader and follower motor objects.
   void home() {
-    ALL_MOTORS_COMMAND(retract); ///< Retract all motors
+    Serial.println("Home placeholder called.");
+    retract();
+
+    Serial.printf("Leader out of range status: %d\n",
+                  motors[LEADER].outOfRange);
+    Serial.printf("Follower out of range status: %d\n",
+                  motors[FOLLOWER].outOfRange);
+
+    long lastTimestamp = micros();
+    int currentAlarmStart = micros();
+    const int currentAlarmDelay = 500000L;
+    motors[LEADER].currentLimit = minCurrent = 1600;
+    motors[FOLLOWER].currentLimit = minCurrent = 1600;
 
     for (;;) {
-      if (motors[LEADER].outOfRange && motors[FOLLOWER].outOfRange) {
-        motors[LEADER].zero();   ///< Zero the leader motor
-        motors[FOLLOWER].zero(); ///< Zero the follower motor
-        break;
+      const long timestamp = micros();
+      const int currentDeltaTime = timestamp - currentAlarmStart;
+      Serial.printf("Leader out of range status: %d\n",
+                    motors[LEADER].outOfRange);
+      Serial.printf("Follower out of range status: %d\n",
+                    motors[FOLLOWER].outOfRange);
+      printCurrent();
+      if (currentDeltaTime > currentAlarmDelay) {
+        motors[LEADER].currentLimit = 850;
+        motors[FOLLOWER].currentLimit = minCurrent = 900;
+        if (motors[LEADER].outOfRange == true &&
+            motors[FOLLOWER].outOfRange == true) {
+          motors[LEADER].zero();   ///< Zero the leader motor
+          motors[FOLLOWER].zero(); ///< Zero the follower motor
+          ALL_MOTORS_COMMAND(disable)
+          RESET_SOFT_MOVEMENT
+          systemDirection = requestedDirection = Direction::STOP;
+          const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
+          update(deltaT); ///< Update the motor status
+          break;
+        }
       }
-      update(); ///< Update the motor status
+      report();
+      const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
+      lastTimestamp = timestamp;
+      update(deltaT); ///< Update the motor status
     }
   }
 
   /**
-   * Set the speed of the motor.
+   * @brief Set the speed of the motor.
    *
    * @param newSpeed The new speed value.
    */
@@ -400,7 +424,7 @@ public:
   }
 
   /**
-   * Prints the current values of the leader and follower motors.
+   * @brief Prints the current values of the leader and follower motors.
    *
    * @return void
    */
@@ -457,7 +481,7 @@ public:
   }
 
   /**
-   * Updates the current readings of the leader and follower motors
+   * @brief Updates the current readings of the leader and follower motors
    * based on the elapsed time.
    *
    * @param elapsedTime the elapsed time in microseconds
@@ -633,8 +657,8 @@ public:
   }
 
   /**
-   * Displays the current values of the leader and follower motor currents and
-   * velocities.
+   * @brief Displays the current values of the leader and follower motor
+   * currents and velocities.
    *
    * @return void
    */
@@ -646,7 +670,7 @@ public:
   }
 
   /**
-   * Updates the state of the motor system.
+   * @brief Updates the state of the motor system.
    *
    * @param deltaT the time interval since the last update (default: 0.0f)
    *

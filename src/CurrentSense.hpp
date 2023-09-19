@@ -82,7 +82,7 @@ public:
   }
 
   /**
-   * Calculates the average current.
+   * @brief Calculates the average current.
    *
    * @return the average current of the sampling
    *
