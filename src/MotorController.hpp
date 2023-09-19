@@ -82,7 +82,7 @@ private:
   int lastPrintTime = -1;
 
   /** Interval of time to pass between current updates microseconds  */
-  int currentUpdateInterval = 200000;
+  int currentUpdateInterval = 100000;
 
   int lastCurrentUpdate = -1;
 
@@ -157,7 +157,7 @@ public:
   /*  Follower current velocity */
   int followerCurrentVelocity = 0;
 
-  /** Minimum current for alarm system for motors to enable  */
+  /** Minimum current to enable alarm system for motors  */
   int minCurrent = 900;
 
   /** Current delay for overcurrent alarm system */
@@ -172,12 +172,17 @@ public:
   /** @brief The current system level direction indicator */
   Direction systemDirection = Direction::STOP;
 
-  /// @brief This class controls the motors connected to the microcontoller
-  /// @param pwmFrequency The frequency of the PWM signal to the motors
-  /// @param pwmResolution The bitdepth resolution of the PWM signal to the
-  /// motors
-  /// @param defaultSpeed The default speed of the motors that the control
-  /// program starts them off with
+  /**
+   * @Brief This is the class that controls the motors
+   *
+   * @param PWM_FREQUENCY the frequency of the PWM signal
+   * @param PWM_RESOLUTION_BITS the resolution of the PWM signal in bits
+   * @param DEFAULT_MOTOR_SPEED the default speed of the motor
+   *
+   * @return none
+   *
+   * @throws none
+   */
   MotorController(const int pwmFrequency = PWM_FREQUENCY,
                   const int pwmResolution = PWM_RESOLUTION_BITS,
                   const int defaultSpeed = DEFAULT_MOTOR_SPEED)
@@ -194,8 +199,16 @@ public:
     ALL_MOTORS(motors[motor].speed = 0;)
   }
 
-  /// @brief Load the stored position preferences into RAM and initialize the
-  /// motors
+  /**
+   * Initialize the motors, position storage, current sensors, and PID
+   * controllers.
+   *
+   * @param None
+   *
+   * @return None
+   *
+   * @throws None
+   */
   void initialize() {
     // Initialize the leader motor
     motors[0] = Motor("Leader",                   // Motor name
@@ -311,56 +324,68 @@ public:
     requestedDirection = Direction::STOP;
   }
 
-  /// @brief Home the lift columns
-  ///
-  /// This function retracts all the motors and then waits until both the leader
-  /// and follower motors are out of range. Once both motors are out of range,
-  /// the function zeros the leader and follower motors and exits the loop.
-  ///
-  /// @note This function assumes that the `motors` array is already defined and
-  ///       contains the leader and follower motor objects.
+  /**
+   * @brief Function to control the homing.
+   * This function retracts, checks leader and follower out of range status,
+   * and updates the motor status until both motors are out of range.
+   * It then zeros out the positions of the motors and resets the soft movement
+   * status
+   */
   void home() {
+    // Print a message indicating that the home placeholder has been called
     Serial.println("Home placeholder called.");
+
+    // Retract the motors
     retract();
 
+    // Print the leader and follower out of range status
     Serial.printf("Leader out of range status: %d\n",
                   motors[LEADER].outOfRange);
     Serial.printf("Follower out of range status: %d\n",
                   motors[FOLLOWER].outOfRange);
 
+    // Initialize variables
     long lastTimestamp = micros();
     int currentAlarmStart = micros();
     const int currentAlarmDelay = 500000L;
     motors[LEADER].currentLimit = minCurrent = 1600;
     motors[FOLLOWER].currentLimit = minCurrent = 1600;
 
+    // Loop until both leader and follower motors are out of range
     for (;;) {
       const long timestamp = micros();
       const int currentDeltaTime = timestamp - currentAlarmStart;
-      Serial.printf("Leader out of range status: %d\n",
-                    motors[LEADER].outOfRange);
-      Serial.printf("Follower out of range status: %d\n",
-                    motors[FOLLOWER].outOfRange);
-      printCurrent();
+
+      // Check if it's time to update the motor current limits
       if (currentDeltaTime > currentAlarmDelay) {
         motors[LEADER].currentLimit = 850;
         motors[FOLLOWER].currentLimit = minCurrent = 900;
+
+        // Check if both leader and follower motors are out of range
         if (motors[LEADER].outOfRange == true &&
             motors[FOLLOWER].outOfRange == true) {
-          motors[LEADER].zero();   ///< Zero the leader motor
-          motors[FOLLOWER].zero(); ///< Zero the follower motor
+          // Zero the leader and follower motors
+          ALL_MOTORS_COMMAND(zero)
+
+          // Disable all motors, reset soft movement, and set the direction to
+          // STOP
           ALL_MOTORS_COMMAND(disable)
           RESET_SOFT_MOVEMENT
           systemDirection = requestedDirection = Direction::STOP;
+
+          // Calculate the time delta and update the motor status
           const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
-          update(deltaT); ///< Update the motor status
+          update(deltaT);
+
+          // Exit the loop
           break;
         }
       }
-      report();
+
+      // Calculate the time delta and update the motor status
       const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
       lastTimestamp = timestamp;
-      update(deltaT); ///< Update the motor status
+      update(deltaT);
     }
   }
 
@@ -677,15 +702,10 @@ public:
    * @throws None
    */
   void update(const float deltaT = 0.0f) {
-    // Check if motors are close to the end of their range
-    if (motorsCloseToEndOfRange()) {
-      // If so, check current more frequently
-      currentUpdateInterval = 10000;
-    }
-
-    const int currentTime = micros();
+    // Get current time in microseconds
+    const long currentTime = micros();
     // Calculate the time since the last current update
-    const int currentUpdateDelta = currentTime - lastCurrentUpdate;
+    const long currentUpdateDelta = currentTime - lastCurrentUpdate;
 
     // Check if it's time to update the current readings
     if (currentUpdateDelta >= currentUpdateInterval) {
@@ -729,8 +749,8 @@ public:
     if (targetSpeed >= 0) {
       // Calculate the speed and time deltas
       const int speedDelta = abs(speed - targetSpeed);
-      const int moveTimeDelta = currentTime - softStart;
-      const int updateTimeDelta = currentTime - lastPWMUpdate;
+      const long moveTimeDelta = currentTime - softStart;
+      const long updateTimeDelta = currentTime - lastPWMUpdate;
 
       if (updateTimeDelta < SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS) {
         return;
@@ -740,8 +760,8 @@ public:
       const bool timeToUpdate = moveTimeDelta < SOFT_MOVEMENT_MICROS;
 
       if (timeToUpdate && speedDeltaEnough) {
-        const float newSpeed = (float)speed + pwmUpdateAmount;
-        speed = (int)floorf(newSpeed);
+        const float newSpeed = static_cast<float>(speed + pwmUpdateAmount);
+        speed = static_cast<int>(floorf(newSpeed));
         lastPWMUpdate = micros();
       } else {
         // Set the speed to the target speed and reset the soft movement if time
