@@ -6,14 +6,14 @@
 #include <cstdint>
 
 /** @enum MotorPins
- * 
+ *
  * @class MotorPins
- * 
+ *
  * @brief Pin number definitions for the motor
  *
  * @author Terry Paul Ferguson
  * @author terry@terryferguson.us
- * 
+ *
  * This has the pin numbering to  wire to the microcontroller
  */
 
@@ -55,10 +55,7 @@ enum class MotorPin : std::uint8_t {
   MOTOR2_HALL1_PIN = 14,
 
   /** Hall 2 sensor pin */
-  MOTOR2_HALL2_PIN = 13,
-
-   /** Right motor channel current sense pin  */
-  MOTOR2_RIS_PIN = 11,
+  MOTOR2_HALL2_PIN = 13
 };
 
 #endif // _MOTOR_PINS_HPP_

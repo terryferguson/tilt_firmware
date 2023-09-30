@@ -12,7 +12,7 @@
 
 /** @class CurrentSense
  *
- *  @brief This implements the current sense functionality for the motors
+ * @brief This implements the current sense functionality for the motors
  *
  * @author Terry Paul Ferguson
  * @author terry@terryferguson.us
@@ -25,14 +25,13 @@ private:
   int_fast32_t CALIBRATE_ITERATIONS_SHIFT = 12;
   int_fast32_t SAMPLE_CURRENT_ITERATIONS_SHIFT = 7;
 
-  int32_t MV_PER_AMP = static_cast<int32_t>(185 * 1.132);
   /// @brief The number of millivolts per detected ampere of current
-
-  int32_t ACS_OFFSET = 1885;
+  int32_t MV_PER_AMP = static_cast<int32_t>(185 * 1.132);
 
   /// @brief The voltage offset of the ACS. It should be Vin / 2. Values
   /// above this point indicate postive current flow. Values below indicate
   // negitive current flow.
+  int32_t ACS_OFFSET = 1885;
 
   adc1_channel_t currentSensePin;
   double logicVoltage = 3.3;
