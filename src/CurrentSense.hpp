@@ -10,6 +10,9 @@
 #include "ControlPins.hpp"
 #include "defs.hpp"
 
+#define ADC_LOGIC_VOLTAGE 3.3f
+#define ADC_RESOLUTION_BITS 12
+
 /** @class CurrentSense
  *
  * @brief This implements the current sense functionality for the motors
@@ -35,7 +38,7 @@ private:
 
   adc1_channel_t currentSensePin;
   double logicVoltage = 3.3;
-  int32_t maxAdcValue = 4096;
+  int32_t maxAdcValue = (1 << ADC_RESOLUTION_BITS);
 
 public:
   CurrentSense(const adc1_channel_t pCurrentSensePin = ADC1_CHANNEL_0,

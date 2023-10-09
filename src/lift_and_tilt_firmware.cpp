@@ -23,7 +23,7 @@ void display_network_info(void);
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-const long minPrintTimeDelta = 200000L;
+const long minPrintTimeDelta = 3000000L;
 
 #define MICROS_IN_SECONDS (1 * 1000 * 1000)
 
@@ -186,9 +186,9 @@ void loop() {
   const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
   const int printDeltaTime = timestamp - lastPrintTimeStamp;
 
-  if (!motor_controller.motorsStopped() &&
-      (printDeltaTime > minPrintTimeDelta)) {
+  if (printDeltaTime > minPrintTimeDelta) {
     display_motor_info();
+    lastPrintTimeStamp = timestamp;
   }
 
   motor_controller.update(deltaT);

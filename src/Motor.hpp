@@ -196,15 +196,15 @@ public:
       ledcWrite(pwmRChannel, driveSpeed);
       ledcWrite(pwmLChannel, 0);
       break;
-
-    case Direction::STOP:
-      // Stop the motor
-      motorPinWrite(r_EN_Pin, LOW);
-      motorPinWrite(l_EN_Pin, LOW);
-      ledcWrite(pwmRChannel, 0);
-      ledcWrite(pwmLChannel, 0);
-      break;
-
+      /*
+          case Direction::STOP:
+            // Stop the motor
+            motorPinWrite(r_EN_Pin, LOW);
+            motorPinWrite(l_EN_Pin, LOW);
+            ledcWrite(pwmRChannel, 0);
+            ledcWrite(pwmLChannel, 0);
+            break;
+      */
     case Direction::RETRACT:
       // Drive the motor in the retract direction
       motorPinWrite(r_EN_Pin, HIGH);
@@ -266,8 +266,10 @@ public:
    */
   bool hitBottom() const {
     const int current = getCurrent();
-    Serial.printf("Current %d <=> Bottom current limit: %d\n", current,
-                  bottomCurrentLimit);
+    if (debugEnabled) {
+      Serial.printf("Current %d <=> Bottom current limit: %d\n", current,
+                    bottomCurrentLimit);
+    }
     return (current >= bottomCurrentLimit) && (dir == Direction::RETRACT);
   }
 
@@ -357,8 +359,8 @@ public:
    * @throws None
    */
   void displayInfo() {
-    Serial.printf("Motor %s - Direction: %s, pos: %d\n", id,
-                  directions[static_cast<int>(dir)], pos);
+    Serial.printf("Motor %s - Direction: %s, pos: %d, currentAlarm %d mA\n", id,
+                  directions[static_cast<int>(dir)], pos, currentAlarmLimit);
     Serial.printf("Motor %s - Speed: %d, desired pos: %d\n", id, speed,
                   desiredPos);
     Serial.printf("Motor %s - Max hall position: %d \n\n", id, totalPulseCount);
@@ -392,7 +394,7 @@ public:
   void setSpeed(int newSpeed) {
     // Constrain the new speed value between 0 and the maximum value allowed by
     // the PWM resolution.
-    speed = constrain(newSpeed, 0, (2 << PWM_RESOLUTION_BITS) - 1);
+    speed = constrain(newSpeed, 0, MAX_SPEED);
   }
 }; // end class Motor
 
