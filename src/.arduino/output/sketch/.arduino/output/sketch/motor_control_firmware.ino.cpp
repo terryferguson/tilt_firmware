@@ -31,7 +31,7 @@ const char *password = "superocean537";
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-const long minPrintTimeDelta = 500000L;
+const long MIN_PRINT_TIME_DELTA = 500000L;
 
 uint64_t M1_LIS_sum = 0;
 int M1_LIS_val = 0;
@@ -69,8 +69,7 @@ AsyncWebServer server(80);
 // Create a websocket server for updates
 AsyncWebSocket ws("/ws");
 
-void notFound(AsyncWebServerRequest *request)
-{
+void notFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Not found");
 }
 
@@ -87,25 +86,18 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {}
  * @param len The length of the received data.
  */
 void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client,
-             AwsEventType type, void *arg, uint8_t *data, size_t len)
-{
-  if (type == WS_EVT_CONNECT)
-  {
+             AwsEventType type, void *arg, uint8_t *data, size_t len) {
+  if (type == WS_EVT_CONNECT) {
     Serial.printf("WebSocket client #%u connected from %s\n", client->id(),
                   client->remoteIP().toString().c_str());
-  }
-  else if (type == WS_EVT_DISCONNECT)
-  {
+  } else if (type == WS_EVT_DISCONNECT) {
     Serial.printf("WebSocket client #%u disconnected\n", client->id());
-  }
-  else if (type == WS_EVT_DATA)
-  {
+  } else if (type == WS_EVT_DATA) {
     handleWebSocketMessage(arg, data, len);
   }
 }
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
   motor_controller.initialize();
@@ -117,8 +109,7 @@ void setup()
   WiFi.begin(ssid, password);
 
   Serial.print("Connecting");
-  while (WiFi.status() != WL_CONNECTED)
-  {
+  while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(100);
   }
@@ -129,8 +120,7 @@ void setup()
   display_network_info();
 
   // Initialize SPIFFS
-  if (!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED))
-  {
+  if (!SPIFFS.begin(FORMAT_SPIFFS_IF_FAILED)) {
     Serial.println("An Error has occurred while mounting SPIFFS");
     return;
   }
@@ -170,8 +160,7 @@ void setup()
   server.on("/set-tilt/4", HTTP_GET, DEF_HANDLER(SET_POS_HANDLER(4)));
   server.on("/set-tilt/5", HTTP_GET, DEF_HANDLER(SET_POS_HANDLER(5)));
 
-  server.on("/set", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/set", HTTP_GET, [](AsyncWebServerRequest *request) {
     String inputMessage1;
 
     // GET input1 value on
@@ -184,10 +173,10 @@ void setup()
       inputMessage1 = "No message sent";
     }
 
-    request->send(200, "text/plain", inputMessage1); });
+    request->send(200, "text/plain", inputMessage1);
+  });
 
-  server.on("/speed", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/speed", HTTP_GET, [](AsyncWebServerRequest *request) {
     String speedText;
 
     // GET input1 value on
@@ -205,10 +194,10 @@ void setup()
       speedText = "No message sent";
     }
 
-    request->send(200, "text/plain", speedText); });
+    request->send(200, "text/plain", speedText);
+  });
 
-  server.on("/kp", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/kp", HTTP_GET, [](AsyncWebServerRequest *request) {
     String kpInput;
 
     kpInput = request->getParam(VAL_PARAM)->value();
@@ -220,10 +209,10 @@ void setup()
       kpInput = "No message sent";
     }
 
-    request->send(200, "text/plain", kpInput); });
+    request->send(200, "text/plain", kpInput);
+  });
 
-  server.on("/ki", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/ki", HTTP_GET, [](AsyncWebServerRequest *request) {
     String kiInput;
 
     // GET input1 value on
@@ -239,10 +228,10 @@ void setup()
       kiInput = "No message sent";
     }
 
-    request->send(200, "text/plain", kiInput); });
+    request->send(200, "text/plain", kiInput);
+  });
 
-  server.on("/get-stats", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/get-stats", HTTP_GET, [](AsyncWebServerRequest *request) {
     String speed(motor_controller.speed);
     String ki(motor_controller.K_i);
     String kp(motor_controller.K_p);
@@ -253,47 +242,48 @@ void setup()
     String min_current(motor_controller.minCurrent);
     String alarm_current_velocity(motor_controller.alarmCurrentVelocity);
 
-    String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
-                      ",\"follower_current\":" + follower_current +
-                      ",\"speed\":" + speed +
-                      ",\"ki\":" + ki +
-                      ",\"kp\":" + kp +
-                      ",\"min_current\":" + min_current +
-                      ",\"alarm_current_velocity\":" + alarm_current_velocity +
-                      ",\"leader_pos\": " + leader_pos +
-                      ",\"follower_pos\": " + follower_pos + "}";
+    String response =
+        "{\"type\":\"stats\",\"leader_current\":" + leader_current +
+        ",\"follower_current\":" + follower_current + ",\"speed\":" + speed +
+        ",\"ki\":" + ki + ",\"kp\":" + kp + ",\"min_current\":" + min_current +
+        ",\"alarm_current_velocity\":" + alarm_current_velocity +
+        ",\"leader_pos\": " + leader_pos +
+        ",\"follower_pos\": " + follower_pos + "}";
 
-    request->send(200, "application/json", response.c_str()); });
+    request->send(200, "application/json", response.c_str());
+  });
 
-  server.on("/min-current", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/min-current", HTTP_GET, [](AsyncWebServerRequest *request) {
     String minCurrentInput;
 
     minCurrentInput = request->getParam(VAL_PARAM)->value();
     const int newMinCurrent = minCurrentInput.toInt();
     if (VAL_IN_RANGE(newMinCurrent, 1, 4000)) {
       motor_controller.minCurrent = newMinCurrent;
-      Serial.printf("New min current: %d\n", motor_controller.minCurrent );
+      Serial.printf("New min current: %d\n", motor_controller.minCurrent);
     } else {
       minCurrentInput = "No message sent";
     }
 
-    request->send(200, "text/plain", minCurrentInput); });
+    request->send(200, "text/plain", minCurrentInput);
+  });
 
-  server.on("/alarm-current-velocity", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
-    String alarmVelocity;
+  server.on("/alarm-current-velocity", HTTP_GET,
+            [](AsyncWebServerRequest *request) {
+              String alarmVelocity;
 
-    alarmVelocity = request->getParam(VAL_PARAM)->value();
-    const int newAlarmCurrentVelocity = alarmVelocity.toInt();
-    if (VAL_IN_RANGE(newAlarmCurrentVelocity, 50, 2500)) {
-      motor_controller.alarmCurrentVelocity = newAlarmCurrentVelocity;
-      Serial.printf("Alarm current velocity in mA/ms: %d\n", motor_controller.alarmCurrentVelocity);
-    } else {
-      alarmVelocity = "No message sent";
-    }
+              alarmVelocity = request->getParam(VAL_PARAM)->value();
+              const int newAlarmCurrentVelocity = alarmVelocity.toInt();
+              if (VAL_IN_RANGE(newAlarmCurrentVelocity, 50, 2500)) {
+                motor_controller.alarmCurrentVelocity = newAlarmCurrentVelocity;
+                Serial.printf("Alarm current velocity in mA/ms: %d\n",
+                              motor_controller.alarmCurrentVelocity);
+              } else {
+                alarmVelocity = "No message sent";
+              }
 
-    request->send(200, "text/plain", alarmVelocity); });
+              request->send(200, "text/plain", alarmVelocity);
+            });
 
   ws.onEvent(onEvent);
   server.addHandler(&ws);
@@ -303,14 +293,11 @@ void setup()
   server.begin();
 }
 
-void loop()
-{
-  if (Serial.available() > 0)
-  {
+void loop() {
+  if (Serial.available() > 0) {
     Command cmd = static_cast<Command>(Serial.parseInt());
 
-    switch (cmd)
-    {
+    switch (cmd) {
     case Command::RETRACT:
       motor_controller.retract();
       break;
@@ -383,8 +370,7 @@ void loop()
   // SET_TO_ANALOG_PIN(CURRENT_TOLERANCE_PIN,
   // motor_controller.currentIncreaseTolerance, 0, CURRENT_INCREASE_LIMIT_MAX);
 
-  if (!motor_controller.isStopped() && (printDeltaTime > minPrintTimeDelta))
-  {
+  if (!motor_controller.isStopped() && (printDeltaTime > minPrintTimeDelta)) {
     display_motor_info();
     lastPrintTimeStamp = timestamp;
 
@@ -398,15 +384,13 @@ void loop()
     String min_current(motor_controller.minCurrent);
     String alarm_current_velocity(motor_controller.alarmCurrentVelocity);
 
-    String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
-                      ",\"follower_current\":" + follower_current +
-                      ",\"speed\":" + speed +
-                      ",\"ki\":" + ki +
-                      ",\"kp\":" + kp +
-                      ",\"min_current\":" + min_current +
-                      ",\"alarm_current_velocity\":" + alarm_current_velocity +
-                      ",\"leader_pos\": " + leader_pos +
-                      ",\"follower_pos\": " + follower_pos + "}";
+    String response =
+        "{\"type\":\"stats\",\"leader_current\":" + leader_current +
+        ",\"follower_current\":" + follower_current + ",\"speed\":" + speed +
+        ",\"ki\":" + ki + ",\"kp\":" + kp + ",\"min_current\":" + min_current +
+        ",\"alarm_current_velocity\":" + alarm_current_velocity +
+        ",\"leader_pos\": " + leader_pos +
+        ",\"follower_pos\": " + follower_pos + "}";
     ;
 
     ws.textAll(response);
@@ -415,18 +399,14 @@ void loop()
   motor_controller.update(deltaT);
 }
 
-void display_motor_info(void)
-{
-  if (debugEnabled)
-  {
+void display_motor_info(void) {
+  if (debugEnabled) {
     motor_controller.report();
   }
 }
 
-void display_network_info(void)
-{
-  if (WiFi.status() == WL_CONNECTED)
-  {
+void display_network_info(void) {
+  if (WiFi.status() == WL_CONNECTED) {
     Serial.print("[*] Network information for ");
     Serial.println(ssid);
     Serial.print("[+] BSSID : ");
@@ -442,4 +422,3 @@ void display_network_info(void)
     Serial.println(WiFi.localIP());
   }
 }
-

@@ -23,9 +23,7 @@ void display_network_info(void);
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-const long minPrintTimeDelta = 3000000L;
-
-#define MICROS_IN_SECONDS (1 * 1000 * 1000)
+constexpr long MIN_PRINT_TIME_DELTA = 5000000L;
 
 /**
  * @brief Creates a MotorController object with the specified PWM frequency, PWM
@@ -176,8 +174,6 @@ void loop() {
   if (Serial.available() > 0) {
     const int commandInput = Serial.parseInt() - 17;
 
-    Serial.printf("Command input: %d\n", commandInput);
-
     if (commandInput >= 0 && commandInput < countof(commands)) {
       commands[commandInput]();
     }
@@ -186,7 +182,7 @@ void loop() {
   const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
   const int printDeltaTime = timestamp - lastPrintTimeStamp;
 
-  if (printDeltaTime > minPrintTimeDelta) {
+  if (printDeltaTime > MIN_PRINT_TIME_DELTA) {
     display_motor_info();
     lastPrintTimeStamp = timestamp;
   }
@@ -200,8 +196,4 @@ void loop() {
  *
  * @throws None
  */
-void display_motor_info(void) {
-  if (debugEnabled) {
-    motor_controller.report();
-  }
-}
+void display_motor_info(void) { motor_controller.report(); }

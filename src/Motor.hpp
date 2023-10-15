@@ -104,9 +104,10 @@ public:
         const MotorPin r_en, const MotorPin l_en, const MotorPin hall_1,
         const MotorPin hall_2, const adc1_channel_t currentSensePin,
         const int totalPulses, const int freq = PWM_FREQUENCY,
-        const int defSpeed = 70, const int pwmRes = 8,
-        const int bottomLimitPin = -1, const int currentLimit = -1,
-        const int alarmCurrentLimit = -1, const int stopBuffer = 0)
+        const int defSpeed = MIN_MOTOR_TRAVEL_SPEED,
+        const int pwmRes = PWM_RESOLUTION_BITS, const int bottomLimitPin = -1,
+        const int currentLimit = -1, const int alarmCurrentLimit = -1,
+        const int stopBuffer = 0)
       : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),
         hall_1_Pin(hall_1), hall_2_Pin(hall_2),
         currentSensePin(currentSensePin), totalPulseCount(totalPulses),
@@ -188,27 +189,17 @@ public:
     // Set the drive speed based on the specified speed or the default speed
     const int driveSpeed = specifiedSpeed > 0 ? specifiedSpeed : speed;
 
+    motorPinWrite(r_EN_Pin, HIGH);
+    motorPinWrite(l_EN_Pin, HIGH);
+
     switch (motorDirection) {
     case Direction::EXTEND:
       // Drive the motor in the extend direction
-      motorPinWrite(r_EN_Pin, HIGH);
-      motorPinWrite(l_EN_Pin, HIGH);
       ledcWrite(pwmRChannel, driveSpeed);
       ledcWrite(pwmLChannel, 0);
       break;
-      /*
-          case Direction::STOP:
-            // Stop the motor
-            motorPinWrite(r_EN_Pin, LOW);
-            motorPinWrite(l_EN_Pin, LOW);
-            ledcWrite(pwmRChannel, 0);
-            ledcWrite(pwmLChannel, 0);
-            break;
-      */
     case Direction::RETRACT:
       // Drive the motor in the retract direction
-      motorPinWrite(r_EN_Pin, HIGH);
-      motorPinWrite(l_EN_Pin, HIGH);
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, driveSpeed);
       break;
@@ -242,8 +233,8 @@ public:
     // Works as a toggle
     if (dir != Direction::STOP) {
       dir = Direction::STOP;
-      motorPinWrite(r_EN_Pin, LOW);
-      motorPinWrite(l_EN_Pin, LOW);
+      motorPinWrite(r_EN_Pin, HIGH);
+      motorPinWrite(l_EN_Pin, HIGH);
       speed = 0;
       Serial.printf("Disabled motor: %s\n", id);
     }
@@ -293,9 +284,9 @@ public:
     bool goingPastBottom = false;
     // Check if the motor is going past the bottom limit
     if (!homing) {
-      goingPastBottom = (pos < (stopBuffer + 5)) && dir == Direction::RETRACT;
+      goingPastBottom = (pos < stopBuffer) && dir == Direction::RETRACT;
     } else {
-      speed = speed <= 100 ? speed : 100;
+      speed = speed <= MIN_MOTOR_TRAVEL_SPEED ? speed : MIN_MOTOR_TRAVEL_SPEED;
       goingPastBottom = hitBottom();
       Serial.printf("Motor current: %d\n", getCurrent());
     }
@@ -314,8 +305,8 @@ public:
       dir = Direction::STOP;
       ledcWrite(pwmRChannel, 0);
       ledcWrite(pwmLChannel, 0);
-      motorPinWrite(r_EN_Pin, LOW);
-      motorPinWrite(l_EN_Pin, LOW);
+      motorPinWrite(r_EN_Pin, HIGH);
+      motorPinWrite(l_EN_Pin, HIGH);
       return;
     }
 
@@ -327,20 +318,19 @@ public:
     }
   }
 
-  /// @brief Set a new target position for this motor
-  /// @param newPos The new target position to move the motor to
-  void setPos(const int newPos) {
-    READ_POSITION_ENCODER()
-    MOVE_TO_POS(newPos, 3, 20)
-  }
-
   /// @brief Read the position of the motor
   void readPos() { READ_POSITION_ENCODER() }
 
-  /// @brief Get a normalized indicaton of the position of this motor based on
-  /// its total range
-  /// @return A fraction that represents how much of total extension we are
-  /// currently at
+  /**
+   * @brief Get a normalized indicaton of the position of this motor based on
+   * its total range
+   *
+   * @return The fraction that represents how much of total extension we are
+   * currently at as a float value. If the total pulse count is 0, it returns
+   * 0.0f.
+   *
+   * @throws None
+   */
   float getNormalizedPos() {
     READ_POSITION_ENCODER()
 
@@ -366,7 +356,11 @@ public:
     Serial.printf("Motor %s - Max hall position: %d \n\n", id, totalPulseCount);
   }
 
-  /// @return The current used by the motor
+  /**
+   *@brief Retrieve the current value as milliamps
+   *
+   * @return The current value as milliamps
+   */
   int getCurrent() const { return currentSense.getCurrent(); }
 
   /**
@@ -375,16 +369,6 @@ public:
    * @return true if the motor is in a stopped state, false otherwise.
    */
   bool isStopped() const { return dir == Direction::STOP; }
-
-  /**
-   * @brief Checks if the current value exceeds the current alarm limit.
-   *
-   * @return true if the current value exceeds the current alarm limit, false
-   * otherwise.
-   */
-  bool isCurrentAlarm() const {
-    return currentAlarmLimit > 0 && getCurrent() >= currentAlarmLimit;
-  }
 
   /**
    * @brief Set the speed to the specified value.

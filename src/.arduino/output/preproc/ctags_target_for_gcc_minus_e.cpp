@@ -8,7 +8,6 @@
 # 8 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
 # 9 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
 
-
 # 12 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
 # 13 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
 # 14 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
@@ -16,8 +15,6 @@
 # 16 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
 # 17 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
 # 18 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino" 2
-
-
 
 const char *PARAM_INPUT_1 = "pos";
 const char *VAL_PARAM = "val";
@@ -29,7 +26,7 @@ const char *password = "superocean537";
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-const long minPrintTimeDelta = 500000L;
+const long MIN_PRINT_TIME_DELTA = 500000L;
 
 uint64_t M1_LIS_sum = 0;
 int M1_LIS_val = 0;
@@ -55,10 +52,7 @@ int M2_RIS_maxVal = 0;
 int M2_RIS_mean = 0;
 int M2_RIS_samples = 0;
 
-
-
-MotorController motor_controller(15000, 8,
-                                 192);
+MotorController motor_controller(15000, 8, 192);
 
 void display_network_info(void);
 
@@ -67,8 +61,7 @@ AsyncWebServer server(80);
 // Create a websocket server for updates
 AsyncWebSocket ws("/ws");
 
-void notFound(AsyncWebServerRequest *request)
-{
+void notFound(AsyncWebServerRequest *request) {
   request->send(404, "text/plain", "Not found");
 }
 
@@ -95,25 +88,18 @@ void handleWebSocketMessage(void *arg, uint8_t *data, size_t len) {}
  */
 # 86 "/home/terry/Projects/motor_control_firmware/motor_control_firmware.ino"
 void onEvent(AsyncWebSocket *server, AsyncWebSocketClient *client,
-             AwsEventType type, void *arg, uint8_t *data, size_t len)
-{
-  if (type == WS_EVT_CONNECT)
-  {
+             AwsEventType type, void *arg, uint8_t *data, size_t len) {
+  if (type == WS_EVT_CONNECT) {
     Serial.printf("WebSocket client #%u connected from %s\n", client->id(),
                   client->remoteIP().toString().c_str());
-  }
-  else if (type == WS_EVT_DISCONNECT)
-  {
+  } else if (type == WS_EVT_DISCONNECT) {
     Serial.printf("WebSocket client #%u disconnected\n", client->id());
-  }
-  else if (type == WS_EVT_DATA)
-  {
+  } else if (type == WS_EVT_DATA) {
     handleWebSocketMessage(arg, data, len);
   }
 }
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
   motor_controller.initialize();
@@ -125,8 +111,7 @@ void setup()
   WiFi.begin(ssid, password);
 
   Serial.print("Connecting");
-  while (WiFi.status() != WL_CONNECTED)
-  {
+  while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(100);
   }
@@ -137,8 +122,7 @@ void setup()
   display_network_info();
 
   // Initialize SPIFFS
-  if (!SPIFFS.begin(true))
-  {
+  if (!SPIFFS.begin(true)) {
     Serial.println("An Error has occurred while mounting SPIFFS");
     return;
   }
@@ -146,40 +130,111 @@ void setup()
   srand(std::time(nullptr));
 
   // Route for root / web page
-  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) { request->send(SPIFFS, "/index.html", String()); });
+  server.on("/", HTTP_GET, [](AsyncWebServerRequest *request) {
+    request->send(SPIFFS, "/index.html", String());
+  });
 
-  server.on("/style.css", HTTP_GET,
-            [](AsyncWebServerRequest *request) { request->send(SPIFFS, "/style.css", "text/css"); });
+  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+    request->send(SPIFFS, "/style.css", "text/css");
+  });
 
-  server.on("style.css", HTTP_GET,
-            [](AsyncWebServerRequest *request) { request->send(SPIFFS, "/style.css", "text/css"); });
+  server.on("style.css", HTTP_GET, [](AsyncWebServerRequest *request) {
+    request->send(SPIFFS, "/style.css", "text/css");
+  });
 
-  server.on("/extend", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.extend(); request->send(200, "text/plain", "Extending"); });
-  server.on("/retract", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.retract(); request->send(200, "text/plain", "Retracting"); });
-  server.on("/reset", HTTP_GET, [](AsyncWebServerRequest *request) { ESP.restart(); });
-  server.on("/stop", HTTP_GET, [](AsyncWebServerRequest *request) { motor_controller.stop(); request->send(200, "text/plain", "Stopping"); });
+  server.on("/extend", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.extend();
+    request->send(200, "text/plain", "Extending");
+  });
+  server.on("/retract", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.retract();
+    request->send(200, "text/plain", "Retracting");
+  });
+  server.on("/reset", HTTP_GET,
+            [](AsyncWebServerRequest *request) { ESP.restart(); });
+  server.on("/stop", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.stop();
+    request->send(200, "text/plain", "Stopping");
+  });
 
-  server.on("/get-tilt/1", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.setPos(savedPositions[0]); request->send(200, "text/plain", "Loading saved position 1"); });
-  server.on("/get-tilt/2", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.setPos(savedPositions[1]); request->send(200, "text/plain", "Loading saved position 2"); });
-  server.on("/get-tilt/3", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.setPos(savedPositions[2]); request->send(200, "text/plain", "Loading saved position 3"); });
-  server.on("/get-tilt/4", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.setPos(savedPositions[3]); request->send(200, "text/plain", "Loading saved position 4"); });
-  server.on("/get-tilt/5", HTTP_GET,
-            [](AsyncWebServerRequest *request) { motor_controller.setPos(savedPositions[4]); request->send(200, "text/plain", "Loading saved position 5"); });
+  server.on("/get-tilt/1", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.setPos(savedPositions[0]);
+    request->send(200, "text/plain", "Loading saved position 1");
+  });
+  server.on("/get-tilt/2", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.setPos(savedPositions[1]);
+    request->send(200, "text/plain", "Loading saved position 2");
+  });
+  server.on("/get-tilt/3", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.setPos(savedPositions[2]);
+    request->send(200, "text/plain", "Loading saved position 3");
+  });
+  server.on("/get-tilt/4", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.setPos(savedPositions[3]);
+    request->send(200, "text/plain", "Loading saved position 4");
+  });
+  server.on("/get-tilt/5", HTTP_GET, [](AsyncWebServerRequest *request) {
+    motor_controller.setPos(savedPositions[4]);
+    request->send(200, "text/plain", "Loading saved position 5");
+  });
 
-  server.on("/set-tilt/1", HTTP_GET, [](AsyncWebServerRequest *request) { String inputMessage1; if (request->hasParam(PARAM_INPUT_1)) { inputMessage1 = request->getParam(PARAM_INPUT_1)->value(); const int new_pos = inputMessage1.toInt(); motor_controller.savePosition(1, new_pos); } else { inputMessage1 = "Error: No position sent."; } request->send(200, "text/plain", inputMessage1); });
-  server.on("/set-tilt/2", HTTP_GET, [](AsyncWebServerRequest *request) { String inputMessage1; if (request->hasParam(PARAM_INPUT_1)) { inputMessage1 = request->getParam(PARAM_INPUT_1)->value(); const int new_pos = inputMessage1.toInt(); motor_controller.savePosition(2, new_pos); } else { inputMessage1 = "Error: No position sent."; } request->send(200, "text/plain", inputMessage1); });
-  server.on("/set-tilt/3", HTTP_GET, [](AsyncWebServerRequest *request) { String inputMessage1; if (request->hasParam(PARAM_INPUT_1)) { inputMessage1 = request->getParam(PARAM_INPUT_1)->value(); const int new_pos = inputMessage1.toInt(); motor_controller.savePosition(3, new_pos); } else { inputMessage1 = "Error: No position sent."; } request->send(200, "text/plain", inputMessage1); });
-  server.on("/set-tilt/4", HTTP_GET, [](AsyncWebServerRequest *request) { String inputMessage1; if (request->hasParam(PARAM_INPUT_1)) { inputMessage1 = request->getParam(PARAM_INPUT_1)->value(); const int new_pos = inputMessage1.toInt(); motor_controller.savePosition(4, new_pos); } else { inputMessage1 = "Error: No position sent."; } request->send(200, "text/plain", inputMessage1); });
-  server.on("/set-tilt/5", HTTP_GET, [](AsyncWebServerRequest *request) { String inputMessage1; if (request->hasParam(PARAM_INPUT_1)) { inputMessage1 = request->getParam(PARAM_INPUT_1)->value(); const int new_pos = inputMessage1.toInt(); motor_controller.savePosition(5, new_pos); } else { inputMessage1 = "Error: No position sent."; } request->send(200, "text/plain", inputMessage1); });
+  server.on("/set-tilt/1", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String inputMessage1;
+    if (request->hasParam(PARAM_INPUT_1)) {
+      inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
+      const int new_pos = inputMessage1.toInt();
+      motor_controller.savePosition(1, new_pos);
+    } else {
+      inputMessage1 = "Error: No position sent.";
+    }
+    request->send(200, "text/plain", inputMessage1);
+  });
+  server.on("/set-tilt/2", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String inputMessage1;
+    if (request->hasParam(PARAM_INPUT_1)) {
+      inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
+      const int new_pos = inputMessage1.toInt();
+      motor_controller.savePosition(2, new_pos);
+    } else {
+      inputMessage1 = "Error: No position sent.";
+    }
+    request->send(200, "text/plain", inputMessage1);
+  });
+  server.on("/set-tilt/3", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String inputMessage1;
+    if (request->hasParam(PARAM_INPUT_1)) {
+      inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
+      const int new_pos = inputMessage1.toInt();
+      motor_controller.savePosition(3, new_pos);
+    } else {
+      inputMessage1 = "Error: No position sent.";
+    }
+    request->send(200, "text/plain", inputMessage1);
+  });
+  server.on("/set-tilt/4", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String inputMessage1;
+    if (request->hasParam(PARAM_INPUT_1)) {
+      inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
+      const int new_pos = inputMessage1.toInt();
+      motor_controller.savePosition(4, new_pos);
+    } else {
+      inputMessage1 = "Error: No position sent.";
+    }
+    request->send(200, "text/plain", inputMessage1);
+  });
+  server.on("/set-tilt/5", HTTP_GET, [](AsyncWebServerRequest *request) {
+    String inputMessage1;
+    if (request->hasParam(PARAM_INPUT_1)) {
+      inputMessage1 = request->getParam(PARAM_INPUT_1)->value();
+      const int new_pos = inputMessage1.toInt();
+      motor_controller.savePosition(5, new_pos);
+    } else {
+      inputMessage1 = "Error: No position sent.";
+    }
+    request->send(200, "text/plain", inputMessage1);
+  });
 
-  server.on("/set", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/set", HTTP_GET, [](AsyncWebServerRequest *request) {
     String inputMessage1;
 
     // GET input1 value on
@@ -192,10 +247,10 @@ void setup()
       inputMessage1 = "No message sent";
     }
 
-    request->send(200, "text/plain", inputMessage1); });
+    request->send(200, "text/plain", inputMessage1);
+  });
 
-  server.on("/speed", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/speed", HTTP_GET, [](AsyncWebServerRequest *request) {
     String speedText;
 
     // GET input1 value on
@@ -213,10 +268,10 @@ void setup()
       speedText = "No message sent";
     }
 
-    request->send(200, "text/plain", speedText); });
+    request->send(200, "text/plain", speedText);
+  });
 
-  server.on("/kp", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/kp", HTTP_GET, [](AsyncWebServerRequest *request) {
     String kpInput;
 
     kpInput = request->getParam(VAL_PARAM)->value();
@@ -228,10 +283,10 @@ void setup()
       kpInput = "No message sent";
     }
 
-    request->send(200, "text/plain", kpInput); });
+    request->send(200, "text/plain", kpInput);
+  });
 
-  server.on("/ki", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/ki", HTTP_GET, [](AsyncWebServerRequest *request) {
     String kiInput;
 
     // GET input1 value on
@@ -247,10 +302,10 @@ void setup()
       kiInput = "No message sent";
     }
 
-    request->send(200, "text/plain", kiInput); });
+    request->send(200, "text/plain", kiInput);
+  });
 
-  server.on("/get-stats", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/get-stats", HTTP_GET, [](AsyncWebServerRequest *request) {
     String speed(motor_controller.speed);
     String ki(motor_controller.K_i);
     String kp(motor_controller.K_p);
@@ -261,47 +316,49 @@ void setup()
     String min_current(motor_controller.minCurrent);
     String alarm_current_velocity(motor_controller.alarmCurrentVelocity);
 
-    String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
-                      ",\"follower_current\":" + follower_current +
-                      ",\"speed\":" + speed +
-                      ",\"ki\":" + ki +
-                      ",\"kp\":" + kp +
-                      ",\"min_current\":" + min_current +
-                      ",\"alarm_current_velocity\":" + alarm_current_velocity +
-                      ",\"leader_pos\": " + leader_pos +
-                      ",\"follower_pos\": " + follower_pos + "}";
+    String response =
+        "{\"type\":\"stats\",\"leader_current\":" + leader_current +
+        ",\"follower_current\":" + follower_current + ",\"speed\":" + speed +
+        ",\"ki\":" + ki + ",\"kp\":" + kp + ",\"min_current\":" + min_current +
+        ",\"alarm_current_velocity\":" + alarm_current_velocity +
+        ",\"leader_pos\": " + leader_pos +
+        ",\"follower_pos\": " + follower_pos + "}";
 
-    request->send(200, "application/json", response.c_str()); });
+    request->send(200, "application/json", response.c_str());
+  });
 
-  server.on("/min-current", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
+  server.on("/min-current", HTTP_GET, [](AsyncWebServerRequest *request) {
     String minCurrentInput;
 
     minCurrentInput = request->getParam(VAL_PARAM)->value();
     const int newMinCurrent = minCurrentInput.toInt();
     if ((newMinCurrent >= 1 && newMinCurrent <= 4000)) {
       motor_controller.minCurrent = newMinCurrent;
-      Serial.printf("New min current: %d\n", motor_controller.minCurrent );
+      Serial.printf("New min current: %d\n", motor_controller.minCurrent);
     } else {
       minCurrentInput = "No message sent";
     }
 
-    request->send(200, "text/plain", minCurrentInput); });
+    request->send(200, "text/plain", minCurrentInput);
+  });
 
-  server.on("/alarm-current-velocity", HTTP_GET, [](AsyncWebServerRequest *request)
-            {
-    String alarmVelocity;
+  server.on("/alarm-current-velocity", HTTP_GET,
+            [](AsyncWebServerRequest *request) {
+              String alarmVelocity;
 
-    alarmVelocity = request->getParam(VAL_PARAM)->value();
-    const int newAlarmCurrentVelocity = alarmVelocity.toInt();
-    if ((newAlarmCurrentVelocity >= 50 && newAlarmCurrentVelocity <= 2500)) {
-      motor_controller.alarmCurrentVelocity = newAlarmCurrentVelocity;
-      Serial.printf("Alarm current velocity in mA/ms: %d\n", motor_controller.alarmCurrentVelocity);
-    } else {
-      alarmVelocity = "No message sent";
-    }
+              alarmVelocity = request->getParam(VAL_PARAM)->value();
+              const int newAlarmCurrentVelocity = alarmVelocity.toInt();
+              if ((newAlarmCurrentVelocity >= 50 &&
+                   newAlarmCurrentVelocity <= 2500)) {
+                motor_controller.alarmCurrentVelocity = newAlarmCurrentVelocity;
+                Serial.printf("Alarm current velocity in mA/ms: %d\n",
+                              motor_controller.alarmCurrentVelocity);
+              } else {
+                alarmVelocity = "No message sent";
+              }
 
-    request->send(200, "text/plain", alarmVelocity); });
+              request->send(200, "text/plain", alarmVelocity);
+            });
 
   ws.onEvent(onEvent);
   server.addHandler(&ws);
@@ -311,14 +368,11 @@ void setup()
   server.begin();
 }
 
-void loop()
-{
-  if (Serial.available() > 0)
-  {
+void loop() {
+  if (Serial.available() > 0) {
     Command cmd = static_cast<Command>(Serial.parseInt());
 
-    switch (cmd)
-    {
+    switch (cmd) {
     case Command::RETRACT:
       motor_controller.retract();
       break;
@@ -333,23 +387,38 @@ void loop()
       break;
     case Command::SAVE_TILT_1:
       // Read parameter
-      if (Serial.available() > 0) { int new_pos = Serial.parseInt(); motor_controller.savePosition(1, new_pos); }
+      if (Serial.available() > 0) {
+        int new_pos = Serial.parseInt();
+        motor_controller.savePosition(1, new_pos);
+      }
       break;
     case Command::SAVE_TILT_2:
       // Read parameter
-      if (Serial.available() > 0) { int new_pos = Serial.parseInt(); motor_controller.savePosition(2, new_pos); }
+      if (Serial.available() > 0) {
+        int new_pos = Serial.parseInt();
+        motor_controller.savePosition(2, new_pos);
+      }
       break;
     case Command::SAVE_TILT_3:
       // Read parameter
-      if (Serial.available() > 0) { int new_pos = Serial.parseInt(); motor_controller.savePosition(3, new_pos); }
+      if (Serial.available() > 0) {
+        int new_pos = Serial.parseInt();
+        motor_controller.savePosition(3, new_pos);
+      }
       break;
     case Command::SAVE_TILT_4:
       // Read parameter
-      if (Serial.available() > 0) { int new_pos = Serial.parseInt(); motor_controller.savePosition(4, new_pos); }
+      if (Serial.available() > 0) {
+        int new_pos = Serial.parseInt();
+        motor_controller.savePosition(4, new_pos);
+      }
       break;
     case Command::SAVE_TILT_5:
       // Read parameter
-      if (Serial.available() > 0) { int new_pos = Serial.parseInt(); motor_controller.savePosition(5, new_pos); }
+      if (Serial.available() > 0) {
+        int new_pos = Serial.parseInt();
+        motor_controller.savePosition(5, new_pos);
+      }
       break;
     case Command::GET_TILT_1:
       motor_controller.setPos(savedPositions[1]);
@@ -391,8 +460,7 @@ void loop()
   // SET_TO_ANALOG_PIN(CURRENT_TOLERANCE_PIN,
   // motor_controller.currentIncreaseTolerance, 0, CURRENT_INCREASE_LIMIT_MAX);
 
-  if (!motor_controller.isStopped() && (printDeltaTime > minPrintTimeDelta))
-  {
+  if (!motor_controller.isStopped() && (printDeltaTime > minPrintTimeDelta)) {
     display_motor_info();
     lastPrintTimeStamp = timestamp;
 
@@ -406,15 +474,13 @@ void loop()
     String min_current(motor_controller.minCurrent);
     String alarm_current_velocity(motor_controller.alarmCurrentVelocity);
 
-    String response = "{\"type\":\"stats\",\"leader_current\":" + leader_current +
-                      ",\"follower_current\":" + follower_current +
-                      ",\"speed\":" + speed +
-                      ",\"ki\":" + ki +
-                      ",\"kp\":" + kp +
-                      ",\"min_current\":" + min_current +
-                      ",\"alarm_current_velocity\":" + alarm_current_velocity +
-                      ",\"leader_pos\": " + leader_pos +
-                      ",\"follower_pos\": " + follower_pos + "}";
+    String response =
+        "{\"type\":\"stats\",\"leader_current\":" + leader_current +
+        ",\"follower_current\":" + follower_current + ",\"speed\":" + speed +
+        ",\"ki\":" + ki + ",\"kp\":" + kp + ",\"min_current\":" + min_current +
+        ",\"alarm_current_velocity\":" + alarm_current_velocity +
+        ",\"leader_pos\": " + leader_pos +
+        ",\"follower_pos\": " + follower_pos + "}";
     ;
 
     ws.textAll(response);
@@ -423,18 +489,14 @@ void loop()
   motor_controller.update(deltaT);
 }
 
-void display_motor_info(void)
-{
-  if (debugEnabled)
-  {
+void display_motor_info(void) {
+  if (debugEnabled) {
     motor_controller.report();
   }
 }
 
-void display_network_info(void)
-{
-  if (WiFi.status() == WL_CONNECTED)
-  {
+void display_network_info(void) {
+  if (WiFi.status() == WL_CONNECTED) {
     Serial.print("[*] Network information for ");
     Serial.println(ssid);
     Serial.print("[+] BSSID : ");

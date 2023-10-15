@@ -35,16 +35,18 @@ private:
   float derivative = 0.0f; /// The derivative term value
   float limMinInteg, limMaxInteg; /// Anti Windup Integrator Limits
   float lastError = 0.0f;         /// The last error value
-  float followerMaxAccel = 1.5f; // New variable for follower's max acceleration
+  float followerMaxAccel = 5.0f; // New variable for follower's max acceleration
   int followerMaxSpeed = MAX_SPEED; // New variable for follower's max speed
   float filteredSpeed = 0.0f;       // Declare filteredSpeed here
 
   const float MAX_ACCELERATION_INCREASE = 0.01f;
   const float MAX_ACCELERATION_LIMIT = 5.0f;
-  const float SPEED_ALPHA = 0.5f;     // The filtering constant for speed.
-  const float SETPOINT_WEIGHT = 1.1f; // or 0.8f as per your requirement
-  const int POSITION_DELTA_SPEED_SCALER_EXTEND = 7000;
-  const int POSITION_DELTA_SPEED_SCALER_RETRACT = 15000;
+  const float SPEED_ALPHA = 0.5f;      // The filtering constant for speed.
+  const float SETPOINT_WEIGHT = 1.15f; // or 0.8f as per your requirement
+  const int POSITION_DELTA_SPEED_SCALER_EXTEND = 70000;
+  const int POSITION_DELTA_SPEED_SCALER_RETRACT = 70000;
+
+  const int MAX_POSITION_SCALE_VALUE = 50;
 
 public:
   /**
@@ -164,9 +166,10 @@ public:
                                 ? POSITION_DELTA_SPEED_SCALER_EXTEND
                                 : POSITION_DELTA_SPEED_SCALER_RETRACT;
 
-    const int directionSign = leader.dir == Direction::EXTEND ? -1 : 1;
+    const int directionSign = leader.dir == Direction::EXTEND ? 1 : -1;
     const int positionDeltaBoost =
-        constrain(directionSign * positionDifference * scalarValue, 0, 25);
+        constrain(directionSign * positionDifference * scalarValue,
+                  -MAX_POSITION_SCALE_VALUE, MAX_POSITION_SCALE_VALUE);
 
     // Serial.printf("Position Delta Boost: %d\n", positionDeltaBoost);
 
@@ -176,10 +179,9 @@ public:
                                 0.001; // scaling down the adjustment rate
     int adjustedDeltaSpeed = constrain(u, -maxDeltaSpeed, maxDeltaSpeed);
 
-    int adjustedSpeed = speed + adjustedDeltaSpeed - positionDeltaBoost;
+    int adjustedSpeed = speed + adjustedDeltaSpeed + positionDeltaBoost;
 
-    adjustedSpeed = constrain(adjustedSpeed, 0,
-                              followerMaxSpeed); // Apply follower's speed limit
+    // Serial.printf("Adjusted Speed: %d\n", adjustedSpeed);
 
     if (debugEnabled) {
       // Debug prints
@@ -187,7 +189,7 @@ public:
 
     lastError = error;
     previousMeasurement = laggingMotorPosition;
-    return adjustedSpeed;
+    return constrain(adjustedSpeed, MIN_SPEED, MAX_SPEED);
   }
 
   void setFollowerMaxAccel(float newMaxAccel) {
@@ -207,9 +209,6 @@ public:
     Serial.printf("K_p: %d\n", K_p);
     Serial.printf("K_i: %f\n", K_i);
     Serial.printf("K_d: %f\n", K_d);
-    // Serial.printf("Last Error: %f\n", lastError);
-    // Serial.printf("Error integral: %f\n", errorIntegral);
-    // Serial.printf("Max Speed: %d\n", uMax);
     Serial.printf("Position Difference: %f\n", positionDifference);
     Serial.println("---------------------------");
   }

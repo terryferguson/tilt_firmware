@@ -10,9 +10,6 @@
 #include "ControlPins.hpp"
 #include "defs.hpp"
 
-#define ADC_LOGIC_VOLTAGE 3.3f
-#define ADC_RESOLUTION_BITS 12
-
 /** @class CurrentSense
  *
  * @brief This implements the current sense functionality for the motors
@@ -25,8 +22,8 @@
 
 class CurrentSense {
 private:
-  int_fast32_t CALIBRATE_ITERATIONS_SHIFT = 12;
-  int_fast32_t SAMPLE_CURRENT_ITERATIONS_SHIFT = 7;
+  int_fast32_t CALIBRATE_ITERATIONS_SHIFT = 14;
+  int_fast32_t SAMPLE_CURRENT_ITERATIONS_SHIFT = 6;
 
   /// @brief The number of millivolts per detected ampere of current
   int32_t MV_PER_AMP = static_cast<int32_t>(185 * 1.132);
@@ -37,12 +34,12 @@ private:
   int32_t ACS_OFFSET = 1885;
 
   adc1_channel_t currentSensePin;
-  double logicVoltage = 3.3;
-  int32_t maxAdcValue = (1 << ADC_RESOLUTION_BITS);
+  double logicVoltage = ADC_LOGIC_VOLTAGE;
+  int32_t maxAdcValue = MAX_ADC_VALUE;
 
 public:
   CurrentSense(const adc1_channel_t pCurrentSensePin = ADC1_CHANNEL_0,
-               const double pLogicVoltage = 3.3,
+               const double pLogicVoltage = ADC_LOGIC_VOLTAGE,
                const int32_t pMaxAdcValue = MAX_ADC_VALUE)
       : currentSensePin(pCurrentSensePin), logicVoltage(pLogicVoltage),
         maxAdcValue(pMaxAdcValue) {}
