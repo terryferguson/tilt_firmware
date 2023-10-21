@@ -14,15 +14,26 @@ void MotorsHomingFindBottomState::enter() {
   Serial.println("-----------------------------------------------------------");
 }
 
+/**
+ * Updates the MotorsHomingFindBottomState.
+ *
+ * @throws ErrorType description of error
+ */
 void MotorsHomingFindBottomState::update() {
 
+  // Check if the motors have stopped
   if (controller->motorsStopped()) {
+    // Print message to serial monitor
     Serial.println("Bottom Found.");
 
+    // Set transition flag to true
     hasTransition = true;
+
+    // Set next state type to MOTORS_HOMING_BOTTOM_FOUND_STATE
     nextStateType = MOTORS_HOMING_BOTTOM_FOUND_STATE;
   }
 
+  // Update the motors
   controller->updateMotors();
 }
 

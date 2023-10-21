@@ -192,6 +192,20 @@ void StateController::OnEndOfRange() {
   }
 }
 
+/**
+ * Sets the current state of the StateController to the motorsHomingState
+ * and updates it. If the current state is not motorsHomingState,
+ * motorsHomingFindBottomState, or motorsHomingBottomFoundState, the
+ * currentState is changed to motorsHomingState and its enter() and update()
+ * methods are called. If the currentState is not null, its leave() method is
+ * called before changing the currentState.
+ *
+ * @param None
+ *
+ * @return None
+ *
+ * @throws None
+ */
 void StateController::OnHome() {
   if ((currentState != &motorsHomingState &&
        currentState != &motorsHomingFindBottomState &&
