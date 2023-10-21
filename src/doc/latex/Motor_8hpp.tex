@@ -1,9 +1,12 @@
 \doxysection{Motor.\+hpp File Reference}
 \hypertarget{Motor_8hpp}{}\label{Motor_8hpp}\index{Motor.hpp@{Motor.hpp}}
+{\ttfamily \#include "{}Control\+Pins.\+hpp"{}}\newline
+{\ttfamily \#include "{}Current\+Sense.\+hpp"{}}\newline
 {\ttfamily \#include "{}Pin\+Macros.\+hpp"{}}\newline
 {\ttfamily \#include "{}defs.\+hpp"{}}\newline
 {\ttfamily \#include $<$ESP32\+Encoder.\+h$>$}\newline
 {\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$driver/adc.\+h$>$}\newline
 \doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -12,16 +15,13 @@ class \mbox{\hyperlink{classMotor}{Motor}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{Motor_8hpp_ad23213a97a0a8d76e7cbcf503520d59d}\label{Motor_8hpp_ad23213a97a0a8d76e7cbcf503520d59d} 
-\#define {\bfseries READ\+\_\+\+POSITION\+\_\+\+ENCODER}()~this-\/$>$pos = distance\+Sensor.\+get\+Count();
+\Hypertarget{Motor_8hpp_a7f585f2572a7891f8a821abdaf419173}\label{Motor_8hpp_a7f585f2572a7891f8a821abdaf419173} 
+\#define {\bfseries MOTOR1\+\_\+\+LIMIT}~32
+\item 
+\Hypertarget{Motor_8hpp_a85252b816252972268a6c2355d78c700}\label{Motor_8hpp_a85252b816252972268a6c2355d78c700} 
+\#define {\bfseries MOTOR2\+\_\+\+LIMIT}~33
 \item 
 \#define \mbox{\hyperlink{Motor_8hpp_a59c50d99a487b73404c203a1dec09fc2}{MOVE\+\_\+\+TO\+\_\+\+POS}}(setpoint,  min\+\_\+delta,  buffer)
-\end{DoxyCompactItemize}
-\doxysubsubsection*{Variables}
-\begin{DoxyCompactItemize}
-\item 
-\Hypertarget{Motor_8hpp_aa1755ddcacd4dcebcf9280fdcb598e3a}\label{Motor_8hpp_aa1755ddcacd4dcebcf9280fdcb598e3a} 
-int {\bfseries current\+PWMChannel} = 0
 \end{DoxyCompactItemize}
 
 

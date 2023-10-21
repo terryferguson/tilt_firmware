@@ -4,35 +4,21 @@
 \DoxyCodeLine{00001\ }
 \DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_PIN\_MACROS\_HPP\_}}
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_PIN\_MACROS\_HPP\_}}
-\DoxyCodeLine{00004\ }
-\DoxyCodeLine{00012\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{PinMacros_8hpp_ae191e193234145f67a5acafe9cd7b6b3}{fmap}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ in\_min,\ \textcolor{keywordtype}{float}\ in\_max,\ \textcolor{keywordtype}{float}\ out\_min,\ \textcolor{keywordtype}{float}\ out\_max)\ \{}
-\DoxyCodeLine{00013\ \ \ \textcolor{keywordflow}{return}\ (x\ -\/\ in\_min)\ *\ (out\_max\ -\/\ out\_min)\ /\ (in\_max\ -\/\ in\_min)\ +\ out\_min;}
-\DoxyCodeLine{00014\ \}}
-\DoxyCodeLine{00015\ }
-\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ FSET\_TO\_ANALOG\_PIN(pin,\ var\_to\_set,\ range\_min,\ range\_max)\ \(\backslash\)}}
-\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ var\_to\_set\ =\ fmap(analogRead(pin),\ 0,\ 4096,\ range\_min,\ range\_max)}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ motorPinWrite(pin,\ value)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ digitalWrite(static\_cast<std::uint8\_t>(pin),\ value)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ motorPinWrite(pin,\ value)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ digitalWrite(static\_cast<std::uint8\_t>(pin),\ value)}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ motorPinMode(pin,\ value)\ pinMode(static\_cast<std::uint8\_t>(pin),\ value)}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ motorAttachPin(pin,\ channel)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ ledcAttachPin(static\_cast<std::uint8\_t>(pin),\ channel)}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ motorAnalogRead(pin)\ analogRead(static\_cast<std::uint8\_t>(pin))}}
 \DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ SET\_TO\_ANALOG\_PIN(pin,\ var\_to\_set,\ range\_min,\ range\_max)\ \(\backslash\)}}
-\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ var\_to\_set\ =\ map(analogRead(pin),\ 0,\ 4096,\ range\_min,\ range\_max)}}
-\DoxyCodeLine{00021\ }
-\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ SET\_TO\_ANALOG\_PIN\_FUNC(pin,\ func,\ range\_min,\ range\_max)\ \(\backslash\)}}
-\DoxyCodeLine{00023\ \textcolor{preprocessor}{func(map(analogRead(pin),\ 0,\ 4096,\ range\_min,\ range\_max))}}
-\DoxyCodeLine{00024\ }
-\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ motorPinWrite(pin,\ value)\ \(\backslash\)}}
-\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ digitalWrite(static\_cast<std::uint8\_t>(pin),\ value)}}
-\DoxyCodeLine{00027\ }
-\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ motorPinWrite(pin,\ value)\ \(\backslash\)}}
-\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ digitalWrite(static\_cast<std::uint8\_t>(pin),\ value)}}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ motorPinMode(pin,\ value)\ \(\backslash\)}}
-\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ pinMode(static\_cast<std::uint8\_t>(pin),\ value)}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ motorAttachPin(pin,\ channel)\ \(\backslash\)}}
-\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ ledcAttachPin(static\_cast<std::uint8\_t>(pin),\ channel)}}
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ motorAnalogRead(pin)\ \(\backslash\)}}
-\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ analogRead(static\_cast<std::uint8\_t>(pin))}}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_PIN\_MACROS\_HPP\_}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_PIN\_MACROS\_HPP\_}}
 
 \end{DoxyCode}

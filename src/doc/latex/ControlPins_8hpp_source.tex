@@ -6,15 +6,12 @@
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_CONTROL\_PINS\_HPP\_}}
 \DoxyCodeLine{00005\ }
 \DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <cstdint>}}
-\DoxyCodeLine{00007\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{ControlPins_8hpp_a834b20ddb56a532b2fc23276db08bb66}{ControlPin}}\ :\ std::uint8\_t\ \{}
-\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{ControlPins_8hpp_a834b20ddb56a532b2fc23276db08bb66a5ef0153ec1486a4da1db6a130c2dcbaa}{UNASSIGNED}}\ =\ 255,}
-\DoxyCodeLine{00022\ \ \ }
-\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{ControlPins_8hpp_a834b20ddb56a532b2fc23276db08bb66a3c736b43944b6a80bb11b7363e7b76df}{LEFT\_CURRENT\_SENSE\_PIN}}\ =\ 35,}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{ControlPins_8hpp_a834b20ddb56a532b2fc23276db08bb66a5b13a47099b78cbd2afa2c5f92916c3e}{RIGHT\_CURRENT\_SENSE\_PIN}}\ =\ 34,}
-\DoxyCodeLine{00028\ \};}
-\DoxyCodeLine{00029\ }
-\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_CONTROL\_PINS\_HPP\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <driver/adc.h>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ LEADER\_CURRENT\_SENSE\_PIN\ ADC1\_CHANNEL\_0}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ FOLLOWER\_CURRENT\_SENSE\_PIN\ ADC1\_CHANNEL\_3}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_CONTROL\_PINS\_HPP\_}}
 
 \end{DoxyCode}

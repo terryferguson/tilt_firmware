@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['motor_0',['Motor',['../classMotor.html',1,'']]],
-  ['motorcontroller_1',['MotorController',['../classMotorController.html',1,'']]],
-  ['motorpins_2',['MotorPins',['../classMotorPins.html',1,'']]]
+  ['ema_0',['EMA',['../classEMA.html',1,'']]],
+  ['ema_3c_201_20_3e_1',['EMA&lt; 1 &gt;',['../classEMA.html',1,'']]]
 ];

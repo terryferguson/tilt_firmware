@@ -91,53 +91,26 @@ $(document).ready(function(){initNavTree('ControlPins_8hpp.html',''); initResiza
 
 <div class="header">
   <div class="summary">
-<a href="#enum-members">Enumerations</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">ControlPins.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;driver/adc.h&gt;</code><br />
 </div>
 <p><a href="ControlPins_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a834b20ddb56a532b2fc23276db08bb66" id="r_a834b20ddb56a532b2fc23276db08bb66"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ControlPins_8hpp.html#a834b20ddb56a532b2fc23276db08bb66">ControlPin</a> : std::uint8_t { <a class="el" href="ControlPins_8hpp.html#a834b20ddb56a532b2fc23276db08bb66a5ef0153ec1486a4da1db6a130c2dcbaa">UNASSIGNED</a> = 255
-, <a class="el" href="ControlPins_8hpp.html#a834b20ddb56a532b2fc23276db08bb66a3c736b43944b6a80bb11b7363e7b76df">LEFT_CURRENT_SENSE_PIN</a> = 35
-, <a class="el" href="ControlPins_8hpp.html#a834b20ddb56a532b2fc23276db08bb66a5b13a47099b78cbd2afa2c5f92916c3e">RIGHT_CURRENT_SENSE_PIN</a> = 34
- }</td></tr>
-<tr class="separator:a834b20ddb56a532b2fc23276db08bb66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ad25f3431a9cfe4d5f8fd3fa7f3c18975" id="r_ad25f3431a9cfe4d5f8fd3fa7f3c18975"><td class="memItemLeft" align="right" valign="top"><a id="ad25f3431a9cfe4d5f8fd3fa7f3c18975" name="ad25f3431a9cfe4d5f8fd3fa7f3c18975"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>LEADER_CURRENT_SENSE_PIN</b>&#160;&#160;&#160;ADC1_CHANNEL_0</td></tr>
+<tr class="memdesc:ad25f3431a9cfe4d5f8fd3fa7f3c18975"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leader current sense ADC channel pin. <br /></td></tr>
+<tr class="separator:ad25f3431a9cfe4d5f8fd3fa7f3c18975"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e66ad1df8e9635c347e82dc45a43fe7" id="r_a5e66ad1df8e9635c347e82dc45a43fe7"><td class="memItemLeft" align="right" valign="top"><a id="a5e66ad1df8e9635c347e82dc45a43fe7" name="a5e66ad1df8e9635c347e82dc45a43fe7"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>FOLLOWER_CURRENT_SENSE_PIN</b>&#160;&#160;&#160;ADC1_CHANNEL_3</td></tr>
+<tr class="memdesc:a5e66ad1df8e9635c347e82dc45a43fe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follower current sense ADC channel pin. <br /></td></tr>
+<tr class="separator:a5e66ad1df8e9635c347e82dc45a43fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a834b20ddb56a532b2fc23276db08bb66" name="a834b20ddb56a532b2fc23276db08bb66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a834b20ddb56a532b2fc23276db08bb66">&#9670;&#160;</a></span>ControlPin</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum class <a class="el" href="classControlPin.html">ControlPin</a> : std::uint8_t</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a834b20ddb56a532b2fc23276db08bb66a5ef0153ec1486a4da1db6a130c2dcbaa" name="a834b20ddb56a532b2fc23276db08bb66a5ef0153ec1486a4da1db6a130c2dcbaa"></a>UNASSIGNED&#160;</td><td class="fielddoc"><p>NULL pin for unassigned </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a834b20ddb56a532b2fc23276db08bb66a3c736b43944b6a80bb11b7363e7b76df" name="a834b20ddb56a532b2fc23276db08bb66a3c736b43944b6a80bb11b7363e7b76df"></a>LEFT_CURRENT_SENSE_PIN&#160;</td><td class="fielddoc"><p>Left current sense pin </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a834b20ddb56a532b2fc23276db08bb66a5b13a47099b78cbd2afa2c5f92916c3e" name="a834b20ddb56a532b2fc23276db08bb66a5b13a47099b78cbd2afa2c5f92916c3e"></a>RIGHT_CURRENT_SENSE_PIN&#160;</td><td class="fielddoc"><p>Right current sense pin </p>
-</td></tr>
-</table>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

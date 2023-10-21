@@ -12,14 +12,13 @@ This implements the current sense functionality for the motors.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{classCurrentSense_a1e5a3514853db375e18c4db5f7ded590}\label{classCurrentSense_a1e5a3514853db375e18c4db5f7ded590} 
-{\bfseries Current\+Sense} (const \mbox{\hyperlink{classControlPin}{Control\+Pin}} p\+Current\+Sense\+Pin=Control\+Pin\+::\+CURRENT\+\_\+\+SENSE\+\_\+\+PIN, const double p\+Logic\+Voltage=5.\+0, const int32\+\_\+t p\+Max\+Adc\+Value=MAX\+\_\+\+ADC\+\_\+\+VALUE)
+\Hypertarget{classCurrentSense_adcfbf9c1c5d38929d7bee66f5912e42f}\label{classCurrentSense_adcfbf9c1c5d38929d7bee66f5912e42f} 
+{\bfseries Current\+Sense} (const adc1\+\_\+channel\+\_\+t p\+Current\+Sense\+Pin=ADC1\+\_\+\+CHANNEL\+\_\+0, const double p\+Logic\+Voltage=\mbox{\hyperlink{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba}{ADC\+\_\+\+LOGIC\+\_\+\+VOLTAGE}}, const int32\+\_\+t p\+Max\+Adc\+Value=\mbox{\hyperlink{defs_8hpp_a5dcc52ed1e9a88431bafb98ef6ec9155}{MAX\+\_\+\+ADC\+\_\+\+VALUE}})
 \item 
-\Hypertarget{classCurrentSense_ada9cc6fd254fa17d1c3b5f67bc0096ab}\label{classCurrentSense_ada9cc6fd254fa17d1c3b5f67bc0096ab} 
-void {\bfseries initialize} ()
-\item 
+void \mbox{\hyperlink{classCurrentSense_a6f4546c4c66de7ffdba17fe93a870737}{initialize}} (const adc1\+\_\+channel\+\_\+t p\+Current\+Sense\+Pin=ADC1\+\_\+\+CHANNEL\+\_\+0)
+\begin{DoxyCompactList}\small\item\em Initialize the current sensing pin and calibrate the ACS offset. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{classCurrentSense_a3ee919f39b0d70a7da1b540ed87ea1aa}{get\+Current}} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calculates the average current. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -42,7 +41,9 @@ Terry Paul Ferguson
 \doxysubsubsection{\texorpdfstring{getCurrent()}{getCurrent()}}
 {\footnotesize\ttfamily int Current\+Sense\+::get\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
-Calculates the average current.
+
+
+Calculates the average current. 
 
 \begin{DoxyReturn}{Returns}
 the average current of the sampling
@@ -52,6 +53,21 @@ the average current of the sampling
 {\em None} & \\
 \hline
 \end{DoxyExceptions}
+\Hypertarget{classCurrentSense_a6f4546c4c66de7ffdba17fe93a870737}\label{classCurrentSense_a6f4546c4c66de7ffdba17fe93a870737} 
+\index{CurrentSense@{CurrentSense}!initialize@{initialize}}
+\index{initialize@{initialize}!CurrentSense@{CurrentSense}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void Current\+Sense\+::initialize (\begin{DoxyParamCaption}\item[{const adc1\+\_\+channel\+\_\+t}]{p\+Current\+Sense\+Pin = {\ttfamily ADC1\+\_\+CHANNEL\+\_\+0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialize the current sensing pin and calibrate the ACS offset. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Current\+Sense\+Pin} & The pin used for current sensing. Defaults to ADC1\+\_\+\+CHANNEL\+\_\+0. \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

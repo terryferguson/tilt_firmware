@@ -141,8 +141,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  motor_controller.setPos(savedPositions[position]);                           \</div>
+<b>Value:</b><div class="fragment"><div class="line">  motor_controller.<a class="code hl_function" href="classMotorController.html#aecc3d8d28295d30f34d8f3b736243877">setPos</a>(<a class="code hl_variable" href="defs_8hpp.html#a36ecb22e6d7f28e169936958b450c22d">savedPositions</a>[position]);                           \</div>
 <div class="line">  request-&gt;send(200, <span class="stringliteral">&quot;text/plain&quot;</span>, response_text);</div>
+<div class="ttc" id="aclassMotorController_html_aecc3d8d28295d30f34d8f3b736243877"><div class="ttname"><a href="classMotorController.html#aecc3d8d28295d30f34d8f3b736243877">MotorController::setPos</a></div><div class="ttdeci">void setPos(const int newPos)</div><div class="ttdef"><b>Definition</b> MotorController.hpp:710</div></div>
+<div class="ttc" id="adefs_8hpp_html_a36ecb22e6d7f28e169936958b450c22d"><div class="ttname"><a href="defs_8hpp.html#a36ecb22e6d7f28e169936958b450c22d">savedPositions</a></div><div class="ttdeci">int savedPositions[NUM_POSITION_SLOTS]</div><div class="ttdoc">Storage for position in hall sensor pusles relative to initial position when powered on.</div><div class="ttdef"><b>Definition</b> defs.hpp:28</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -215,10 +217,11 @@ Macros</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (request-&gt;hasParam(PARAM_INPUT_1)) {                                      \</div>
 <div class="line">    inputMessage1 = request-&gt;getParam(PARAM_INPUT_1)-&gt;value();                 \</div>
 <div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> new_pos = inputMessage1.toInt();                                       \</div>
-<div class="line">    motor_controller.savePosition(n, new_pos);                                 \</div>
+<div class="line">    motor_controller.<a class="code hl_function" href="classMotorController.html#a3d3c79eeae2492a637d62612689e55ce">savePosition</a>(n, new_pos);                                 \</div>
 <div class="line">  } <span class="keywordflow">else</span> {                                                                     \</div>
 <div class="line">    inputMessage1 = <span class="stringliteral">&quot;Error: No position sent.&quot;</span>;                                \</div>
 <div class="line">  }</div>
+<div class="ttc" id="aclassMotorController_html_a3d3c79eeae2492a637d62612689e55ce"><div class="ttname"><a href="classMotorController.html#a3d3c79eeae2492a637d62612689e55ce">MotorController::savePosition</a></div><div class="ttdeci">void savePosition(const int slot, const int position_value=-1)</div><div class="ttdoc">Saves the position value for a given slot.</div><div class="ttdef"><b>Definition</b> MotorController.hpp:690</div></div>
 </div><!-- fragment -->
 </div>
 </div>

@@ -104,13 +104,14 @@ $(document).ready(function(){initNavTree('classCurrentSense.html',''); initResiz
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1e5a3514853db375e18c4db5f7ded590" id="r_a1e5a3514853db375e18c4db5f7ded590"><td class="memItemLeft" align="right" valign="top"><a id="a1e5a3514853db375e18c4db5f7ded590" name="a1e5a3514853db375e18c4db5f7ded590"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSense</b> (const <a class="el" href="classControlPin.html">ControlPin</a> pCurrentSensePin=ControlPin::CURRENT_SENSE_PIN, const double pLogicVoltage=5.0, const int32_t pMaxAdcValue=MAX_ADC_VALUE)</td></tr>
-<tr class="separator:a1e5a3514853db375e18c4db5f7ded590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada9cc6fd254fa17d1c3b5f67bc0096ab" id="r_ada9cc6fd254fa17d1c3b5f67bc0096ab"><td class="memItemLeft" align="right" valign="top"><a id="ada9cc6fd254fa17d1c3b5f67bc0096ab" name="ada9cc6fd254fa17d1c3b5f67bc0096ab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
-<tr class="separator:ada9cc6fd254fa17d1c3b5f67bc0096ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcfbf9c1c5d38929d7bee66f5912e42f" id="r_adcfbf9c1c5d38929d7bee66f5912e42f"><td class="memItemLeft" align="right" valign="top"><a id="adcfbf9c1c5d38929d7bee66f5912e42f" name="adcfbf9c1c5d38929d7bee66f5912e42f"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSense</b> (const adc1_channel_t pCurrentSensePin=ADC1_CHANNEL_0, const double pLogicVoltage=<a class="el" href="defs_8hpp.html#a6e33f84943fcca38a31e4f8aec7fe3ba">ADC_LOGIC_VOLTAGE</a>, const int32_t pMaxAdcValue=<a class="el" href="defs_8hpp.html#a5dcc52ed1e9a88431bafb98ef6ec9155">MAX_ADC_VALUE</a>)</td></tr>
+<tr class="separator:adcfbf9c1c5d38929d7bee66f5912e42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f4546c4c66de7ffdba17fe93a870737" id="r_a6f4546c4c66de7ffdba17fe93a870737"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurrentSense.html#a6f4546c4c66de7ffdba17fe93a870737">initialize</a> (const adc1_channel_t pCurrentSensePin=ADC1_CHANNEL_0)</td></tr>
+<tr class="memdesc:a6f4546c4c66de7ffdba17fe93a870737"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the current sensing pin and calibrate the ACS offset.  <br /></td></tr>
+<tr class="separator:a6f4546c4c66de7ffdba17fe93a870737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ee919f39b0d70a7da1b540ed87ea1aa" id="r_a3ee919f39b0d70a7da1b540ed87ea1aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurrentSense.html#a3ee919f39b0d70a7da1b540ed87ea1aa">getCurrent</a> () const</td></tr>
+<tr class="memdesc:a3ee919f39b0d70a7da1b540ed87ea1aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the average current.  <br /></td></tr>
 <tr class="separator:a3ee919f39b0d70a7da1b540ed87ea1aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -142,11 +143,46 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Calculates the average current.</p>
+
+<p>Calculates the average current. </p>
 <dl class="section return"><dt>Returns</dt><dd>the average current of the sampling</dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6f4546c4c66de7ffdba17fe93a870737" name="a6f4546c4c66de7ffdba17fe93a870737"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f4546c4c66de7ffdba17fe93a870737">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CurrentSense::initialize </td>
+          <td>(</td>
+          <td class="paramtype">const adc1_channel_t&#160;</td>
+          <td class="paramname"><em>pCurrentSensePin</em> = <code>ADC1_CHANNEL_0</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the current sensing pin and calibrate the ACS offset. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pCurrentSensePin</td><td>The pin used for current sensing. Defaults to ADC1_CHANNEL_0. </td></tr>
   </table>
   </dd>
 </dl>

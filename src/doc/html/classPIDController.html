@@ -96,24 +96,50 @@ $(document).ready(function(){initNavTree('classPIDController.html',''); initResi
   <div class="headertitle"><div class="title">PIDController Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is the PID controller for motor synchronization.  
+ <a href="classPIDController.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="PIDController_8hpp_source.html">PIDController.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7922c6d8df578328b3b730059ad07eff" id="r_a7922c6d8df578328b3b730059ad07eff"><td class="memItemLeft" align="right" valign="top"><a id="a7922c6d8df578328b3b730059ad07eff" name="a7922c6d8df578328b3b730059ad07eff"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PIDController</b> (float kp=0.1, float ti=0.002, float td=0.01, float uMax=255.0)</td></tr>
-<tr class="separator:a7922c6d8df578328b3b730059ad07eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d0e1e8c269d9941c78a5814b86ea3d0" id="r_a6d0e1e8c269d9941c78a5814b86ea3d0"><td class="memItemLeft" align="right" valign="top"><a id="a6d0e1e8c269d9941c78a5814b86ea3d0" name="a6d0e1e8c269d9941c78a5814b86ea3d0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setParams</b> (float kpIn, float kdIn, float kiIn, float uMaxIn=255.0)</td></tr>
-<tr class="separator:a6d0e1e8c269d9941c78a5814b86ea3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afee8d68c453ec8086c60f0e9524c2071" id="r_afee8d68c453ec8086c60f0e9524c2071"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPIDController.html#afee8d68c453ec8086c60f0e9524c2071">evaluate</a> (int value, int target, float deltaT, int &amp;speed, <a class="el" href="classDirection.html">Direction</a> &amp;dir)</td></tr>
-<tr class="separator:afee8d68c453ec8086c60f0e9524c2071"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f598d502a158a2fbcc20380ea09334e" id="r_a9f598d502a158a2fbcc20380ea09334e"><td class="memItemLeft" align="right" valign="top"><a id="a9f598d502a158a2fbcc20380ea09334e" name="a9f598d502a158a2fbcc20380ea09334e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>report</b> (const int value, const int target, const float deltaT, const int speed, const <a class="el" href="classDirection.html">Direction</a> dir) const</td></tr>
-<tr class="separator:a9f598d502a158a2fbcc20380ea09334e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eea6ac267fcfac5aa36fe470308112f" id="r_a8eea6ac267fcfac5aa36fe470308112f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPIDController.html#a8eea6ac267fcfac5aa36fe470308112f">PIDController</a> (const int kp=<a class="el" href="defs_8hpp.html#afeae84af3adb5eed1b263ab11960aeff">DEFAULT_KP</a>, const float ki=<a class="el" href="defs_8hpp.html#aa59d9e5b54fc0bd20d97e0df17be6d21">DEFAULT_KI</a>, const float kd=<a class="el" href="defs_8hpp.html#a99953e55db79066c36ed8cf2cd7c09bb">DEFAULT_KD</a>, const float tau=1.0f, const int uMax=<a class="el" href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a>)</td></tr>
+<tr class="memdesc:a8eea6ac267fcfac5aa36fe470308112f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the PID controller for motor synchronization.  <br /></td></tr>
+<tr class="separator:a8eea6ac267fcfac5aa36fe470308112f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a726ff1a9e7864eb2f4ff7dc223ef1c1a" id="r_a726ff1a9e7864eb2f4ff7dc223ef1c1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPIDController.html#a726ff1a9e7864eb2f4ff7dc223ef1c1a">setParams</a> (const int kpIn, const float kiIn=<a class="el" href="defs_8hpp.html#aa59d9e5b54fc0bd20d97e0df17be6d21">DEFAULT_KI</a>, const float kdIn=<a class="el" href="defs_8hpp.html#a99953e55db79066c36ed8cf2cd7c09bb">DEFAULT_KD</a>, const int uMaxIn=<a class="el" href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a>)</td></tr>
+<tr class="separator:a726ff1a9e7864eb2f4ff7dc223ef1c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4179077c8408485fa0d04c0000c81a74" id="r_a4179077c8408485fa0d04c0000c81a74"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPIDController.html#a4179077c8408485fa0d04c0000c81a74">adjustSpeed</a> (<a class="el" href="classMotor.html">Motor</a> &amp;leader, <a class="el" href="classMotor.html">Motor</a> &amp;follower, const int speed, const float deltaT=0.0f)</td></tr>
+<tr class="memdesc:a4179077c8408485fa0d04c0000c81a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute the adjusted speed based on the current value, target value, and speed.  <br /></td></tr>
+<tr class="separator:a4179077c8408485fa0d04c0000c81a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5244cc101c56e71f0211cd1b71ce6ba1" id="r_a5244cc101c56e71f0211cd1b71ce6ba1"><td class="memItemLeft" align="right" valign="top"><a id="a5244cc101c56e71f0211cd1b71ce6ba1" name="a5244cc101c56e71f0211cd1b71ce6ba1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFollowerMaxAccel</b> (float newMaxAccel)</td></tr>
+<tr class="separator:a5244cc101c56e71f0211cd1b71ce6ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a035e809d9f3ac0d00da29e86147e11" id="r_a5a035e809d9f3ac0d00da29e86147e11"><td class="memItemLeft" align="right" valign="top"><a id="a5a035e809d9f3ac0d00da29e86147e11" name="a5a035e809d9f3ac0d00da29e86147e11"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setFollowerMaxSpeed</b> (int newMaxSpeed)</td></tr>
+<tr class="separator:a5a035e809d9f3ac0d00da29e86147e11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b30379029471cafe632884c6fa6729a" id="r_a6b30379029471cafe632884c6fa6729a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPIDController.html#a6b30379029471cafe632884c6fa6729a">report</a> () const</td></tr>
+<tr class="memdesc:a6b30379029471cafe632884c6fa6729a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports the PID parameters.  <br /></td></tr>
+<tr class="separator:a6b30379029471cafe632884c6fa6729a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1d0f85cef60fe25424e88a6adbb51a" id="r_a3b1d0f85cef60fe25424e88a6adbb51a"><td class="memItemLeft" align="right" valign="top"><a id="a3b1d0f85cef60fe25424e88a6adbb51a" name="a3b1d0f85cef60fe25424e88a6adbb51a"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setKd</b> (float newKd)</td></tr>
+<tr class="separator:a3b1d0f85cef60fe25424e88a6adbb51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab442bf567d1d1360578ce145765f4aa0" id="r_ab442bf567d1d1360578ce145765f4aa0"><td class="memItemLeft" align="right" valign="top"><a id="ab442bf567d1d1360578ce145765f4aa0" name="ab442bf567d1d1360578ce145765f4aa0"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setKi</b> (float newKi)</td></tr>
+<tr class="separator:ab442bf567d1d1360578ce145765f4aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6adfbffa30414f0a83b95ba999a2fea" id="r_ab6adfbffa30414f0a83b95ba999a2fea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPIDController.html#ab6adfbffa30414f0a83b95ba999a2fea">reset</a> ()</td></tr>
+<tr class="memdesc:ab6adfbffa30414f0a83b95ba999a2fea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the PID Controller.  <br /></td></tr>
+<tr class="separator:ab6adfbffa30414f0a83b95ba999a2fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a id="afee8d68c453ec8086c60f0e9524c2071" name="afee8d68c453ec8086c60f0e9524c2071"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afee8d68c453ec8086c60f0e9524c2071">&#9670;&#160;</a></span>evaluate()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is the PID controller for motor synchronization. </p>
+<dl class="section author"><dt>Author</dt><dd>Terry Paul Ferguson </dd>
+<dd>
+<a href="#" onclick="location.href='mai'+'lto:'+'ter'+'ry'+'@te'+'rr'+'yfe'+'rg'+'uso'+'n.'+'us'; return false;">terry<span class="obfuscator">.nosp@m.</span>@ter<span class="obfuscator">.nosp@m.</span>ryfer<span class="obfuscator">.nosp@m.</span>guso<span class="obfuscator">.nosp@m.</span>n.us</a></dd></dl>
+<dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a8eea6ac267fcfac5aa36fe470308112f" name="a8eea6ac267fcfac5aa36fe470308112f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eea6ac267fcfac5aa36fe470308112f">&#9670;&#160;</a></span>PIDController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -122,34 +148,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>report</b> (const int
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void PIDController::evaluate </td>
+          <td class="memname">PIDController::PIDController </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>value</em>, </td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>kp</em> = <code><a class="el" href="defs_8hpp.html#afeae84af3adb5eed1b263ab11960aeff">DEFAULT_KP</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>target</em>, </td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>ki</em> = <code><a class="el" href="defs_8hpp.html#aa59d9e5b54fc0bd20d97e0df17be6d21">DEFAULT_KI</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>deltaT</em>, </td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>kd</em> = <code><a class="el" href="defs_8hpp.html#a99953e55db79066c36ed8cf2cd7c09bb">DEFAULT_KD</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int &amp;&#160;</td>
-          <td class="paramname"><em>speed</em>, </td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>tau</em> = <code>1.0f</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classDirection.html">Direction</a> &amp;&#160;</td>
-          <td class="paramname"><em>dir</em>&#160;</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>uMax</em> = <code><a class="el" href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -163,14 +189,208 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>report</b> (const int
   </tr>
 </table>
 </div><div class="memdoc">
-<p>A function to compute the control signal</p>
+
+<p>This is the PID controller for motor synchronization. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>The current value </td></tr>
-    <tr><td class="paramname">target</td><td>The target value </td></tr>
-    <tr><td class="paramname">deltaT</td><td>The time step </td></tr>
+    <tr><td class="paramname">kp</td><td>The proportional gain </td></tr>
+    <tr><td class="paramname">ki</td><td>The integral gain </td></tr>
+    <tr><td class="paramname">kd</td><td>The derivative gain </td></tr>
+    <tr><td class="paramname">tau</td><td>The controller's low-pass filter time constant </td></tr>
+    <tr><td class="paramname">uMax</td><td>Max control signal (speed) for the motors </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4179077c8408485fa0d04c0000c81a74" name="a4179077c8408485fa0d04c0000c81a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4179077c8408485fa0d04c0000c81a74">&#9670;&#160;</a></span>adjustSpeed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PIDController::adjustSpeed </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMotor.html">Motor</a> &amp;&#160;</td>
+          <td class="paramname"><em>leader</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMotor.html">Motor</a> &amp;&#160;</td>
+          <td class="paramname"><em>follower</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>speed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>deltaT</em> = <code>0.0f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Compute the adjusted speed based on the current value, target value, and speed. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">leader</td><td>The leader motor </td></tr>
+    <tr><td class="paramname">follower</td><td>The follower motor </td></tr>
     <tr><td class="paramname">speed</td><td>The reference to the speed variable </td></tr>
-    <tr><td class="paramname">dir</td><td>The reference to the direction variable </td></tr>
+    <tr><td class="paramname">deltaT</td><td>The time difference between the current and previous iteration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The adjusted speed </dd></dl>
+
+</div>
+</div>
+<a id="a6b30379029471cafe632884c6fa6729a" name="a6b30379029471cafe632884c6fa6729a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b30379029471cafe632884c6fa6729a">&#9670;&#160;</a></span>report()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PIDController::report </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports the PID parameters. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="ab6adfbffa30414f0a83b95ba999a2fea" name="ab6adfbffa30414f0a83b95ba999a2fea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6adfbffa30414f0a83b95ba999a2fea">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PIDController::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the PID Controller. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a726ff1a9e7864eb2f4ff7dc223ef1c1a" name="a726ff1a9e7864eb2f4ff7dc223ef1c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a726ff1a9e7864eb2f4ff7dc223ef1c1a">&#9670;&#160;</a></span>setParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PIDController::setParams </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>kpIn</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>kiIn</em> = <code><a class="el" href="defs_8hpp.html#aa59d9e5b54fc0bd20d97e0df17be6d21">DEFAULT_KI</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>kdIn</em> = <code><a class="el" href="defs_8hpp.html#a99953e55db79066c36ed8cf2cd7c09bb">DEFAULT_KD</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>uMaxIn</em> = <code><a class="el" href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the parameters for the controller.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">kpIn</td><td>the proportional gain parameter </td></tr>
+    <tr><td class="paramname">kiIn</td><td>the integral gain parameter </td></tr>
+    <tr><td class="paramname">kdIn</td><td>the derivative gain parameter </td></tr>
+    <tr><td class="paramname">uMaxIn</td><td>the maximum control signal value (default: MAX_SPEED)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
   </table>
   </dd>
 </dl>

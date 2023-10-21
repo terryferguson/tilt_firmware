@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['evaluate_0',['evaluate',['../classPIDController.html#afee8d68c453ec8086c60f0e9524c2071',1,'PIDController']]],
-  ['extend_1',['extend',['../classMotor.html#ae0576b7e9b1bfb078479f0c27711c7c4',1,'Motor::extend()'],['../classMotorController.html#a7b87fc5678b3994a39918a76202be0cf',1,'MotorController::extend()']]]
+  ['disable_0',['disable',['../classMotor.html#adf84e8f39fb82027b3343f5fb1cdbf96',1,'Motor']]],
+  ['disablemotors_1',['disableMotors',['../classMotorController.html#adede773db41a7b85850c7ceca08413fc',1,'MotorController']]],
+  ['displaycurrents_2',['displayCurrents',['../classMotorController.html#a829f38ab1a75b0d2904467798d0ee215',1,'MotorController']]],
+  ['displayinfo_3',['displayInfo',['../classMotor.html#addd71950a81fc023e4dc68019af77af3',1,'Motor']]],
+  ['drive_4',['drive',['../classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969',1,'Motor']]]
 ];

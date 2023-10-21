@@ -102,359 +102,185 @@ $(document).ready(function(){initNavTree('Motor_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifndef _MOTOR_HPP_</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#define _MOTOR_HPP_</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="PinMacros_8hpp.html">PinMacros.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="defs_8hpp.html">defs.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;ESP32Encoder.h&gt;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#define READ_POSITION_ENCODER() this-&gt;pos = distanceSensor.getCount();</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define MOVE_TO_POS(setpoint, min_delta, buffer)                               \</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">  if (abs(pos - setpoint) &gt; min_delta) {                                       \</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">    if (pos &lt; setpoint) {                                                      \</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">      desiredPos = setpoint - buffer;                                          \</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">    } else if (pos &gt; newPos) {                                                 \</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">      desiredPos = setpoint + buffer;                                          \</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">    }                                                                          \</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">  }</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keywordtype">int</span> currentPWMChannel = 0;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="foldopen" id="foldopen00030" data-start="{" data-end="};">
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMotor.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classMotor.html">Motor</a> {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordtype">char</span> <span class="keywordtype">id</span>[16];          </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">int</span> pwmRChannel = -1; </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">int</span> pwmLChannel = -1; </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> rPWM_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> lPWM_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> r_EN_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> l_EN_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_1_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_2_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> l_is_pin =</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> r_is_pin =</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;      </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordtype">int</span> frequency = PWM_FREQUENCY; </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">int</span> pwmResolution = 8;         </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keywordtype">int</span> desiredPos =</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      -1; </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">int</span> totalPulseCount = 0; </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  ESP32Encoder distanceSensor; </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">   56</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> =</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>      0; </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">   58</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> =</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      0; </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">   60</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a> = 255; </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classMotor.html#abba93e1697f40e91177c442e78b16812">   62</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#abba93e1697f40e91177c442e78b16812">maxPulses</a> = -1;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <a class="code hl_class" href="classDirection.html">Direction</a> dir = Direction::STOP; </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMotor.html#af6106b4c506411265c5face762b6c004">   66</a></span>  <a class="code hl_function" href="classMotor.html#af6106b4c506411265c5face762b6c004">Motor</a>() {} <span class="comment">// end default constructor</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classMotor.html#a458103bdf4a0c621515b7f77771c72d0">   83</a></span>  <a class="code hl_function" href="classMotor.html#a458103bdf4a0c621515b7f77771c72d0">Motor</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> rpwm, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> lpwm,</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> r_en, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> l_en, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_1,</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_2, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> lIS_pin, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> rIS_pin,</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> totalPulses, <span class="keyword">const</span> <span class="keywordtype">int</span> freq = PWM_FREQUENCY,</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> defSpeed = 70, <span class="keyword">const</span> <span class="keywordtype">int</span> pwmRes = 8)</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>      : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>        hall_1_Pin(hall_1), hall_2_Pin(hall_2), l_is_pin(lIS_pin),</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        r_is_pin(rIS_pin), totalPulseCount(totalPulses), frequency(freq),</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>        <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a>(defSpeed), pwmResolution(pwmRes) {</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    strncpy(<span class="keywordtype">id</span>, name, <span class="keyword">sizeof</span>(<span class="keywordtype">id</span>) - 1);</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordtype">id</span>[<span class="keyword">sizeof</span>(id) - 1] = <span class="charliteral">&#39;\0&#39;</span>;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  } <span class="comment">// end constructor</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="ControlPins_8hpp.html">ControlPins.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="CurrentSense_8hpp.html">CurrentSense.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="PinMacros_8hpp.html">PinMacros.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;<a class="code" href="defs_8hpp.html">defs.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;ESP32Encoder.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;driver/adc.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#define MOTOR1_LIMIT 32</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#define MOTOR2_LIMIT 33</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define MOVE_TO_POS(setpoint, min_delta, buffer)                               \</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">  if (abs(pos - setpoint) &gt; min_delta) {                                       \</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">    if (pos &lt; setpoint) {                                                      \</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">      desiredPos = setpoint - buffer;                                          \</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">    } else if (pos &gt; newPos) {                                                 \</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">      desiredPos = setpoint + buffer;                                          \</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">    }                                                                          \</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">  }</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classMotor.html">   33</a></span><span class="keyword">class </span><a class="code hl_class" href="classMotor.html">Motor</a> {</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">char</span> <span class="keywordtype">id</span>[16];          </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">int</span> pwmRChannel = -1; </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">int</span> pwmLChannel = -1; </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> rPWM_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> lPWM_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> r_EN_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> l_EN_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>;   </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_1_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_2_Pin = <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> l_is_pin =</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> r_is_pin =</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      <a class="code hl_enumvalue" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a>; </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  adc1_channel_t currentSensePin = ADC1_CHANNEL_0; </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordtype">int</span> frequency = <a class="code hl_variable" href="defs_8hpp.html#a6f6cfbe0889a89dfbe582ad507b88ac5">PWM_FREQUENCY</a>; </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordtype">int</span> pwmResolution = 8;         </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keywordtype">int</span> desiredPos =</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      -1; </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  ESP32Encoder distanceSensor; </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <a class="code hl_class" href="classCurrentSense.html">CurrentSense</a> currentSense; </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">   61</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> = 0;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">   63</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> = 0;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">   66</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a> = <a class="code hl_variable" href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">   69</a></span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">totalPulseCount</a> = 0;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">int</span> stopBuffer = 0;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordtype">int</span> bottomLimitPin = -1;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">int</span> bottomCurrentLimit = -1;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordtype">int</span> currentAlarmLimit = -1;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordtype">bool</span> outOfRange = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <a class="code hl_class" href="classDirection.html">Direction</a> dir = Direction::STOP; </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classMotor.html#aa7252ddb11769f4081253016564c70b5">   80</a></span>  <span class="keywordtype">bool</span> <a class="code hl_variable" href="classMotor.html#aa7252ddb11769f4081253016564c70b5">homing</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <a class="code hl_class" href="classMotor.html">Motor</a>(); <span class="comment">// end default constructor</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  <a class="code hl_class" href="classMotor.html">Motor</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *name, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> rpwm, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> lpwm,</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> r_en, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> l_en, <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_1,</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>        <span class="keyword">const</span> <a class="code hl_enumeration" href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a> hall_2, <span class="keyword">const</span> adc1_channel_t currentSensePin,</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> totalPulses, <span class="keyword">const</span> <span class="keywordtype">int</span> freq = <a class="code hl_variable" href="defs_8hpp.html#a6f6cfbe0889a89dfbe582ad507b88ac5">PWM_FREQUENCY</a>,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> defSpeed = <a class="code hl_variable" href="defs_8hpp.html#a84bd9a418dd1da9665d0702e7c0294ff">MIN_MOTOR_TRAVEL_SPEED</a>,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> pwmRes = <a class="code hl_variable" href="defs_8hpp.html#ab86e2bb308b2961dcb035be27767e697">PWM_RESOLUTION_BITS</a>, <span class="keyword">const</span> <span class="keywordtype">int</span> bottomLimitPin = -1,</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> currentLimit = -1, <span class="keyword">const</span> <span class="keywordtype">int</span> alarmCurrentLimit = -1,</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        <span class="keyword">const</span> <span class="keywordtype">int</span> stopBuffer = 0);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ad00e6117ced4b2bc47661319afb2cfbe">initialize</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(<span class="keyword">const</span> <a class="code hl_class" href="classDirection.html">Direction</a> motorDirection, <span class="keyword">const</span> <span class="keywordtype">int</span> specifiedSpeed = 0);</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ae0576b7e9b1bfb078479f0c27711c7c4">extend</a>();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ac02e8a217dfb40e2711a22ddc1ba894b">retract</a>();</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#adf84e8f39fb82027b3343f5fb1cdbf96">disable</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="foldopen" id="foldopen00138" data-start="{" data-end="}">
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="classMotor.html#aeadf074ec4959a7700cdca4f977353d1">  138</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#aeadf074ec4959a7700cdca4f977353d1">zero</a>() {</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    distanceSensor.clearCount();</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> = <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> = 0;</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  }</div>
 </div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="foldopen" id="foldopen00098" data-start="{" data-end="}">
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="classMotor.html#ad00e6117ced4b2bc47661319afb2cfbe">   98</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ad00e6117ced4b2bc47661319afb2cfbe">initialize</a>() {</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// At least two channels are needed for the linear actuator motor</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">if</span> (currentPWMChannel &gt; -1 &amp;&amp; currentPWMChannel &lt; 14) {</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>      pwmRChannel = currentPWMChannel++;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>      pwmLChannel = currentPWMChannel++;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    }</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    ledcSetup(pwmRChannel, frequency, pwmResolution);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>    ledcSetup(pwmLChannel, frequency, pwmResolution);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    motorAttachPin(rPWM_Pin, pwmRChannel);</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    Serial.printf(<span class="stringliteral">&quot;Attaching pin %d to RPWM Channel %d\n&quot;</span>, rPWM_Pin,</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                  pwmRChannel);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    motorAttachPin(lPWM_Pin, pwmLChannel);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    Serial.printf(<span class="stringliteral">&quot;Attaching pin %d to LPWM Channel %d\n\n&quot;</span>, lPWM_Pin,</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                  pwmLChannel);</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    motorPinMode(r_EN_Pin, OUTPUT);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    motorPinMode(l_EN_Pin, OUTPUT);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    motorPinWrite(r_EN_Pin, HIGH);</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    motorPinWrite(l_EN_Pin, HIGH);</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    ledcWrite(pwmRChannel, 0);</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    ledcWrite(pwmLChannel, 0);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    distanceSensor.attachSingleEdge(<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(hall_1_Pin),</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>                                    <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(hall_2_Pin));</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    distanceSensor.clearCount();</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    READ_POSITION_ENCODER()</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="defs_8hpp.html#ad0344eb1bc475981a837e350c08fb53a">debugEnabled</a>) {</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>      Serial.printf(<span class="stringliteral">&quot;Motor: %s\n&quot;</span></div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>                    <span class="stringliteral">&quot;-------------------\n&quot;</span></div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>                    <span class="stringliteral">&quot;Frequency:    %5d\n&quot;</span></div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>                    <span class="stringliteral">&quot;Resolution:   %5d\n&quot;</span></div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>                    <span class="stringliteral">&quot;Speed:        %5d\n&quot;</span></div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>                    <span class="stringliteral">&quot;Position:     %5d\n&quot;</span></div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>                    <span class="stringliteral">&quot;RPWM Pin:     %5d\n&quot;</span></div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>                    <span class="stringliteral">&quot;LPWM Pin:     %5d\n&quot;</span></div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>                    <span class="stringliteral">&quot;Hall 1 Pin:   %5d\n&quot;</span></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>                    <span class="stringliteral">&quot;Hall 2 Pin:   %5d\n&quot;</span></div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>                    <span class="stringliteral">&quot;Max Position: %5d\n\n&quot;</span>,</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>                    <span class="keywordtype">id</span>, frequency, pwmResolution, <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a>, <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>, rPWM_Pin,</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>                    lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>      Serial.printf(<span class="stringliteral">&quot;RPWM Channel %d - LPWM Channel: %d\n\n&quot;</span>, pwmRChannel,</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>                    pwmLChannel);</div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    }</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  }</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="foldopen" id="foldopen00150" data-start="{" data-end="}">
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="classMotor.html#aec3a1b4787d0775dbaa0e4f9d71d4f15">  150</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classMotor.html#aec3a1b4787d0775dbaa0e4f9d71d4f15">hitBottom</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> current = <a class="code hl_function" href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">getCurrent</a>();</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="defs_8hpp.html#ad0344eb1bc475981a837e350c08fb53a">debugEnabled</a>) {</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>      Serial.printf(<span class="stringliteral">&quot;Current %d &lt;=&gt; Bottom current limit: %d\n&quot;</span>, current,</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>                    bottomCurrentLimit);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    }</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    <span class="keywordflow">return</span> (current &gt;= bottomCurrentLimit) &amp;&amp; (dir == Direction::RETRACT);</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  }</div>
 </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="foldopen" id="foldopen00156" data-start="{" data-end="}">
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">  156</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(<span class="keyword">const</span> <a class="code hl_class" href="classDirection.html">Direction</a> motorDirection, <span class="keyword">const</span> <span class="keywordtype">int</span> specifiedSpeed = 0) {</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> driveSpeed = specifiedSpeed &gt; 0 ? specifiedSpeed : <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a>;</div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    motorPinWrite(r_EN_Pin, HIGH);</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    motorPinWrite(l_EN_Pin, HIGH);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">switch</span> (motorDirection) {</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordflow">case</span> Direction::EXTEND:</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>      ledcWrite(pwmRChannel, driveSpeed);</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>      ledcWrite(pwmLChannel, 0);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    <span class="keywordflow">case</span> Direction::STOP:</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>      ledcWrite(pwmRChannel, 0);</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>      ledcWrite(pwmLChannel, 0);</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>      motorPinWrite(r_EN_Pin, LOW);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>      motorPinWrite(l_EN_Pin, LOW);</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordflow">case</span> Direction::RETRACT:</div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>      ledcWrite(pwmRChannel, 0);</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>      ledcWrite(pwmLChannel, driveSpeed);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>      <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    } <span class="comment">// end direction handler</span></div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    <a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> = <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>;</div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    READ_POSITION_ENCODER()</div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>  } <span class="comment">// end drive</span></div>
-</div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
-<div class="foldopen" id="foldopen00186" data-start="{" data-end="}">
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno"><a class="line" href="classMotor.html#ae0576b7e9b1bfb078479f0c27711c7c4">  186</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ae0576b7e9b1bfb078479f0c27711c7c4">extend</a>() {</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    <span class="comment">// Works as a toggle</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>    dir = (dir != Direction::EXTEND) ? Direction::EXTEND : Direction::STOP;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  }</div>
-</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classMotor.html#a7d2ab792630d593e166bcb1249508174">  164</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classMotor.html#a7d2ab792630d593e166bcb1249508174">topReached</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> &gt;= <a class="code hl_variable" href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">totalPulseCount</a>; }</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#a4a8212a194bed2d600241a0916fbdef2">update</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> newSpeed = (<a class="code hl_variable" href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a> + 1));</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classMotor.html#a44328fc48d1094813741d4670dd81f2f">  176</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#a44328fc48d1094813741d4670dd81f2f">readPos</a>() { <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> = distanceSensor.getCount(); }</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="foldopen" id="foldopen00188" data-start="{" data-end="}">
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno"><a class="line" href="classMotor.html#a15e1e7426c9cab4d137f6a9872489275">  188</a></span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classMotor.html#a15e1e7426c9cab4d137f6a9872489275">getNormalizedPos</a>() {</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> = distanceSensor.getCount();</div>
 <div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="foldopen" id="foldopen00192" data-start="{" data-end="}">
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno"><a class="line" href="classMotor.html#ac02e8a217dfb40e2711a22ddc1ba894b">  192</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ac02e8a217dfb40e2711a22ddc1ba894b">retract</a>() {</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="comment">// Works as a toggle</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>    dir = (dir != Direction::RETRACT) ? Direction::RETRACT : Direction::STOP;</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>  }</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">totalPulseCount</a> == 0)</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>      <span class="keywordflow">return</span> 0.0f;</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>) / <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">totalPulseCount</a>);</div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  }</div>
 </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
-<div class="foldopen" id="foldopen00198" data-start="{" data-end="}">
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno"><a class="line" href="classMotor.html#a015fd5308d4d27e5dcf7f9ea3d5c03f6">  198</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#a015fd5308d4d27e5dcf7f9ea3d5c03f6">stop</a>() {</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    <span class="comment">// Works as a toggle</span></div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    dir = Direction::STOP;</div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  }</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
+<div class="foldopen" id="foldopen00205" data-start="{" data-end="}">
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="classMotor.html#addd71950a81fc023e4dc68019af77af3">  205</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#addd71950a81fc023e4dc68019af77af3">displayInfo</a>() {</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    Serial.printf(<span class="stringliteral">&quot;Motor %s - Direction: %s, pos: %d, currentAlarm %d mA\n&quot;</span>, <span class="keywordtype">id</span>,</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>                  <a class="code hl_variable" href="defs_8hpp.html#a66ee0bd2ff8592573ed299a7582f086d">directions</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(dir)], <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>, currentAlarmLimit);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    Serial.printf(<span class="stringliteral">&quot;Motor %s - Speed: %d, desired pos: %d\n&quot;</span>, <span class="keywordtype">id</span>, <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a>,</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>                  desiredPos);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    Serial.printf(<span class="stringliteral">&quot;Motor %s - Max hall position: %d \n\n&quot;</span>, <span class="keywordtype">id</span>, <a class="code hl_variable" href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">totalPulseCount</a>);</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>  }</div>
 </div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="classMotor.html#aeadf074ec4959a7700cdca4f977353d1">  204</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#aeadf074ec4959a7700cdca4f977353d1">zero</a>() {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    distanceSensor.clearCount();</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> = <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> = 0;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno"><a class="line" href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">  218</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">getCurrent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> currentSense.<a class="code hl_function" href="classCurrentSense.html#a3ee919f39b0d70a7da1b540ed87ea1aa">getCurrent</a>(); }</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span> </div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="classMotor.html#a96cf965e36839e9e49336cb3b748e838">  225</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classMotor.html#a96cf965e36839e9e49336cb3b748e838">isStopped</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> dir == Direction::STOP; }</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span> </div>
+<div class="foldopen" id="foldopen00232" data-start="{" data-end="}">
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno"><a class="line" href="classMotor.html#ab1790b4d635fe8db8c6e22554b61c52f">  232</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ab1790b4d635fe8db8c6e22554b61c52f">setSpeed</a>(<span class="keywordtype">int</span> newSpeed) {</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="comment">// Constrain the new speed value between 0 and the maximum value allowed by</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    <span class="comment">// the PWM resolution.</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a> = constrain(newSpeed, 0, <a class="code hl_variable" href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a>);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>  }</div>
 </div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="foldopen" id="foldopen00211" data-start="{" data-end="}">
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="classMotor.html#ae8e0845a9284fbf8013137bf6b1f9293">  211</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#ae8e0845a9284fbf8013137bf6b1f9293">home</a>() {</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    <span class="comment">// First retract as much as possible</span></div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span> </div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>    <span class="keywordtype">int</span> sameCount = 0;</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    <span class="keywordtype">int</span> firstSameTime = 0;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    dir = Direction::RETRACT;</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordflow">while</span> (sameCount &lt; 1000) {</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>      <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(dir, MAX_SPEED);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> == <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>) {</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        <span class="keywordflow">if</span> (sameCount == 0) {</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>          firstSameTime = millis();</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>          <span class="keywordflow">if</span> (millis() - firstSameTime &gt; 1000)</div>
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>        }</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>        sameCount++;</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        sameCount = 0;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>      }</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>      READ_POSITION_ENCODER()</div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    }</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    Serial.println(<span class="stringliteral">&quot;Fully retracted&quot;</span>);</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    sameCount = 0;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    firstSameTime = 0;</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    dir = Direction::EXTEND;</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    <span class="keywordflow">while</span> (sameCount &lt; 1000) {</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>      <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(dir, MAX_SPEED);</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> == <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>) {</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>        <span class="keywordflow">if</span> (sameCount == 0) {</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>          firstSameTime = millis();</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>          <span class="keywordflow">if</span> (millis() - firstSameTime &gt; 1000)</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>        }</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>        sameCount++;</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>        sameCount = 0;</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>      }</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>      READ_POSITION_ENCODER()</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    }</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span> </div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>    Serial.print(<span class="stringliteral">&quot;Fully extended. Max pulse: &quot;</span>);</div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    Serial.println(<a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>);</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_variable" href="classMotor.html#abba93e1697f40e91177c442e78b16812">maxPulses</a> = <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>;</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    sameCount = 0;</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    firstSameTime = 0;</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>    dir = Direction::RETRACT;</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    <span class="keywordflow">while</span> (sameCount &lt; 1000) {</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>      <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(dir, MAX_SPEED);</div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">lastPos</a> == <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>) {</div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <span class="keywordflow">if</span> (sameCount == 0) {</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>          firstSameTime = millis();</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>          <span class="keywordflow">if</span> (millis() - firstSameTime &gt; 1000)</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>        }</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        sameCount++;</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>        sameCount = 0;</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      }</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      READ_POSITION_ENCODER()</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    }</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    Serial.println(<span class="stringliteral">&quot;Fully retracted&quot;</span>);</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    dir = Direction::STOP;</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>  }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span> </div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  <a class="code hl_class" href="classMotor.html">~Motor</a>() {}</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>}; <span class="comment">// end class Motor</span></div>
 </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="foldopen" id="foldopen00282" data-start="{" data-end="}">
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno"><a class="line" href="classMotor.html#a4a8212a194bed2d600241a0916fbdef2">  282</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#a4a8212a194bed2d600241a0916fbdef2">update</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> newSpeed = (MAX_SPEED + 1)) {</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>    <span class="keywordflow">if</span> (desiredPos &gt;= 0) {</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> &gt; desiredPos) {</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>        dir = Direction::RETRACT;</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a> &lt; desiredPos) {</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>        dir = Direction::EXTEND;</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>        dir = Direction::STOP;</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>        desiredPos = -1;</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>        <a class="code hl_function" href="classMotor.html#addd71950a81fc023e4dc68019af77af3">displayInfo</a>();</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      }</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>    }</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>    <span class="comment">/*</span></div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span><span class="comment">      // For lift column - Extension limit</span></div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="comment">      if (dir == Direction::EXTEND &amp;&amp; (pos) &gt; totalPulseCount) {</span></div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span><span class="comment">        dir = Direction::STOP;</span></div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span><span class="comment">        return;</span></div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span><span class="comment">      }</span></div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="comment"></span> </div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span><span class="comment">      // For lift column - Retraction limit</span></div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span><span class="comment">      if (dir == Direction::RETRACT &amp;&amp; (pos) &lt; 50) {</span></div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span><span class="comment">        dir = Direction::STOP;</span></div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="comment">        return;</span></div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span><span class="comment">      }</span></div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span><span class="comment"></span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span><span class="comment">      */</span></div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>    <span class="keywordflow">if</span> (newSpeed &gt; MAX_SPEED || newSpeed &lt; 0) {</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>      <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(dir, this-&gt;speed);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>      <a class="code hl_function" href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">drive</a>(dir, newSpeed);</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>    }</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>  }</div>
-</div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="foldopen" id="foldopen00319" data-start="{" data-end="}">
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="classMotor.html#a2eca6eecd6c37eb8ba1e684ae5bc22f3">  319</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#a2eca6eecd6c37eb8ba1e684ae5bc22f3">setPos</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> newPos) {</div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>    READ_POSITION_ENCODER()</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>    MOVE_TO_POS(newPos, 15, 40)</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>  }</div>
-</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span> </div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="classMotor.html#a44328fc48d1094813741d4670dd81f2f">  325</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#a44328fc48d1094813741d4670dd81f2f">readPos</a>() { READ_POSITION_ENCODER() }</div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span> </div>
-<div class="foldopen" id="foldopen00331" data-start="{" data-end="}">
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="classMotor.html#a2758ae40e957841c76c3f22cb4dcc764">  331</a></span>  <span class="keywordtype">float</span> <a class="code hl_function" href="classMotor.html#a2758ae40e957841c76c3f22cb4dcc764">getNormalizedPos</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>    <span class="keywordflow">if</span> (totalPulseCount == 0)</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>      <span class="keywordflow">return</span> 0.0f;</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(<a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>) / <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(totalPulseCount);</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>  }</div>
-</div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
-<div class="foldopen" id="foldopen00346" data-start="{" data-end="}">
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="classMotor.html#addd71950a81fc023e4dc68019af77af3">  346</a></span>   <span class="keywordtype">void</span> <a class="code hl_function" href="classMotor.html#addd71950a81fc023e4dc68019af77af3">displayInfo</a>() {</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    Serial.printf(<span class="stringliteral">&quot;Motor %s - Direction: %s, pos: %d\n&quot;</span>, <span class="keywordtype">id</span>, <a class="code hl_variable" href="Direction_8hpp.html#a66ee0bd2ff8592573ed299a7582f086d">directions</a>[<span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(dir)],</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>                  <a class="code hl_variable" href="classMotor.html#afddc50db870be11e6ed2739953e0be77">pos</a>);</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    Serial.printf(<span class="stringliteral">&quot;Motor %s - Speed: %d, desired pos: %d\n&quot;</span>, <span class="keywordtype">id</span>, <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a>,</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>                  desiredPos);</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    Serial.printf(<span class="stringliteral">&quot;Motor %s - Max hall position: %d \n\n&quot;</span>, <span class="keywordtype">id</span>, totalPulseCount);</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  }</div>
-</div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
-<div class="foldopen" id="foldopen00355" data-start="{" data-end="}">
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno"><a class="line" href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">  355</a></span>  <span class="keywordtype">int</span> <a class="code hl_function" href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">getCurrent</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> leftCurrent = motorAnalogRead(l_is_pin);</div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span>    <span class="keyword">const</span> <span class="keywordtype">int</span> rightCurrent = motorAnalogRead(r_is_pin);</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span> </div>
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>    <span class="keywordflow">return</span> max(leftCurrent, rightCurrent);</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>  }</div>
-</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>  <span class="keywordtype">void</span> setSpeed(<span class="keywordtype">int</span> newSpeed) { <a class="code hl_variable" href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">speed</a> = newSpeed; }</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>}; <span class="comment">// end class Motor</span></div>
-</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span><span class="preprocessor">#endif </span><span class="comment">// _MOTOR_HPP_</span></div>
-<div class="ttc" id="aDirection_8hpp_html_a66ee0bd2ff8592573ed299a7582f086d"><div class="ttname"><a href="Direction_8hpp.html#a66ee0bd2ff8592573ed299a7582f086d">directions</a></div><div class="ttdeci">const char * directions[3]</div><div class="ttdoc">String representations of the directions.</div><div class="ttdef"><b>Definition</b> Direction.hpp:29</div></div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><span class="preprocessor">#endif </span><span class="comment">// _MOTOR_HPP_</span></div>
+<div class="ttc" id="aControlPins_8hpp_html"><div class="ttname"><a href="ControlPins_8hpp.html">ControlPins.hpp</a></div></div>
+<div class="ttc" id="aCurrentSense_8hpp_html"><div class="ttname"><a href="CurrentSense_8hpp.html">CurrentSense.hpp</a></div></div>
 <div class="ttc" id="aMotorPins_8hpp_html_a34577b75fa9962e1ebcd78e36af1ce60"><div class="ttname"><a href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60">MotorPin</a></div><div class="ttdeci">MotorPin</div><div class="ttdef"><b>Definition</b> MotorPins.hpp:20</div></div>
 <div class="ttc" id="aMotorPins_8hpp_html_a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa"><div class="ttname"><a href="MotorPins_8hpp.html#a34577b75fa9962e1ebcd78e36af1ce60a5ef0153ec1486a4da1db6a130c2dcbaa">MotorPin::UNASSIGNED</a></div><div class="ttdeci">@ UNASSIGNED</div></div>
 <div class="ttc" id="aPinMacros_8hpp_html"><div class="ttname"><a href="PinMacros_8hpp.html">PinMacros.hpp</a></div></div>
+<div class="ttc" id="aclassCurrentSense_html"><div class="ttname"><a href="classCurrentSense.html">CurrentSense</a></div><div class="ttdoc">This implements the current sense functionality for the motors.</div><div class="ttdef"><b>Definition</b> CurrentSense.hpp:24</div></div>
+<div class="ttc" id="aclassCurrentSense_html_a3ee919f39b0d70a7da1b540ed87ea1aa"><div class="ttname"><a href="classCurrentSense.html#a3ee919f39b0d70a7da1b540ed87ea1aa">CurrentSense::getCurrent</a></div><div class="ttdeci">int getCurrent() const</div><div class="ttdoc">Calculates the average current.</div><div class="ttdef"><b>Definition</b> CurrentSense.hpp:91</div></div>
 <div class="ttc" id="aclassDirection_html"><div class="ttname"><a href="classDirection.html">Direction</a></div><div class="ttdoc">Direction values for the direction indicator for the motor controller and the motors themselves.</div></div>
-<div class="ttc" id="aclassMotor_html"><div class="ttname"><a href="classMotor.html">Motor</a></div><div class="ttdoc">This class represents the motor controlled by the microcontroller.</div><div class="ttdef"><b>Definition</b> Motor.hpp:30</div></div>
-<div class="ttc" id="aclassMotor_html_a015fd5308d4d27e5dcf7f9ea3d5c03f6"><div class="ttname"><a href="classMotor.html#a015fd5308d4d27e5dcf7f9ea3d5c03f6">Motor::stop</a></div><div class="ttdeci">void stop()</div><div class="ttdoc">Tell the motor to stop.</div><div class="ttdef"><b>Definition</b> Motor.hpp:198</div></div>
-<div class="ttc" id="aclassMotor_html_a2758ae40e957841c76c3f22cb4dcc764"><div class="ttname"><a href="classMotor.html#a2758ae40e957841c76c3f22cb4dcc764">Motor::getNormalizedPos</a></div><div class="ttdeci">float getNormalizedPos() const</div><div class="ttdoc">Get a normalized indicaton of the position of this motor based on its total range.</div><div class="ttdef"><b>Definition</b> Motor.hpp:331</div></div>
-<div class="ttc" id="aclassMotor_html_a2eca6eecd6c37eb8ba1e684ae5bc22f3"><div class="ttname"><a href="classMotor.html#a2eca6eecd6c37eb8ba1e684ae5bc22f3">Motor::setPos</a></div><div class="ttdeci">void setPos(const int newPos)</div><div class="ttdoc">Set a new target position for this motor.</div><div class="ttdef"><b>Definition</b> Motor.hpp:319</div></div>
-<div class="ttc" id="aclassMotor_html_a44328fc48d1094813741d4670dd81f2f"><div class="ttname"><a href="classMotor.html#a44328fc48d1094813741d4670dd81f2f">Motor::readPos</a></div><div class="ttdeci">void readPos()</div><div class="ttdoc">Read rotary encoder value into position variable.</div><div class="ttdef"><b>Definition</b> Motor.hpp:325</div></div>
-<div class="ttc" id="aclassMotor_html_a458103bdf4a0c621515b7f77771c72d0"><div class="ttname"><a href="classMotor.html#a458103bdf4a0c621515b7f77771c72d0">Motor::Motor</a></div><div class="ttdeci">Motor(const char *name, const MotorPin rpwm, const MotorPin lpwm, const MotorPin r_en, const MotorPin l_en, const MotorPin hall_1, const MotorPin hall_2, const MotorPin lIS_pin, const MotorPin rIS_pin, const int totalPulses, const int freq=PWM_FREQUENCY, const int defSpeed=70, const int pwmRes=8)</div><div class="ttdoc">The constructor for the motor controlled by the microcontroller.</div><div class="ttdef"><b>Definition</b> Motor.hpp:83</div></div>
-<div class="ttc" id="aclassMotor_html_a4a8212a194bed2d600241a0916fbdef2"><div class="ttname"><a href="classMotor.html#a4a8212a194bed2d600241a0916fbdef2">Motor::update</a></div><div class="ttdeci">void update(const int newSpeed=(MAX_SPEED+1))</div><div class="ttdoc">Update the position information for this motor and move it.</div><div class="ttdef"><b>Definition</b> Motor.hpp:282</div></div>
-<div class="ttc" id="aclassMotor_html_a68b835dd35395fbab7b32eb0bbc12283"><div class="ttname"><a href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">Motor::speed</a></div><div class="ttdeci">int speed</div><div class="ttdef"><b>Definition</b> Motor.hpp:60</div></div>
-<div class="ttc" id="aclassMotor_html_ab84a374f1efa46be16568b298bd58b8c"><div class="ttname"><a href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">Motor::getCurrent</a></div><div class="ttdeci">int getCurrent() const</div><div class="ttdef"><b>Definition</b> Motor.hpp:355</div></div>
-<div class="ttc" id="aclassMotor_html_abba93e1697f40e91177c442e78b16812"><div class="ttname"><a href="classMotor.html#abba93e1697f40e91177c442e78b16812">Motor::maxPulses</a></div><div class="ttdeci">int maxPulses</div><div class="ttdef"><b>Definition</b> Motor.hpp:62</div></div>
-<div class="ttc" id="aclassMotor_html_ac02e8a217dfb40e2711a22ddc1ba894b"><div class="ttname"><a href="classMotor.html#ac02e8a217dfb40e2711a22ddc1ba894b">Motor::retract</a></div><div class="ttdeci">void retract()</div><div class="ttdoc">Tell the motor to rotate in the direction of retraction.</div><div class="ttdef"><b>Definition</b> Motor.hpp:192</div></div>
-<div class="ttc" id="aclassMotor_html_ac8da33f8f7b7f55d372cae88b2ef6969"><div class="ttname"><a href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">Motor::drive</a></div><div class="ttdeci">void drive(const Direction motorDirection, const int specifiedSpeed=0)</div><div class="ttdef"><b>Definition</b> Motor.hpp:156</div></div>
-<div class="ttc" id="aclassMotor_html_acb9b2a43b000bc91f36f707867ee23aa"><div class="ttname"><a href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">Motor::lastPos</a></div><div class="ttdeci">int lastPos</div><div class="ttdef"><b>Definition</b> Motor.hpp:58</div></div>
-<div class="ttc" id="aclassMotor_html_ad00e6117ced4b2bc47661319afb2cfbe"><div class="ttname"><a href="classMotor.html#ad00e6117ced4b2bc47661319afb2cfbe">Motor::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdoc">Initialize motor.</div><div class="ttdef"><b>Definition</b> Motor.hpp:98</div></div>
-<div class="ttc" id="aclassMotor_html_addd71950a81fc023e4dc68019af77af3"><div class="ttname"><a href="classMotor.html#addd71950a81fc023e4dc68019af77af3">Motor::displayInfo</a></div><div class="ttdeci">void displayInfo()</div><div class="ttdef"><b>Definition</b> Motor.hpp:346</div></div>
-<div class="ttc" id="aclassMotor_html_ae0576b7e9b1bfb078479f0c27711c7c4"><div class="ttname"><a href="classMotor.html#ae0576b7e9b1bfb078479f0c27711c7c4">Motor::extend</a></div><div class="ttdeci">void extend()</div><div class="ttdoc">Tell the motor to rotate in the direction of extension.</div><div class="ttdef"><b>Definition</b> Motor.hpp:186</div></div>
-<div class="ttc" id="aclassMotor_html_ae8e0845a9284fbf8013137bf6b1f9293"><div class="ttname"><a href="classMotor.html#ae8e0845a9284fbf8013137bf6b1f9293">Motor::home</a></div><div class="ttdeci">void home()</div><div class="ttdoc">Perform the homing routine to calibrate the position sensor for this motor.</div><div class="ttdef"><b>Definition</b> Motor.hpp:211</div></div>
-<div class="ttc" id="aclassMotor_html_aeadf074ec4959a7700cdca4f977353d1"><div class="ttname"><a href="classMotor.html#aeadf074ec4959a7700cdca4f977353d1">Motor::zero</a></div><div class="ttdeci">void zero()</div><div class="ttdoc">Zero out position information for this motor.</div><div class="ttdef"><b>Definition</b> Motor.hpp:204</div></div>
-<div class="ttc" id="aclassMotor_html_af6106b4c506411265c5face762b6c004"><div class="ttname"><a href="classMotor.html#af6106b4c506411265c5face762b6c004">Motor::Motor</a></div><div class="ttdeci">Motor()</div><div class="ttdef"><b>Definition</b> Motor.hpp:66</div></div>
-<div class="ttc" id="aclassMotor_html_afddc50db870be11e6ed2739953e0be77"><div class="ttname"><a href="classMotor.html#afddc50db870be11e6ed2739953e0be77">Motor::pos</a></div><div class="ttdeci">int pos</div><div class="ttdef"><b>Definition</b> Motor.hpp:56</div></div>
+<div class="ttc" id="aclassMotor_html"><div class="ttname"><a href="classMotor.html">Motor</a></div><div class="ttdoc">This class represents the motor controlled by the microcontroller.</div><div class="ttdef"><b>Definition</b> Motor.hpp:33</div></div>
+<div class="ttc" id="aclassMotor_html_a15e1e7426c9cab4d137f6a9872489275"><div class="ttname"><a href="classMotor.html#a15e1e7426c9cab4d137f6a9872489275">Motor::getNormalizedPos</a></div><div class="ttdeci">float getNormalizedPos()</div><div class="ttdoc">Get a normalized indicaton of the position of this motor based on its total range.</div><div class="ttdef"><b>Definition</b> Motor.hpp:188</div></div>
+<div class="ttc" id="aclassMotor_html_a44328fc48d1094813741d4670dd81f2f"><div class="ttname"><a href="classMotor.html#a44328fc48d1094813741d4670dd81f2f">Motor::readPos</a></div><div class="ttdeci">void readPos()</div><div class="ttdoc">Read the position of the motor.</div><div class="ttdef"><b>Definition</b> Motor.hpp:176</div></div>
+<div class="ttc" id="aclassMotor_html_a4a8212a194bed2d600241a0916fbdef2"><div class="ttname"><a href="classMotor.html#a4a8212a194bed2d600241a0916fbdef2">Motor::update</a></div><div class="ttdeci">void update(const int newSpeed=(MAX_SPEED+1))</div><div class="ttdoc">Update the state of the motor.</div><div class="ttdef"><b>Definition</b> Motor.cpp:176</div></div>
+<div class="ttc" id="aclassMotor_html_a68b835dd35395fbab7b32eb0bbc12283"><div class="ttname"><a href="classMotor.html#a68b835dd35395fbab7b32eb0bbc12283">Motor::speed</a></div><div class="ttdeci">int speed</div><div class="ttdef"><b>Definition</b> Motor.hpp:66</div></div>
+<div class="ttc" id="aclassMotor_html_a7d2ab792630d593e166bcb1249508174"><div class="ttname"><a href="classMotor.html#a7d2ab792630d593e166bcb1249508174">Motor::topReached</a></div><div class="ttdeci">bool topReached() const</div><div class="ttdoc">Check if the top has been reached.</div><div class="ttdef"><b>Definition</b> Motor.hpp:164</div></div>
+<div class="ttc" id="aclassMotor_html_a96cf965e36839e9e49336cb3b748e838"><div class="ttname"><a href="classMotor.html#a96cf965e36839e9e49336cb3b748e838">Motor::isStopped</a></div><div class="ttdeci">bool isStopped() const</div><div class="ttdoc">Checks if the current motor is in a stopped state.</div><div class="ttdef"><b>Definition</b> Motor.hpp:225</div></div>
+<div class="ttc" id="aclassMotor_html_aa7252ddb11769f4081253016564c70b5"><div class="ttname"><a href="classMotor.html#aa7252ddb11769f4081253016564c70b5">Motor::homing</a></div><div class="ttdeci">bool homing</div><div class="ttdef"><b>Definition</b> Motor.hpp:80</div></div>
+<div class="ttc" id="aclassMotor_html_ab1790b4d635fe8db8c6e22554b61c52f"><div class="ttname"><a href="classMotor.html#ab1790b4d635fe8db8c6e22554b61c52f">Motor::setSpeed</a></div><div class="ttdeci">void setSpeed(int newSpeed)</div><div class="ttdoc">Set the speed to the specified value.</div><div class="ttdef"><b>Definition</b> Motor.hpp:232</div></div>
+<div class="ttc" id="aclassMotor_html_ab84a374f1efa46be16568b298bd58b8c"><div class="ttname"><a href="classMotor.html#ab84a374f1efa46be16568b298bd58b8c">Motor::getCurrent</a></div><div class="ttdeci">int getCurrent() const</div><div class="ttdoc">Retrieve the current value as milliamps.</div><div class="ttdef"><b>Definition</b> Motor.hpp:218</div></div>
+<div class="ttc" id="aclassMotor_html_ac02e8a217dfb40e2711a22ddc1ba894b"><div class="ttname"><a href="classMotor.html#ac02e8a217dfb40e2711a22ddc1ba894b">Motor::retract</a></div><div class="ttdeci">void retract()</div><div class="ttdoc">Tell the motor to rotate in the direction of retraction.</div><div class="ttdef"><b>Definition</b> Motor.cpp:149</div></div>
+<div class="ttc" id="aclassMotor_html_ac8da33f8f7b7f55d372cae88b2ef6969"><div class="ttname"><a href="classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969">Motor::drive</a></div><div class="ttdeci">void drive(const Direction motorDirection, const int specifiedSpeed=0)</div><div class="ttdef"><b>Definition</b> Motor.cpp:103</div></div>
+<div class="ttc" id="aclassMotor_html_acb9b2a43b000bc91f36f707867ee23aa"><div class="ttname"><a href="classMotor.html#acb9b2a43b000bc91f36f707867ee23aa">Motor::lastPos</a></div><div class="ttdeci">int lastPos</div><div class="ttdef"><b>Definition</b> Motor.hpp:63</div></div>
+<div class="ttc" id="aclassMotor_html_ad00e6117ced4b2bc47661319afb2cfbe"><div class="ttname"><a href="classMotor.html#ad00e6117ced4b2bc47661319afb2cfbe">Motor::initialize</a></div><div class="ttdeci">void initialize()</div><div class="ttdoc">Initialize motor.</div><div class="ttdef"><b>Definition</b> Motor.cpp:38</div></div>
+<div class="ttc" id="aclassMotor_html_adaffc4e8377c4ffdfc9e0e8eb8827935"><div class="ttname"><a href="classMotor.html#adaffc4e8377c4ffdfc9e0e8eb8827935">Motor::totalPulseCount</a></div><div class="ttdeci">int totalPulseCount</div><div class="ttdef"><b>Definition</b> Motor.hpp:69</div></div>
+<div class="ttc" id="aclassMotor_html_addd71950a81fc023e4dc68019af77af3"><div class="ttname"><a href="classMotor.html#addd71950a81fc023e4dc68019af77af3">Motor::displayInfo</a></div><div class="ttdeci">void displayInfo()</div><div class="ttdoc">Displays information about the motor.</div><div class="ttdef"><b>Definition</b> Motor.hpp:205</div></div>
+<div class="ttc" id="aclassMotor_html_adf84e8f39fb82027b3343f5fb1cdbf96"><div class="ttname"><a href="classMotor.html#adf84e8f39fb82027b3343f5fb1cdbf96">Motor::disable</a></div><div class="ttdeci">void disable()</div><div class="ttdoc">Disables the motor. If the motor is already stopped, this function does nothing. Otherwise,...</div><div class="ttdef"><b>Definition</b> Motor.cpp:159</div></div>
+<div class="ttc" id="aclassMotor_html_ae0576b7e9b1bfb078479f0c27711c7c4"><div class="ttname"><a href="classMotor.html#ae0576b7e9b1bfb078479f0c27711c7c4">Motor::extend</a></div><div class="ttdeci">void extend()</div><div class="ttdoc">Tell the motor to rotate in the direction of extension.</div><div class="ttdef"><b>Definition</b> Motor.cpp:139</div></div>
+<div class="ttc" id="aclassMotor_html_aeadf074ec4959a7700cdca4f977353d1"><div class="ttname"><a href="classMotor.html#aeadf074ec4959a7700cdca4f977353d1">Motor::zero</a></div><div class="ttdeci">void zero()</div><div class="ttdoc">Reset the distance sensor count and position variables for the motor to zero.</div><div class="ttdef"><b>Definition</b> Motor.hpp:138</div></div>
+<div class="ttc" id="aclassMotor_html_aec3a1b4787d0775dbaa0e4f9d71d4f15"><div class="ttname"><a href="classMotor.html#aec3a1b4787d0775dbaa0e4f9d71d4f15">Motor::hitBottom</a></div><div class="ttdeci">bool hitBottom() const</div><div class="ttdoc">Checks if the current position has reached or exceeded the current limit and if the direction is set ...</div><div class="ttdef"><b>Definition</b> Motor.hpp:150</div></div>
+<div class="ttc" id="aclassMotor_html_afddc50db870be11e6ed2739953e0be77"><div class="ttname"><a href="classMotor.html#afddc50db870be11e6ed2739953e0be77">Motor::pos</a></div><div class="ttdeci">int pos</div><div class="ttdef"><b>Definition</b> Motor.hpp:61</div></div>
 <div class="ttc" id="adefs_8hpp_html"><div class="ttname"><a href="defs_8hpp.html">defs.hpp</a></div></div>
-<div class="ttc" id="adefs_8hpp_html_ad0344eb1bc475981a837e350c08fb53a"><div class="ttname"><a href="defs_8hpp.html#ad0344eb1bc475981a837e350c08fb53a">debugEnabled</a></div><div class="ttdeci">bool debugEnabled</div><div class="ttdoc">Indicates whether debug messages should be sent to serial.</div><div class="ttdef"><b>Definition</b> defs.hpp:26</div></div>
+<div class="ttc" id="adefs_8hpp_html_a5ddf2283d980402c15e157a865fe3c1c"><div class="ttname"><a href="defs_8hpp.html#a5ddf2283d980402c15e157a865fe3c1c">MAX_SPEED</a></div><div class="ttdeci">constexpr int MAX_SPEED</div><div class="ttdoc">The maximum speed value that can be represented by PWM.</div><div class="ttdef"><b>Definition</b> defs.hpp:107</div></div>
+<div class="ttc" id="adefs_8hpp_html_a66ee0bd2ff8592573ed299a7582f086d"><div class="ttname"><a href="defs_8hpp.html#a66ee0bd2ff8592573ed299a7582f086d">directions</a></div><div class="ttdeci">const char * directions[3]</div><div class="ttdoc">String representations of the directions.</div><div class="ttdef"><b>Definition</b> lift_and_tilt_firmware.cpp:27</div></div>
+<div class="ttc" id="adefs_8hpp_html_a6f6cfbe0889a89dfbe582ad507b88ac5"><div class="ttname"><a href="defs_8hpp.html#a6f6cfbe0889a89dfbe582ad507b88ac5">PWM_FREQUENCY</a></div><div class="ttdeci">constexpr int PWM_FREQUENCY</div><div class="ttdoc">The frequency of the PWM signal sent to the motor controllers.</div><div class="ttdef"><b>Definition</b> defs.hpp:55</div></div>
+<div class="ttc" id="adefs_8hpp_html_a84bd9a418dd1da9665d0702e7c0294ff"><div class="ttname"><a href="defs_8hpp.html#a84bd9a418dd1da9665d0702e7c0294ff">MIN_MOTOR_TRAVEL_SPEED</a></div><div class="ttdeci">constexpr int MIN_MOTOR_TRAVEL_SPEED</div><div class="ttdoc">Minimum travel speed.</div><div class="ttdef"><b>Definition</b> defs.hpp:72</div></div>
+<div class="ttc" id="adefs_8hpp_html_aa1ef4e7868e1fa0de8f34432bf9cb77e"><div class="ttname"><a href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a></div><div class="ttdeci">constexpr int DEFAULT_MOTOR_SPEED</div><div class="ttdoc">The default speed of the motors given in PWM value.</div><div class="ttdef"><b>Definition</b> defs.hpp:65</div></div>
+<div class="ttc" id="adefs_8hpp_html_ab86e2bb308b2961dcb035be27767e697"><div class="ttname"><a href="defs_8hpp.html#ab86e2bb308b2961dcb035be27767e697">PWM_RESOLUTION_BITS</a></div><div class="ttdeci">constexpr int PWM_RESOLUTION_BITS</div><div class="ttdoc">The resolution of the PWM signal in bits (provides 2^PWM_RESOLUTION_BITS of possible levels)</div><div class="ttdef"><b>Definition</b> defs.hpp:59</div></div>
+<div class="ttc" id="adefs_8hpp_html_ad0344eb1bc475981a837e350c08fb53a"><div class="ttname"><a href="defs_8hpp.html#ad0344eb1bc475981a837e350c08fb53a">debugEnabled</a></div><div class="ttdeci">bool debugEnabled</div><div class="ttdoc">Indicates whether debug messages should be sent to serial.</div><div class="ttdef"><b>Definition</b> lift_and_tilt_firmware.cpp:50</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

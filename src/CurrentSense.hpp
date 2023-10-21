@@ -3,6 +3,7 @@
 #ifndef _CURRENT_SENSE_HPP_
 #define _CURRENT_SENSE_HPP_
 
+#include <Arduino.h>
 #include <cmath>
 #include <driver/adc.h>
 #include <stdint.h>
@@ -23,7 +24,7 @@
 class CurrentSense {
 private:
   int_fast32_t CALIBRATE_ITERATIONS_SHIFT = 14;
-  int_fast32_t SAMPLE_CURRENT_ITERATIONS_SHIFT = 6;
+  int_fast32_t SAMPLE_CURRENT_ITERATIONS_SHIFT = 8;
 
   /// @brief The number of millivolts per detected ampere of current
   int32_t MV_PER_AMP = static_cast<int32_t>(185 * 1.132);

@@ -91,8 +91,7 @@ $(document).ready(function(){initNavTree('PinMacros_8hpp.html',''); initResizabl
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">PinMacros.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -101,15 +100,6 @@ $(document).ready(function(){initNavTree('PinMacros_8hpp.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a776f20d60075376e393c82f91b694490" id="r_a776f20d60075376e393c82f91b694490"><td class="memItemLeft" align="right" valign="top"><a id="a776f20d60075376e393c82f91b694490" name="a776f20d60075376e393c82f91b694490"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>FSET_TO_ANALOG_PIN</b>(pin,  var_to_set,  range_min,  range_max)&#160;&#160;&#160;    var_to_set = <a class="el" href="PinMacros_8hpp.html#ae191e193234145f67a5acafe9cd7b6b3">fmap</a>(analogRead(pin), 0, 4096, range_min, range_max)</td></tr>
-<tr class="separator:a776f20d60075376e393c82f91b694490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbcab9e940958eff9908c02f40bec9a3" id="r_adbcab9e940958eff9908c02f40bec9a3"><td class="memItemLeft" align="right" valign="top"><a id="adbcab9e940958eff9908c02f40bec9a3" name="adbcab9e940958eff9908c02f40bec9a3"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_TO_ANALOG_PIN</b>(pin,  var_to_set,  range_min,  range_max)&#160;&#160;&#160;    var_to_set = map(analogRead(pin), 0, 4096, range_min, range_max)</td></tr>
-<tr class="separator:adbcab9e940958eff9908c02f40bec9a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa94fbc85102be44afcf8bb91666365c1" id="r_aa94fbc85102be44afcf8bb91666365c1"><td class="memItemLeft" align="right" valign="top"><a id="aa94fbc85102be44afcf8bb91666365c1" name="aa94fbc85102be44afcf8bb91666365c1"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SET_TO_ANALOG_PIN_FUNC</b>(pin,  func,  range_min,  range_max)&#160;&#160;&#160;func(map(analogRead(pin), 0, 4096, range_min, range_max))</td></tr>
-<tr class="separator:aa94fbc85102be44afcf8bb91666365c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa83e4bee78852fdb314719a938f3969a" id="r_aa83e4bee78852fdb314719a938f3969a"><td class="memItemLeft" align="right" valign="top"><a id="aa83e4bee78852fdb314719a938f3969a" name="aa83e4bee78852fdb314719a938f3969a"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>motorPinWrite</b>(pin,  value)&#160;&#160;&#160;  digitalWrite(static_cast&lt;std::uint8_t&gt;(pin), value)</td></tr>
 <tr class="separator:aa83e4bee78852fdb314719a938f3969a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,81 +107,15 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>motorPinWrite</b>(pin,  value)&#160;&#160;&#160;  digitalWrite(static_cast&lt;std::uint8_t&gt;(pin), value)</td></tr>
 <tr class="separator:aa83e4bee78852fdb314719a938f3969a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48cbb45b0648eae6fc18c9c4444ed2d0" id="r_a48cbb45b0648eae6fc18c9c4444ed2d0"><td class="memItemLeft" align="right" valign="top"><a id="a48cbb45b0648eae6fc18c9c4444ed2d0" name="a48cbb45b0648eae6fc18c9c4444ed2d0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>motorPinMode</b>(pin,  value)&#160;&#160;&#160;  pinMode(static_cast&lt;std::uint8_t&gt;(pin), value)</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>motorPinMode</b>(pin,  value)&#160;&#160;&#160;pinMode(static_cast&lt;std::uint8_t&gt;(pin), value)</td></tr>
 <tr class="separator:a48cbb45b0648eae6fc18c9c4444ed2d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e54b235b87f913187596fe4529f6ceb" id="r_a8e54b235b87f913187596fe4529f6ceb"><td class="memItemLeft" align="right" valign="top"><a id="a8e54b235b87f913187596fe4529f6ceb" name="a8e54b235b87f913187596fe4529f6ceb"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>motorAttachPin</b>(pin,  channel)&#160;&#160;&#160;  ledcAttachPin(static_cast&lt;std::uint8_t&gt;(pin), channel)</td></tr>
 <tr class="separator:a8e54b235b87f913187596fe4529f6ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ec0b2ec9b3b28197d30defa40b59b47" id="r_a5ec0b2ec9b3b28197d30defa40b59b47"><td class="memItemLeft" align="right" valign="top"><a id="a5ec0b2ec9b3b28197d30defa40b59b47" name="a5ec0b2ec9b3b28197d30defa40b59b47"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>motorAnalogRead</b>(pin)&#160;&#160;&#160;  analogRead(static_cast&lt;std::uint8_t&gt;(pin))</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>motorAnalogRead</b>(pin)&#160;&#160;&#160;analogRead(static_cast&lt;std::uint8_t&gt;(pin))</td></tr>
 <tr class="separator:a5ec0b2ec9b3b28197d30defa40b59b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ae191e193234145f67a5acafe9cd7b6b3" id="r_ae191e193234145f67a5acafe9cd7b6b3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="PinMacros_8hpp.html#ae191e193234145f67a5acafe9cd7b6b3">fmap</a> (float x, float in_min, float in_max, float out_min, float out_max)</td></tr>
-<tr class="memdesc:ae191e193234145f67a5acafe9cd7b6b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map 12-bit ADC value to a value within defined range.  <br /></td></tr>
-<tr class="separator:ae191e193234145f67a5acafe9cd7b6b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="ae191e193234145f67a5acafe9cd7b6b3" name="ae191e193234145f67a5acafe9cd7b6b3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae191e193234145f67a5acafe9cd7b6b3">&#9670;&#160;</a></span>fmap()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float fmap </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>in_min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>in_max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>out_min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>out_max</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Map 12-bit ADC value to a value within defined range. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">x</td><td>12-bit ADC value </td></tr>
-    <tr><td class="paramname">in_min</td><td>Minimum input value </td></tr>
-    <tr><td class="paramname">in_max</td><td>Maximum input value </td></tr>
-    <tr><td class="paramname">out_min</td><td>Minimum output value </td></tr>
-    <tr><td class="paramname">out_max</td><td>Maximum output value </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Mapped output value for input value </dd></dl>
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

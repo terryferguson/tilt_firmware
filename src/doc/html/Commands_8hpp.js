@@ -17,6 +17,11 @@ var Commands_8hpp =
       [ "GET_TILT_5", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea8f039e4066efe8f2443925d57d657318", null ],
       [ "ZERO", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea529e9e0beb5f85d1f132917c1a09860c", null ],
       [ "SYSTEM_RESET", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea10386e3df245d122a199a25f2a92e075", null ],
-      [ "TOGGLE_PID", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea9d8dbaf6c2c5637b7d99f9874f22d2fd", null ]
+      [ "TOGGLE_PID", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea9d8dbaf6c2c5637b7d99f9874f22d2fd", null ],
+      [ "HOME", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea710533dd879dd1202e5c73b27705bf02", null ],
+      [ "TOGGLE_LIMIT_RANGE", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea554cc6dfd798218c8d9463f97655894e", null ],
+      [ "READ_LIMIT", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea5ad2e7294452b6cbd494dd9d6ccae35e", null ],
+      [ "SET_POSITION", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27eab9d6ef2a1efa6bdb8b1dd80680c5ff90", null ],
+      [ "SET_CURRENT_ALARM", "Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea169dcf33c6d2a619138331db43340eda", null ]
     ] ]
 ];

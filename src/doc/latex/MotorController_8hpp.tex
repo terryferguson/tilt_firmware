@@ -1,7 +1,8 @@
 \doxysection{Motor\+Controller.\+hpp File Reference}
 \hypertarget{MotorController_8hpp}{}\label{MotorController_8hpp}\index{MotorController.hpp@{MotorController.hpp}}
 {\ttfamily \#include $<$Preferences.\+h$>$}\newline
-{\ttfamily \#include "{}Current\+Settings.\+hpp"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include "{}EMA.\+hpp"{}}\newline
 {\ttfamily \#include "{}Motor.\+hpp"{}}\newline
 {\ttfamily \#include "{}PIDController.\+hpp"{}}\newline
 {\ttfamily \#include "{}Pin\+Macros.\+hpp"{}}\newline
@@ -14,18 +15,13 @@ class \mbox{\hyperlink{classMotorController}{Motor\+Controller}}
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{MotorController_8hpp_a3fc51a13f4ddb04d22723976909e13c6}\label{MotorController_8hpp_a3fc51a13f4ddb04d22723976909e13c6} 
-\#define {\bfseries NUMBER\+\_\+\+OF\+\_\+\+MOTORS}~2
-\item 
 \#define \mbox{\hyperlink{MotorController_8hpp_a9f3acb84bb405fbe717f319b2b7d622c}{ALL\+\_\+\+MOTORS}}(operation)
 \item 
 \Hypertarget{MotorController_8hpp_aa5ae561ec655f7a78657fc9dacc8247f}\label{MotorController_8hpp_aa5ae561ec655f7a78657fc9dacc8247f} 
 \#define {\bfseries ALL\+\_\+\+MOTORS\+\_\+\+COMMAND}(command)~ALL\+\_\+\+MOTORS(motors\mbox{[}motor\mbox{]}.command();)
 \item 
-\#define \mbox{\hyperlink{MotorController_8hpp_a3b47c5a4e135999898004eeeb4801d20}{RESET\+\_\+\+SOFT\+\_\+\+MOVEMENT}}
-\item 
 \Hypertarget{MotorController_8hpp_a6ce3503e166e87060a203e474bc801f7}\label{MotorController_8hpp_a6ce3503e166e87060a203e474bc801f7} 
-\#define {\bfseries RESTORE\+\_\+\+POSITION}(slot)~motor\+\_\+controller.\+set\+Pos(saved\+Positions\mbox{[}slot\mbox{]});
+\#define {\bfseries RESTORE\+\_\+\+POSITION}(slot)~motor\+\_\+controller.\+set\+Pos(\mbox{\hyperlink{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d}{saved\+Positions}}\mbox{[}slot\mbox{]});
 \item 
 \#define \mbox{\hyperlink{MotorController_8hpp_abedc96941fbd5271859eb15812f22ddd}{SERIAL\+\_\+\+SAVE\+\_\+\+POSITION}}(slot)
 \end{DoxyCompactItemize}
@@ -40,24 +36,9 @@ class \mbox{\hyperlink{classMotorController}{Motor\+Controller}}
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ motor\ =\ 0;\ motor\ <\ NUMBER\_OF\_MOTORS;\ motor++)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ motor\ =\ 0;\ motor\ <\ \mbox{\hyperlink{defs_8hpp_afcc019745aed213aaa07d37c7fa08440}{NUMBER\_OF\_MOTORS}};\ motor++)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ operation\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \}}
-
-\end{DoxyCode}
-\Hypertarget{MotorController_8hpp_a3b47c5a4e135999898004eeeb4801d20}\label{MotorController_8hpp_a3b47c5a4e135999898004eeeb4801d20} 
-\index{MotorController.hpp@{MotorController.hpp}!RESET\_SOFT\_MOVEMENT@{RESET\_SOFT\_MOVEMENT}}
-\index{RESET\_SOFT\_MOVEMENT@{RESET\_SOFT\_MOVEMENT}!MotorController.hpp@{MotorController.hpp}}
-\doxysubsubsection{\texorpdfstring{RESET\_SOFT\_MOVEMENT}{RESET\_SOFT\_MOVEMENT}}
-{\footnotesize\ttfamily \#define RESET\+\_\+\+SOFT\+\_\+\+MOVEMENT}
-
-{\bfseries Value\+:}
-\begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ pwmUpdateAmount\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ lastPWMUpdate\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ softStart\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ targetSpeed\ =\ -\/1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ eIntegral\ =\ 0.0f;}
 
 \end{DoxyCode}
 \Hypertarget{MotorController_8hpp_abedc96941fbd5271859eb15812f22ddd}\label{MotorController_8hpp_abedc96941fbd5271859eb15812f22ddd} 
@@ -70,7 +51,7 @@ class \mbox{\hyperlink{classMotorController}{Motor\+Controller}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (Serial.available()\ >\ 0)\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{int}\ new\_pos\ =\ Serial.parseInt();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ motor\_controller.savePosition(slot,\ new\_pos);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ motor\_controller.\mbox{\hyperlink{classMotorController_a3d3c79eeae2492a637d62612689e55ce}{savePosition}}(slot,\ new\_pos);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \}}
 
 \end{DoxyCode}

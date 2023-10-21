@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.8.28)  14 SEP 2023 16:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Arch Linux) (preloaded format=pdflatex 2023.9.30)  16 OCT 2023 08:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -861,17 +861,9 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 6.29996pt on input line 204.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 204.
-LaTeX Font Info:    Trying to load font information for T1+pcr on input line 20
-4.
-
-(/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 6.29996pt on input line 204.
- [1] [2] [3] [4
+ [1] [2] [3] [4] [5] [6
 
 ]
 Package hyperref Info: Option `pageanchor' set `true' on input line 207.
@@ -883,7 +875,7 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 209.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 22.39185pt on input line 209.
-(./annotated.tex
+(./hierarchy.tex
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 ) [1
@@ -892,11 +884,20 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 
 ]
 Chapter 2.
-(./files.tex) [3] [4
+(./annotated.tex) [3] [4
 
 ]
 Chapter 3.
+(./files.tex) [5] [6
+
+]
+Chapter 4.
 (./classCommandType.tex
+LaTeX Font Info:    Trying to load font information for T1+pcr on input line 10
+.
+ (/usr/share/texmf-dist/tex/latex/psnfss/t1pcr.fd
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 14.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
@@ -918,113 +919,266 @@ File: ts1phv.fd 2020/03/25 scalable font definitions for TS1/phv.
 )
 LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
 (Font)              scaled to size 8.99994pt on input line 29.
-) (./classControlPin.tex
-Underfull \hbox (badness 10000) detected at line 17
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 22
-[][][]
- []
-
-[5]) (./classCurrentSense.tex
-Underfull \hbox (badness 10000) detected at line 28
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 33
-[][][]
- []
-
-
-Underfull \hbox (badness 10000) detected at line 47
-[][][]
- []
-
-[6]) (./classDirection.tex
-Underfull \hbox (badness 10000) detected at line 17
-[][][]
- []
-
-) (./classMotor.tex
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 18.
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 18.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 18.
+) (./classControllerState.tex <./classControllerState.pdf>
+<classControllerState.pdf, id=1060, 501.875pt x 80.13939pt>
+File: classControllerState.pdf Graphic file (type pdf)
+<use classControllerState.pdf>
+Package pdftex.def Info: classControllerState.pdf  used on input line 15.
+(pdftex.def)             Requested size: 356.37968pt x 56.9055pt.
  [7]
-Underfull \hbox (badness 10000) detected at line 75
+Underfull \hbox (badness 10000) detected at line 43
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 78
+Underfull \hbox (badness 10000) detected at line 48
 [][][]
  []
 
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.19995pt on input line 87.
-[8]
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 7.19995pt on input line 58.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 94.
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 78.
 LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 94.
- [9] [10]
-Underfull \hbox (badness 10000) detected at line 145
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 78.
+[8]) (./classCurrentSense.tex
+Underfull \hbox (badness 1137) in paragraph at lines 16--18
+[]\T1/phv/b/n/10 Current[]Sense \T1/phv/m/n/10 (const adc1[]_[]channel[]_[]t p[
+]Current[]Sense[]Pin=ADC1[]_[][]CHANNEL[]_[]0, const dou-ble p[]Logic[]
+ []
+
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 19.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 19.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 19.
+
+Underfull \hbox (badness 10000) detected at line 27
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 174
+Underfull \hbox (badness 10000) detected at line 32
+[][][]
+ []
+
+[9]
+Underfull \hbox (badness 10000) detected at line 48
+[][][]
+ []
+
+) (./classDirection.tex
+Underfull \hbox (badness 10000) detected at line 17
+[][][]
+ []
+
+) (./classEMA.tex [10]
+Underfull \hbox (badness 10000) detected at line 39
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 187
+Underfull \hbox (badness 10000) detected at line 44
 [][][]
  []
 
-[11]) (./classMotorController.tex
-Underfull \hbox (badness 5652) in paragraph at lines 15--16
-[][] \T1/phv/m/n/10 (const int pwm[]Frequency=PWM[]_[][]FREQUENCY, const int pw
-m[]Resolution=PWM[]_[][]
- []
-
-
-Underfull \hbox (badness 1874) in paragraph at lines 15--16
-\T1/phv/m/n/10 RESOLUTION[]_[][]BITS, const int []=DEFAULT[]_[][]MOTOR[]_[][]SP
-EED, const int current[]Increase[]
- []
-
-[12] [13]
-Underfull \hbox (badness 10000) detected at line 82
+) (./classMotor.tex [11] [12]
+Underfull \hbox (badness 10000) detected at line 89
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 87
+Underfull \hbox (badness 10000) detected at line 92
+[][][]
+ []
+
+[13]
+Underfull \hbox (badness 10000) detected at line 153
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 125
+Underfull \hbox (badness 10000) detected at line 188
 [][][]
  []
 
 [14]
-Underfull \hbox (badness 10000) detected at line 138
+Underfull \hbox (badness 10000) detected at line 201
 [][][]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 151
+Underfull \hbox (badness 10000) detected at line 219
 [][][]
  []
 
-[15] [16]) (./classMotorPins.tex
+
+Underfull \hbox (badness 10000) detected at line 232
+[][][]
+ []
+
+[15]
+Underfull \hbox (badness 10000) detected at line 260
+[][][]
+ []
+
+[16]) (./classMotorController.tex
+Overfull \hbox (40.42258pt too wide) in paragraph at lines 15--16
+[][] \T1/phv/m/n/10 (const int pwm[]Frequency=[], const int pwm[]Resolution=[],
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 96--97
+
+ []
+
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 127--128
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 134--135
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--166
+
+ []
+
+[19]
+Underfull \hbox (badness 10000) detected at line 196
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 201
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 226
+[][][]
+ []
+
+[20]
+Underfull \hbox (badness 10000) detected at line 247
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 265
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 283
+[][][]
+ []
+
+[21]
+Underfull \hbox (badness 10000) detected at line 329
+[][][]
+ []
+
+[22]
+Underfull \hbox (badness 10000) detected at line 352
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 370
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 383
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 394
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 405
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 418
+[][][]
+ []
+
+[23]
+Underfull \hbox (badness 10000) detected at line 431
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 454
+[][][]
+ []
+
+[24]
+Underfull \hbox (badness 10000) detected at line 477
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 500
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 521
+[][][]
+ []
+
+
+Overfull \vbox (8.12064pt too high) has occurred while \output is active []
+
+
+[25]
+Underfull \hbox (badness 10000) detected at line 552
+[][][]
+ []
+
+[26]
+Underfull \hbox (badness 10000) detected at line 590
+[][][]
+ []
+
+[27]
+Underfull \hbox (badness 10000) detected at line 691
+[][][]
+ []
+
+[28]
+Underfull \hbox (badness 10000) detected at line 709
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 727
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 748
+[][][]
+ []
+
+[29]
+Underfull \hbox (badness 10000) detected at line 766
+[][][]
+ []
+
+) (./classMotorPins.tex
 Underfull \hbox (badness 10000) detected at line 19
 [][][]
  []
@@ -1034,112 +1188,276 @@ Underfull \hbox (badness 10000) detected at line 26
 [][][]
  []
 
-[17]
+
 Underfull \hbox (badness 10000) detected at line 31
 [][][]
  []
 
-) (./classPIDController.tex [18]) [19] [20
+) (./classMotorsSoftMovementState.tex [30] <./classMotorsSoftMovementState.pdf>
+<classMotorsSoftMovementState.pdf, id=1503, 501.875pt x 240.4182pt>
+File: classMotorsSoftMovementState.pdf Graphic file (type pdf)
+<use classMotorsSoftMovementState.pdf>
+Package pdftex.def Info: classMotorsSoftMovementState.pdf  used on input line 1
+5.
+(pdftex.def)             Requested size: 118.79066pt x 56.9055pt.
 
-]
-Chapter 4.
+Underfull \hbox (badness 10000) detected at line 48
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 53
+[][][]
+ []
+
+[31]
+Underfull \hbox (badness 10000) detected at line 69
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 86
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 103
+[][][]
+ []
+
+) (./classMotorsStartingState.tex <./classMotorsStartingState.pdf>
+<classMotorsStartingState.pdf, id=1534, 501.875pt x 308.84384pt>
+File: classMotorsStartingState.pdf Graphic file (type pdf)
+<use classMotorsStartingState.pdf>
+Package pdftex.def Info: classMotorsStartingState.pdf  used on input line 15.
+(pdftex.def)             Requested size: 92.47017pt x 56.9055pt.
+ [32]
+Underfull \hbox (badness 10000) detected at line 48
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 53
+[][][]
+ []
+
+[33]
+Underfull \hbox (badness 10000) detected at line 69
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 86
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 103
+[][][]
+ []
+
+) (./classMotorsStoppedState.tex <./classMotorsStoppedState.pdf>
+<classMotorsStoppedState.pdf, id=1569, 501.875pt x 301.8778pt>
+File: classMotorsStoppedState.pdf Graphic file (type pdf)
+<use classMotorsStoppedState.pdf>
+Package pdftex.def Info: classMotorsStoppedState.pdf  used on input line 15.
+(pdftex.def)             Requested size: 94.59909pt x 56.9055pt.
+ [34]
+Underfull \hbox (badness 10000) detected at line 48
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 53
+[][][]
+ []
+
+[35]
+Underfull \hbox (badness 10000) detected at line 69
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 86
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 103
+[][][]
+ []
+
+) (./classPIDController.tex [36]
+Underfull \hbox (badness 10000) detected at line 42
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 47
+[][][]
+ []
+
+
+Overfull \vbox (16.46283pt too high) has occurred while \output is active []
+
+
+[37]
+Underfull \hbox (badness 10000) detected at line 100
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 113
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 131
+[][][]
+ []
+
+[38]) (./classStateController.tex [39]
+Underfull \hbox (badness 10000) detected at line 67
+[][][]
+ []
+
+) [40]
+Chapter 5.
 (./Commands_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[21]) (./Commands_8hpp_source.tex) (./ControlPins_8hpp.tex
+[41
+
+]) (./Commands_8hpp_source.tex) (./ControllerState_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[22]) (./ControlPins_8hpp_source.tex) (./CurrentSense_8hpp.tex
+[42]) (./ControllerState_8hpp_source.tex) (./ControlPins_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
+
+ []
+
+) (./ControlPins_8hpp_source.tex [43]) (./CurrentSense_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--8
+
+ []
+
+) (./CurrentSense_8hpp_source.tex [44]) (./defs_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--7
 
  []
 
-) (./CurrentSense_8hpp_source.tex [23]) (./CurrentSettings_8hpp.tex [24]
-Underfull \hbox (badness 10000) detected at line 48
-[][][]
- []
-
-) (./CurrentSettings_8hpp_source.tex [25]) (./defs_8hpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--7
-
- []
-
-) (./defs_8hpp_source.tex [26]) (./Direction_8hpp.tex [27])
-(./Direction_8hpp_source.tex) (./Motor_8hpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--7
+[45]
+LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
+(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 41.
+LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
+(Font)              scaled to size 8.09995pt on input line 41.
+LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <9> not available
+(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 53.
+ [46] [47]) (./defs_8hpp_source.tex [48] [49]) (./Direction_8hpp.tex
+[50]) (./Direction_8hpp_source.tex) (./EMA_8hpp_source.tex) (./Motor_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--10
 
  []
 
-[28]) (./Motor_8hpp_source.tex [29] [30] [31]) (./MotorController_8hpp.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--9
+[51]) (./Motor_8hpp_source.tex [52] [53] [54]) (./MotorController_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--10
 
  []
 
-[32]) (./MotorController_8hpp_source.tex [33] [34] [35] [36] [37])
-(./MotorPins_8hpp.tex
+[55]) (./MotorController_8hpp_source.tex [56] [57] [58] [59] [60] [61] [62]
+[63] [64] [65] [66]) (./MotorPins_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-[38]) (./MotorPins_8hpp_source.tex) (./PIDController_8hpp_source.tex [39])
-(./PinMacros_8hpp.tex [40]
-Underfull \hbox (badness 10000) detected at line 61
+[67]) (./MotorPins_8hpp_source.tex) (./MotorsSoftMovementState_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+[68]) (./MotorsSoftMovementState_8hpp_source.tex)
+(./MotorsStartingState_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--7
+
+ []
+
+[69]) (./MotorsStartingState_8hpp_source.tex) (./MotorsStoppedState_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--6
+
+ []
+
+) (./MotorsStoppedState_8hpp_source.tex [70]) (./PIDController_8hpp_source.tex
+[71] [72]) (./PinMacros_8hpp.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+
+ []
+
+[73]
+Underfull \hbox (badness 10000) detected at line 62
 [][][]
  []
 
-) (./PinMacros_8hpp_source.tex [41
+) (./PinMacros_8hpp_source.tex [74
 pdfTeX warning (ext4): destination with the same identifier (name{PinMacros_8hp
 p_aa83e4bee78852fdb314719a938f3969a}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.20 \DoxyCodeLine{00024\ }
-                           ]) (./PotentiometerPins_8hpp.tex
+l.11 ... /\ (in\_max\ -\/\ in\_min)\ +\ out\_min;}
+                                                  ])
+(./PotentiometerPins_8hpp.tex
 Underfull \hbox (badness 10000) in paragraph at lines 3--4
 
  []
 
-) (./PotentiometerPins_8hpp_source.tex) (./RouteMacros_8hpp.tex [42])
-(./RouteMacros_8hpp_source.tex [43]) [44] (./refman.ind
+) (./PotentiometerPins_8hpp_source.tex [75]) (./RouteMacros_8hpp.tex [76])
+(./RouteMacros_8hpp_source.tex) (./StateController_8hpp_source.tex [77])
+[78] (./refman.ind
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 22.39185pt on input line 1.
- [45
+
+Overfull \hbox (36.17114pt too wide) in paragraph at lines 62--64
+[]| \T1/phv/m/n/10 SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS,
+ []
+
+[79
 
 
 
-] [46] [47])
-(./refman.aux)
+] [80] [81] [82]) (./refman.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: BD7A7F752AA6882214325D5695B37F29;21621.
+(rerunfilecheck)             Checksum: B872FBA788857394DB3E7EE0734E4AB0;35568.
  ) 
 Here is how much of TeX's memory you used:
- 18847 strings out of 477985
- 315888 string characters out of 5840058
- 1885388 words of memory out of 5000000
- 38251 multiletter control sequences out of 15000+600000
- 568885 words of font info for 102 fonts, out of 8000000 for 9000
- 14 hyphenation exceptions out of 8191
- 101i,16n,117p,1309b,744s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 19504 strings out of 476025
+ 334817 string characters out of 5796532
+ 1889388 words of memory out of 5000000
+ 38832 multiletter control sequences out of 15000+600000
+ 571247 words of font info for 116 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 101i,16n,117p,1643b,744s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/font
-s/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public
-/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-sy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/t
-exmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texmf-dist/fonts/type1
-/urw/courier/ucrro8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8a
-.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvb8ac.pfb></usr/share/te
-xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texmf-dist/fonts/type1
-/urw/helvetic/uhvro8a.pfb>
-Output written on refman.pdf (53 pages, 243120 bytes).
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+r10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/
+share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrr
+8a.pfb></usr/share/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/share/t
+exmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/share/texmf-dist/fonts/type
+1/urw/helvetic/uhvb8ac.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvr
+8a.pfb></usr/share/texmf-dist/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (90 pages, 397463 bytes).
 PDF statistics:
- 1848 PDF objects out of 2073 (max. 8388607)
- 1737 compressed objects within 18 object streams
- 386 named destinations out of 1000 (max. 500000)
- 889 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3501 PDF objects out of 3580 (max. 8388607)
+ 3317 compressed objects within 34 object streams
+ 676 named destinations out of 1000 (max. 500000)
+ 1437 words of extra memory for PDF output out of 10000 (max. 10000000)
 

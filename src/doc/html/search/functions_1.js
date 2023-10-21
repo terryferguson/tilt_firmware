@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['displayinfo_0',['displayInfo',['../classMotor.html#addd71950a81fc023e4dc68019af77af3',1,'Motor']]],
-  ['drive_1',['drive',['../classMotor.html#ac8da33f8f7b7f55d372cae88b2ef6969',1,'Motor']]]
+  ['checkifsetpositionreached_0',['checkIfSetPositionReached',['../classMotorController.html#a1f3cf0f1c5ec115375fe18379212b65d',1,'MotorController']]],
+  ['currentalarmtriggered_1',['currentAlarmTriggered',['../classMotorController.html#a762e90adbeb49a28e1afaba55704ea6a',1,'MotorController']]]
 ];

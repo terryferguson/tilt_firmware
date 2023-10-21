@@ -35,9 +35,10 @@ private:
   float derivative = 0.0f; /// The derivative term value
   float limMinInteg, limMaxInteg; /// Anti Windup Integrator Limits
   float lastError = 0.0f;         /// The last error value
-  float followerMaxAccel = 5.0f; // New variable for follower's max acceleration
-  int followerMaxSpeed = MAX_SPEED; // New variable for follower's max speed
-  float filteredSpeed = 0.0f;       // Declare filteredSpeed here
+  float followerMaxAccel =
+      5.0f; /// New variable for follower's max acceleration
+  int followerMaxSpeed = MAX_SPEED; /// New variable for follower's max speed
+  float filteredSpeed = 0.0f;       /// Declare filteredSpeed here
 
   const float MAX_ACCELERATION_INCREASE = 0.01f;
   const float MAX_ACCELERATION_LIMIT = 5.0f;

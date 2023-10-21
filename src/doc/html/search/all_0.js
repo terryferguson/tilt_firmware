@@ -1,14 +1,8 @@
 var searchData=
 [
-  ['command_0',['Command',['../Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27e',1,'Commands.hpp']]],
-  ['commands_2ehpp_1',['Commands.hpp',['../Commands_8hpp.html',1,'']]],
-  ['commandtype_2',['CommandType',['../classCommandType.html',1,'']]],
-  ['controlpin_3',['controlpin',['../classControlPin.html',1,'ControlPin'],['../ControlPins_8hpp.html#a834b20ddb56a532b2fc23276db08bb66',1,'ControlPin:&#160;ControlPins.hpp']]],
-  ['controlpins_2ehpp_4',['ControlPins.hpp',['../ControlPins_8hpp.html',1,'']]],
-  ['countsareunequal_5',['countsAreUnequal',['../classMotorController.html#a6d94459f0e674807e4556afca3b34413',1,'MotorController']]],
-  ['currentincreasetolerance_6',['currentIncreaseTolerance',['../classMotorController.html#ae9008f7115e4f9060c311a3970d8b50f',1,'MotorController']]],
-  ['currentincreseexceedsthreshold_7',['currentIncreseExceedsThreshold',['../CurrentSettings_8hpp.html#a1cd90167f6fd401747ff5c7ad87ad7d5',1,'CurrentSettings.hpp']]],
-  ['currentsense_8',['CurrentSense',['../classCurrentSense.html',1,'']]],
-  ['currentsense_2ehpp_9',['CurrentSense.hpp',['../CurrentSense_8hpp.html',1,'']]],
-  ['currentsettings_2ehpp_10',['CurrentSettings.hpp',['../CurrentSettings_8hpp.html',1,'']]]
+  ['adc_5flogic_5fvoltage_0',['ADC_LOGIC_VOLTAGE',['../defs_8hpp.html#a6e33f84943fcca38a31e4f8aec7fe3ba',1,'defs.hpp']]],
+  ['adc_5fresolution_5fbits_1',['ADC_RESOLUTION_BITS',['../defs_8hpp.html#ab85f7bc0b7abf319d8e5528f13aee861',1,'defs.hpp']]],
+  ['adjustspeed_2',['adjustSpeed',['../classPIDController.html#a4179077c8408485fa0d04c0000c81a74',1,'PIDController']]],
+  ['alarm_5freverse_5famount_3',['ALARM_REVERSE_AMOUNT',['../defs_8hpp.html#ae63fa65bd20ef52b566eb9af4ca1b549',1,'defs.hpp']]],
+  ['alarmcurrentvelocity_4',['alarmCurrentVelocity',['../classMotorController.html#a550fcd1dad89da2eb782973d13ffb811',1,'MotorController']]]
 ];

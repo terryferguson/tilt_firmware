@@ -1,11 +1,10 @@
 var searchData=
 [
-  ['get_5ftilt_5f1_0',['GET_TILT_1',['../Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea3d2501b7ab3d938ff31c5a6382c7a2b2',1,'Commands.hpp']]],
-  ['get_5ftilt_5f2_1',['GET_TILT_2',['../Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27eacd1e9806a1001eff3716448af2f2c718',1,'Commands.hpp']]],
-  ['get_5ftilt_5f3_2',['GET_TILT_3',['../Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea65c9ee90b5194d725de93d12fc76783e',1,'Commands.hpp']]],
-  ['get_5ftilt_5f4_3',['GET_TILT_4',['../Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27eabdbcb5f36563cd31f4ea95f1a537173c',1,'Commands.hpp']]],
-  ['get_5ftilt_5f5_4',['GET_TILT_5',['../Commands_8hpp.html#a2aeb8afa367393535b95c19b9f06b27ea8f039e4066efe8f2443925d57d657318',1,'Commands.hpp']]],
-  ['getcurrent_5',['getcurrent',['../classCurrentSense.html#a3ee919f39b0d70a7da1b540ed87ea1aa',1,'CurrentSense::getCurrent()'],['../classMotor.html#ab84a374f1efa46be16568b298bd58b8c',1,'Motor::getCurrent() const']]],
-  ['getnormalizedpos_6',['getNormalizedPos',['../classMotor.html#a2758ae40e957841c76c3f22cb4dcc764',1,'Motor']]],
-  ['getspeed_7',['getSpeed',['../classMotorController.html#add201a7e452d3c44703bf1ac6aac587e',1,'MotorController']]]
+  ['follower_5falarm_5freverse_5famount_0',['FOLLOWER_ALARM_REVERSE_AMOUNT',['../defs_8hpp.html#aaadc338cba55f87f08220e8a6e1b30ec',1,'defs.hpp']]],
+  ['follower_5fbuffer_1',['FOLLOWER_BUFFER',['../defs_8hpp.html#a60b1b5d2cc6723238fca36a5a3fd2f80',1,'defs.hpp']]],
+  ['follower_5fcurrent_5fsense_5fpin_2',['FOLLOWER_CURRENT_SENSE_PIN',['../ControlPins_8hpp.html#a5e66ad1df8e9635c347e82dc45a43fe7',1,'ControlPins.hpp']]],
+  ['follower_5fmax_5fpulses_3',['FOLLOWER_MAX_PULSES',['../defs_8hpp.html#af08759ff4901d6c3978c9bac751be92a',1,'defs.hpp']]],
+  ['followercurrent_4',['followerCurrent',['../classMotorController.html#a5731eed9a9c1512f16e1d84a16c01dbe',1,'MotorController']]],
+  ['followercurrentfilter_5',['followerCurrentFilter',['../classMotorController.html#adc05bf3ff4ad249fe9a09099db00b3e2',1,'MotorController']]],
+  ['followercurrentvelocity_6',['followerCurrentVelocity',['../classMotorController.html#a1bd6d18355869d13eed389756761c0a7',1,'MotorController']]]
 ];

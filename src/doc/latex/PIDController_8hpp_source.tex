@@ -5,65 +5,194 @@
 \DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_PID\_CONTROLLER\_HPP\_\_}}
 \DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_PID\_CONTROLLER\_HPP\_\_}}
 \DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <math.h>}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <cstring>}}
-\DoxyCodeLine{00010\ }
-\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPIDController}{PIDController}}\ \{}
-\DoxyCodeLine{00012\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{float}\ kp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller\ path\ proportional\ gain}}
-\DoxyCodeLine{00014\ \ \ \textcolor{keywordtype}{float}\ ti;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller's\ integrator\ time\ constant}}
-\DoxyCodeLine{00015\ \ \ \textcolor{keywordtype}{float}\ td;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ controller's\ derivative\ time\ constant}}
-\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{float}\ uMax;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ magnitude\ of\ control\ signal}}
-\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{float}\ ePrev,\ eIntegral;\ \textcolor{comment}{//\ Storage}}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{classPIDController}{PIDController}}(\textcolor{keywordtype}{float}\ kp\ =\ 0.1,}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ ti\ =\ 0.002,}
-\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ td\ =\ 0.01,}
-\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ uMax\ =\ 255.0)}
-\DoxyCodeLine{00024\ \ \ \ \ \ \ :\ kp(kp),\ ti(ti),\ td(td),\ uMax(uMax),\ ePrev(0.0),\ eIntegral(0.0)\ \{\}}
-\DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \textcolor{comment}{//\ A\ function\ to\ set\ the\ parameters}}
-\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{void}\ setParams(\textcolor{keywordtype}{float}\ kpIn,\ \textcolor{keywordtype}{float}\ kdIn,\ \textcolor{keywordtype}{float}\ kiIn,\ \textcolor{keywordtype}{float}\ uMaxIn\ =\ 255.0)\ \{}
-\DoxyCodeLine{00028\ \ \ \ \ kp\ =\ kpIn;}
-\DoxyCodeLine{00029\ \ \ \ \ td\ =\ kdIn;}
-\DoxyCodeLine{00030\ \ \ \ \ ti\ =\ kiIn;}
-\DoxyCodeLine{00031\ \ \ \ \ uMax\ =\ uMaxIn;}
-\DoxyCodeLine{00032\ \ \ \}}
-\DoxyCodeLine{00033\ }
-\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPIDController_afee8d68c453ec8086c60f0e9524c2071}{evaluate}}(\textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{int}\ target,\ \textcolor{keywordtype}{float}\ deltaT,\ \textcolor{keywordtype}{int}\&\ speed,\ \mbox{\hyperlink{classDirection}{Direction}}\&\ dir)\ \{}
-\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//\ error}}
-\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{int}\ e\ =\ target\ -\/\ value;}
-\DoxyCodeLine{00046\ }
-\DoxyCodeLine{00047\ \ \ \textcolor{comment}{//\ derivative}}
-\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{float}\ dedt\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(e\ -\/\ ePrev)\ /\ deltaT;}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classPIDController}{PIDController}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{float}\ errorIntegral\ =\ 0.0f;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{float}\ previousMeasurement\ =\ 0.0f;\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordtype}{float}\ positionDifference\ =\ 0.0f;}
+\DoxyCodeLine{00027\ \ \ \textcolor{keywordtype}{float}\ maxSpeedAdjustmentRate\ =\ 900.0f;}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{float}\ filteredDerivative\ =\ 0.0f;}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ alpha\ =\ 0.5;\ \textcolor{comment}{//\ Filter\ constant}}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{int}\ K\_p;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{float}\ K\_i\ =\ \mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\_KI}};\ \ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{float}\ K\_d\ =\ \mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\_KD}};\ \ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{float}\ tau\ =\ 1.0f;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keywordtype}{int}\ uMax;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{float}\ derivative\ =\ 0.0f;\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{float}\ limMinInteg,\ limMaxInteg;\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordtype}{float}\ lastError\ =\ 0.0f;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{float}\ followerMaxAccel\ =}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ 5.0f;\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keywordtype}{int}\ followerMaxSpeed\ =\ \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\_SPEED}};\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordtype}{float}\ filteredSpeed\ =\ 0.0f;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ MAX\_ACCELERATION\_INCREASE\ =\ 0.01f;}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ MAX\_ACCELERATION\_LIMIT\ =\ 5.0f;}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ SPEED\_ALPHA\ =\ 0.5f;\ \ \ \ \ \ \textcolor{comment}{//\ The\ filtering\ constant\ for\ speed.}}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ SETPOINT\_WEIGHT\ =\ 1.15f;\ \textcolor{comment}{//\ or\ 0.8f\ as\ per\ your\ requirement}}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ POSITION\_DELTA\_SPEED\_SCALER\_EXTEND\ =\ 70000;}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ POSITION\_DELTA\_SPEED\_SCALER\_RETRACT\ =\ 70000;}
 \DoxyCodeLine{00049\ }
-\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ integral}}
-\DoxyCodeLine{00051\ \ \ eIntegral\ +=\ e\ *\ deltaT;}
-\DoxyCodeLine{00052\ }
-\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ control\ signal}}
-\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{float}\ u\ =\ kp\ *\ e\ +\ td\ *\ dedt\ +\ ti\ *\ eIntegral;}
-\DoxyCodeLine{00055\ }
-\DoxyCodeLine{00056\ \ \ \textcolor{comment}{//\ motor\ power}}
-\DoxyCodeLine{00057\ \ \ speed\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(fabs(u));}
-\DoxyCodeLine{00058\ \ \ speed\ =\ speed\ >\ uMax\ ?\ uMax\ :\ speed;}
-\DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ motor\ direction}}
-\DoxyCodeLine{00061\ \ \ dir\ =\ u\ <\ 0\ ?\ Direction::RETRACT\ :\ u\ >\ 0\ ?\ Direction::EXTEND\ :\ Direction::STOP;}
-\DoxyCodeLine{00062\ }
-\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ store\ previous\ error}}
-\DoxyCodeLine{00064\ \ \ ePrev\ =\ e;}
-\DoxyCodeLine{00065\ \}}
-\DoxyCodeLine{00066\ }
-\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{void}\ report(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ value,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ target,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ deltaT,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ speed,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classDirection}{Direction}}\ dir)\textcolor{keyword}{\ const\ }\{}
-\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{char}\ buf[256];\ \textcolor{comment}{//\ Diagnostic\ messages}}
-\DoxyCodeLine{00069\ \ \ \ \ sprintf(buf,\ \textcolor{stringliteral}{"{}PID\ params:\ value:\%d\ target:\ \%d,\ deltaT:\ \%f,\ speed:\ \%d,\ dir:\ \%s"{}},\ value,\ target,\ deltaT,\ speed,\ \mbox{\hyperlink{Direction_8hpp_a66ee0bd2ff8592573ed299a7582f086d}{directions}}[\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(dir)]);}
-\DoxyCodeLine{00070\ \ \ \ \ Serial.println(buf);}
-\DoxyCodeLine{00071\ \ \ \}}
-\DoxyCodeLine{00072\ \};}
-\DoxyCodeLine{00073\ }
-\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_PID\_CONTROLLER\_HPP\_\_}}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ MAX\_POSITION\_SCALE\_VALUE\ =\ 50;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{classPIDController_a8eea6ac267fcfac5aa36fe470308112f}{PIDController}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ kp\ =\ \mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\_KP}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ ki\ =\ \mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\_KI}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ kd\ =\ \mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\_KD}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ tau\ =\ 1.0f,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ uMax\ =\ \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\_SPEED}})}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ :\ K\_p(kp),\ K\_i(ki),\ K\_d(kd),\ tau(tau),\ uMax(uMax),}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ followerMaxSpeed(0.9\ *\ uMax),\ \textcolor{comment}{//\ Initialize\ followerMaxSpeed}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ limMinInteg(}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ -\/std::numeric\_limits<float>::infinity()),\ \textcolor{comment}{//\ Or\ another\ appropriate}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ value}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ limMaxInteg(}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ std::numeric\_limits<float>::infinity()),\ \textcolor{comment}{//\ Or\ another\ appropriate}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ value}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ errorIntegral(limMinInteg),\ \textcolor{comment}{//\ Now\ it\ is\ safe\ to\ use\ limMinInteg}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ filteredSpeed(0.0f)\ \{}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}})\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}PID\ Controller\ Initialized"{}});}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}PID\ Parameters:\(\backslash\)n"{}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}K\_p:\ \%d\(\backslash\)n"{}},\ K\_p);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}K\_i:\ \%d\(\backslash\)n"{}},\ K\_i);}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}K\_d:\ \%d\(\backslash\)n"{}},\ K\_d);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Last\ Error:\ \%f\(\backslash\)n"{}},\ lastError);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Error\ integral:\ \%f\(\backslash\)n"{}},\ errorIntegral);}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Max\ Speed:\ \%d\(\backslash\)n"{}},\ uMax);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPIDController_a726ff1a9e7864eb2f4ff7dc223ef1c1a}{setParams}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ kpIn,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ kiIn\ =\ \mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\_KI}},}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ kdIn\ =\ \mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\_KD}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ uMaxIn\ =\ \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\_SPEED}})\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ K\_p\ =\ kpIn;}
+\DoxyCodeLine{00102\ \ \ \ \ K\_i\ =\ kiIn;}
+\DoxyCodeLine{00103\ \ \ \ \ K\_d\ =\ kdIn;}
+\DoxyCodeLine{00104\ \ \ \ \ uMax\ =\ uMaxIn;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabs(kiIn)\ <\ 1e-\/6)\ \{\ \textcolor{comment}{//\ Checks\ if\ Ki\ is\ almost\ zero}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ K\_i\ =\ 0.0f;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ limMinInteg\ =}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ -\/std::numeric\_limits<float>::infinity();\ \textcolor{comment}{//\ Changed\ to\ negative}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ infinity}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ limMaxInteg\ =\ std::numeric\_limits<float>::infinity();\ \textcolor{comment}{//\ Changed\ to}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ positive\ infinity}}
+\DoxyCodeLine{00113\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ K\_i\ =\ kiIn;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ limMinInteg\ =\ -\/uMax\ /\ K\_i;\ \textcolor{comment}{//\ Recalculated\ the\ minimum\ limit}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ limMaxInteg\ =\ uMax\ /\ K\_i;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ errorIntegral\ =\ constrain(errorIntegral,\ limMinInteg,\ limMaxInteg);}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classPIDController_a4179077c8408485fa0d04c0000c81a74}{adjustSpeed}}(\mbox{\hyperlink{classMotor}{Motor}}\ \&leader,\ \mbox{\hyperlink{classMotor}{Motor}}\ \&follower,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ speed,}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ deltaT\ =\ 0.0f)\ \{}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ leadingMotorPosition\ =\ leader.\mbox{\hyperlink{classMotor_a15e1e7426c9cab4d137f6a9872489275}{getNormalizedPos}}();}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ laggingMotorPosition\ =\ follower.\mbox{\hyperlink{classMotor_a15e1e7426c9cab4d137f6a9872489275}{getNormalizedPos}}();}
+\DoxyCodeLine{00138\ \ \ \ \ positionDifference\ =\ (laggingMotorPosition\ -\/\ leadingMotorPosition);}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ error\ =\ SETPOINT\_WEIGHT\ *\ positionDifference;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ derivativeTerm\ =\ K\_d\ *\ filteredDerivative;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ integralTerm\ =\ K\_i\ *\ errorIntegral;}
+\DoxyCodeLine{00142\ \ \ \ \ maxSpeedAdjustmentRate\ +=}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ MAX\_ACCELERATION\_INCREASE\ *\ 1000;\ \textcolor{comment}{//\ scaling\ up\ the\ increment}}
+\DoxyCodeLine{00144\ \ \ \ \ maxSpeedAdjustmentRate\ =\ std::min(}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ maxSpeedAdjustmentRate,\ followerMaxAccel\ *\ 1000);\ \textcolor{comment}{//\ scale\ up\ the\ limit}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ Update\ filtered\ speed\ before\ it's\ used\ in\ PID\ calculations}}
+\DoxyCodeLine{00148\ \ \ \ \ filteredSpeed\ =\ SPEED\_ALPHA\ *\ filteredSpeed\ +\ (1\ -\/\ SPEED\_ALPHA)\ *\ speed;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ derivative\ and\ then\ use\ it\ to\ calculate\ the\ filtered}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ derivative}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordflow}{if}\ (deltaT\ >\ 0.0f)\ \{\ \textcolor{comment}{//\ Avoid\ division\ by\ zero}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ derivative\ =\ (error\ -\/\ lastError)\ /\ deltaT;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ filteredDerivative\ =}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ alpha\ *\ filteredDerivative\ +\ (1\ -\/\ alpha)\ *\ derivative;}
+\DoxyCodeLine{00156\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ derivative\ =\ 0.0f;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ proportionalTerm\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(round(error\ *\ K\_p\ *\ 3));}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ errorIntegral\ +=\ error\ *\ deltaT;}
+\DoxyCodeLine{00163\ \ \ \ \ errorIntegral\ =}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ constrain(errorIntegral,\ limMinInteg,\ limMaxInteg);\ \textcolor{comment}{//\ Anti-\/Windup}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ scalarValue\ =\ leader.dir\ ==\ Direction::EXTEND}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ?\ POSITION\_DELTA\_SPEED\_SCALER\_EXTEND}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ POSITION\_DELTA\_SPEED\_SCALER\_RETRACT;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ directionSign\ =\ leader.dir\ ==\ Direction::EXTEND\ ?\ 1\ :\ -\/1;}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ positionDeltaBoost\ =}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ constrain(directionSign\ *\ positionDifference\ *\ scalarValue,}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/MAX\_POSITION\_SCALE\_VALUE,\ MAX\_POSITION\_SCALE\_VALUE);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ Serial.printf("{}Position\ Delta\ Boost:\ \%d\(\backslash\)n"{},\ positionDeltaBoost);}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ u\ =\ speed\ -\/\ (proportionalTerm\ +\ integralTerm\ +\ derivativeTerm);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ maxDeltaSpeed\ =\ maxSpeedAdjustmentRate\ *\ deltaT\ *}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0.001;\ \textcolor{comment}{//\ scaling\ down\ the\ adjustment\ rate}}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{int}\ adjustedDeltaSpeed\ =\ constrain(u,\ -\/maxDeltaSpeed,\ maxDeltaSpeed);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ adjustedSpeed\ =\ speed\ +\ adjustedDeltaSpeed\ +\ positionDeltaBoost;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//\ Serial.printf("{}Adjusted\ Speed:\ \%d\(\backslash\)n"{},\ adjustedSpeed);}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}})\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \textcolor{comment}{//\ Debug\ prints}}
+\DoxyCodeLine{00189\ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ lastError\ =\ error;}
+\DoxyCodeLine{00192\ \ \ \ \ previousMeasurement\ =\ laggingMotorPosition;}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{return}\ constrain(adjustedSpeed,\ \mbox{\hyperlink{defs_8hpp_a39ec4a5ee2aa5355e76e11311159f06c}{MIN\_SPEED}},\ \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\_SPEED}});}
+\DoxyCodeLine{00194\ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordtype}{void}\ setFollowerMaxAccel(\textcolor{keywordtype}{float}\ newMaxAccel)\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ followerMaxAccel\ =\ newMaxAccel;}
+\DoxyCodeLine{00198\ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \textcolor{keywordtype}{void}\ setFollowerMaxSpeed(\textcolor{keywordtype}{int}\ newMaxSpeed)\ \{\ followerMaxSpeed\ =\ newMaxSpeed;\ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00207\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPIDController_a6b30379029471cafe632884c6fa6729a}{report}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00208\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}\(\backslash\)nPID\ Parameters:\(\backslash\)n"{}});}
+\DoxyCodeLine{00209\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00210\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}K\_p:\ \%d\(\backslash\)n"{}},\ K\_p);}
+\DoxyCodeLine{00211\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}K\_i:\ \%f\(\backslash\)n"{}},\ K\_i);}
+\DoxyCodeLine{00212\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}K\_d:\ \%f\(\backslash\)n"{}},\ K\_d);}
+\DoxyCodeLine{00213\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}Position\ Difference:\ \%f\(\backslash\)n"{}},\ positionDifference);}
+\DoxyCodeLine{00214\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/"{}});}
+\DoxyCodeLine{00215\ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \textcolor{keywordtype}{void}\ setKd(\textcolor{keywordtype}{float}\ newKd)\ \{\ K\_d\ =\ newKd;\ \}}
+\DoxyCodeLine{00218\ \ \ \textcolor{keywordtype}{void}\ setKi(\textcolor{keywordtype}{float}\ newKi)\ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{if}\ (fabs(newKi)\ <\ 1e-\/6)\ \{\ \textcolor{comment}{//\ Checks\ if\ newKi\ is\ almost\ zero}}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ K\_i\ =\ 0.0f;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ limMinInteg\ =}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ -\/std::numeric\_limits<float>::infinity();\ \textcolor{comment}{//\ Changed\ to\ negative}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ infinity}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ limMaxInteg\ =\ std::numeric\_limits<float>::infinity();\ \textcolor{comment}{//\ Changed\ to}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ positive\ infinity}}
+\DoxyCodeLine{00226\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ K\_i\ =\ newKi;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ limMinInteg\ =\ -\/uMax\ /\ K\_i;\ \textcolor{comment}{//\ Recalculated\ the\ minimum\ limit}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ limMaxInteg\ =\ uMax\ /\ K\_i;}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ errorIntegral\ =\ constrain(errorIntegral,\ limMinInteg,\ limMaxInteg);}
+\DoxyCodeLine{00232\ \ \ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classPIDController_ab6adfbffa30414f0a83b95ba999a2fea}{reset}}()\ \{}
+\DoxyCodeLine{00244\ \ \ \ \ lastError\ =\ 0.0f;}
+\DoxyCodeLine{00245\ \ \ \ \ errorIntegral\ =\ 0.0f;}
+\DoxyCodeLine{00246\ \ \ \}}
+\DoxyCodeLine{00247\ \};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_PID\_CONTROLLER\_HPP\_\_}}
 
 \end{DoxyCode}

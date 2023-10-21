@@ -13,7 +13,7 @@
 #include "Motor.hpp"
 #include "MotorController.hpp"
 #include "PinMacros.hpp"
-#include "RouteMacros.hpp"
+#include "StateController.hpp"
 #include "defs.hpp"
 
 typedef void (*CommandFunc)();
@@ -23,7 +23,31 @@ void display_network_info(void);
 
 long lastTimestamp = 0L;
 long lastPrintTimeStamp = 0L;
-constexpr long MIN_PRINT_TIME_DELTA = 5000000L;
+constexpr long MIN_PRINT_TIME_DELTA = 1000000L;
+const char *directions[3] = {"EXTEND", "STOP", "RETRACT"};
+/// @brief String representations of the motor roles at instantiation
+const char *motor_roles[2] = {"LEADER", "FOLLOWER"};
+
+/** @brief String representations of the names of position slots */
+const char *save_position_slot_names[NUM_POSITION_SLOTS] = {
+    "tilt-1", "tilt-2", "tilt-3", "tilt-4", "tilt-5",
+};
+int currentPWMChannel = 0;
+
+/**
+ * @brief Storage for position in hall sensor pusles relative to initial
+ * position when powered on
+ */
+int savedPositions[NUM_POSITION_SLOTS] = {0, 0, 0, 0, 0};
+
+/** @brief Whether PID is on or off */
+bool pid_on = true;
+
+/** @brief Whether limit range is on or off */
+bool limit_range = true;
+
+/// @brief Indicates whether debug messages should be sent to serial
+bool debugEnabled = false;
 
 /**
  * @brief Creates a MotorController object with the specified PWM frequency, PWM
@@ -37,26 +61,28 @@ constexpr long MIN_PRINT_TIME_DELTA = 5000000L;
 MotorController motor_controller(PWM_FREQUENCY, PWM_RESOLUTION_BITS,
                                  DEFAULT_MOTOR_SPEED);
 
+StateController state_controller;
+
 /**
  * @brief Extends the motors.
  *
  * @throws None
  */
-void extend() { motor_controller.extend(); }
+void extend() { state_controller.OnStarting(Direction::EXTEND); }
 
 /**
  * @brief Retracts the motors.
  *
  * @throws None
  */
-void retract() { motor_controller.retract(); }
+void retract() { state_controller.OnStarting(Direction::RETRACT); }
 
 /**
  * @brief Stops the motors.
  *
  * @throws None
  */
-void stop() { motor_controller.stop(); }
+void stop() { state_controller.OnStopping(); }
 
 /**
  * @brief Displays the motor information.
@@ -80,7 +106,7 @@ void getTilt5() { RESTORE_POSITION(5); }
 void zero() { motor_controller.zero(); }
 void systemReset() { ESP.restart(); }
 void togglePid() { pid_on = !pid_on; }
-void home() { motor_controller.home(); }
+void home() { state_controller.OnHome(); }
 void toggleLimitRange() { limit_range = !limit_range; }
 void readLimit() {}
 /**
@@ -114,7 +140,15 @@ void setCurrentAlarm() {
 void setPosition() {
   if (Serial.available() > 0) {
     int new_position = Serial.parseInt();
+    int pos = motor_controller.getPos();
+
     motor_controller.setPos(new_position);
+
+    if (pos > new_position) {
+      state_controller.OnStarting(Direction::RETRACT);
+    } else if (pos < new_position) {
+      state_controller.OnStarting(Direction::EXTEND);
+    }
   }
 }
 
@@ -159,18 +193,18 @@ void setup() {
     return;
   }
 
+  state_controller.setController(&motor_controller);
+
   lastTimestamp = micros();
 }
 
 /**
- * @brief Loop function that handles serial commands, updates the motor
- * controller, and displays motor information.
+ * @brief Loop function that handles serial commands, updates the state machine,
+ * and displays motor information.
  *
  * @return void
  */
 void loop() {
-  int fBottom, lBottom, fTop, lTop = 0;
-
   if (Serial.available() > 0) {
     const int commandInput = Serial.parseInt() - 17;
 
@@ -179,15 +213,15 @@ void loop() {
     }
   }
   const long timestamp = micros();
-  const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
+  motor_controller.deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
   const int printDeltaTime = timestamp - lastPrintTimeStamp;
 
-  if (printDeltaTime > MIN_PRINT_TIME_DELTA) {
+  state_controller.update();
+  if (printDeltaTime > MIN_PRINT_TIME_DELTA &&
+      !motor_controller.motorsStopped()) {
     display_motor_info();
     lastPrintTimeStamp = timestamp;
   }
-
-  motor_controller.update(deltaT);
 
   lastTimestamp = timestamp;
 }

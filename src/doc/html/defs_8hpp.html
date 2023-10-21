@@ -97,91 +97,356 @@ $(document).ready(function(){initNavTree('defs_8hpp.html',''); initResizable(); 
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="Commands_8hpp_source.html">Commands.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="MotorPins_8hpp_source.html">MotorPins.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ControlPins_8hpp_source.html">ControlPins.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="Direction_8hpp_source.html">Direction.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MotorPins_8hpp_source.html">MotorPins.hpp</a>&quot;</code><br />
 </div>
 <p><a href="defs_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a8677cc3aaa35e7f860928085b74c161c" id="r_a8677cc3aaa35e7f860928085b74c161c"><td class="memItemLeft" align="right" valign="top"><a id="a8677cc3aaa35e7f860928085b74c161c" name="a8677cc3aaa35e7f860928085b74c161c"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>FORMAT_SPIFFS_IF_FAILED</b>&#160;&#160;&#160;true</td></tr>
-<tr class="separator:a8677cc3aaa35e7f860928085b74c161c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad34c78cf45bd8aa6019fc77dd993f77a" id="r_ad34c78cf45bd8aa6019fc77dd993f77a"><td class="memItemLeft" align="right" valign="top"><a id="ad34c78cf45bd8aa6019fc77dd993f77a" name="ad34c78cf45bd8aa6019fc77dd993f77a"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NUM_POSITION_SLOTS</b>&#160;&#160;&#160;5</td></tr>
-<tr class="separator:ad34c78cf45bd8aa6019fc77dd993f77a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6177eb86ee16a1956c81749e4e332cf0" id="r_a6177eb86ee16a1956c81749e4e332cf0"><td class="memItemLeft" align="right" valign="top"><a id="a6177eb86ee16a1956c81749e4e332cf0" name="a6177eb86ee16a1956c81749e4e332cf0"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PWM_FREQUENCY</b>&#160;&#160;&#160;15000</td></tr>
-<tr class="separator:a6177eb86ee16a1956c81749e4e332cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b5900094403e54163d766bd324b56fc" id="r_a9b5900094403e54163d766bd324b56fc"><td class="memItemLeft" align="right" valign="top"><a id="a9b5900094403e54163d766bd324b56fc" name="a9b5900094403e54163d766bd324b56fc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>PWM_RESOLUTION_BITS</b>&#160;&#160;&#160;8</td></tr>
-<tr class="separator:a9b5900094403e54163d766bd324b56fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01b7c84ef09e42d33170b4f151eda72e" id="r_a01b7c84ef09e42d33170b4f151eda72e"><td class="memItemLeft" align="right" valign="top"><a id="a01b7c84ef09e42d33170b4f151eda72e" name="a01b7c84ef09e42d33170b4f151eda72e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>ADC_RESOLUTION_BITS</b>&#160;&#160;&#160;12</td></tr>
-<tr class="separator:a01b7c84ef09e42d33170b4f151eda72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e3de4244f70752f35fb95b3fea8dc88" id="r_a8e3de4244f70752f35fb95b3fea8dc88"><td class="memItemLeft" align="right" valign="top"><a id="a8e3de4244f70752f35fb95b3fea8dc88" name="a8e3de4244f70752f35fb95b3fea8dc88"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>DEFAULT_MOTOR_SPEED</b>&#160;&#160;&#160;192</td></tr>
-<tr class="separator:a8e3de4244f70752f35fb95b3fea8dc88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad632bdd8e6402ac32b06d2cb78d870a4" id="r_ad632bdd8e6402ac32b06d2cb78d870a4"><td class="memItemLeft" align="right" valign="top"><a id="ad632bdd8e6402ac32b06d2cb78d870a4" name="ad632bdd8e6402ac32b06d2cb78d870a4"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MICROS_IN_MS</b>&#160;&#160;&#160;1000</td></tr>
-<tr class="separator:ad632bdd8e6402ac32b06d2cb78d870a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9802030e65389981d688ea724eb22aa" id="r_ac9802030e65389981d688ea724eb22aa"><td class="memItemLeft" align="right" valign="top"><a id="ac9802030e65389981d688ea724eb22aa" name="ac9802030e65389981d688ea724eb22aa"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_MOVEMENT_TIME_MS</b>&#160;&#160;&#160;2000</td></tr>
-<tr class="separator:ac9802030e65389981d688ea724eb22aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefc64b473eb0e746220346363e350151" id="r_aefc64b473eb0e746220346363e350151"><td class="memItemLeft" align="right" valign="top"><a id="aefc64b473eb0e746220346363e350151" name="aefc64b473eb0e746220346363e350151"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_MOVEMENT_MICROS</b>&#160;&#160;&#160;(SOFT_MOVEMENT_TIME_MS * MICROS_IN_MS)</td></tr>
-<tr class="separator:aefc64b473eb0e746220346363e350151"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab6cee2d4a4bbc2b98204caff321f2fe5" id="r_ab6cee2d4a4bbc2b98204caff321f2fe5"><td class="memItemLeft" align="right" valign="top"><a id="ab6cee2d4a4bbc2b98204caff321f2fe5" name="ab6cee2d4a4bbc2b98204caff321f2fe5"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</b>&#160;&#160;&#160;20000</td></tr>
-<tr class="separator:ab6cee2d4a4bbc2b98204caff321f2fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf4a884da119dfd169c56c6fb266cff8" id="r_adf4a884da119dfd169c56c6fb266cff8"><td class="memItemLeft" align="right" valign="top"><a id="adf4a884da119dfd169c56c6fb266cff8" name="adf4a884da119dfd169c56c6fb266cff8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_MOVEMENT_UPDATE_STEPS</b>&#160;&#160;&#160;  (SOFT_MOVEMENT_MICROS / SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS)</td></tr>
-<tr class="separator:adf4a884da119dfd169c56c6fb266cff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2cd96d53dd3ba6407db6766c3d92b26" id="r_ac2cd96d53dd3ba6407db6766c3d92b26"><td class="memItemLeft" align="right" valign="top"><a id="ac2cd96d53dd3ba6407db6766c3d92b26" name="ac2cd96d53dd3ba6407db6766c3d92b26"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_SPEED</b>&#160;&#160;&#160;(1 &lt;&lt; (PWM_RESOLUTION_BITS)-1)</td></tr>
-<tr class="separator:ac2cd96d53dd3ba6407db6766c3d92b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f5efaa5cb771bd06da4bfe6046809e" id="r_ad5f5efaa5cb771bd06da4bfe6046809e"><td class="memItemLeft" align="right" valign="top"><a id="ad5f5efaa5cb771bd06da4bfe6046809e" name="ad5f5efaa5cb771bd06da4bfe6046809e"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MIN_SPEED</b>&#160;&#160;&#160;(1 &lt;&lt; (PWM_RESOLUTION_BITS)-1) * -1</td></tr>
-<tr class="separator:ad5f5efaa5cb771bd06da4bfe6046809e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a91f5af028cd707fcddafff4416925b21" id="r_a91f5af028cd707fcddafff4416925b21"><td class="memItemLeft" align="right" valign="top"><a id="a91f5af028cd707fcddafff4416925b21" name="a91f5af028cd707fcddafff4416925b21"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_ADC_VALUE</b>&#160;&#160;&#160;(1 &lt;&lt; (ADC_RESOLUTION_BITS))</td></tr>
-<tr class="separator:a91f5af028cd707fcddafff4416925b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9c1c7d6be7812736a11e26b98f2455" id="r_aaa9c1c7d6be7812736a11e26b98f2455"><td class="memItemLeft" align="right" valign="top"><a id="aaa9c1c7d6be7812736a11e26b98f2455" name="aaa9c1c7d6be7812736a11e26b98f2455"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>_DEFS_HPP_</b></td></tr>
+<tr class="separator:aaa9c1c7d6be7812736a11e26b98f2455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c5cd622462bb50b6dab4c189e219eb9" id="r_a3c5cd622462bb50b6dab4c189e219eb9"><td class="memItemLeft" align="right" valign="top"><a id="a3c5cd622462bb50b6dab4c189e219eb9" name="a3c5cd622462bb50b6dab4c189e219eb9"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>countof</b>(a)&#160;&#160;&#160;(sizeof(a) / sizeof(*(a)))</td></tr>
+<tr class="separator:a3c5cd622462bb50b6dab4c189e219eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:aa1755ddcacd4dcebcf9280fdcb598e3a" id="r_aa1755ddcacd4dcebcf9280fdcb598e3a"><td class="memItemLeft" align="right" valign="top"><a id="aa1755ddcacd4dcebcf9280fdcb598e3a" name="aa1755ddcacd4dcebcf9280fdcb598e3a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>currentPWMChannel</b></td></tr>
+<tr class="separator:aa1755ddcacd4dcebcf9280fdcb598e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66ee0bd2ff8592573ed299a7582f086d" id="r_a66ee0bd2ff8592573ed299a7582f086d"><td class="memItemLeft" align="right" valign="top"><a id="a66ee0bd2ff8592573ed299a7582f086d" name="a66ee0bd2ff8592573ed299a7582f086d"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>directions</b> [3]</td></tr>
+<tr class="memdesc:a66ee0bd2ff8592573ed299a7582f086d"><td class="mdescLeft">&#160;</td><td class="mdescRight">String representations of the directions. <br /></td></tr>
+<tr class="separator:a66ee0bd2ff8592573ed299a7582f086d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7b8d4434e693fed973ce8b78e9d5a6f" id="r_ab7b8d4434e693fed973ce8b78e9d5a6f"><td class="memItemLeft" align="right" valign="top"><a id="ab7b8d4434e693fed973ce8b78e9d5a6f" name="ab7b8d4434e693fed973ce8b78e9d5a6f"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>motor_roles</b> [2] = {&quot;LEADER&quot;, &quot;FOLLOWER&quot;}</td></tr>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>motor_roles</b> [2]</td></tr>
+<tr class="memdesc:ab7b8d4434e693fed973ce8b78e9d5a6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">String representations of the motor roles at instantiation. <br /></td></tr>
 <tr class="separator:ab7b8d4434e693fed973ce8b78e9d5a6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f3f73f84b09a711e5bb4b29ecf6b199" id="r_a4f3f73f84b09a711e5bb4b29ecf6b199"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defs_8hpp.html#a4f3f73f84b09a711e5bb4b29ecf6b199">save_position_slot_names</a> [NUM_POSITION_SLOTS]</td></tr>
+<tr class="memitem:a6b5be8438b2dfd7b770b430e6a2966d9" id="r_a6b5be8438b2dfd7b770b430e6a2966d9"><td class="memItemLeft" align="right" valign="top"><a id="a6b5be8438b2dfd7b770b430e6a2966d9" name="a6b5be8438b2dfd7b770b430e6a2966d9"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>NUM_POSITION_SLOTS</b> = 5</td></tr>
+<tr class="memdesc:a6b5be8438b2dfd7b770b430e6a2966d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of position slots supported by this firmware. <br /></td></tr>
+<tr class="separator:a6b5be8438b2dfd7b770b430e6a2966d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f3f73f84b09a711e5bb4b29ecf6b199" id="r_a4f3f73f84b09a711e5bb4b29ecf6b199"><td class="memItemLeft" align="right" valign="top"><a id="a4f3f73f84b09a711e5bb4b29ecf6b199" name="a4f3f73f84b09a711e5bb4b29ecf6b199"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>save_position_slot_names</b> [<a class="el" href="defs_8hpp.html#a6b5be8438b2dfd7b770b430e6a2966d9">NUM_POSITION_SLOTS</a>]</td></tr>
+<tr class="memdesc:a4f3f73f84b09a711e5bb4b29ecf6b199"><td class="mdescLeft">&#160;</td><td class="mdescRight">String representations of the names of position slots. <br /></td></tr>
 <tr class="separator:a4f3f73f84b09a711e5bb4b29ecf6b199"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36ecb22e6d7f28e169936958b450c22d" id="r_a36ecb22e6d7f28e169936958b450c22d"><td class="memItemLeft" align="right" valign="top"><a id="a36ecb22e6d7f28e169936958b450c22d" name="a36ecb22e6d7f28e169936958b450c22d"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>savedPositions</b> [NUM_POSITION_SLOTS] = {0, 0, 0, 0, 0}</td></tr>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>savedPositions</b> [<a class="el" href="defs_8hpp.html#a6b5be8438b2dfd7b770b430e6a2966d9">NUM_POSITION_SLOTS</a>]</td></tr>
+<tr class="memdesc:a36ecb22e6d7f28e169936958b450c22d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Storage for position in hall sensor pusles relative to initial position when powered on. <br /></td></tr>
 <tr class="separator:a36ecb22e6d7f28e169936958b450c22d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb2aacf737e76b7c2b1fa0a065a8942" id="r_a9fb2aacf737e76b7c2b1fa0a065a8942"><td class="memItemLeft" align="right" valign="top"><a id="a9fb2aacf737e76b7c2b1fa0a065a8942" name="a9fb2aacf737e76b7c2b1fa0a065a8942"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>pid_on</b></td></tr>
+<tr class="memdesc:a9fb2aacf737e76b7c2b1fa0a065a8942"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether PID is on or off. <br /></td></tr>
+<tr class="separator:a9fb2aacf737e76b7c2b1fa0a065a8942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40c1b2b9c0feb7f7481e7d3d9bb1f576" id="r_a40c1b2b9c0feb7f7481e7d3d9bb1f576"><td class="memItemLeft" align="right" valign="top"><a id="a40c1b2b9c0feb7f7481e7d3d9bb1f576" name="a40c1b2b9c0feb7f7481e7d3d9bb1f576"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>limit_range</b></td></tr>
+<tr class="memdesc:a40c1b2b9c0feb7f7481e7d3d9bb1f576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether limit range is on or off. <br /></td></tr>
+<tr class="separator:a40c1b2b9c0feb7f7481e7d3d9bb1f576"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0344eb1bc475981a837e350c08fb53a" id="r_ad0344eb1bc475981a837e350c08fb53a"><td class="memItemLeft" align="right" valign="top"><a id="ad0344eb1bc475981a837e350c08fb53a" name="ad0344eb1bc475981a837e350c08fb53a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>debugEnabled</b> = true</td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>debugEnabled</b></td></tr>
 <tr class="memdesc:ad0344eb1bc475981a837e350c08fb53a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether debug messages should be sent to serial. <br /></td></tr>
 <tr class="separator:ad0344eb1bc475981a837e350c08fb53a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb2aacf737e76b7c2b1fa0a065a8942" id="r_a9fb2aacf737e76b7c2b1fa0a065a8942"><td class="memItemLeft" align="right" valign="top"><a id="a9fb2aacf737e76b7c2b1fa0a065a8942" name="a9fb2aacf737e76b7c2b1fa0a065a8942"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>pid_on</b> = true</td></tr>
-<tr class="separator:a9fb2aacf737e76b7c2b1fa0a065a8942"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77b92ab6635c56ec778203dc9ce218e8" id="r_a77b92ab6635c56ec778203dc9ce218e8"><td class="memItemLeft" align="right" valign="top"><a id="a77b92ab6635c56ec778203dc9ce218e8" name="a77b92ab6635c56ec778203dc9ce218e8"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>FORMAT_SPIFFS_IF_FAILED</b> = true</td></tr>
+<tr class="separator:a77b92ab6635c56ec778203dc9ce218e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcc019745aed213aaa07d37c7fa08440" id="r_afcc019745aed213aaa07d37c7fa08440"><td class="memItemLeft" align="right" valign="top"><a id="afcc019745aed213aaa07d37c7fa08440" name="afcc019745aed213aaa07d37c7fa08440"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>NUMBER_OF_MOTORS</b> = 2</td></tr>
+<tr class="memdesc:afcc019745aed213aaa07d37c7fa08440"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of motors controlled by this system. <br /></td></tr>
+<tr class="separator:afcc019745aed213aaa07d37c7fa08440"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d87212a0656bebc76d59352474ffbfc" id="r_a5d87212a0656bebc76d59352474ffbfc"><td class="memItemLeft" align="right" valign="top"><a id="a5d87212a0656bebc76d59352474ffbfc" name="a5d87212a0656bebc76d59352474ffbfc"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>LEADER_MAX_PULSES</b> = 2845</td></tr>
+<tr class="memdesc:a5d87212a0656bebc76d59352474ffbfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of pulses for leader motor's maximum extension. <br /></td></tr>
+<tr class="separator:a5d87212a0656bebc76d59352474ffbfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af08759ff4901d6c3978c9bac751be92a" id="r_af08759ff4901d6c3978c9bac751be92a"><td class="memItemLeft" align="right" valign="top"><a id="af08759ff4901d6c3978c9bac751be92a" name="af08759ff4901d6c3978c9bac751be92a"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>FOLLOWER_MAX_PULSES</b> = 2845</td></tr>
+<tr class="memdesc:af08759ff4901d6c3978c9bac751be92a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of pulses for follower motor's maximum extension. <br /></td></tr>
+<tr class="separator:af08759ff4901d6c3978c9bac751be92a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f6cfbe0889a89dfbe582ad507b88ac5" id="r_a6f6cfbe0889a89dfbe582ad507b88ac5"><td class="memItemLeft" align="right" valign="top"><a id="a6f6cfbe0889a89dfbe582ad507b88ac5" name="a6f6cfbe0889a89dfbe582ad507b88ac5"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>PWM_FREQUENCY</b> = 20000</td></tr>
+<tr class="memdesc:a6f6cfbe0889a89dfbe582ad507b88ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The frequency of the PWM signal sent to the motor controllers. <br /></td></tr>
+<tr class="separator:a6f6cfbe0889a89dfbe582ad507b88ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab86e2bb308b2961dcb035be27767e697" id="r_ab86e2bb308b2961dcb035be27767e697"><td class="memItemLeft" align="right" valign="top"><a id="ab86e2bb308b2961dcb035be27767e697" name="ab86e2bb308b2961dcb035be27767e697"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>PWM_RESOLUTION_BITS</b> = 8</td></tr>
+<tr class="memdesc:ab86e2bb308b2961dcb035be27767e697"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resolution of the PWM signal in bits (provides 2^<code>PWM_RESOLUTION_BITS</code> of possible levels) <br /></td></tr>
+<tr class="separator:ab86e2bb308b2961dcb035be27767e697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab85f7bc0b7abf319d8e5528f13aee861" id="r_ab85f7bc0b7abf319d8e5528f13aee861"><td class="memItemLeft" align="right" valign="top"><a id="ab85f7bc0b7abf319d8e5528f13aee861" name="ab85f7bc0b7abf319d8e5528f13aee861"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>ADC_RESOLUTION_BITS</b> = 12</td></tr>
+<tr class="memdesc:ab85f7bc0b7abf319d8e5528f13aee861"><td class="mdescLeft">&#160;</td><td class="mdescRight">The resolution of the ADC used in bits. <br /></td></tr>
+<tr class="separator:ab85f7bc0b7abf319d8e5528f13aee861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1ef4e7868e1fa0de8f34432bf9cb77e" id="r_aa1ef4e7868e1fa0de8f34432bf9cb77e"><td class="memItemLeft" align="right" valign="top"><a id="aa1ef4e7868e1fa0de8f34432bf9cb77e" name="aa1ef4e7868e1fa0de8f34432bf9cb77e"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>DEFAULT_MOTOR_SPEED</b> = (1 &lt;&lt; <a class="el" href="defs_8hpp.html#ab86e2bb308b2961dcb035be27767e697">PWM_RESOLUTION_BITS</a>) - 1</td></tr>
+<tr class="memdesc:aa1ef4e7868e1fa0de8f34432bf9cb77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default speed of the motors given in PWM value. <br /></td></tr>
+<tr class="separator:aa1ef4e7868e1fa0de8f34432bf9cb77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1148b0dce2ba5f78aafe18450335e6f3" id="r_a1148b0dce2ba5f78aafe18450335e6f3"><td class="memItemLeft" align="right" valign="top"><a id="a1148b0dce2ba5f78aafe18450335e6f3" name="a1148b0dce2ba5f78aafe18450335e6f3"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MOTOR_END_OF_RANGE_SPEED</b> = 155</td></tr>
+<tr class="memdesc:a1148b0dce2ba5f78aafe18450335e6f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The motor speed at the extremes of the range. Should be &lt; <code>DEFAULT_MOTOR_SPEED</code> <br /></td></tr>
+<tr class="separator:a1148b0dce2ba5f78aafe18450335e6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84bd9a418dd1da9665d0702e7c0294ff" id="r_a84bd9a418dd1da9665d0702e7c0294ff"><td class="memItemLeft" align="right" valign="top"><a id="a84bd9a418dd1da9665d0702e7c0294ff" name="a84bd9a418dd1da9665d0702e7c0294ff"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MIN_MOTOR_TRAVEL_SPEED</b> = 105</td></tr>
+<tr class="memdesc:a84bd9a418dd1da9665d0702e7c0294ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum travel speed. <br /></td></tr>
+<tr class="separator:a84bd9a418dd1da9665d0702e7c0294ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2cec658ae5ceb61b8eaad40f10ac0957" id="r_a2cec658ae5ceb61b8eaad40f10ac0957"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defs_8hpp.html#a2cec658ae5ceb61b8eaad40f10ac0957">MOTOR_END_OF_RANGE_SPEED_DELTA</a></td></tr>
+<tr class="memdesc:a2cec658ae5ceb61b8eaad40f10ac0957"><td class="mdescLeft">&#160;</td><td class="mdescRight">The difference in speed values between <code>DEFAULT_MOTOR_SPEED</code> and <code>MOTOR_END_OF_RANGE_SPEED</code>  <br /></td></tr>
+<tr class="separator:a2cec658ae5ceb61b8eaad40f10ac0957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ecf2e791bf346fff0f6460d6f6bf0f9" id="r_a3ecf2e791bf346fff0f6460d6f6bf0f9"><td class="memItemLeft" align="right" valign="top"><a id="a3ecf2e791bf346fff0f6460d6f6bf0f9" name="a3ecf2e791bf346fff0f6460d6f6bf0f9"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>SET_POSITION_BUFFER</b> = 3</td></tr>
+<tr class="memdesc:a3ecf2e791bf346fff0f6460d6f6bf0f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set position buffer in hall pulses. <br /></td></tr>
+<tr class="separator:a3ecf2e791bf346fff0f6460d6f6bf0f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6313058b028674e360028041cc9a2d5" id="r_af6313058b028674e360028041cc9a2d5"><td class="memItemLeft" align="right" valign="top"><a id="af6313058b028674e360028041cc9a2d5" name="af6313058b028674e360028041cc9a2d5"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MILLIS_IN_SEC</b> = 1000</td></tr>
+<tr class="memdesc:af6313058b028674e360028041cc9a2d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of milliseconds in a second. <br /></td></tr>
+<tr class="separator:af6313058b028674e360028041cc9a2d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6728b9a305293d30e6fb728bc914bd6a" id="r_a6728b9a305293d30e6fb728bc914bd6a"><td class="memItemLeft" align="right" valign="top"><a id="a6728b9a305293d30e6fb728bc914bd6a" name="a6728b9a305293d30e6fb728bc914bd6a"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MICROS_IN_MS</b> = 1000</td></tr>
+<tr class="memdesc:a6728b9a305293d30e6fb728bc914bd6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of microseconds in a millisecond. <br /></td></tr>
+<tr class="separator:a6728b9a305293d30e6fb728bc914bd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b388f4438f8035b812e65df7da9f575" id="r_a0b388f4438f8035b812e65df7da9f575"><td class="memItemLeft" align="right" valign="top"><a id="a0b388f4438f8035b812e65df7da9f575" name="a0b388f4438f8035b812e65df7da9f575"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MICROS_IN_SEC</b> = (<a class="el" href="defs_8hpp.html#af6313058b028674e360028041cc9a2d5">MILLIS_IN_SEC</a> * <a class="el" href="defs_8hpp.html#a6728b9a305293d30e6fb728bc914bd6a">MICROS_IN_MS</a>)</td></tr>
+<tr class="memdesc:a0b388f4438f8035b812e65df7da9f575"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of microseconds in a second. <br /></td></tr>
+<tr class="separator:a0b388f4438f8035b812e65df7da9f575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3aecee3c049fa84a2397cd8ddf5ec94" id="r_ad3aecee3c049fa84a2397cd8ddf5ec94"><td class="memItemLeft" align="right" valign="top"><a id="ad3aecee3c049fa84a2397cd8ddf5ec94" name="ad3aecee3c049fa84a2397cd8ddf5ec94"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_MOVEMENT_TIME_MS</b> = 18000</td></tr>
+<tr class="memdesc:ad3aecee3c049fa84a2397cd8ddf5ec94"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of milliseconds over which the soft movement occurs. <br /></td></tr>
+<tr class="separator:ad3aecee3c049fa84a2397cd8ddf5ec94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74c3a2e08aeeda6d5977a7244fcc4178" id="r_a74c3a2e08aeeda6d5977a7244fcc4178"><td class="memItemLeft" align="right" valign="top"><a id="a74c3a2e08aeeda6d5977a7244fcc4178" name="a74c3a2e08aeeda6d5977a7244fcc4178"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_MOVEMENT_MICROS</b> = (<a class="el" href="defs_8hpp.html#ad3aecee3c049fa84a2397cd8ddf5ec94">SOFT_MOVEMENT_TIME_MS</a> * <a class="el" href="defs_8hpp.html#a6728b9a305293d30e6fb728bc914bd6a">MICROS_IN_MS</a>)</td></tr>
+<tr class="memdesc:a74c3a2e08aeeda6d5977a7244fcc4178"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of microseconds over which the soft movement occurs. <br /></td></tr>
+<tr class="separator:a74c3a2e08aeeda6d5977a7244fcc4178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22abad04b84529826598194eeca21fca" id="r_a22abad04b84529826598194eeca21fca"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defs_8hpp.html#a22abad04b84529826598194eeca21fca">SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</a></td></tr>
+<tr class="memdesc:a22abad04b84529826598194eeca21fca"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum interval between PWM updates in microseconds.  <br /></td></tr>
+<tr class="separator:a22abad04b84529826598194eeca21fca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8fcdd83127701a6cf4e8fa2fd9dc7ce" id="r_ac8fcdd83127701a6cf4e8fa2fd9dc7ce"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defs_8hpp.html#ac8fcdd83127701a6cf4e8fa2fd9dc7ce">SOFT_MOVEMENT_UPDATE_STEPS</a></td></tr>
+<tr class="memdesc:ac8fcdd83127701a6cf4e8fa2fd9dc7ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum number of PWM updates over which the soft movement occurs.  <br /></td></tr>
+<tr class="separator:ac8fcdd83127701a6cf4e8fa2fd9dc7ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ddf2283d980402c15e157a865fe3c1c" id="r_a5ddf2283d980402c15e157a865fe3c1c"><td class="memItemLeft" align="right" valign="top"><a id="a5ddf2283d980402c15e157a865fe3c1c" name="a5ddf2283d980402c15e157a865fe3c1c"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_SPEED</b> = ((1 &lt;&lt; (<a class="el" href="defs_8hpp.html#ab86e2bb308b2961dcb035be27767e697">PWM_RESOLUTION_BITS</a>)) - 1)</td></tr>
+<tr class="memdesc:a5ddf2283d980402c15e157a865fe3c1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum speed value that can be represented by PWM. <br /></td></tr>
+<tr class="separator:a5ddf2283d980402c15e157a865fe3c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39ec4a5ee2aa5355e76e11311159f06c" id="r_a39ec4a5ee2aa5355e76e11311159f06c"><td class="memItemLeft" align="right" valign="top"><a id="a39ec4a5ee2aa5355e76e11311159f06c" name="a39ec4a5ee2aa5355e76e11311159f06c"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MIN_SPEED</b> = 0</td></tr>
+<tr class="memdesc:a39ec4a5ee2aa5355e76e11311159f06c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum speed value that can be represented by PWM. <br /></td></tr>
+<tr class="separator:a39ec4a5ee2aa5355e76e11311159f06c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e33f84943fcca38a31e4f8aec7fe3ba" id="r_a6e33f84943fcca38a31e4f8aec7fe3ba"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defs_8hpp.html#a6e33f84943fcca38a31e4f8aec7fe3ba">ADC_LOGIC_VOLTAGE</a> = 3.3f</td></tr>
+<tr class="separator:a6e33f84943fcca38a31e4f8aec7fe3ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5dcc52ed1e9a88431bafb98ef6ec9155" id="r_a5dcc52ed1e9a88431bafb98ef6ec9155"><td class="memItemLeft" align="right" valign="top"><a id="a5dcc52ed1e9a88431bafb98ef6ec9155" name="a5dcc52ed1e9a88431bafb98ef6ec9155"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>MAX_ADC_VALUE</b> = (1 &lt;&lt; (<a class="el" href="defs_8hpp.html#ab85f7bc0b7abf319d8e5528f13aee861">ADC_RESOLUTION_BITS</a>)) - 1</td></tr>
+<tr class="memdesc:a5dcc52ed1e9a88431bafb98ef6ec9155"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum ADC value that can be represented by the ADC resolution. <br /></td></tr>
+<tr class="separator:a5dcc52ed1e9a88431bafb98ef6ec9155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fe324b985651b31fa0222b731d96d8c" id="r_a8fe324b985651b31fa0222b731d96d8c"><td class="memItemLeft" align="right" valign="top"><a id="a8fe324b985651b31fa0222b731d96d8c" name="a8fe324b985651b31fa0222b731d96d8c"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>CURRENT_LIMIT</b> = 2000</td></tr>
+<tr class="memdesc:a8fe324b985651b31fa0222b731d96d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum current in milliamps allowed before the system halts. <br /></td></tr>
+<tr class="separator:a8fe324b985651b31fa0222b731d96d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a07d9f782470a67f89446e547e30987" id="r_a2a07d9f782470a67f89446e547e30987"><td class="memItemLeft" align="right" valign="top"><a id="a2a07d9f782470a67f89446e547e30987" name="a2a07d9f782470a67f89446e547e30987"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>CURRENT_OFFSET</b> = 17</td></tr>
+<tr class="memdesc:a2a07d9f782470a67f89446e547e30987"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current offset between the two motors. <br /></td></tr>
+<tr class="separator:a2a07d9f782470a67f89446e547e30987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9dd3666dde0eb03b963a2b7944c7cc3" id="r_ad9dd3666dde0eb03b963a2b7944c7cc3"><td class="memItemLeft" align="right" valign="top"><a id="ad9dd3666dde0eb03b963a2b7944c7cc3" name="ad9dd3666dde0eb03b963a2b7944c7cc3"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>CURRENT_UPDATE_INTERVAL</b> = 5000</td></tr>
+<tr class="memdesc:ad9dd3666dde0eb03b963a2b7944c7cc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum interval in microseconds between current reading updates. <br /></td></tr>
+<tr class="separator:ad9dd3666dde0eb03b963a2b7944c7cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17bb703336b050e8eddfad5ee5956fd0" id="r_a17bb703336b050e8eddfad5ee5956fd0"><td class="memItemLeft" align="right" valign="top"><a id="a17bb703336b050e8eddfad5ee5956fd0" name="a17bb703336b050e8eddfad5ee5956fd0"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>CURRENT_ALARM_DELAY</b> = 2500000</td></tr>
+<tr class="memdesc:a17bb703336b050e8eddfad5ee5956fd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The minimum time the motors must be moving before enabling the current alarm. <br /></td></tr>
+<tr class="separator:a17bb703336b050e8eddfad5ee5956fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae63fa65bd20ef52b566eb9af4ca1b549" id="r_ae63fa65bd20ef52b566eb9af4ca1b549"><td class="memItemLeft" align="right" valign="top"><a id="ae63fa65bd20ef52b566eb9af4ca1b549" name="ae63fa65bd20ef52b566eb9af4ca1b549"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>ALARM_REVERSE_AMOUNT</b> = 15</td></tr>
+<tr class="memdesc:ae63fa65bd20ef52b566eb9af4ca1b549"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of hall pulses to back up leader motor after hitting bottom on homing routine. <br /></td></tr>
+<tr class="separator:ae63fa65bd20ef52b566eb9af4ca1b549"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaadc338cba55f87f08220e8a6e1b30ec" id="r_aaadc338cba55f87f08220e8a6e1b30ec"><td class="memItemLeft" align="right" valign="top"><a id="aaadc338cba55f87f08220e8a6e1b30ec" name="aaadc338cba55f87f08220e8a6e1b30ec"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>FOLLOWER_ALARM_REVERSE_AMOUNT</b> = (<a class="el" href="defs_8hpp.html#ae63fa65bd20ef52b566eb9af4ca1b549">ALARM_REVERSE_AMOUNT</a> + 30)</td></tr>
+<tr class="memdesc:aaadc338cba55f87f08220e8a6e1b30ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of hall pulses to back up follower motor after hitting bottom on homing routine. <br /></td></tr>
+<tr class="separator:aaadc338cba55f87f08220e8a6e1b30ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c27a1267be359569c53664c3105a248" id="r_a9c27a1267be359569c53664c3105a248"><td class="memItemLeft" align="right" valign="top"><a id="a9c27a1267be359569c53664c3105a248" name="a9c27a1267be359569c53664c3105a248"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>LEADER_BUFFER</b> = 3</td></tr>
+<tr class="memdesc:a9c27a1267be359569c53664c3105a248"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer accounting for the lag in hall pulses between a stop request and the leader motor physically stopping. <br /></td></tr>
+<tr class="separator:a9c27a1267be359569c53664c3105a248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60b1b5d2cc6723238fca36a5a3fd2f80" id="r_a60b1b5d2cc6723238fca36a5a3fd2f80"><td class="memItemLeft" align="right" valign="top"><a id="a60b1b5d2cc6723238fca36a5a3fd2f80" name="a60b1b5d2cc6723238fca36a5a3fd2f80"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>FOLLOWER_BUFFER</b> = 3</td></tr>
+<tr class="memdesc:a60b1b5d2cc6723238fca36a5a3fd2f80"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer accounting for the lag in hall pulses between a stop request and the follower motor physically stopping. <br /></td></tr>
+<tr class="separator:a60b1b5d2cc6723238fca36a5a3fd2f80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9895a67f2f2779dc70acea8319ac63c5" id="r_a9895a67f2f2779dc70acea8319ac63c5"><td class="memItemLeft" align="right" valign="top"><a id="a9895a67f2f2779dc70acea8319ac63c5" name="a9895a67f2f2779dc70acea8319ac63c5"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>DESYNC_TOLERANCE</b> = 20</td></tr>
+<tr class="memdesc:a9895a67f2f2779dc70acea8319ac63c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of hall pulse difference between the leader and follower motors before triggering an immediate halt. <br /></td></tr>
+<tr class="separator:a9895a67f2f2779dc70acea8319ac63c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ee198e620a87e147e7971347a45e85" id="r_ad1ee198e620a87e147e7971347a45e85"><td class="memItemLeft" align="right" valign="top"><a id="ad1ee198e620a87e147e7971347a45e85" name="ad1ee198e620a87e147e7971347a45e85"></a>
+constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>PID_ALPHA</b> = 33.333333f</td></tr>
+<tr class="memdesc:ad1ee198e620a87e147e7971347a45e85"><td class="mdescLeft">&#160;</td><td class="mdescRight">The alpha ratio value used to PID calculation parameters. <br /></td></tr>
+<tr class="separator:ad1ee198e620a87e147e7971347a45e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afeae84af3adb5eed1b263ab11960aeff" id="r_afeae84af3adb5eed1b263ab11960aeff"><td class="memItemLeft" align="right" valign="top"><a id="afeae84af3adb5eed1b263ab11960aeff" name="afeae84af3adb5eed1b263ab11960aeff"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>DEFAULT_KP</b> = 79999</td></tr>
+<tr class="memdesc:afeae84af3adb5eed1b263ab11960aeff"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default propotional gain used in PID calculation. <br /></td></tr>
+<tr class="separator:afeae84af3adb5eed1b263ab11960aeff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2899ed2a6972faeac667323aea076f90" id="r_a2899ed2a6972faeac667323aea076f90"><td class="memItemLeft" align="right" valign="top"><a id="a2899ed2a6972faeac667323aea076f90" name="a2899ed2a6972faeac667323aea076f90"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>RETRACT_KP</b> = 79999</td></tr>
+<tr class="memdesc:a2899ed2a6972faeac667323aea076f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">The propotional gain used in PID calculation for extension. <br /></td></tr>
+<tr class="separator:a2899ed2a6972faeac667323aea076f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e1bf82fcadce30aaf6dfd6f6fa347e8" id="r_a7e1bf82fcadce30aaf6dfd6f6fa347e8"><td class="memItemLeft" align="right" valign="top"><a id="a7e1bf82fcadce30aaf6dfd6f6fa347e8" name="a7e1bf82fcadce30aaf6dfd6f6fa347e8"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>STOP_KP</b> = 79999</td></tr>
+<tr class="memdesc:a7e1bf82fcadce30aaf6dfd6f6fa347e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The propotional gain used in PID calculation for stopping. <br /></td></tr>
+<tr class="separator:a7e1bf82fcadce30aaf6dfd6f6fa347e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a62a57be70fef27f6640be9971c6bb" id="r_a87a62a57be70fef27f6640be9971c6bb"><td class="memItemLeft" align="right" valign="top"><a id="a87a62a57be70fef27f6640be9971c6bb" name="a87a62a57be70fef27f6640be9971c6bb"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>EXTEND_RAMP_KP</b> = 79999</td></tr>
+<tr class="memdesc:a87a62a57be70fef27f6640be9971c6bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The propotional gain used in PID calculation for extension ramping. <br /></td></tr>
+<tr class="separator:a87a62a57be70fef27f6640be9971c6bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73ea5aeacfd4a43909b4c21f439ec7d4" id="r_a73ea5aeacfd4a43909b4c21f439ec7d4"><td class="memItemLeft" align="right" valign="top"><a id="a73ea5aeacfd4a43909b4c21f439ec7d4" name="a73ea5aeacfd4a43909b4c21f439ec7d4"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>RETRACT_RAMP_KP</b> = 79999</td></tr>
+<tr class="memdesc:a73ea5aeacfd4a43909b4c21f439ec7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The propotional gain used in PID calculation for retraction ramping. <br /></td></tr>
+<tr class="separator:a73ea5aeacfd4a43909b4c21f439ec7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa59d9e5b54fc0bd20d97e0df17be6d21" id="r_aa59d9e5b54fc0bd20d97e0df17be6d21"><td class="memItemLeft" align="right" valign="top"><a id="aa59d9e5b54fc0bd20d97e0df17be6d21" name="aa59d9e5b54fc0bd20d97e0df17be6d21"></a>
+constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>DEFAULT_KI</b> = ((<a class="el" href="defs_8hpp.html#afeae84af3adb5eed1b263ab11960aeff">DEFAULT_KP</a> / <a class="el" href="defs_8hpp.html#ad1ee198e620a87e147e7971347a45e85">PID_ALPHA</a>) * 6)</td></tr>
+<tr class="memdesc:aa59d9e5b54fc0bd20d97e0df17be6d21"><td class="mdescLeft">&#160;</td><td class="mdescRight">The integral gain used in PID calculation. <br /></td></tr>
+<tr class="separator:aa59d9e5b54fc0bd20d97e0df17be6d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99953e55db79066c36ed8cf2cd7c09bb" id="r_a99953e55db79066c36ed8cf2cd7c09bb"><td class="memItemLeft" align="right" valign="top"><a id="a99953e55db79066c36ed8cf2cd7c09bb" name="a99953e55db79066c36ed8cf2cd7c09bb"></a>
+constexpr float&#160;</td><td class="memItemRight" valign="bottom"><b>DEFAULT_KD</b> = (<a class="el" href="defs_8hpp.html#afeae84af3adb5eed1b263ab11960aeff">DEFAULT_KP</a> / (<a class="el" href="defs_8hpp.html#ad1ee198e620a87e147e7971347a45e85">PID_ALPHA</a> * 1.5))</td></tr>
+<tr class="memdesc:a99953e55db79066c36ed8cf2cd7c09bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The derivative gain used in PID calculation. <br /></td></tr>
+<tr class="separator:a99953e55db79066c36ed8cf2cd7c09bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ded7176119905b421ddb815accbe77d" id="r_a3ded7176119905b421ddb815accbe77d"><td class="memItemLeft" align="right" valign="top"><a id="a3ded7176119905b421ddb815accbe77d" name="a3ded7176119905b421ddb815accbe77d"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>CURRENT_INCREASE_TOLERANCE_PERCENTAGE</b> = 30</td></tr>
+<tr class="memdesc:a3ded7176119905b421ddb815accbe77d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The tolerance percentage for the current increase before alarm. <br /></td></tr>
+<tr class="separator:a3ded7176119905b421ddb815accbe77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65079cba57eaae8a1d93acd287166fd7" id="r_a65079cba57eaae8a1d93acd287166fd7"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="defs_8hpp.html#a65079cba57eaae8a1d93acd287166fd7">CURRENT_INCREASE_MULTIPLIER</a></td></tr>
+<tr class="memdesc:a65079cba57eaae8a1d93acd287166fd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current increase multiplier based on the current increase tolerance percentage.  <br /></td></tr>
+<tr class="separator:a65079cba57eaae8a1d93acd287166fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ea297d6206176df73dfe281acacd0cc" id="r_a2ea297d6206176df73dfe281acacd0cc"><td class="memItemLeft" align="right" valign="top"><a id="a2ea297d6206176df73dfe281acacd0cc" name="a2ea297d6206176df73dfe281acacd0cc"></a>
+constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>SOFT_STOP_TIME_MS</b> = 200</td></tr>
+<tr class="memdesc:a2ea297d6206176df73dfe281acacd0cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Soft stop time in milliseconds. <br /></td></tr>
+<tr class="separator:a2ea297d6206176df73dfe281acacd0cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a4f3f73f84b09a711e5bb4b29ecf6b199" name="a4f3f73f84b09a711e5bb4b29ecf6b199"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f3f73f84b09a711e5bb4b29ecf6b199">&#9670;&#160;</a></span>save_position_slot_names</h2>
+<a id="a6e33f84943fcca38a31e4f8aec7fe3ba" name="a6e33f84943fcca38a31e4f8aec7fe3ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e33f84943fcca38a31e4f8aec7fe3ba">&#9670;&#160;</a></span>ADC_LOGIC_VOLTAGE</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const char* save_position_slot_names[NUM_POSITION_SLOTS]</td>
+          <td class="memname">constexpr float ADC_LOGIC_VOLTAGE = 3.3f</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    <span class="stringliteral">&quot;tilt-1&quot;</span>, <span class="stringliteral">&quot;tilt-2&quot;</span>, <span class="stringliteral">&quot;tilt-3&quot;</span>, <span class="stringliteral">&quot;tilt-4&quot;</span>, <span class="stringliteral">&quot;tilt-5&quot;</span>,</div>
-<div class="line">}</div>
+<p>The logic level voltage of the ADC </p>
+
+</div>
+</div>
+<a id="a65079cba57eaae8a1d93acd287166fd7" name="a65079cba57eaae8a1d93acd287166fd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65079cba57eaae8a1d93acd287166fd7">&#9670;&#160;</a></span>CURRENT_INCREASE_MULTIPLIER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr float CURRENT_INCREASE_MULTIPLIER</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    1 + (<a class="code hl_variable" href="defs_8hpp.html#a3ded7176119905b421ddb815accbe77d">CURRENT_INCREASE_TOLERANCE_PERCENTAGE</a> / 100.0f)</div>
+<div class="ttc" id="adefs_8hpp_html_a3ded7176119905b421ddb815accbe77d"><div class="ttname"><a href="defs_8hpp.html#a3ded7176119905b421ddb815accbe77d">CURRENT_INCREASE_TOLERANCE_PERCENTAGE</a></div><div class="ttdeci">constexpr int CURRENT_INCREASE_TOLERANCE_PERCENTAGE</div><div class="ttdoc">The tolerance percentage for the current increase before alarm.</div><div class="ttdef"><b>Definition</b> defs.hpp:179</div></div>
 </div><!-- fragment -->
+<p>The current increase multiplier based on the current increase tolerance percentage. </p>
+
+</div>
+</div>
+<a id="a2cec658ae5ceb61b8eaad40f10ac0957" name="a2cec658ae5ceb61b8eaad40f10ac0957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cec658ae5ceb61b8eaad40f10ac0957">&#9670;&#160;</a></span>MOTOR_END_OF_RANGE_SPEED_DELTA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int MOTOR_END_OF_RANGE_SPEED_DELTA</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    (<a class="code hl_variable" href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a> - <a class="code hl_variable" href="defs_8hpp.html#a1148b0dce2ba5f78aafe18450335e6f3">MOTOR_END_OF_RANGE_SPEED</a>)</div>
+<div class="ttc" id="adefs_8hpp_html_a1148b0dce2ba5f78aafe18450335e6f3"><div class="ttname"><a href="defs_8hpp.html#a1148b0dce2ba5f78aafe18450335e6f3">MOTOR_END_OF_RANGE_SPEED</a></div><div class="ttdeci">constexpr int MOTOR_END_OF_RANGE_SPEED</div><div class="ttdoc">The motor speed at the extremes of the range. Should be &lt; DEFAULT_MOTOR_SPEED</div><div class="ttdef"><b>Definition</b> defs.hpp:69</div></div>
+<div class="ttc" id="adefs_8hpp_html_aa1ef4e7868e1fa0de8f34432bf9cb77e"><div class="ttname"><a href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a></div><div class="ttdeci">constexpr int DEFAULT_MOTOR_SPEED</div><div class="ttdoc">The default speed of the motors given in PWM value.</div><div class="ttdef"><b>Definition</b> defs.hpp:65</div></div>
+</div><!-- fragment -->
+<p>The difference in speed values between <code>DEFAULT_MOTOR_SPEED</code> and <code>MOTOR_END_OF_RANGE_SPEED</code> </p>
+
+</div>
+</div>
+<a id="a22abad04b84529826598194eeca21fca" name="a22abad04b84529826598194eeca21fca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22abad04b84529826598194eeca21fca">&#9670;&#160;</a></span>SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    <a class="code hl_variable" href="defs_8hpp.html#ad3aecee3c049fa84a2397cd8ddf5ec94">SOFT_MOVEMENT_TIME_MS</a> / 20</div>
+<div class="ttc" id="adefs_8hpp_html_ad3aecee3c049fa84a2397cd8ddf5ec94"><div class="ttname"><a href="defs_8hpp.html#ad3aecee3c049fa84a2397cd8ddf5ec94">SOFT_MOVEMENT_TIME_MS</a></div><div class="ttdeci">constexpr int SOFT_MOVEMENT_TIME_MS</div><div class="ttdoc">The number of milliseconds over which the soft movement occurs.</div><div class="ttdef"><b>Definition</b> defs.hpp:92</div></div>
+</div><!-- fragment -->
+<p>The minimum interval between PWM updates in microseconds. </p>
+
+</div>
+</div>
+<a id="ac8fcdd83127701a6cf4e8fa2fd9dc7ce" name="ac8fcdd83127701a6cf4e8fa2fd9dc7ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8fcdd83127701a6cf4e8fa2fd9dc7ce">&#9670;&#160;</a></span>SOFT_MOVEMENT_UPDATE_STEPS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int SOFT_MOVEMENT_UPDATE_STEPS</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line">    (<a class="code hl_variable" href="defs_8hpp.html#a74c3a2e08aeeda6d5977a7244fcc4178">SOFT_MOVEMENT_MICROS</a> / <a class="code hl_variable" href="defs_8hpp.html#a22abad04b84529826598194eeca21fca">SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</a>)</div>
+<div class="ttc" id="adefs_8hpp_html_a22abad04b84529826598194eeca21fca"><div class="ttname"><a href="defs_8hpp.html#a22abad04b84529826598194eeca21fca">SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</a></div><div class="ttdeci">constexpr int SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS</div><div class="ttdoc">The minimum interval between PWM updates in microseconds.</div><div class="ttdef"><b>Definition</b> defs.hpp:98</div></div>
+<div class="ttc" id="adefs_8hpp_html_a74c3a2e08aeeda6d5977a7244fcc4178"><div class="ttname"><a href="defs_8hpp.html#a74c3a2e08aeeda6d5977a7244fcc4178">SOFT_MOVEMENT_MICROS</a></div><div class="ttdeci">constexpr int SOFT_MOVEMENT_MICROS</div><div class="ttdoc">The number of microseconds over which the soft movement occurs.</div><div class="ttdef"><b>Definition</b> defs.hpp:95</div></div>
+</div><!-- fragment -->
+<p>The maximum number of PWM updates over which the soft movement occurs. </p>
+
 </div>
 </div>
 </div><!-- contents -->

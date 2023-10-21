@@ -25,7 +25,4 @@ enum class Direction {
   RETRACT
 };
 
-/// @brief String representations of the directions
-const char *directions[3] = {"EXTEND", "STOP", "RETRACT"};
-
 #endif // _DIRECTION_HPP_

@@ -12,68 +12,187 @@ This is the controller of the motors.
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classMotorController_a20288d902c9ef0cda030718dfa2f3cb6}{Motor\+Controller}} (const int pwm\+Frequency=PWM\+\_\+\+FREQUENCY, const int pwm\+Resolution=PWM\+\_\+\+RESOLUTION\+\_\+\+BITS, const int \mbox{\hyperlink{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{default\+Speed}}=DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED, const int current\+Increase\+Limit=DEFAULT\+\_\+\+CURRENT\+\_\+\+INCREASE\+\_\+\+LIMIT)
-\begin{DoxyCompactList}\small\item\em This class controls the motors connected to the microcontoller. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_ab2fb4b5942170e2cc8fc3be4ede9da57}\label{classMotorController_ab2fb4b5942170e2cc8fc3be4ede9da57} 
-void {\bfseries initialize} ()
-\begin{DoxyCompactList}\small\item\em Load the stored position preferences into RAM and initialize the motors. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_a7b87fc5678b3994a39918a76202be0cf}\label{classMotorController_a7b87fc5678b3994a39918a76202be0cf} 
-void {\bfseries extend} ()
-\begin{DoxyCompactList}\small\item\em Tell the motorized system to extend. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}\label{classMotorController_a82c8ae39bfeb8cea8e851d8e4c1fd8ef} 
-void {\bfseries retract} ()
-\begin{DoxyCompactList}\small\item\em Tell the motorized system to retract. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_a317ce58ea93ea1329de5b87391560082}\label{classMotorController_a317ce58ea93ea1329de5b87391560082} 
-void {\bfseries stop} ()
-\begin{DoxyCompactList}\small\item\em Tell the motorized system to stop. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_ae18fc3e4763dbaba71846be69af6f608}\label{classMotorController_ae18fc3e4763dbaba71846be69af6f608} 
-void {\bfseries home} ()
-\begin{DoxyCompactList}\small\item\em Home the linear actuator to recalibrate the position sensor. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_a5300f11bcf37c1c08c529978818cf050}\label{classMotorController_a5300f11bcf37c1c08c529978818cf050} 
-void {\bfseries zero} ()
-\begin{DoxyCompactList}\small\item\em Clear all position information. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classMotorController_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}{set\+Speed}} (int new\+Speed)
-\begin{DoxyCompactList}\small\item\em Smoothly change to the newly requested speed. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{classMotorController_add201a7e452d3c44703bf1ac6aac587e}{get\+Speed}} () const
-\begin{DoxyCompactList}\small\item\em Get the system speed. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classMotorController_a6d94459f0e674807e4556afca3b34413}{counts\+Are\+Unequal}} (void) const
-\begin{DoxyCompactList}\small\item\em Indicates whether the motor counts are unequal. \end{DoxyCompactList}\item 
-\Hypertarget{classMotorController_aa4412ba310bcb5e34bebc50d660025ec}\label{classMotorController_aa4412ba310bcb5e34bebc50d660025ec} 
-void {\bfseries report} ()
-\begin{DoxyCompactList}\small\item\em Report debugging information to the serial console. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{classMotorController_a721ec0badfe038b6fc7f9d52241acd96}{save\+Position}} (const int slot, const int position\+\_\+value)
-\begin{DoxyCompactList}\small\item\em Save a position to the preferences slot. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classMotorController_a3483d96207cbb9b60ee96953a3ee5856}{Motor\+Controller}} (const int pwm\+Frequency=\mbox{\hyperlink{defs_8hpp_a6f6cfbe0889a89dfbe582ad507b88ac5}{PWM\+\_\+\+FREQUENCY}}, const int pwm\+Resolution=\mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\+\_\+\+RESOLUTION\+\_\+\+BITS}}, const int \mbox{\hyperlink{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{default\+Speed}}=\mbox{\hyperlink{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}{DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED}})
+\begin{DoxyCompactList}\small\item\em This is the class that controls the motors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_ab2fb4b5942170e2cc8fc3be4ede9da57}{initialize}} ()
+\begin{DoxyCompactList}\small\item\em Initialize the motors, position storage, current sensors, and PID controllers. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a1d77ad6c9bfe641e32caff3823455a43}{start\+Motion}} (const \mbox{\hyperlink{classDirection}{Direction}} dir)
+\item 
+void \mbox{\hyperlink{classMotorController_a7b87fc5678b3994a39918a76202be0cf}{extend}} ()
+\begin{DoxyCompactList}\small\item\em Extends the motorized system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}{retract}} ()
+\begin{DoxyCompactList}\small\item\em Retracts the motorized system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a317ce58ea93ea1329de5b87391560082}{stop}} ()
+\begin{DoxyCompactList}\small\item\em Stops the motorized system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_ab6f3af29f62ba389058bb45d9cf63873}{immediate\+Halt}} ()
+\item 
+void \mbox{\hyperlink{classMotorController_ae18fc3e4763dbaba71846be69af6f608}{home}} ()
+\begin{DoxyCompactList}\small\item\em Function to control the homing. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a5e9b745a22bcc7283f1d6c3974cf5b4d}{set\+Speed}} (const int new\+Speed, const int soft\+Movement\+Time=\mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\+\_\+\+MOVEMENT\+\_\+\+TIME\+\_\+\+MS}})
+\begin{DoxyCompactList}\small\item\em Set the speed of the motor. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a5300f11bcf37c1c08c529978818cf050}{zero}} ()
+\begin{DoxyCompactList}\small\item\em Zeroes out the position count of all motors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_aa4412ba310bcb5e34bebc50d660025ec}{report}} ()
+\begin{DoxyCompactList}\small\item\em Reports the current state of the motor controller to the serial console. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_ab03e79917ecce628b1b9b3300fee19fd}{print\+Current}} ()
+\begin{DoxyCompactList}\small\item\em Prints the current values of the leader and follower motors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a3d3c79eeae2492a637d62612689e55ce}{save\+Position}} (const int slot, const int position\+\_\+value=-\/1)
+\begin{DoxyCompactList}\small\item\em Saves the position value for a given slot. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classMotorController_aecc3d8d28295d30f34d8f3b736243877}{set\+Pos}} (const int new\+Pos)
-\begin{DoxyCompactList}\small\item\em Move the motors to the given position. \end{DoxyCompactList}\item 
+\item 
+void \mbox{\hyperlink{classMotorController_aea0aa45b64883692be0d91b92f777df6}{update\+Current\+Readings}} (const int elapsed\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the current readings of the leader and follower motors based on the elapsed time. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classMotorController_aef6d99d0d2ee996fb357e0fdd4fff65f}{is\+Stopped}} () const
-\begin{DoxyCompactList}\small\item\em Check whether the system is in a STOP state. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Check if the system is stopped. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorController_afe4efa578caca374d40a6bea4db75cbb}{motors\+Stopped}} () const
+\item 
+bool \mbox{\hyperlink{classMotorController_a762e90adbeb49a28e1afaba55704ea6a}{current\+Alarm\+Triggered}} ()
+\begin{DoxyCompactList}\small\item\em Checks if the current alarm is triggered. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classMotorController_a27972ea98ed162e7cef503f0e23ef35c}{motors\+Desynced}} (void) const
+\item 
+\Hypertarget{classMotorController_abd06bb556c70fdc92b3be204e7b6e0c4}\label{classMotorController_abd06bb556c70fdc92b3be204e7b6e0c4} 
+void {\bfseries handle\+Pid} ()
+\item 
+bool \mbox{\hyperlink{classMotorController_a02339f8e840102aad605d30a9055d727}{motors\+Close\+To\+End\+Of\+Range}} ()
+\begin{DoxyCompactList}\small\item\em Check if the motors are close to the end of their range. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_aa2a2e13bf7febc62833e06288794ef1b}\label{classMotorController_aa2a2e13bf7febc62833e06288794ef1b} 
+void {\bfseries handle\+Current\+Alarm} ()
+\begin{DoxyCompactList}\small\item\em Disable all motors, reset speed and direction variables, and turn off PID control. Print debug message if debug\+Enabled is true. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a4669f88fbc8fe96a99c1b4d0ab490679}{update\+Leading\+And\+Lagging\+Indicies}} ()
+\begin{DoxyCompactList}\small\item\em Update the leading and lagging indices based on the system direction. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a829f38ab1a75b0d2904467798d0ee215}{display\+Currents}} ()
+\begin{DoxyCompactList}\small\item\em Displays the current values of the leader and follower motor currents and velocities. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_aebcaf603802ccdfc2d9f75fcc65b28d3}{sample\+Currents}} ()
+\item 
+void \mbox{\hyperlink{classMotorController_ad1441264195d73514a8038025f4a2359}{set\+Current\+Limit}} ()
+\item 
+void \mbox{\hyperlink{classMotorController_a3766d0412856003731b1f4b1e28c0bea}{update\+Soft\+Movement}} ()
+\item 
+void \mbox{\hyperlink{classMotorController_a1f3cf0f1c5ec115375fe18379212b65d}{check\+If\+Set\+Position\+Reached}} ()
+\item 
 void \mbox{\hyperlink{classMotorController_ab7a076be5cc48c2af65ef2d32a4fe6bc}{update}} (const float deltaT=0.\+0f)
-\begin{DoxyCompactList}\small\item\em Perform one update interval for the motor system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Updates the state of the motor system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a840676ad1f5c58acfe9568794040019e}{reset\+Soft\+Movement}} ()
+\item 
+void \mbox{\hyperlink{classMotorController_afc1f85a45f74117fe0fb899c82fadc51}{reset\+Current\+Information}} ()
+\begin{DoxyCompactList}\small\item\em Reset the current information for the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_adede773db41a7b85850c7ceca08413fc}{disable\+Motors}} ()
+\begin{DoxyCompactList}\small\item\em Disable the motors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_ab1bb983d952d58bdf14e59a3f7d72dc6}{update\+Motors}} ()
+\begin{DoxyCompactList}\small\item\em Update the motors. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a645d990b88f2bcfeb8455597449da372}{reset\+Pid}} ()
+\begin{DoxyCompactList}\small\item\em Reset the PID controller. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorController_a8857b313509715f3aac8d8e9372215a9}{reset\+Motor\+Current\+Alarms}} ()
+\begin{DoxyCompactList}\small\item\em Reset the current alarms for the motors. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{classMotorController_a3aa95272d56064038e6cab32ba62b4b4}{K\+\_\+p}} = 50000
-\item 
-float \mbox{\hyperlink{classMotorController_a27c40687dcddbda2e3ebb5bdc4007ff4}{K\+\_\+i}} = 0.\+1f
-\item 
-float \mbox{\hyperlink{classMotorController_a48328ef6c985bf5bc02a489af3d54172}{e\+Integral}} = 0.\+0f
-\item 
-int \mbox{\hyperlink{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}{default\+Speed}} = DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED
-\item 
-int \mbox{\hyperlink{classMotorController_a1d04910ab52d613a2e75c0d9f2b07fef}{speed}} = 0
-\item 
-int \mbox{\hyperlink{classMotorController_a24dc64a574d43f8f089d92f952ec09ba}{left\+Current}} = 0
-\item 
-int \mbox{\hyperlink{classMotorController_ade4a1c0633be15763515ce631b1e3f90}{right\+Current}} = 0
-\item 
-int \mbox{\hyperlink{classMotorController_ae9008f7115e4f9060c311a3970d8b50f}{current\+Increase\+Tolerance}} = DEFAULT\+\_\+\+CURRENT\+\_\+\+INCREASE\+\_\+\+LIMIT
-\item 
+\Hypertarget{classMotorController_abe4f0179372526d7887de8c358db5f5d}\label{classMotorController_abe4f0179372526d7887de8c358db5f5d} 
+int {\bfseries move\+Start} = -\/1
+\begin{DoxyCompactList}\small\item\em The time in microseconds since a motor movement started. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_afba77786a0aea3386eb95962ca982fd1}\label{classMotorController_afba77786a0aea3386eb95962ca982fd1} 
+int {\bfseries target\+Speed} = -\/1
+\begin{DoxyCompactList}\small\item\em The target speed of soft movement. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a3aa95272d56064038e6cab32ba62b4b4}\label{classMotorController_a3aa95272d56064038e6cab32ba62b4b4} 
+int {\bfseries K\+\_\+p} = \mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\+\_\+\+KP}}
+\begin{DoxyCompactList}\small\item\em The proprotional gain for the PID controller ~\newline
+ \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a9632366c9d7924dadeba909dfff0e641}\label{classMotorController_a9632366c9d7924dadeba909dfff0e641} 
+\mbox{\hyperlink{classPIDController}{PIDController}} {\bfseries pid\+Controller}
+\begin{DoxyCompactList}\small\item\em The PID controller for the motor synchonization. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}\label{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9} 
+int {\bfseries default\+Speed} = \mbox{\hyperlink{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}{DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED}}
+\begin{DoxyCompactList}\small\item\em The default speed to operate the motors at on startup. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a1d04910ab52d613a2e75c0d9f2b07fef}\label{classMotorController_a1d04910ab52d613a2e75c0d9f2b07fef} 
+int {\bfseries speed} = 0
+\begin{DoxyCompactList}\small\item\em Current target speed. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a4cad69b81f1ee6f8a2243bab507d5922}\label{classMotorController_a4cad69b81f1ee6f8a2243bab507d5922} 
+bool {\bfseries current\+Alarm\+Set} = false
+\begin{DoxyCompactList}\small\item\em Indicates whether the current alarm is set. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_aed66e1af9fe86268c3dca8c35689b259}\label{classMotorController_aed66e1af9fe86268c3dca8c35689b259} 
+int {\bfseries leader\+Current} = 0
+\begin{DoxyCompactList}\small\item\em Leader motor current. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a5731eed9a9c1512f16e1d84a16c01dbe}\label{classMotorController_a5731eed9a9c1512f16e1d84a16c01dbe} 
+int {\bfseries follower\+Current} = 0
+\begin{DoxyCompactList}\small\item\em Follower motor current. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_ac3141fb652afe5f1e2d35636ee9f62f1}\label{classMotorController_ac3141fb652afe5f1e2d35636ee9f62f1} 
+int {\bfseries last\+Leader\+Current} = 0
+\begin{DoxyCompactList}\small\item\em Last leader current reading. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a6ba8e5f635ebc9f2f4d0559d9ab98386}\label{classMotorController_a6ba8e5f635ebc9f2f4d0559d9ab98386} 
+int {\bfseries last\+Follower\+Current} = 0
+\begin{DoxyCompactList}\small\item\em Last follower current reading. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_aa1611739b90d4b8f37144936991c0c75}\label{classMotorController_aa1611739b90d4b8f37144936991c0c75} 
+int {\bfseries leader\+Current\+Velocity} = 0
+\begin{DoxyCompactList}\small\item\em Leader current velocity. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a1bd6d18355869d13eed389756761c0a7}\label{classMotorController_a1bd6d18355869d13eed389756761c0a7} 
+int {\bfseries follower\+Current\+Velocity} = 0
+\begin{DoxyCompactList}\small\item\em Follower current velocity. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a9e528084e6a52c4c6bcd02785239b39a}\label{classMotorController_a9e528084e6a52c4c6bcd02785239b39a} 
+int {\bfseries min\+Current} = 900
+\begin{DoxyCompactList}\small\item\em Minimum current to enable alarm system for motors ~\newline
+ \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_aec8b08f91372f6db19ff2cfe527e044b}\label{classMotorController_aec8b08f91372f6db19ff2cfe527e044b} 
+int {\bfseries current\+Alarm\+Delay} = 250000
+\begin{DoxyCompactList}\small\item\em Current delay for overcurrent alarm system. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a550fcd1dad89da2eb782973d13ffb811}\label{classMotorController_a550fcd1dad89da2eb782973d13ffb811} 
+int {\bfseries alarm\+Current\+Velocity} = 10000
+\begin{DoxyCompactList}\small\item\em Current velocity limit for alarm system for motors to enable ~\newline
+ \end{DoxyCompactList}\item 
 \Hypertarget{classMotorController_adbaa77262e1fc583ec099c4ba4bb6247}\label{classMotorController_adbaa77262e1fc583ec099c4ba4bb6247} 
-\mbox{\hyperlink{classMotor}{Motor}} {\bfseries motors} \mbox{[}NUMBER\+\_\+\+OF\+\_\+\+MOTORS\mbox{]}
+\mbox{\hyperlink{classMotor}{Motor}} {\bfseries motors} \mbox{[}\mbox{\hyperlink{defs_8hpp_afcc019745aed213aaa07d37c7fa08440}{NUMBER\+\_\+\+OF\+\_\+\+MOTORS}}\mbox{]}
 \begin{DoxyCompactList}\small\item\em The motors controlled by this motor controller instance. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a6f28b512cf51eb0307ca8c4440a0c7e6}\label{classMotorController_a6f28b512cf51eb0307ca8c4440a0c7e6} 
+\mbox{\hyperlink{classDirection}{Direction}} {\bfseries requested\+Direction} = Direction\+::\+STOP
+\begin{DoxyCompactList}\small\item\em The requested system level direction. \end{DoxyCompactList}\item 
 \Hypertarget{classMotorController_a8438575e3b3d6e8a460e11ee8efdbdc8}\label{classMotorController_a8438575e3b3d6e8a460e11ee8efdbdc8} 
 \mbox{\hyperlink{classDirection}{Direction}} {\bfseries system\+Direction} = Direction\+::\+STOP
-\begin{DoxyCompactList}\small\item\em The current system level direction indicator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The current system level direction indicator. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a141182a4390096efde07d6ca47ffd1b4}\label{classMotorController_a141182a4390096efde07d6ca47ffd1b4} 
+int {\bfseries lagging\+Index} = 0
+\begin{DoxyCompactList}\small\item\em The index in the motors array of the motor that is behind as indicated by the hall sensor. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a060f730b07d97cc873037a15c16594b5}\label{classMotorController_a060f730b07d97cc873037a15c16594b5} 
+int {\bfseries leading\+Index} = 0
+\begin{DoxyCompactList}\small\item\em The index in the motors array of the motor that is farther along as indicated by the hall sensor. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_aa6b89b2e7ae2c8540c231855ba4ce069}\label{classMotorController_aa6b89b2e7ae2c8540c231855ba4ce069} 
+int {\bfseries soft\+Start} = -\/1
+\begin{DoxyCompactList}\small\item\em The timestamp since soft start of movement. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_ae7fdc492e43065bf8164f2994c72ef46}\label{classMotorController_ae7fdc492e43065bf8164f2994c72ef46} 
+int {\bfseries last\+PWMUpdate} = -\/1
+\begin{DoxyCompactList}\small\item\em The last PWM update interval in microseconds. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a3b933adcb783f679068b2dfbd1df25a2}\label{classMotorController_a3b933adcb783f679068b2dfbd1df25a2} 
+float {\bfseries pwm\+Update\+Amount} = -\/1.\+0f
+\begin{DoxyCompactList}\small\item\em The amount to change the PWM duty cycle on soft start. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a5b15e149db5de50f98a85d0ff96b3c70}\label{classMotorController_a5b15e149db5de50f98a85d0ff96b3c70} 
+int {\bfseries last\+Print\+Time} = -\/1
+\begin{DoxyCompactList}\small\item\em The last time a debug serial print was sent. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a165ea50e5c94f98cc86fdaf960a3ffc7}\label{classMotorController_a165ea50e5c94f98cc86fdaf960a3ffc7} 
+int {\bfseries current\+Update\+Interval} = \mbox{\hyperlink{defs_8hpp_ad9dd3666dde0eb03b963a2b7944c7cc3}{CURRENT\+\_\+\+UPDATE\+\_\+\+INTERVAL}}
+\begin{DoxyCompactList}\small\item\em Interval of time to pass between current updates microseconds ~\newline
+ \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a50e8802458df3bf7aced108796e4c364}\label{classMotorController_a50e8802458df3bf7aced108796e4c364} 
+int {\bfseries last\+Current\+Update} = -\/1
+\begin{DoxyCompactList}\small\item\em Time in microseconds since the last current update. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a09217b648a55d056b338d68813622e74}\label{classMotorController_a09217b648a55d056b338d68813622e74} 
+int {\bfseries soft\+Moving\+Time} = -\/1
+\item 
+\Hypertarget{classMotorController_adca0e4399879dc6986187e2fb4fee030}\label{classMotorController_adca0e4399879dc6986187e2fb4fee030} 
+\mbox{\hyperlink{classEMA}{EMA}}$<$ 1 $>$ {\bfseries leader\+Current\+Filter}
+\begin{DoxyCompactList}\small\item\em Input filter for leader current readings. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_adc05bf3ff4ad249fe9a09099db00b3e2}\label{classMotorController_adc05bf3ff4ad249fe9a09099db00b3e2} 
+\mbox{\hyperlink{classEMA}{EMA}}$<$ 1 $>$ {\bfseries follower\+Current\+Filter}
+\begin{DoxyCompactList}\small\item\em Input filter for follower current readings. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a1a1ca1a6092f0a0bf9796643f850f5dd}\label{classMotorController_a1a1ca1a6092f0a0bf9796643f850f5dd} 
+int\+\_\+fast32\+\_\+t {\bfseries samples} = 0
+\begin{DoxyCompactList}\small\item\em Number of current samples. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_ac940ace024e0a99f5312f774d5ac937e}\label{classMotorController_ac940ace024e0a99f5312f774d5ac937e} 
+int {\bfseries current\+Offset} = 0
+\begin{DoxyCompactList}\small\item\em Current offset. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a0b44d5acec843f45357fa038ceb9c970}\label{classMotorController_a0b44d5acec843f45357fa038ceb9c970} 
+int\+\_\+fast32\+\_\+t {\bfseries current\+Difference\+Sum} = 0
+\begin{DoxyCompactList}\small\item\em Current difference sum. \end{DoxyCompactList}\item 
+\Hypertarget{classMotorController_a94af4140e7e3177a24a9bcb8ea09605b}\label{classMotorController_a94af4140e7e3177a24a9bcb8ea09605b} 
+int\+\_\+fast32\+\_\+t {\bfseries current\+Sum} = 0
+\begin{DoxyCompactList}\small\item\em Current Sum. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -90,54 +209,172 @@ Terry Paul Ferguson
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\Hypertarget{classMotorController_a20288d902c9ef0cda030718dfa2f3cb6}\label{classMotorController_a20288d902c9ef0cda030718dfa2f3cb6} 
+\Hypertarget{classMotorController_a3483d96207cbb9b60ee96953a3ee5856}\label{classMotorController_a3483d96207cbb9b60ee96953a3ee5856} 
 \index{MotorController@{MotorController}!MotorController@{MotorController}}
 \index{MotorController@{MotorController}!MotorController@{MotorController}}
 \doxysubsubsection{\texorpdfstring{MotorController()}{MotorController()}}
-{\footnotesize\ttfamily Motor\+Controller\+::\+Motor\+Controller (\begin{DoxyParamCaption}\item[{const int}]{pwm\+Frequency = {\ttfamily PWM\+\_\+FREQUENCY},  }\item[{const int}]{pwm\+Resolution = {\ttfamily PWM\+\_\+RESOLUTION\+\_\+BITS},  }\item[{const int}]{default\+Speed = {\ttfamily DEFAULT\+\_\+MOTOR\+\_\+SPEED},  }\item[{const int}]{current\+Increase\+Limit = {\ttfamily DEFAULT\+\_\+CURRENT\+\_\+INCREASE\+\_\+LIMIT} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily Motor\+Controller\+::\+Motor\+Controller (\begin{DoxyParamCaption}\item[{const int}]{pwm\+Frequency = {\ttfamily \mbox{\hyperlink{defs_8hpp_a6f6cfbe0889a89dfbe582ad507b88ac5}{PWM\+\_\+\+FREQUENCY}}},  }\item[{const int}]{pwm\+Resolution = {\ttfamily \mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\+\_\+\+RESOLUTION\+\_\+\+BITS}}},  }\item[{const int}]{default\+Speed = {\ttfamily \mbox{\hyperlink{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}{DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-This class controls the motors connected to the microcontoller. 
+This is the class that controls the motors. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em pwm\+Frequency} & The frequency of the PWM signal to the motors \\
+{\em PWM\+\_\+\+FREQUENCY} & the frequency of the PWM signal \\
 \hline
-{\em pwm\+Resolution} & The bitdepth resolution of the PWM signal to the motors \\
+{\em PWM\+\_\+\+RESOLUTION\+\_\+\+BITS} & the resolution of the PWM signal in bits \\
 \hline
-{\em default\+Speed} & The default speed of the motors that the control program starts them off with \\
+{\em DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED} & the default speed of the motor\\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em none} & \\
+\hline
+\end{DoxyExceptions}
 
 
 \doxysubsection{Member Function Documentation}
-\Hypertarget{classMotorController_a6d94459f0e674807e4556afca3b34413}\label{classMotorController_a6d94459f0e674807e4556afca3b34413} 
-\index{MotorController@{MotorController}!countsAreUnequal@{countsAreUnequal}}
-\index{countsAreUnequal@{countsAreUnequal}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{countsAreUnequal()}{countsAreUnequal()}}
-{\footnotesize\ttfamily bool Motor\+Controller\+::counts\+Are\+Unequal (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\Hypertarget{classMotorController_a1f3cf0f1c5ec115375fe18379212b65d}\label{classMotorController_a1f3cf0f1c5ec115375fe18379212b65d} 
+\index{MotorController@{MotorController}!checkIfSetPositionReached@{checkIfSetPositionReached}}
+\index{checkIfSetPositionReached@{checkIfSetPositionReached}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{checkIfSetPositionReached()}{checkIfSetPositionReached()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::check\+If\+Set\+Position\+Reached (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if a desired position is set and clear it if we have reached it.
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a762e90adbeb49a28e1afaba55704ea6a}\label{classMotorController_a762e90adbeb49a28e1afaba55704ea6a} 
+\index{MotorController@{MotorController}!currentAlarmTriggered@{currentAlarmTriggered}}
+\index{currentAlarmTriggered@{currentAlarmTriggered}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{currentAlarmTriggered()}{currentAlarmTriggered()}}
+{\footnotesize\ttfamily bool Motor\+Controller\+::current\+Alarm\+Triggered (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Indicates whether the motor counts are unequal. 
+Checks if the current alarm is triggered. 
 
 \begin{DoxyReturn}{Returns}
-True if the motor counts are different, false otherwise 
+true if the current alarm is triggered, false otherwise 
 \end{DoxyReturn}
-\Hypertarget{classMotorController_add201a7e452d3c44703bf1ac6aac587e}\label{classMotorController_add201a7e452d3c44703bf1ac6aac587e} 
-\index{MotorController@{MotorController}!getSpeed@{getSpeed}}
-\index{getSpeed@{getSpeed}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{getSpeed()}{getSpeed()}}
-{\footnotesize\ttfamily int Motor\+Controller\+::get\+Speed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+\Hypertarget{classMotorController_adede773db41a7b85850c7ceca08413fc}\label{classMotorController_adede773db41a7b85850c7ceca08413fc} 
+\index{MotorController@{MotorController}!disableMotors@{disableMotors}}
+\index{disableMotors@{disableMotors}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{disableMotors()}{disableMotors()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::disable\+Motors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Get the system speed. 
+Disable the motors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a829f38ab1a75b0d2904467798d0ee215}\label{classMotorController_a829f38ab1a75b0d2904467798d0ee215} 
+\index{MotorController@{MotorController}!displayCurrents@{displayCurrents}}
+\index{displayCurrents@{displayCurrents}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{displayCurrents()}{displayCurrents()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::display\+Currents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Displays the current values of the leader and follower motor currents and velocities. 
 
 \begin{DoxyReturn}{Returns}
-The average speed of the system 
+void 
 \end{DoxyReturn}
+\Hypertarget{classMotorController_a7b87fc5678b3994a39918a76202be0cf}\label{classMotorController_a7b87fc5678b3994a39918a76202be0cf} 
+\index{MotorController@{MotorController}!extend@{extend}}
+\index{extend@{extend}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{extend()}{extend()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::extend (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Extends the motorized system. 
+
+This function enables PID control, resets soft movement, sets the speed to the default speed, resets the out of range flag for all motors, sends the extend command to all motors, and sets the system direction and requested direction to extend. \Hypertarget{classMotorController_ae18fc3e4763dbaba71846be69af6f608}\label{classMotorController_ae18fc3e4763dbaba71846be69af6f608} 
+\index{MotorController@{MotorController}!home@{home}}
+\index{home@{home}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{home()}{home()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::home (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Function to control the homing. 
+
+This function retracts, checks leader and follower out of range status, and updates the motor status until both motors are out of range. It then zeros out the positions of the motors and resets the soft movement status \texorpdfstring{$<$}{<} Set the PID flag to true
+
+\texorpdfstring{$<$}{<} Reset the soft movement
+
+\texorpdfstring{$<$}{<} Set the out\+Of\+Range flag to false for all motors
+
+\texorpdfstring{$<$}{<} Set the command to retract for all motors
+
+\texorpdfstring{$<$}{<} Set the system direction to retract
+
+\texorpdfstring{$<$}{<} Set the requested direction to retract\Hypertarget{classMotorController_ab6f3af29f62ba389058bb45d9cf63873}\label{classMotorController_ab6f3af29f62ba389058bb45d9cf63873} 
+\index{MotorController@{MotorController}!immediateHalt@{immediateHalt}}
+\index{immediateHalt@{immediateHalt}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{immediateHalt()}{immediateHalt()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::immediate\+Halt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Halts the system immediately.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_ab2fb4b5942170e2cc8fc3be4ede9da57}\label{classMotorController_ab2fb4b5942170e2cc8fc3be4ede9da57} 
+\index{MotorController@{MotorController}!initialize@{initialize}}
+\index{initialize@{initialize}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Initialize the motors, position storage, current sensors, and PID controllers. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
 \Hypertarget{classMotorController_aef6d99d0d2ee996fb357e0fdd4fff65f}\label{classMotorController_aef6d99d0d2ee996fb357e0fdd4fff65f} 
 \index{MotorController@{MotorController}!isStopped@{isStopped}}
 \index{isStopped@{isStopped}!MotorController@{MotorController}}
@@ -146,59 +383,295 @@ The average speed of the system
 
 
 
-Check whether the system is in a STOP state. 
+Check if the system is stopped. 
 
 \begin{DoxyReturn}{Returns}
-True if the system is in a STOP state, else false 
+true if the system is stopped, false otherwise 
 \end{DoxyReturn}
-\Hypertarget{classMotorController_a721ec0badfe038b6fc7f9d52241acd96}\label{classMotorController_a721ec0badfe038b6fc7f9d52241acd96} 
-\index{MotorController@{MotorController}!savePosition@{savePosition}}
-\index{savePosition@{savePosition}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{savePosition()}{savePosition()}}
-{\footnotesize\ttfamily void Motor\+Controller\+::save\+Position (\begin{DoxyParamCaption}\item[{const int}]{slot,  }\item[{const int}]{position\+\_\+value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\Hypertarget{classMotorController_a02339f8e840102aad605d30a9055d727}\label{classMotorController_a02339f8e840102aad605d30a9055d727} 
+\index{MotorController@{MotorController}!motorsCloseToEndOfRange@{motorsCloseToEndOfRange}}
+\index{motorsCloseToEndOfRange@{motorsCloseToEndOfRange}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{motorsCloseToEndOfRange()}{motorsCloseToEndOfRange()}}
+{\footnotesize\ttfamily bool Motor\+Controller\+::motors\+Close\+To\+End\+Of\+Range (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Save a position to the preferences slot. 
+Check if the motors are close to the end of their range. 
+
+\begin{DoxyReturn}{Returns}
+True if either motor is close to the end of its range, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classMotorController_a27972ea98ed162e7cef503f0e23ef35c}\label{classMotorController_a27972ea98ed162e7cef503f0e23ef35c} 
+\index{MotorController@{MotorController}!motorsDesynced@{motorsDesynced}}
+\index{motorsDesynced@{motorsDesynced}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{motorsDesynced()}{motorsDesynced()}}
+{\footnotesize\ttfamily bool Motor\+Controller\+::motors\+Desynced (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if the motors are desynchronized.
+
+\begin{DoxyReturn}{Returns}
+true if the motors are desynchronized, false otherwise 
+\end{DoxyReturn}
+\Hypertarget{classMotorController_afe4efa578caca374d40a6bea4db75cbb}\label{classMotorController_afe4efa578caca374d40a6bea4db75cbb} 
+\index{MotorController@{MotorController}!motorsStopped@{motorsStopped}}
+\index{motorsStopped@{motorsStopped}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{motorsStopped()}{motorsStopped()}}
+{\footnotesize\ttfamily bool Motor\+Controller\+::motors\+Stopped (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Check if both motors are stopped.
+
+\begin{DoxyReturn}{Returns}
+True if both motors are stopped, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classMotorController_ab03e79917ecce628b1b9b3300fee19fd}\label{classMotorController_ab03e79917ecce628b1b9b3300fee19fd} 
+\index{MotorController@{MotorController}!printCurrent@{printCurrent}}
+\index{printCurrent@{printCurrent}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{printCurrent()}{printCurrent()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::print\+Current (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Prints the current values of the leader and follower motors. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{classMotorController_aa4412ba310bcb5e34bebc50d660025ec}\label{classMotorController_aa4412ba310bcb5e34bebc50d660025ec} 
+\index{MotorController@{MotorController}!report@{report}}
+\index{report@{report}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{report()}{report()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::report (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports the current state of the motor controller to the serial console. 
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_afc1f85a45f74117fe0fb899c82fadc51}\label{classMotorController_afc1f85a45f74117fe0fb899c82fadc51} 
+\index{MotorController@{MotorController}!resetCurrentInformation@{resetCurrentInformation}}
+\index{resetCurrentInformation@{resetCurrentInformation}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{resetCurrentInformation()}{resetCurrentInformation()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::reset\+Current\+Information (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reset the current information for the system. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em slot} & The selected slot to save the position information to \\
-\hline
-{\em position\+\_\+value} & The position value in hall sensor pulses to save to the selected slot \\
+{\em None} & \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a8857b313509715f3aac8d8e9372215a9}\label{classMotorController_a8857b313509715f3aac8d8e9372215a9} 
+\index{MotorController@{MotorController}!resetMotorCurrentAlarms@{resetMotorCurrentAlarms}}
+\index{resetMotorCurrentAlarms@{resetMotorCurrentAlarms}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{resetMotorCurrentAlarms()}{resetMotorCurrentAlarms()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::reset\+Motor\+Current\+Alarms (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reset the current alarms for the motors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a645d990b88f2bcfeb8455597449da372}\label{classMotorController_a645d990b88f2bcfeb8455597449da372} 
+\index{MotorController@{MotorController}!resetPid@{resetPid}}
+\index{resetPid@{resetPid}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{resetPid()}{resetPid()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::reset\+Pid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reset the PID controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a840676ad1f5c58acfe9568794040019e}\label{classMotorController_a840676ad1f5c58acfe9568794040019e} 
+\index{MotorController@{MotorController}!resetSoftMovement@{resetSoftMovement}}
+\index{resetSoftMovement@{resetSoftMovement}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{resetSoftMovement()}{resetSoftMovement()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::reset\+Soft\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Reset the soft movement.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a82c8ae39bfeb8cea8e851d8e4c1fd8ef}\label{classMotorController_a82c8ae39bfeb8cea8e851d8e4c1fd8ef} 
+\index{MotorController@{MotorController}!retract@{retract}}
+\index{retract@{retract}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{retract()}{retract()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::retract (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retracts the motorized system. 
+
+This function is used to tell the motorized system to retract. It sets the PID flag to true, resets the soft movement, sets the speed to the default speed, sets the out\+Of\+Range flag to false for all motors, sets the command to retract for all motors, sets the system direction and requested direction to retract. \Hypertarget{classMotorController_aebcaf603802ccdfc2d9f75fcc65b28d3}\label{classMotorController_aebcaf603802ccdfc2d9f75fcc65b28d3} 
+\index{MotorController@{MotorController}!sampleCurrents@{sampleCurrents}}
+\index{sampleCurrents@{sampleCurrents}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{sampleCurrents()}{sampleCurrents()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::sample\+Currents (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Calculate the larger current between leader and follower, update the max\+Current if necessary, and update the current\+Difference\+Sum, current\+Sum, and samples.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a3d3c79eeae2492a637d62612689e55ce}\label{classMotorController_a3d3c79eeae2492a637d62612689e55ce} 
+\index{MotorController@{MotorController}!savePosition@{savePosition}}
+\index{savePosition@{savePosition}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{savePosition()}{savePosition()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::save\+Position (\begin{DoxyParamCaption}\item[{const int}]{slot,  }\item[{const int}]{position\+\_\+value = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Saves the position value for a given slot. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em slot} & The slot index. \\
+\hline
+{\em position\+\_\+value} & The position value to save. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classMotorController_ad1441264195d73514a8038025f4a2359}\label{classMotorController_ad1441264195d73514a8038025f4a2359} 
+\index{MotorController@{MotorController}!setCurrentLimit@{setCurrentLimit}}
+\index{setCurrentLimit@{setCurrentLimit}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{setCurrentLimit()}{setCurrentLimit()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::set\+Current\+Limit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the current limit for the leader and follower motors based on the average current and current offset. Prints the current alarms set to the serial monitor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
 \Hypertarget{classMotorController_aecc3d8d28295d30f34d8f3b736243877}\label{classMotorController_aecc3d8d28295d30f34d8f3b736243877} 
 \index{MotorController@{MotorController}!setPos@{setPos}}
 \index{setPos@{setPos}!MotorController@{MotorController}}
 \doxysubsubsection{\texorpdfstring{setPos()}{setPos()}}
 {\footnotesize\ttfamily void Motor\+Controller\+::set\+Pos (\begin{DoxyParamCaption}\item[{const int}]{new\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-
-
-Move the motors to the given position. 
+Set the desired position for the motors and move them accordingly.
 
 
 \begin{DoxyParams}{Parameters}
-{\em new\+Pos} & The new target position for the motors in hall sensor pulses \\
+{\em new\+Pos} & The new desired position for the motors. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classMotorController_a8b7c0ce938bd1fd25ed8f8c98e5eecdd}\label{classMotorController_a8b7c0ce938bd1fd25ed8f8c98e5eecdd} 
+\Hypertarget{classMotorController_a5e9b745a22bcc7283f1d6c3974cf5b4d}\label{classMotorController_a5e9b745a22bcc7283f1d6c3974cf5b4d} 
 \index{MotorController@{MotorController}!setSpeed@{setSpeed}}
 \index{setSpeed@{setSpeed}!MotorController@{MotorController}}
 \doxysubsubsection{\texorpdfstring{setSpeed()}{setSpeed()}}
-{\footnotesize\ttfamily void Motor\+Controller\+::set\+Speed (\begin{DoxyParamCaption}\item[{int}]{new\+Speed }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily void Motor\+Controller\+::set\+Speed (\begin{DoxyParamCaption}\item[{const int}]{new\+Speed,  }\item[{const int}]{soft\+Movement\+Time = {\ttfamily \mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\+\_\+\+MOVEMENT\+\_\+\+TIME\+\_\+\+MS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Smoothly change to the newly requested speed. 
+Set the speed of the motor. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em new\+Speed} & The new speed to target \\
+{\em new\+Speed} & The new speed value. \\
 \hline
 \end{DoxyParams}
-\Hypertarget{classMotorController_ab7a076be5cc48c2af65ef2d32a4fe6bc}\label{classMotorController_ab7a076be5cc48c2af65ef2d32a4fe6bc} 
+\Hypertarget{classMotorController_a1d77ad6c9bfe641e32caff3823455a43}\label{classMotorController_a1d77ad6c9bfe641e32caff3823455a43} 
+\index{MotorController@{MotorController}!startMotion@{startMotion}}
+\index{startMotion@{startMotion}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{startMotion()}{startMotion()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::start\+Motion (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classDirection}{Direction}}}]{dir }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Starts the motion in the specified direction.
+
+This function is used to tell the motorized system to move in specified direction. It sets the PID flag to true, resets the soft movement, sets the speed to the default speed, sets the out\+Of\+Range flag to false for all motors, sets the system direction and requested direction to specified direction.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dir} & The direction in which to start the motion\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a317ce58ea93ea1329de5b87391560082}\label{classMotorController_a317ce58ea93ea1329de5b87391560082} 
+\index{MotorController@{MotorController}!stop@{stop}}
+\index{stop@{stop}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{stop()}{stop()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::stop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Stops the motorized system. 
+
+This function stops the motorized system by resetting the soft movement and setting the speed to 0. \Hypertarget{classMotorController_ab7a076be5cc48c2af65ef2d32a4fe6bc}\label{classMotorController_ab7a076be5cc48c2af65ef2d32a4fe6bc} 
 \index{MotorController@{MotorController}!update@{update}}
 \index{update@{update}!MotorController@{MotorController}}
 \doxysubsubsection{\texorpdfstring{update()}{update()}}
@@ -206,68 +679,117 @@ Smoothly change to the newly requested speed.
 
 
 
-Perform one update interval for the motor system. 
+Updates the state of the motor system. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em deltaT} & The amount of time that has passed since the last update \\
+{\em deltaT} & the time interval since the last update (default\+: 0.\+0f)\\
 \hline
 \end{DoxyParams}
 
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_aea0aa45b64883692be0d91b92f777df6}\label{classMotorController_aea0aa45b64883692be0d91b92f777df6} 
+\index{MotorController@{MotorController}!updateCurrentReadings@{updateCurrentReadings}}
+\index{updateCurrentReadings@{updateCurrentReadings}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{updateCurrentReadings()}{updateCurrentReadings()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::update\+Current\+Readings (\begin{DoxyParamCaption}\item[{const int}]{elapsed\+Time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-\doxysubsection{Member Data Documentation}
-\Hypertarget{classMotorController_ae9008f7115e4f9060c311a3970d8b50f}\label{classMotorController_ae9008f7115e4f9060c311a3970d8b50f} 
-\index{MotorController@{MotorController}!currentIncreaseTolerance@{currentIncreaseTolerance}}
-\index{currentIncreaseTolerance@{currentIncreaseTolerance}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{currentIncreaseTolerance}{currentIncreaseTolerance}}
-{\footnotesize\ttfamily int Motor\+Controller\+::current\+Increase\+Tolerance = DEFAULT\+\_\+\+CURRENT\+\_\+\+INCREASE\+\_\+\+LIMIT}
 
-Maxim1um current increase limit for motor cutoff \Hypertarget{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9}\label{classMotorController_ad0b0c6eec67c0eae5bc0fbccf4d12ac9} 
-\index{MotorController@{MotorController}!defaultSpeed@{defaultSpeed}}
-\index{defaultSpeed@{defaultSpeed}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{defaultSpeed}{defaultSpeed}}
-{\footnotesize\ttfamily int Motor\+Controller\+::default\+Speed = DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED}
 
-The default speed to operate the motors at on startup \Hypertarget{classMotorController_a48328ef6c985bf5bc02a489af3d54172}\label{classMotorController_a48328ef6c985bf5bc02a489af3d54172} 
-\index{MotorController@{MotorController}!eIntegral@{eIntegral}}
-\index{eIntegral@{eIntegral}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{eIntegral}{eIntegral}}
-{\footnotesize\ttfamily float Motor\+Controller\+::e\+Integral = 0.\+0f}
+Updates the current readings of the leader and follower motors based on the elapsed time. 
 
-The integral error coefficient for the PID controller ~\newline
- \Hypertarget{classMotorController_a27c40687dcddbda2e3ebb5bdc4007ff4}\label{classMotorController_a27c40687dcddbda2e3ebb5bdc4007ff4} 
-\index{MotorController@{MotorController}!K\_i@{K\_i}}
-\index{K\_i@{K\_i}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{K\_i}{K\_i}}
-{\footnotesize\ttfamily float Motor\+Controller\+::\+K\+\_\+i = 0.\+1f}
 
-The intagral gain for the PID controller ~\newline
- \Hypertarget{classMotorController_a3aa95272d56064038e6cab32ba62b4b4}\label{classMotorController_a3aa95272d56064038e6cab32ba62b4b4} 
-\index{MotorController@{MotorController}!K\_p@{K\_p}}
-\index{K\_p@{K\_p}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{K\_p}{K\_p}}
-{\footnotesize\ttfamily int Motor\+Controller\+::\+K\+\_\+p = 50000}
+\begin{DoxyParams}{Parameters}
+{\em elapsed\+Time} & the elapsed time in microseconds\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
 
-The proprotional gain for the PID controller ~\newline
- \Hypertarget{classMotorController_a24dc64a574d43f8f089d92f952ec09ba}\label{classMotorController_a24dc64a574d43f8f089d92f952ec09ba} 
-\index{MotorController@{MotorController}!leftCurrent@{leftCurrent}}
-\index{leftCurrent@{leftCurrent}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{leftCurrent}{leftCurrent}}
-{\footnotesize\ttfamily int Motor\+Controller\+::left\+Current = 0}
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a4669f88fbc8fe96a99c1b4d0ab490679}\label{classMotorController_a4669f88fbc8fe96a99c1b4d0ab490679} 
+\index{MotorController@{MotorController}!updateLeadingAndLaggingIndicies@{updateLeadingAndLaggingIndicies}}
+\index{updateLeadingAndLaggingIndicies@{updateLeadingAndLaggingIndicies}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{updateLeadingAndLaggingIndicies()}{updateLeadingAndLaggingIndicies()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::update\+Leading\+And\+Lagging\+Indicies (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Left motor current \Hypertarget{classMotorController_ade4a1c0633be15763515ce631b1e3f90}\label{classMotorController_ade4a1c0633be15763515ce631b1e3f90} 
-\index{MotorController@{MotorController}!rightCurrent@{rightCurrent}}
-\index{rightCurrent@{rightCurrent}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{rightCurrent}{rightCurrent}}
-{\footnotesize\ttfamily int Motor\+Controller\+::right\+Current = 0}
 
-Right motor current \Hypertarget{classMotorController_a1d04910ab52d613a2e75c0d9f2b07fef}\label{classMotorController_a1d04910ab52d613a2e75c0d9f2b07fef} 
-\index{MotorController@{MotorController}!speed@{speed}}
-\index{speed@{speed}!MotorController@{MotorController}}
-\doxysubsubsection{\texorpdfstring{speed}{speed}}
-{\footnotesize\ttfamily int Motor\+Controller\+::speed = 0}
 
-Current target speed 
+Update the leading and lagging indices based on the system direction. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{classMotorController_ab1bb983d952d58bdf14e59a3f7d72dc6}\label{classMotorController_ab1bb983d952d58bdf14e59a3f7d72dc6} 
+\index{MotorController@{MotorController}!updateMotors@{updateMotors}}
+\index{updateMotors@{updateMotors}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{updateMotors()}{updateMotors()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::update\+Motors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Update the motors. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a3766d0412856003731b1f4b1e28c0bea}\label{classMotorController_a3766d0412856003731b1f4b1e28c0bea} 
+\index{MotorController@{MotorController}!updateSoftMovement@{updateSoftMovement}}
+\index{updateSoftMovement@{updateSoftMovement}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{updateSoftMovement()}{updateSoftMovement()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::update\+Soft\+Movement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Updates the soft movement of the system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classMotorController_a5300f11bcf37c1c08c529978818cf050}\label{classMotorController_a5300f11bcf37c1c08c529978818cf050} 
+\index{MotorController@{MotorController}!zero@{zero}}
+\index{zero@{zero}!MotorController@{MotorController}}
+\doxysubsubsection{\texorpdfstring{zero()}{zero()}}
+{\footnotesize\ttfamily void Motor\+Controller\+::zero (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Zeroes out the position count of all motors. 
+
+\begin{DoxyReturn}{Returns}
+void
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

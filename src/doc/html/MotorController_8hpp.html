@@ -97,7 +97,8 @@ $(document).ready(function(){initNavTree('MotorController_8hpp.html',''); initRe
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;Preferences.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="CurrentSettings_8hpp_source.html">CurrentSettings.hpp</a>&quot;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &quot;EMA.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="Motor_8hpp_source.html">Motor.hpp</a>&quot;</code><br />
 <code>#include &quot;PIDController.hpp&quot;</code><br />
 <code>#include &quot;<a class="el" href="PinMacros_8hpp_source.html">PinMacros.hpp</a>&quot;</code><br />
@@ -113,18 +114,13 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a3fc51a13f4ddb04d22723976909e13c6" id="r_a3fc51a13f4ddb04d22723976909e13c6"><td class="memItemLeft" align="right" valign="top"><a id="a3fc51a13f4ddb04d22723976909e13c6" name="a3fc51a13f4ddb04d22723976909e13c6"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>NUMBER_OF_MOTORS</b>&#160;&#160;&#160;2</td></tr>
-<tr class="separator:a3fc51a13f4ddb04d22723976909e13c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f3acb84bb405fbe717f319b2b7d622c" id="r_a9f3acb84bb405fbe717f319b2b7d622c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MotorController_8hpp.html#a9f3acb84bb405fbe717f319b2b7d622c">ALL_MOTORS</a>(operation)</td></tr>
 <tr class="separator:a9f3acb84bb405fbe717f319b2b7d622c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5ae561ec655f7a78657fc9dacc8247f" id="r_aa5ae561ec655f7a78657fc9dacc8247f"><td class="memItemLeft" align="right" valign="top"><a id="aa5ae561ec655f7a78657fc9dacc8247f" name="aa5ae561ec655f7a78657fc9dacc8247f"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>ALL_MOTORS_COMMAND</b>(command)&#160;&#160;&#160;ALL_MOTORS(motors[motor].command();)</td></tr>
 <tr class="separator:aa5ae561ec655f7a78657fc9dacc8247f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b47c5a4e135999898004eeeb4801d20" id="r_a3b47c5a4e135999898004eeeb4801d20"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MotorController_8hpp.html#a3b47c5a4e135999898004eeeb4801d20">RESET_SOFT_MOVEMENT</a></td></tr>
-<tr class="separator:a3b47c5a4e135999898004eeeb4801d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ce3503e166e87060a203e474bc801f7" id="r_a6ce3503e166e87060a203e474bc801f7"><td class="memItemLeft" align="right" valign="top"><a id="a6ce3503e166e87060a203e474bc801f7" name="a6ce3503e166e87060a203e474bc801f7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>RESTORE_POSITION</b>(slot)&#160;&#160;&#160;motor_controller.setPos(savedPositions[slot]);</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>RESTORE_POSITION</b>(slot)&#160;&#160;&#160;motor_controller.setPos(<a class="el" href="defs_8hpp.html#a36ecb22e6d7f28e169936958b450c22d">savedPositions</a>[slot]);</td></tr>
 <tr class="separator:a6ce3503e166e87060a203e474bc801f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abedc96941fbd5271859eb15812f22ddd" id="r_abedc96941fbd5271859eb15812f22ddd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MotorController_8hpp.html#abedc96941fbd5271859eb15812f22ddd">SERIAL_SAVE_POSITION</a>(slot)</td></tr>
 <tr class="separator:abedc96941fbd5271859eb15812f22ddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,28 +141,10 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> motor = 0; motor &lt; NUMBER_OF_MOTORS; motor++) {                     \</div>
+<b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> motor = 0; motor &lt; <a class="code hl_variable" href="defs_8hpp.html#afcc019745aed213aaa07d37c7fa08440">NUMBER_OF_MOTORS</a>; motor++) {                     \</div>
 <div class="line">    operation                                                                  \</div>
 <div class="line">  }</div>
-</div><!-- fragment -->
-</div>
-</div>
-<a id="a3b47c5a4e135999898004eeeb4801d20" name="a3b47c5a4e135999898004eeeb4801d20"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3b47c5a4e135999898004eeeb4801d20">&#9670;&#160;</a></span>RESET_SOFT_MOVEMENT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define RESET_SOFT_MOVEMENT</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">  pwmUpdateAmount = 0;                                                         \</div>
-<div class="line">  lastPWMUpdate = -1;                                                          \</div>
-<div class="line">  softStart = -1;                                                              \</div>
-<div class="line">  targetSpeed = -1;                                                            \</div>
-<div class="line">  eIntegral = 0.0f;</div>
+<div class="ttc" id="adefs_8hpp_html_afcc019745aed213aaa07d37c7fa08440"><div class="ttname"><a href="defs_8hpp.html#afcc019745aed213aaa07d37c7fa08440">NUMBER_OF_MOTORS</a></div><div class="ttdeci">constexpr int NUMBER_OF_MOTORS</div><div class="ttdoc">The number of motors controlled by this system.</div><div class="ttdef"><b>Definition</b> defs.hpp:46</div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -187,8 +165,9 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">  <span class="keywordflow">if</span> (Serial.available() &gt; 0) {                                                \</div>
 <div class="line">    <span class="keywordtype">int</span> new_pos = Serial.parseInt();                                           \</div>
-<div class="line">    motor_controller.savePosition(slot, new_pos);                              \</div>
+<div class="line">    motor_controller.<a class="code hl_function" href="classMotorController.html#a3d3c79eeae2492a637d62612689e55ce">savePosition</a>(slot, new_pos);                              \</div>
 <div class="line">  }</div>
+<div class="ttc" id="aclassMotorController_html_a3d3c79eeae2492a637d62612689e55ce"><div class="ttname"><a href="classMotorController.html#a3d3c79eeae2492a637d62612689e55ce">MotorController::savePosition</a></div><div class="ttdeci">void savePosition(const int slot, const int position_value=-1)</div><div class="ttdoc">Saves the position value for a given slot.</div><div class="ttdef"><b>Definition</b> MotorController.hpp:739</div></div>
 </div><!-- fragment -->
 </div>
 </div>

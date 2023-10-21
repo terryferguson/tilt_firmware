@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pos_0',['pos',['../classMotor.html#afddc50db870be11e6ed2739953e0be77',1,'Motor']]]
+  ['k_5fp_0',['K_p',['../classMotorController.html#a3aa95272d56064038e6cab32ba62b4b4',1,'MotorController']]]
 ];

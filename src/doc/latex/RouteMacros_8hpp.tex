@@ -28,7 +28,7 @@
 
 {\bfseries Value\+:}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{\ \ motor\_controller.setPos(savedPositions[position]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ motor\_controller.\mbox{\hyperlink{classMotorController_aecc3d8d28295d30f34d8f3b736243877}{setPos}}(\mbox{\hyperlink{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d}{savedPositions}}[position]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ request-\/>send(200,\ \textcolor{stringliteral}{"{}text/plain"{}},\ response\_text);}
 
 \end{DoxyCode}
@@ -68,7 +68,7 @@
 \DoxyCodeLine{\ \ \textcolor{keywordflow}{if}\ (request-\/>hasParam(PARAM\_INPUT\_1))\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ inputMessage1\ =\ request-\/>getParam(PARAM\_INPUT\_1)-\/>value();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ new\_pos\ =\ inputMessage1.toInt();\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
-\DoxyCodeLine{\ \ \ \ motor\_controller.savePosition(n,\ new\_pos);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ motor\_controller.\mbox{\hyperlink{classMotorController_a3d3c79eeae2492a637d62612689e55ce}{savePosition}}(n,\ new\_pos);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \}\ \textcolor{keywordflow}{else}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \ \ inputMessage1\ =\ \textcolor{stringliteral}{"{}Error:\ No\ position\ sent."{}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
 \DoxyCodeLine{\ \ \}}

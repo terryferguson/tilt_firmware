@@ -105,85 +105,244 @@ $(document).ready(function(){initNavTree('classMotorController.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a20288d902c9ef0cda030718dfa2f3cb6" id="r_a20288d902c9ef0cda030718dfa2f3cb6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a20288d902c9ef0cda030718dfa2f3cb6">MotorController</a> (const int pwmFrequency=PWM_FREQUENCY, const int pwmResolution=PWM_RESOLUTION_BITS, const int <a class="el" href="classMotorController.html#ad0b0c6eec67c0eae5bc0fbccf4d12ac9">defaultSpeed</a>=DEFAULT_MOTOR_SPEED, const int currentIncreaseLimit=DEFAULT_CURRENT_INCREASE_LIMIT)</td></tr>
-<tr class="memdesc:a20288d902c9ef0cda030718dfa2f3cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class controls the motors connected to the microcontoller.  <br /></td></tr>
-<tr class="separator:a20288d902c9ef0cda030718dfa2f3cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2fb4b5942170e2cc8fc3be4ede9da57" id="r_ab2fb4b5942170e2cc8fc3be4ede9da57"><td class="memItemLeft" align="right" valign="top"><a id="ab2fb4b5942170e2cc8fc3be4ede9da57" name="ab2fb4b5942170e2cc8fc3be4ede9da57"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> ()</td></tr>
-<tr class="memdesc:ab2fb4b5942170e2cc8fc3be4ede9da57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load the stored position preferences into RAM and initialize the motors. <br /></td></tr>
+<tr class="memitem:a3483d96207cbb9b60ee96953a3ee5856" id="r_a3483d96207cbb9b60ee96953a3ee5856"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3483d96207cbb9b60ee96953a3ee5856">MotorController</a> (const int pwmFrequency=<a class="el" href="defs_8hpp.html#a6f6cfbe0889a89dfbe582ad507b88ac5">PWM_FREQUENCY</a>, const int pwmResolution=<a class="el" href="defs_8hpp.html#ab86e2bb308b2961dcb035be27767e697">PWM_RESOLUTION_BITS</a>, const int <a class="el" href="classMotorController.html#ad0b0c6eec67c0eae5bc0fbccf4d12ac9">defaultSpeed</a>=<a class="el" href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a>)</td></tr>
+<tr class="memdesc:a3483d96207cbb9b60ee96953a3ee5856"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the class that controls the motors.  <br /></td></tr>
+<tr class="separator:a3483d96207cbb9b60ee96953a3ee5856"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2fb4b5942170e2cc8fc3be4ede9da57" id="r_ab2fb4b5942170e2cc8fc3be4ede9da57"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab2fb4b5942170e2cc8fc3be4ede9da57">initialize</a> ()</td></tr>
+<tr class="memdesc:ab2fb4b5942170e2cc8fc3be4ede9da57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the motors, position storage, current sensors, and PID controllers.  <br /></td></tr>
 <tr class="separator:ab2fb4b5942170e2cc8fc3be4ede9da57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b87fc5678b3994a39918a76202be0cf" id="r_a7b87fc5678b3994a39918a76202be0cf"><td class="memItemLeft" align="right" valign="top"><a id="a7b87fc5678b3994a39918a76202be0cf" name="a7b87fc5678b3994a39918a76202be0cf"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>extend</b> ()</td></tr>
-<tr class="memdesc:a7b87fc5678b3994a39918a76202be0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the motorized system to extend. <br /></td></tr>
+<tr class="memitem:a1d77ad6c9bfe641e32caff3823455a43" id="r_a1d77ad6c9bfe641e32caff3823455a43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a1d77ad6c9bfe641e32caff3823455a43">startMotion</a> (const <a class="el" href="classDirection.html">Direction</a> dir)</td></tr>
+<tr class="separator:a1d77ad6c9bfe641e32caff3823455a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b87fc5678b3994a39918a76202be0cf" id="r_a7b87fc5678b3994a39918a76202be0cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a7b87fc5678b3994a39918a76202be0cf">extend</a> ()</td></tr>
+<tr class="memdesc:a7b87fc5678b3994a39918a76202be0cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends the motorized system.  <br /></td></tr>
 <tr class="separator:a7b87fc5678b3994a39918a76202be0cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82c8ae39bfeb8cea8e851d8e4c1fd8ef" id="r_a82c8ae39bfeb8cea8e851d8e4c1fd8ef"><td class="memItemLeft" align="right" valign="top"><a id="a82c8ae39bfeb8cea8e851d8e4c1fd8ef" name="a82c8ae39bfeb8cea8e851d8e4c1fd8ef"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>retract</b> ()</td></tr>
-<tr class="memdesc:a82c8ae39bfeb8cea8e851d8e4c1fd8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the motorized system to retract. <br /></td></tr>
+<tr class="memitem:a82c8ae39bfeb8cea8e851d8e4c1fd8ef" id="r_a82c8ae39bfeb8cea8e851d8e4c1fd8ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a82c8ae39bfeb8cea8e851d8e4c1fd8ef">retract</a> ()</td></tr>
+<tr class="memdesc:a82c8ae39bfeb8cea8e851d8e4c1fd8ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retracts the motorized system.  <br /></td></tr>
 <tr class="separator:a82c8ae39bfeb8cea8e851d8e4c1fd8ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a317ce58ea93ea1329de5b87391560082" id="r_a317ce58ea93ea1329de5b87391560082"><td class="memItemLeft" align="right" valign="top"><a id="a317ce58ea93ea1329de5b87391560082" name="a317ce58ea93ea1329de5b87391560082"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()</td></tr>
-<tr class="memdesc:a317ce58ea93ea1329de5b87391560082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the motorized system to stop. <br /></td></tr>
+<tr class="memitem:a317ce58ea93ea1329de5b87391560082" id="r_a317ce58ea93ea1329de5b87391560082"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a317ce58ea93ea1329de5b87391560082">stop</a> ()</td></tr>
+<tr class="memdesc:a317ce58ea93ea1329de5b87391560082"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the motorized system.  <br /></td></tr>
 <tr class="separator:a317ce58ea93ea1329de5b87391560082"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae18fc3e4763dbaba71846be69af6f608" id="r_ae18fc3e4763dbaba71846be69af6f608"><td class="memItemLeft" align="right" valign="top"><a id="ae18fc3e4763dbaba71846be69af6f608" name="ae18fc3e4763dbaba71846be69af6f608"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>home</b> ()</td></tr>
-<tr class="memdesc:ae18fc3e4763dbaba71846be69af6f608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Home the linear actuator to recalibrate the position sensor. <br /></td></tr>
+<tr class="memitem:ab6f3af29f62ba389058bb45d9cf63873" id="r_ab6f3af29f62ba389058bb45d9cf63873"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab6f3af29f62ba389058bb45d9cf63873">immediateHalt</a> ()</td></tr>
+<tr class="separator:ab6f3af29f62ba389058bb45d9cf63873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae18fc3e4763dbaba71846be69af6f608" id="r_ae18fc3e4763dbaba71846be69af6f608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ae18fc3e4763dbaba71846be69af6f608">home</a> ()</td></tr>
+<tr class="memdesc:ae18fc3e4763dbaba71846be69af6f608"><td class="mdescLeft">&#160;</td><td class="mdescRight">Function to control the homing.  <br /></td></tr>
 <tr class="separator:ae18fc3e4763dbaba71846be69af6f608"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5300f11bcf37c1c08c529978818cf050" id="r_a5300f11bcf37c1c08c529978818cf050"><td class="memItemLeft" align="right" valign="top"><a id="a5300f11bcf37c1c08c529978818cf050" name="a5300f11bcf37c1c08c529978818cf050"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>zero</b> ()</td></tr>
-<tr class="memdesc:a5300f11bcf37c1c08c529978818cf050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear all position information. <br /></td></tr>
+<tr class="memitem:a5e9b745a22bcc7283f1d6c3974cf5b4d" id="r_a5e9b745a22bcc7283f1d6c3974cf5b4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a5e9b745a22bcc7283f1d6c3974cf5b4d">setSpeed</a> (const int newSpeed, const int softMovementTime=<a class="el" href="defs_8hpp.html#ad3aecee3c049fa84a2397cd8ddf5ec94">SOFT_MOVEMENT_TIME_MS</a>)</td></tr>
+<tr class="memdesc:a5e9b745a22bcc7283f1d6c3974cf5b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the speed of the motor.  <br /></td></tr>
+<tr class="separator:a5e9b745a22bcc7283f1d6c3974cf5b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5300f11bcf37c1c08c529978818cf050" id="r_a5300f11bcf37c1c08c529978818cf050"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a5300f11bcf37c1c08c529978818cf050">zero</a> ()</td></tr>
+<tr class="memdesc:a5300f11bcf37c1c08c529978818cf050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Zeroes out the position count of all motors.  <br /></td></tr>
 <tr class="separator:a5300f11bcf37c1c08c529978818cf050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b7c0ce938bd1fd25ed8f8c98e5eecdd" id="r_a8b7c0ce938bd1fd25ed8f8c98e5eecdd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a8b7c0ce938bd1fd25ed8f8c98e5eecdd">setSpeed</a> (int newSpeed)</td></tr>
-<tr class="memdesc:a8b7c0ce938bd1fd25ed8f8c98e5eecdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smoothly change to the newly requested speed.  <br /></td></tr>
-<tr class="separator:a8b7c0ce938bd1fd25ed8f8c98e5eecdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add201a7e452d3c44703bf1ac6aac587e" id="r_add201a7e452d3c44703bf1ac6aac587e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#add201a7e452d3c44703bf1ac6aac587e">getSpeed</a> () const</td></tr>
-<tr class="memdesc:add201a7e452d3c44703bf1ac6aac587e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the system speed.  <br /></td></tr>
-<tr class="separator:add201a7e452d3c44703bf1ac6aac587e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d94459f0e674807e4556afca3b34413" id="r_a6d94459f0e674807e4556afca3b34413"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a6d94459f0e674807e4556afca3b34413">countsAreUnequal</a> (void) const</td></tr>
-<tr class="memdesc:a6d94459f0e674807e4556afca3b34413"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the motor counts are unequal.  <br /></td></tr>
-<tr class="separator:a6d94459f0e674807e4556afca3b34413"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4412ba310bcb5e34bebc50d660025ec" id="r_aa4412ba310bcb5e34bebc50d660025ec"><td class="memItemLeft" align="right" valign="top"><a id="aa4412ba310bcb5e34bebc50d660025ec" name="aa4412ba310bcb5e34bebc50d660025ec"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>report</b> ()</td></tr>
-<tr class="memdesc:aa4412ba310bcb5e34bebc50d660025ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Report debugging information to the serial console. <br /></td></tr>
+<tr class="memitem:aa4412ba310bcb5e34bebc50d660025ec" id="r_aa4412ba310bcb5e34bebc50d660025ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aa4412ba310bcb5e34bebc50d660025ec">report</a> ()</td></tr>
+<tr class="memdesc:aa4412ba310bcb5e34bebc50d660025ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports the current state of the motor controller to the serial console.  <br /></td></tr>
 <tr class="separator:aa4412ba310bcb5e34bebc50d660025ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a721ec0badfe038b6fc7f9d52241acd96" id="r_a721ec0badfe038b6fc7f9d52241acd96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a721ec0badfe038b6fc7f9d52241acd96">savePosition</a> (const int slot, const int position_value)</td></tr>
-<tr class="memdesc:a721ec0badfe038b6fc7f9d52241acd96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save a position to the preferences slot.  <br /></td></tr>
-<tr class="separator:a721ec0badfe038b6fc7f9d52241acd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab03e79917ecce628b1b9b3300fee19fd" id="r_ab03e79917ecce628b1b9b3300fee19fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab03e79917ecce628b1b9b3300fee19fd">printCurrent</a> ()</td></tr>
+<tr class="memdesc:ab03e79917ecce628b1b9b3300fee19fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the current values of the leader and follower motors.  <br /></td></tr>
+<tr class="separator:ab03e79917ecce628b1b9b3300fee19fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d3c79eeae2492a637d62612689e55ce" id="r_a3d3c79eeae2492a637d62612689e55ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3d3c79eeae2492a637d62612689e55ce">savePosition</a> (const int slot, const int position_value=-1)</td></tr>
+<tr class="memdesc:a3d3c79eeae2492a637d62612689e55ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves the position value for a given slot.  <br /></td></tr>
+<tr class="separator:a3d3c79eeae2492a637d62612689e55ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aecc3d8d28295d30f34d8f3b736243877" id="r_aecc3d8d28295d30f34d8f3b736243877"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aecc3d8d28295d30f34d8f3b736243877">setPos</a> (const int newPos)</td></tr>
-<tr class="memdesc:aecc3d8d28295d30f34d8f3b736243877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move the motors to the given position.  <br /></td></tr>
 <tr class="separator:aecc3d8d28295d30f34d8f3b736243877"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea0aa45b64883692be0d91b92f777df6" id="r_aea0aa45b64883692be0d91b92f777df6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aea0aa45b64883692be0d91b92f777df6">updateCurrentReadings</a> (const int elapsedTime)</td></tr>
+<tr class="memdesc:aea0aa45b64883692be0d91b92f777df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current readings of the leader and follower motors based on the elapsed time.  <br /></td></tr>
+<tr class="separator:aea0aa45b64883692be0d91b92f777df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef6d99d0d2ee996fb357e0fdd4fff65f" id="r_aef6d99d0d2ee996fb357e0fdd4fff65f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aef6d99d0d2ee996fb357e0fdd4fff65f">isStopped</a> () const</td></tr>
-<tr class="memdesc:aef6d99d0d2ee996fb357e0fdd4fff65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check whether the system is in a STOP state.  <br /></td></tr>
+<tr class="memdesc:aef6d99d0d2ee996fb357e0fdd4fff65f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the system is stopped.  <br /></td></tr>
 <tr class="separator:aef6d99d0d2ee996fb357e0fdd4fff65f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe4efa578caca374d40a6bea4db75cbb" id="r_afe4efa578caca374d40a6bea4db75cbb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#afe4efa578caca374d40a6bea4db75cbb">motorsStopped</a> () const</td></tr>
+<tr class="separator:afe4efa578caca374d40a6bea4db75cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a762e90adbeb49a28e1afaba55704ea6a" id="r_a762e90adbeb49a28e1afaba55704ea6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a762e90adbeb49a28e1afaba55704ea6a">currentAlarmTriggered</a> ()</td></tr>
+<tr class="memdesc:a762e90adbeb49a28e1afaba55704ea6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the current alarm is triggered.  <br /></td></tr>
+<tr class="separator:a762e90adbeb49a28e1afaba55704ea6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27972ea98ed162e7cef503f0e23ef35c" id="r_a27972ea98ed162e7cef503f0e23ef35c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a27972ea98ed162e7cef503f0e23ef35c">motorsDesynced</a> (void) const</td></tr>
+<tr class="separator:a27972ea98ed162e7cef503f0e23ef35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd06bb556c70fdc92b3be204e7b6e0c4" id="r_abd06bb556c70fdc92b3be204e7b6e0c4"><td class="memItemLeft" align="right" valign="top"><a id="abd06bb556c70fdc92b3be204e7b6e0c4" name="abd06bb556c70fdc92b3be204e7b6e0c4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handlePid</b> ()</td></tr>
+<tr class="separator:abd06bb556c70fdc92b3be204e7b6e0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02339f8e840102aad605d30a9055d727" id="r_a02339f8e840102aad605d30a9055d727"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a02339f8e840102aad605d30a9055d727">motorsCloseToEndOfRange</a> ()</td></tr>
+<tr class="memdesc:a02339f8e840102aad605d30a9055d727"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the motors are close to the end of their range.  <br /></td></tr>
+<tr class="separator:a02339f8e840102aad605d30a9055d727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2a2e13bf7febc62833e06288794ef1b" id="r_aa2a2e13bf7febc62833e06288794ef1b"><td class="memItemLeft" align="right" valign="top"><a id="aa2a2e13bf7febc62833e06288794ef1b" name="aa2a2e13bf7febc62833e06288794ef1b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>handleCurrentAlarm</b> ()</td></tr>
+<tr class="memdesc:aa2a2e13bf7febc62833e06288794ef1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable all motors, reset speed and direction variables, and turn off PID control. Print debug message if debugEnabled is true. <br /></td></tr>
+<tr class="separator:aa2a2e13bf7febc62833e06288794ef1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4669f88fbc8fe96a99c1b4d0ab490679" id="r_a4669f88fbc8fe96a99c1b4d0ab490679"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a4669f88fbc8fe96a99c1b4d0ab490679">updateLeadingAndLaggingIndicies</a> ()</td></tr>
+<tr class="memdesc:a4669f88fbc8fe96a99c1b4d0ab490679"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the leading and lagging indices based on the system direction.  <br /></td></tr>
+<tr class="separator:a4669f88fbc8fe96a99c1b4d0ab490679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a829f38ab1a75b0d2904467798d0ee215" id="r_a829f38ab1a75b0d2904467798d0ee215"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a829f38ab1a75b0d2904467798d0ee215">displayCurrents</a> ()</td></tr>
+<tr class="memdesc:a829f38ab1a75b0d2904467798d0ee215"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays the current values of the leader and follower motor currents and velocities.  <br /></td></tr>
+<tr class="separator:a829f38ab1a75b0d2904467798d0ee215"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebcaf603802ccdfc2d9f75fcc65b28d3" id="r_aebcaf603802ccdfc2d9f75fcc65b28d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#aebcaf603802ccdfc2d9f75fcc65b28d3">sampleCurrents</a> ()</td></tr>
+<tr class="separator:aebcaf603802ccdfc2d9f75fcc65b28d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1441264195d73514a8038025f4a2359" id="r_ad1441264195d73514a8038025f4a2359"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ad1441264195d73514a8038025f4a2359">setCurrentLimit</a> ()</td></tr>
+<tr class="separator:ad1441264195d73514a8038025f4a2359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3766d0412856003731b1f4b1e28c0bea" id="r_a3766d0412856003731b1f4b1e28c0bea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3766d0412856003731b1f4b1e28c0bea">updateSoftMovement</a> ()</td></tr>
+<tr class="separator:a3766d0412856003731b1f4b1e28c0bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f3cf0f1c5ec115375fe18379212b65d" id="r_a1f3cf0f1c5ec115375fe18379212b65d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a1f3cf0f1c5ec115375fe18379212b65d">checkIfSetPositionReached</a> ()</td></tr>
+<tr class="separator:a1f3cf0f1c5ec115375fe18379212b65d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7a076be5cc48c2af65ef2d32a4fe6bc" id="r_ab7a076be5cc48c2af65ef2d32a4fe6bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab7a076be5cc48c2af65ef2d32a4fe6bc">update</a> (const float deltaT=0.0f)</td></tr>
-<tr class="memdesc:ab7a076be5cc48c2af65ef2d32a4fe6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform one update interval for the motor system.  <br /></td></tr>
+<tr class="memdesc:ab7a076be5cc48c2af65ef2d32a4fe6bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the state of the motor system.  <br /></td></tr>
 <tr class="separator:ab7a076be5cc48c2af65ef2d32a4fe6bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840676ad1f5c58acfe9568794040019e" id="r_a840676ad1f5c58acfe9568794040019e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a840676ad1f5c58acfe9568794040019e">resetSoftMovement</a> ()</td></tr>
+<tr class="separator:a840676ad1f5c58acfe9568794040019e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc1f85a45f74117fe0fb899c82fadc51" id="r_afc1f85a45f74117fe0fb899c82fadc51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#afc1f85a45f74117fe0fb899c82fadc51">resetCurrentInformation</a> ()</td></tr>
+<tr class="memdesc:afc1f85a45f74117fe0fb899c82fadc51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the current information for the system.  <br /></td></tr>
+<tr class="separator:afc1f85a45f74117fe0fb899c82fadc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adede773db41a7b85850c7ceca08413fc" id="r_adede773db41a7b85850c7ceca08413fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#adede773db41a7b85850c7ceca08413fc">disableMotors</a> ()</td></tr>
+<tr class="memdesc:adede773db41a7b85850c7ceca08413fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disable the motors.  <br /></td></tr>
+<tr class="separator:adede773db41a7b85850c7ceca08413fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1bb983d952d58bdf14e59a3f7d72dc6" id="r_ab1bb983d952d58bdf14e59a3f7d72dc6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ab1bb983d952d58bdf14e59a3f7d72dc6">updateMotors</a> ()</td></tr>
+<tr class="memdesc:ab1bb983d952d58bdf14e59a3f7d72dc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the motors.  <br /></td></tr>
+<tr class="separator:ab1bb983d952d58bdf14e59a3f7d72dc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a645d990b88f2bcfeb8455597449da372" id="r_a645d990b88f2bcfeb8455597449da372"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a645d990b88f2bcfeb8455597449da372">resetPid</a> ()</td></tr>
+<tr class="memdesc:a645d990b88f2bcfeb8455597449da372"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the PID controller.  <br /></td></tr>
+<tr class="separator:a645d990b88f2bcfeb8455597449da372"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8857b313509715f3aac8d8e9372215a9" id="r_a8857b313509715f3aac8d8e9372215a9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a8857b313509715f3aac8d8e9372215a9">resetMotorCurrentAlarms</a> ()</td></tr>
+<tr class="memdesc:a8857b313509715f3aac8d8e9372215a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the current alarms for the motors.  <br /></td></tr>
+<tr class="separator:a8857b313509715f3aac8d8e9372215a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3aa95272d56064038e6cab32ba62b4b4" id="r_a3aa95272d56064038e6cab32ba62b4b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a3aa95272d56064038e6cab32ba62b4b4">K_p</a> = 50000</td></tr>
+<tr class="memitem:abe4f0179372526d7887de8c358db5f5d" id="r_abe4f0179372526d7887de8c358db5f5d"><td class="memItemLeft" align="right" valign="top"><a id="abe4f0179372526d7887de8c358db5f5d" name="abe4f0179372526d7887de8c358db5f5d"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>moveStart</b> = -1</td></tr>
+<tr class="memdesc:abe4f0179372526d7887de8c358db5f5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The time in microseconds since a motor movement started. <br /></td></tr>
+<tr class="separator:abe4f0179372526d7887de8c358db5f5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afba77786a0aea3386eb95962ca982fd1" id="r_afba77786a0aea3386eb95962ca982fd1"><td class="memItemLeft" align="right" valign="top"><a id="afba77786a0aea3386eb95962ca982fd1" name="afba77786a0aea3386eb95962ca982fd1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>targetSpeed</b> = -1</td></tr>
+<tr class="memdesc:afba77786a0aea3386eb95962ca982fd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The target speed of soft movement. <br /></td></tr>
+<tr class="separator:afba77786a0aea3386eb95962ca982fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aa95272d56064038e6cab32ba62b4b4" id="r_a3aa95272d56064038e6cab32ba62b4b4"><td class="memItemLeft" align="right" valign="top"><a id="a3aa95272d56064038e6cab32ba62b4b4" name="a3aa95272d56064038e6cab32ba62b4b4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>K_p</b> = <a class="el" href="defs_8hpp.html#afeae84af3adb5eed1b263ab11960aeff">DEFAULT_KP</a></td></tr>
+<tr class="memdesc:a3aa95272d56064038e6cab32ba62b4b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The proprotional gain for the PID controller <br  />
+ <br /></td></tr>
 <tr class="separator:a3aa95272d56064038e6cab32ba62b4b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27c40687dcddbda2e3ebb5bdc4007ff4" id="r_a27c40687dcddbda2e3ebb5bdc4007ff4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a27c40687dcddbda2e3ebb5bdc4007ff4">K_i</a> = 0.1f</td></tr>
-<tr class="separator:a27c40687dcddbda2e3ebb5bdc4007ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48328ef6c985bf5bc02a489af3d54172" id="r_a48328ef6c985bf5bc02a489af3d54172"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a48328ef6c985bf5bc02a489af3d54172">eIntegral</a> = 0.0f</td></tr>
-<tr class="separator:a48328ef6c985bf5bc02a489af3d54172"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0b0c6eec67c0eae5bc0fbccf4d12ac9" id="r_ad0b0c6eec67c0eae5bc0fbccf4d12ac9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ad0b0c6eec67c0eae5bc0fbccf4d12ac9">defaultSpeed</a> = DEFAULT_MOTOR_SPEED</td></tr>
+<tr class="memitem:a9632366c9d7924dadeba909dfff0e641" id="r_a9632366c9d7924dadeba909dfff0e641"><td class="memItemLeft" align="right" valign="top"><a id="a9632366c9d7924dadeba909dfff0e641" name="a9632366c9d7924dadeba909dfff0e641"></a>
+<a class="el" href="classPIDController.html">PIDController</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pidController</b></td></tr>
+<tr class="memdesc:a9632366c9d7924dadeba909dfff0e641"><td class="mdescLeft">&#160;</td><td class="mdescRight">The PID controller for the motor synchonization. <br /></td></tr>
+<tr class="separator:a9632366c9d7924dadeba909dfff0e641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0b0c6eec67c0eae5bc0fbccf4d12ac9" id="r_ad0b0c6eec67c0eae5bc0fbccf4d12ac9"><td class="memItemLeft" align="right" valign="top"><a id="ad0b0c6eec67c0eae5bc0fbccf4d12ac9" name="ad0b0c6eec67c0eae5bc0fbccf4d12ac9"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>defaultSpeed</b> = <a class="el" href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a></td></tr>
+<tr class="memdesc:ad0b0c6eec67c0eae5bc0fbccf4d12ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default speed to operate the motors at on startup. <br /></td></tr>
 <tr class="separator:ad0b0c6eec67c0eae5bc0fbccf4d12ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d04910ab52d613a2e75c0d9f2b07fef" id="r_a1d04910ab52d613a2e75c0d9f2b07fef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a1d04910ab52d613a2e75c0d9f2b07fef">speed</a> = 0</td></tr>
+<tr class="memitem:a1d04910ab52d613a2e75c0d9f2b07fef" id="r_a1d04910ab52d613a2e75c0d9f2b07fef"><td class="memItemLeft" align="right" valign="top"><a id="a1d04910ab52d613a2e75c0d9f2b07fef" name="a1d04910ab52d613a2e75c0d9f2b07fef"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>speed</b> = 0</td></tr>
+<tr class="memdesc:a1d04910ab52d613a2e75c0d9f2b07fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current target speed. <br /></td></tr>
 <tr class="separator:a1d04910ab52d613a2e75c0d9f2b07fef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24dc64a574d43f8f089d92f952ec09ba" id="r_a24dc64a574d43f8f089d92f952ec09ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#a24dc64a574d43f8f089d92f952ec09ba">leftCurrent</a> = 0</td></tr>
-<tr class="separator:a24dc64a574d43f8f089d92f952ec09ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade4a1c0633be15763515ce631b1e3f90" id="r_ade4a1c0633be15763515ce631b1e3f90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ade4a1c0633be15763515ce631b1e3f90">rightCurrent</a> = 0</td></tr>
-<tr class="separator:ade4a1c0633be15763515ce631b1e3f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9008f7115e4f9060c311a3970d8b50f" id="r_ae9008f7115e4f9060c311a3970d8b50f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMotorController.html#ae9008f7115e4f9060c311a3970d8b50f">currentIncreaseTolerance</a> = DEFAULT_CURRENT_INCREASE_LIMIT</td></tr>
-<tr class="separator:ae9008f7115e4f9060c311a3970d8b50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cad69b81f1ee6f8a2243bab507d5922" id="r_a4cad69b81f1ee6f8a2243bab507d5922"><td class="memItemLeft" align="right" valign="top"><a id="a4cad69b81f1ee6f8a2243bab507d5922" name="a4cad69b81f1ee6f8a2243bab507d5922"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>currentAlarmSet</b> = false</td></tr>
+<tr class="memdesc:a4cad69b81f1ee6f8a2243bab507d5922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Indicates whether the current alarm is set. <br /></td></tr>
+<tr class="separator:a4cad69b81f1ee6f8a2243bab507d5922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed66e1af9fe86268c3dca8c35689b259" id="r_aed66e1af9fe86268c3dca8c35689b259"><td class="memItemLeft" align="right" valign="top"><a id="aed66e1af9fe86268c3dca8c35689b259" name="aed66e1af9fe86268c3dca8c35689b259"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>leaderCurrent</b> = 0</td></tr>
+<tr class="memdesc:aed66e1af9fe86268c3dca8c35689b259"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leader motor current. <br /></td></tr>
+<tr class="separator:aed66e1af9fe86268c3dca8c35689b259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5731eed9a9c1512f16e1d84a16c01dbe" id="r_a5731eed9a9c1512f16e1d84a16c01dbe"><td class="memItemLeft" align="right" valign="top"><a id="a5731eed9a9c1512f16e1d84a16c01dbe" name="a5731eed9a9c1512f16e1d84a16c01dbe"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>followerCurrent</b> = 0</td></tr>
+<tr class="memdesc:a5731eed9a9c1512f16e1d84a16c01dbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follower motor current. <br /></td></tr>
+<tr class="separator:a5731eed9a9c1512f16e1d84a16c01dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3141fb652afe5f1e2d35636ee9f62f1" id="r_ac3141fb652afe5f1e2d35636ee9f62f1"><td class="memItemLeft" align="right" valign="top"><a id="ac3141fb652afe5f1e2d35636ee9f62f1" name="ac3141fb652afe5f1e2d35636ee9f62f1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastLeaderCurrent</b> = 0</td></tr>
+<tr class="memdesc:ac3141fb652afe5f1e2d35636ee9f62f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last leader current reading. <br /></td></tr>
+<tr class="separator:ac3141fb652afe5f1e2d35636ee9f62f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ba8e5f635ebc9f2f4d0559d9ab98386" id="r_a6ba8e5f635ebc9f2f4d0559d9ab98386"><td class="memItemLeft" align="right" valign="top"><a id="a6ba8e5f635ebc9f2f4d0559d9ab98386" name="a6ba8e5f635ebc9f2f4d0559d9ab98386"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastFollowerCurrent</b> = 0</td></tr>
+<tr class="memdesc:a6ba8e5f635ebc9f2f4d0559d9ab98386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Last follower current reading. <br /></td></tr>
+<tr class="separator:a6ba8e5f635ebc9f2f4d0559d9ab98386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1611739b90d4b8f37144936991c0c75" id="r_aa1611739b90d4b8f37144936991c0c75"><td class="memItemLeft" align="right" valign="top"><a id="aa1611739b90d4b8f37144936991c0c75" name="aa1611739b90d4b8f37144936991c0c75"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>leaderCurrentVelocity</b> = 0</td></tr>
+<tr class="memdesc:aa1611739b90d4b8f37144936991c0c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Leader current velocity. <br /></td></tr>
+<tr class="separator:aa1611739b90d4b8f37144936991c0c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd6d18355869d13eed389756761c0a7" id="r_a1bd6d18355869d13eed389756761c0a7"><td class="memItemLeft" align="right" valign="top"><a id="a1bd6d18355869d13eed389756761c0a7" name="a1bd6d18355869d13eed389756761c0a7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>followerCurrentVelocity</b> = 0</td></tr>
+<tr class="memdesc:a1bd6d18355869d13eed389756761c0a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follower current velocity. <br /></td></tr>
+<tr class="separator:a1bd6d18355869d13eed389756761c0a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e528084e6a52c4c6bcd02785239b39a" id="r_a9e528084e6a52c4c6bcd02785239b39a"><td class="memItemLeft" align="right" valign="top"><a id="a9e528084e6a52c4c6bcd02785239b39a" name="a9e528084e6a52c4c6bcd02785239b39a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>minCurrent</b> = 900</td></tr>
+<tr class="memdesc:a9e528084e6a52c4c6bcd02785239b39a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum current to enable alarm system for motors <br  />
+ <br /></td></tr>
+<tr class="separator:a9e528084e6a52c4c6bcd02785239b39a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec8b08f91372f6db19ff2cfe527e044b" id="r_aec8b08f91372f6db19ff2cfe527e044b"><td class="memItemLeft" align="right" valign="top"><a id="aec8b08f91372f6db19ff2cfe527e044b" name="aec8b08f91372f6db19ff2cfe527e044b"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>currentAlarmDelay</b> = 250000</td></tr>
+<tr class="memdesc:aec8b08f91372f6db19ff2cfe527e044b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current delay for overcurrent alarm system. <br /></td></tr>
+<tr class="separator:aec8b08f91372f6db19ff2cfe527e044b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550fcd1dad89da2eb782973d13ffb811" id="r_a550fcd1dad89da2eb782973d13ffb811"><td class="memItemLeft" align="right" valign="top"><a id="a550fcd1dad89da2eb782973d13ffb811" name="a550fcd1dad89da2eb782973d13ffb811"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>alarmCurrentVelocity</b> = 10000</td></tr>
+<tr class="memdesc:a550fcd1dad89da2eb782973d13ffb811"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current velocity limit for alarm system for motors to enable <br  />
+ <br /></td></tr>
+<tr class="separator:a550fcd1dad89da2eb782973d13ffb811"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbaa77262e1fc583ec099c4ba4bb6247" id="r_adbaa77262e1fc583ec099c4ba4bb6247"><td class="memItemLeft" align="right" valign="top"><a id="adbaa77262e1fc583ec099c4ba4bb6247" name="adbaa77262e1fc583ec099c4ba4bb6247"></a>
-<a class="el" href="classMotor.html">Motor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>motors</b> [NUMBER_OF_MOTORS]</td></tr>
+<a class="el" href="classMotor.html">Motor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>motors</b> [<a class="el" href="defs_8hpp.html#afcc019745aed213aaa07d37c7fa08440">NUMBER_OF_MOTORS</a>]</td></tr>
 <tr class="memdesc:adbaa77262e1fc583ec099c4ba4bb6247"><td class="mdescLeft">&#160;</td><td class="mdescRight">The motors controlled by this motor controller instance. <br /></td></tr>
 <tr class="separator:adbaa77262e1fc583ec099c4ba4bb6247"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f28b512cf51eb0307ca8c4440a0c7e6" id="r_a6f28b512cf51eb0307ca8c4440a0c7e6"><td class="memItemLeft" align="right" valign="top"><a id="a6f28b512cf51eb0307ca8c4440a0c7e6" name="a6f28b512cf51eb0307ca8c4440a0c7e6"></a>
+<a class="el" href="classDirection.html">Direction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>requestedDirection</b> = Direction::STOP</td></tr>
+<tr class="memdesc:a6f28b512cf51eb0307ca8c4440a0c7e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The requested system level direction. <br /></td></tr>
+<tr class="separator:a6f28b512cf51eb0307ca8c4440a0c7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8438575e3b3d6e8a460e11ee8efdbdc8" id="r_a8438575e3b3d6e8a460e11ee8efdbdc8"><td class="memItemLeft" align="right" valign="top"><a id="a8438575e3b3d6e8a460e11ee8efdbdc8" name="a8438575e3b3d6e8a460e11ee8efdbdc8"></a>
 <a class="el" href="classDirection.html">Direction</a>&#160;</td><td class="memItemRight" valign="bottom"><b>systemDirection</b> = Direction::STOP</td></tr>
 <tr class="memdesc:a8438575e3b3d6e8a460e11ee8efdbdc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current system level direction indicator. <br /></td></tr>
 <tr class="separator:a8438575e3b3d6e8a460e11ee8efdbdc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a141182a4390096efde07d6ca47ffd1b4" id="r_a141182a4390096efde07d6ca47ffd1b4"><td class="memItemLeft" align="right" valign="top"><a id="a141182a4390096efde07d6ca47ffd1b4" name="a141182a4390096efde07d6ca47ffd1b4"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>laggingIndex</b> = 0</td></tr>
+<tr class="memdesc:a141182a4390096efde07d6ca47ffd1b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">The index in the motors array of the motor that is behind as indicated by the hall sensor. <br /></td></tr>
+<tr class="separator:a141182a4390096efde07d6ca47ffd1b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a060f730b07d97cc873037a15c16594b5" id="r_a060f730b07d97cc873037a15c16594b5"><td class="memItemLeft" align="right" valign="top"><a id="a060f730b07d97cc873037a15c16594b5" name="a060f730b07d97cc873037a15c16594b5"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>leadingIndex</b> = 0</td></tr>
+<tr class="memdesc:a060f730b07d97cc873037a15c16594b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">The index in the motors array of the motor that is farther along as indicated by the hall sensor. <br /></td></tr>
+<tr class="separator:a060f730b07d97cc873037a15c16594b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6b89b2e7ae2c8540c231855ba4ce069" id="r_aa6b89b2e7ae2c8540c231855ba4ce069"><td class="memItemLeft" align="right" valign="top"><a id="aa6b89b2e7ae2c8540c231855ba4ce069" name="aa6b89b2e7ae2c8540c231855ba4ce069"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>softStart</b> = -1</td></tr>
+<tr class="memdesc:aa6b89b2e7ae2c8540c231855ba4ce069"><td class="mdescLeft">&#160;</td><td class="mdescRight">The timestamp since soft start of movement. <br /></td></tr>
+<tr class="separator:aa6b89b2e7ae2c8540c231855ba4ce069"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7fdc492e43065bf8164f2994c72ef46" id="r_ae7fdc492e43065bf8164f2994c72ef46"><td class="memItemLeft" align="right" valign="top"><a id="ae7fdc492e43065bf8164f2994c72ef46" name="ae7fdc492e43065bf8164f2994c72ef46"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastPWMUpdate</b> = -1</td></tr>
+<tr class="memdesc:ae7fdc492e43065bf8164f2994c72ef46"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last PWM update interval in microseconds. <br /></td></tr>
+<tr class="separator:ae7fdc492e43065bf8164f2994c72ef46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b933adcb783f679068b2dfbd1df25a2" id="r_a3b933adcb783f679068b2dfbd1df25a2"><td class="memItemLeft" align="right" valign="top"><a id="a3b933adcb783f679068b2dfbd1df25a2" name="a3b933adcb783f679068b2dfbd1df25a2"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>pwmUpdateAmount</b> = -1.0f</td></tr>
+<tr class="memdesc:a3b933adcb783f679068b2dfbd1df25a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount to change the PWM duty cycle on soft start. <br /></td></tr>
+<tr class="separator:a3b933adcb783f679068b2dfbd1df25a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b15e149db5de50f98a85d0ff96b3c70" id="r_a5b15e149db5de50f98a85d0ff96b3c70"><td class="memItemLeft" align="right" valign="top"><a id="a5b15e149db5de50f98a85d0ff96b3c70" name="a5b15e149db5de50f98a85d0ff96b3c70"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastPrintTime</b> = -1</td></tr>
+<tr class="memdesc:a5b15e149db5de50f98a85d0ff96b3c70"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last time a debug serial print was sent. <br /></td></tr>
+<tr class="separator:a5b15e149db5de50f98a85d0ff96b3c70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a165ea50e5c94f98cc86fdaf960a3ffc7" id="r_a165ea50e5c94f98cc86fdaf960a3ffc7"><td class="memItemLeft" align="right" valign="top"><a id="a165ea50e5c94f98cc86fdaf960a3ffc7" name="a165ea50e5c94f98cc86fdaf960a3ffc7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>currentUpdateInterval</b> = <a class="el" href="defs_8hpp.html#ad9dd3666dde0eb03b963a2b7944c7cc3">CURRENT_UPDATE_INTERVAL</a></td></tr>
+<tr class="memdesc:a165ea50e5c94f98cc86fdaf960a3ffc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interval of time to pass between current updates microseconds <br  />
+ <br /></td></tr>
+<tr class="separator:a165ea50e5c94f98cc86fdaf960a3ffc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e8802458df3bf7aced108796e4c364" id="r_a50e8802458df3bf7aced108796e4c364"><td class="memItemLeft" align="right" valign="top"><a id="a50e8802458df3bf7aced108796e4c364" name="a50e8802458df3bf7aced108796e4c364"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>lastCurrentUpdate</b> = -1</td></tr>
+<tr class="memdesc:a50e8802458df3bf7aced108796e4c364"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time in microseconds since the last current update. <br /></td></tr>
+<tr class="separator:a50e8802458df3bf7aced108796e4c364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09217b648a55d056b338d68813622e74" id="r_a09217b648a55d056b338d68813622e74"><td class="memItemLeft" align="right" valign="top"><a id="a09217b648a55d056b338d68813622e74" name="a09217b648a55d056b338d68813622e74"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>softMovingTime</b> = -1</td></tr>
+<tr class="separator:a09217b648a55d056b338d68813622e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adca0e4399879dc6986187e2fb4fee030" id="r_adca0e4399879dc6986187e2fb4fee030"><td class="memItemLeft" align="right" valign="top"><a id="adca0e4399879dc6986187e2fb4fee030" name="adca0e4399879dc6986187e2fb4fee030"></a>
+<a class="el" href="classEMA.html">EMA</a>&lt; 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>leaderCurrentFilter</b></td></tr>
+<tr class="memdesc:adca0e4399879dc6986187e2fb4fee030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input filter for leader current readings. <br /></td></tr>
+<tr class="separator:adca0e4399879dc6986187e2fb4fee030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc05bf3ff4ad249fe9a09099db00b3e2" id="r_adc05bf3ff4ad249fe9a09099db00b3e2"><td class="memItemLeft" align="right" valign="top"><a id="adc05bf3ff4ad249fe9a09099db00b3e2" name="adc05bf3ff4ad249fe9a09099db00b3e2"></a>
+<a class="el" href="classEMA.html">EMA</a>&lt; 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>followerCurrentFilter</b></td></tr>
+<tr class="memdesc:adc05bf3ff4ad249fe9a09099db00b3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Input filter for follower current readings. <br /></td></tr>
+<tr class="separator:adc05bf3ff4ad249fe9a09099db00b3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a1ca1a6092f0a0bf9796643f850f5dd" id="r_a1a1ca1a6092f0a0bf9796643f850f5dd"><td class="memItemLeft" align="right" valign="top"><a id="a1a1ca1a6092f0a0bf9796643f850f5dd" name="a1a1ca1a6092f0a0bf9796643f850f5dd"></a>
+int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>samples</b> = 0</td></tr>
+<tr class="memdesc:a1a1ca1a6092f0a0bf9796643f850f5dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of current samples. <br /></td></tr>
+<tr class="separator:a1a1ca1a6092f0a0bf9796643f850f5dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac940ace024e0a99f5312f774d5ac937e" id="r_ac940ace024e0a99f5312f774d5ac937e"><td class="memItemLeft" align="right" valign="top"><a id="ac940ace024e0a99f5312f774d5ac937e" name="ac940ace024e0a99f5312f774d5ac937e"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>currentOffset</b> = 0</td></tr>
+<tr class="memdesc:ac940ace024e0a99f5312f774d5ac937e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current offset. <br /></td></tr>
+<tr class="separator:ac940ace024e0a99f5312f774d5ac937e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b44d5acec843f45357fa038ceb9c970" id="r_a0b44d5acec843f45357fa038ceb9c970"><td class="memItemLeft" align="right" valign="top"><a id="a0b44d5acec843f45357fa038ceb9c970" name="a0b44d5acec843f45357fa038ceb9c970"></a>
+int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>currentDifferenceSum</b> = 0</td></tr>
+<tr class="memdesc:a0b44d5acec843f45357fa038ceb9c970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current difference sum. <br /></td></tr>
+<tr class="separator:a0b44d5acec843f45357fa038ceb9c970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94af4140e7e3177a24a9bcb8ea09605b" id="r_a94af4140e7e3177a24a9bcb8ea09605b"><td class="memItemLeft" align="right" valign="top"><a id="a94af4140e7e3177a24a9bcb8ea09605b" name="a94af4140e7e3177a24a9bcb8ea09605b"></a>
+int_fast32_t&#160;</td><td class="memItemRight" valign="bottom"><b>currentSum</b> = 0</td></tr>
+<tr class="memdesc:a94af4140e7e3177a24a9bcb8ea09605b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current Sum. <br /></td></tr>
+<tr class="separator:a94af4140e7e3177a24a9bcb8ea09605b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the controller of the motors. </p>
@@ -192,8 +351,8 @@ Public Attributes</h2></td></tr>
 <a href="#" onclick="location.href='mai'+'lto:'+'ter'+'ry'+'@te'+'rr'+'yfe'+'rg'+'uso'+'n.'+'us'; return false;">terry<span class="obfuscator">.nosp@m.</span>@ter<span class="obfuscator">.nosp@m.</span>ryfer<span class="obfuscator">.nosp@m.</span>guso<span class="obfuscator">.nosp@m.</span>n.us</a></dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1 </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a20288d902c9ef0cda030718dfa2f3cb6" name="a20288d902c9ef0cda030718dfa2f3cb6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20288d902c9ef0cda030718dfa2f3cb6">&#9670;&#160;</a></span>MotorController()</h2>
+<a id="a3483d96207cbb9b60ee96953a3ee5856" name="a3483d96207cbb9b60ee96953a3ee5856"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3483d96207cbb9b60ee96953a3ee5856">&#9670;&#160;</a></span>MotorController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -205,25 +364,19 @@ Public Attributes</h2></td></tr>
           <td class="memname">MotorController::MotorController </td>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pwmFrequency</em> = <code>PWM_FREQUENCY</code>, </td>
+          <td class="paramname"><em>pwmFrequency</em> = <code><a class="el" href="defs_8hpp.html#a6f6cfbe0889a89dfbe582ad507b88ac5">PWM_FREQUENCY</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>pwmResolution</em> = <code>PWM_RESOLUTION_BITS</code>, </td>
+          <td class="paramname"><em>pwmResolution</em> = <code><a class="el" href="defs_8hpp.html#ab86e2bb308b2961dcb035be27767e697">PWM_RESOLUTION_BITS</a></code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>defaultSpeed</em> = <code>DEFAULT_MOTOR_SPEED</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>currentIncreaseLimit</em> = <code>DEFAULT_CURRENT_INCREASE_LIMIT</code>&#160;</td>
+          <td class="paramname"><em>defaultSpeed</em> = <code><a class="el" href="defs_8hpp.html#aa1ef4e7868e1fa0de8f34432bf9cb77e">DEFAULT_MOTOR_SPEED</a></code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -238,12 +391,19 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>This class controls the motors connected to the microcontoller. </p>
+<p>This is the class that controls the motors. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pwmFrequency</td><td>The frequency of the PWM signal to the motors </td></tr>
-    <tr><td class="paramname">pwmResolution</td><td>The bitdepth resolution of the PWM signal to the motors </td></tr>
-    <tr><td class="paramname">defaultSpeed</td><td>The default speed of the motors that the control program starts them off with </td></tr>
+    <tr><td class="paramname">PWM_FREQUENCY</td><td>the frequency of the PWM signal </td></tr>
+    <tr><td class="paramname">PWM_RESOLUTION_BITS</td><td>the resolution of the PWM signal in bits </td></tr>
+    <tr><td class="paramname">DEFAULT_MOTOR_SPEED</td><td>the default speed of the motor</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">none</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -251,8 +411,8 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6d94459f0e674807e4556afca3b34413" name="a6d94459f0e674807e4556afca3b34413"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d94459f0e674807e4556afca3b34413">&#9670;&#160;</a></span>countsAreUnequal()</h2>
+<a id="a1f3cf0f1c5ec115375fe18379212b65d" name="a1f3cf0f1c5ec115375fe18379212b65d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f3cf0f1c5ec115375fe18379212b65d">&#9670;&#160;</a></span>checkIfSetPositionReached()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,11 +421,42 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool MotorController::countsAreUnequal </td>
+          <td class="memname">void MotorController::checkIfSetPositionReached </td>
           <td>(</td>
-          <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if a desired position is set and clear it if we have reached it.</p>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a762e90adbeb49a28e1afaba55704ea6a" name="a762e90adbeb49a28e1afaba55704ea6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a762e90adbeb49a28e1afaba55704ea6a">&#9670;&#160;</a></span>currentAlarmTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::currentAlarmTriggered </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -275,13 +466,13 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Indicates whether the motor counts are unequal. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the motor counts are different, false otherwise </dd></dl>
+<p>Checks if the current alarm is triggered. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the current alarm is triggered, false otherwise </dd></dl>
 
 </div>
 </div>
-<a id="add201a7e452d3c44703bf1ac6aac587e" name="add201a7e452d3c44703bf1ac6aac587e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add201a7e452d3c44703bf1ac6aac587e">&#9670;&#160;</a></span>getSpeed()</h2>
+<a id="adede773db41a7b85850c7ceca08413fc" name="adede773db41a7b85850c7ceca08413fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adede773db41a7b85850c7ceca08413fc">&#9670;&#160;</a></span>disableMotors()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -290,10 +481,10 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int MotorController::getSpeed </td>
+          <td class="memname">void MotorController::disableMotors </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -303,8 +494,189 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get the system speed. </p>
-<dl class="section return"><dt>Returns</dt><dd>The average speed of the system </dd></dl>
+<p>Disable the motors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a829f38ab1a75b0d2904467798d0ee215" name="a829f38ab1a75b0d2904467798d0ee215"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a829f38ab1a75b0d2904467798d0ee215">&#9670;&#160;</a></span>displayCurrents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::displayCurrents </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Displays the current values of the leader and follower motor currents and velocities. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="a7b87fc5678b3994a39918a76202be0cf" name="a7b87fc5678b3994a39918a76202be0cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b87fc5678b3994a39918a76202be0cf">&#9670;&#160;</a></span>extend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::extend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Extends the motorized system. </p>
+<p>This function enables PID control, resets soft movement, sets the speed to the default speed, resets the out of range flag for all motors, sends the extend command to all motors, and sets the system direction and requested direction to extend. </p>
+
+</div>
+</div>
+<a id="ae18fc3e4763dbaba71846be69af6f608" name="ae18fc3e4763dbaba71846be69af6f608"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae18fc3e4763dbaba71846be69af6f608">&#9670;&#160;</a></span>home()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::home </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Function to control the homing. </p>
+<p>This function retracts, checks leader and follower out of range status, and updates the motor status until both motors are out of range. It then zeros out the positions of the motors and resets the soft movement status </p>
+<p>&lt; Set the PID flag to true</p>
+<p>&lt; Reset the soft movement</p>
+<p>&lt; Set the outOfRange flag to false for all motors</p>
+<p>&lt; Set the command to retract for all motors</p>
+<p>&lt; Set the system direction to retract</p>
+<p>&lt; Set the requested direction to retract</p>
+
+</div>
+</div>
+<a id="ab6f3af29f62ba389058bb45d9cf63873" name="ab6f3af29f62ba389058bb45d9cf63873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6f3af29f62ba389058bb45d9cf63873">&#9670;&#160;</a></span>immediateHalt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::immediateHalt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Halts the system immediately.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2fb4b5942170e2cc8fc3be4ede9da57" name="ab2fb4b5942170e2cc8fc3be4ede9da57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2fb4b5942170e2cc8fc3be4ede9da57">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::initialize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the motors, position storage, current sensors, and PID controllers. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -331,13 +703,384 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Check whether the system is in a STOP state. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if the system is in a STOP state, else false </dd></dl>
+<p>Check if the system is stopped. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if the system is stopped, false otherwise </dd></dl>
 
 </div>
 </div>
-<a id="a721ec0badfe038b6fc7f9d52241acd96" name="a721ec0badfe038b6fc7f9d52241acd96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a721ec0badfe038b6fc7f9d52241acd96">&#9670;&#160;</a></span>savePosition()</h2>
+<a id="a02339f8e840102aad605d30a9055d727" name="a02339f8e840102aad605d30a9055d727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02339f8e840102aad605d30a9055d727">&#9670;&#160;</a></span>motorsCloseToEndOfRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::motorsCloseToEndOfRange </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the motors are close to the end of their range. </p>
+<dl class="section return"><dt>Returns</dt><dd>True if either motor is close to the end of its range, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a27972ea98ed162e7cef503f0e23ef35c" name="a27972ea98ed162e7cef503f0e23ef35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27972ea98ed162e7cef503f0e23ef35c">&#9670;&#160;</a></span>motorsDesynced()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::motorsDesynced </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if the motors are desynchronized.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if the motors are desynchronized, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="afe4efa578caca374d40a6bea4db75cbb" name="afe4efa578caca374d40a6bea4db75cbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe4efa578caca374d40a6bea4db75cbb">&#9670;&#160;</a></span>motorsStopped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MotorController::motorsStopped </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Check if both motors are stopped.</p>
+<dl class="section return"><dt>Returns</dt><dd>True if both motors are stopped, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="ab03e79917ecce628b1b9b3300fee19fd" name="ab03e79917ecce628b1b9b3300fee19fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab03e79917ecce628b1b9b3300fee19fd">&#9670;&#160;</a></span>printCurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::printCurrent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints the current values of the leader and follower motors. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
+
+</div>
+</div>
+<a id="aa4412ba310bcb5e34bebc50d660025ec" name="aa4412ba310bcb5e34bebc50d660025ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4412ba310bcb5e34bebc50d660025ec">&#9670;&#160;</a></span>report()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::report </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports the current state of the motor controller to the serial console. </p>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="afc1f85a45f74117fe0fb899c82fadc51" name="afc1f85a45f74117fe0fb899c82fadc51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc1f85a45f74117fe0fb899c82fadc51">&#9670;&#160;</a></span>resetCurrentInformation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::resetCurrentInformation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the current information for the system. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8857b313509715f3aac8d8e9372215a9" name="a8857b313509715f3aac8d8e9372215a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8857b313509715f3aac8d8e9372215a9">&#9670;&#160;</a></span>resetMotorCurrentAlarms()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::resetMotorCurrentAlarms </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the current alarms for the motors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a645d990b88f2bcfeb8455597449da372" name="a645d990b88f2bcfeb8455597449da372"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a645d990b88f2bcfeb8455597449da372">&#9670;&#160;</a></span>resetPid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::resetPid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset the PID controller. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a840676ad1f5c58acfe9568794040019e" name="a840676ad1f5c58acfe9568794040019e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840676ad1f5c58acfe9568794040019e">&#9670;&#160;</a></span>resetSoftMovement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::resetSoftMovement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Reset the soft movement.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a82c8ae39bfeb8cea8e851d8e4c1fd8ef" name="a82c8ae39bfeb8cea8e851d8e4c1fd8ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82c8ae39bfeb8cea8e851d8e4c1fd8ef">&#9670;&#160;</a></span>retract()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::retract </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Retracts the motorized system. </p>
+<p>This function is used to tell the motorized system to retract. It sets the PID flag to true, resets the soft movement, sets the speed to the default speed, sets the outOfRange flag to false for all motors, sets the command to retract for all motors, sets the system direction and requested direction to retract. </p>
+
+</div>
+</div>
+<a id="aebcaf603802ccdfc2d9f75fcc65b28d3" name="aebcaf603802ccdfc2d9f75fcc65b28d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebcaf603802ccdfc2d9f75fcc65b28d3">&#9670;&#160;</a></span>sampleCurrents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::sampleCurrents </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Calculate the larger current between leader and follower, update the maxCurrent if necessary, and update the currentDifferenceSum, currentSum, and samples.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3d3c79eeae2492a637d62612689e55ce" name="a3d3c79eeae2492a637d62612689e55ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d3c79eeae2492a637d62612689e55ce">&#9670;&#160;</a></span>savePosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,7 +1098,7 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>position_value</em>&#160;</td>
+          <td class="paramname"><em>position_value</em> = <code>-1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -370,11 +1113,50 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Save a position to the preferences slot. </p>
+<p>Saves the position value for a given slot. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">slot</td><td>The selected slot to save the position information to </td></tr>
-    <tr><td class="paramname">position_value</td><td>The position value in hall sensor pulses to save to the selected slot </td></tr>
+    <tr><td class="paramname">slot</td><td>The slot index. </td></tr>
+    <tr><td class="paramname">position_value</td><td>The position value to save. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad1441264195d73514a8038025f4a2359" name="ad1441264195d73514a8038025f4a2359"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1441264195d73514a8038025f4a2359">&#9670;&#160;</a></span>setCurrentLimit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::setCurrentLimit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the current limit for the leader and follower motors based on the average current and current offset. Prints the current alarms set to the serial monitor.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -404,19 +1186,18 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Move the motors to the given position. </p>
+<p>Set the desired position for the motors and move them accordingly.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">newPos</td><td>The new target position for the motors in hall sensor pulses </td></tr>
+    <tr><td class="paramname">newPos</td><td>The new desired position for the motors. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="a8b7c0ce938bd1fd25ed8f8c98e5eecdd" name="a8b7c0ce938bd1fd25ed8f8c98e5eecdd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8b7c0ce938bd1fd25ed8f8c98e5eecdd">&#9670;&#160;</a></span>setSpeed()</h2>
+<a id="a5e9b745a22bcc7283f1d6c3974cf5b4d" name="a5e9b745a22bcc7283f1d6c3974cf5b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e9b745a22bcc7283f1d6c3974cf5b4d">&#9670;&#160;</a></span>setSpeed()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -427,8 +1208,91 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">void MotorController::setSpeed </td>
           <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>newSpeed</em></td><td>)</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>newSpeed</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>softMovementTime</em> = <code><a class="el" href="defs_8hpp.html#ad3aecee3c049fa84a2397cd8ddf5ec94">SOFT_MOVEMENT_TIME_MS</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the speed of the motor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newSpeed</td><td>The new speed value. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1d77ad6c9bfe641e32caff3823455a43" name="a1d77ad6c9bfe641e32caff3823455a43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d77ad6c9bfe641e32caff3823455a43">&#9670;&#160;</a></span>startMotion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::startMotion </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classDirection.html">Direction</a>&#160;</td>
+          <td class="paramname"><em>dir</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Starts the motion in the specified direction.</p>
+<p>This function is used to tell the motorized system to move in specified direction. It sets the PID flag to true, resets the soft movement, sets the speed to the default speed, sets the outOfRange flag to false for all motors, sets the system direction and requested direction to specified direction.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dir</td><td>The direction in which to start the motion</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a317ce58ea93ea1329de5b87391560082" name="a317ce58ea93ea1329de5b87391560082"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a317ce58ea93ea1329de5b87391560082">&#9670;&#160;</a></span>stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MotorController::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -439,13 +1303,8 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Smoothly change to the newly requested speed. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">newSpeed</td><td>The new speed to target </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Stops the motorized system. </p>
+<p>This function stops the motorized system by resetting the soft movement and setting the speed to 0. </p>
 
 </div>
 </div>
@@ -473,137 +1332,201 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Perform one update interval for the motor system. </p>
+<p>Updates the state of the motor system. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">deltaT</td><td>The amount of time that has passed since the last update </td></tr>
+    <tr><td class="paramname">deltaT</td><td>the time interval since the last update (default: 0.0f)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="ae9008f7115e4f9060c311a3970d8b50f" name="ae9008f7115e4f9060c311a3970d8b50f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae9008f7115e4f9060c311a3970d8b50f">&#9670;&#160;</a></span>currentIncreaseTolerance</h2>
+<a id="aea0aa45b64883692be0d91b92f777df6" name="aea0aa45b64883692be0d91b92f777df6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea0aa45b64883692be0d91b92f777df6">&#9670;&#160;</a></span>updateCurrentReadings()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int MotorController::currentIncreaseTolerance = DEFAULT_CURRENT_INCREASE_LIMIT</td>
+          <td class="memname">void MotorController::updateCurrentReadings </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>elapsedTime</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>Maxim1um current increase limit for motor cutoff </p>
+
+<p>Updates the current readings of the leader and follower motors based on the elapsed time. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">elapsedTime</td><td>the elapsed time in microseconds</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="ad0b0c6eec67c0eae5bc0fbccf4d12ac9" name="ad0b0c6eec67c0eae5bc0fbccf4d12ac9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0b0c6eec67c0eae5bc0fbccf4d12ac9">&#9670;&#160;</a></span>defaultSpeed</h2>
+<a id="a4669f88fbc8fe96a99c1b4d0ab490679" name="a4669f88fbc8fe96a99c1b4d0ab490679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4669f88fbc8fe96a99c1b4d0ab490679">&#9670;&#160;</a></span>updateLeadingAndLaggingIndicies()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int MotorController::defaultSpeed = DEFAULT_MOTOR_SPEED</td>
+          <td class="memname">void MotorController::updateLeadingAndLaggingIndicies </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>The default speed to operate the motors at on startup </p>
+
+<p>Update the leading and lagging indices based on the system direction. </p>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
-<a id="a48328ef6c985bf5bc02a489af3d54172" name="a48328ef6c985bf5bc02a489af3d54172"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48328ef6c985bf5bc02a489af3d54172">&#9670;&#160;</a></span>eIntegral</h2>
+<a id="ab1bb983d952d58bdf14e59a3f7d72dc6" name="ab1bb983d952d58bdf14e59a3f7d72dc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1bb983d952d58bdf14e59a3f7d72dc6">&#9670;&#160;</a></span>updateMotors()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float MotorController::eIntegral = 0.0f</td>
+          <td class="memname">void MotorController::updateMotors </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>The integral error coefficient for the PID controller <br  />
- </p>
+
+<p>Update the motors. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a27c40687dcddbda2e3ebb5bdc4007ff4" name="a27c40687dcddbda2e3ebb5bdc4007ff4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27c40687dcddbda2e3ebb5bdc4007ff4">&#9670;&#160;</a></span>K_i</h2>
+<a id="a3766d0412856003731b1f4b1e28c0bea" name="a3766d0412856003731b1f4b1e28c0bea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3766d0412856003731b1f4b1e28c0bea">&#9670;&#160;</a></span>updateSoftMovement()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float MotorController::K_i = 0.1f</td>
+          <td class="memname">void MotorController::updateSoftMovement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>The intagral gain for the PID controller <br  />
- </p>
+<p>Updates the soft movement of the system.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>None</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
-<a id="a3aa95272d56064038e6cab32ba62b4b4" name="a3aa95272d56064038e6cab32ba62b4b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3aa95272d56064038e6cab32ba62b4b4">&#9670;&#160;</a></span>K_p</h2>
+<a id="a5300f11bcf37c1c08c529978818cf050" name="a5300f11bcf37c1c08c529978818cf050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5300f11bcf37c1c08c529978818cf050">&#9670;&#160;</a></span>zero()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int MotorController::K_p = 50000</td>
+          <td class="memname">void MotorController::zero </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-<p>The proprotional gain for the PID controller <br  />
- </p>
 
-</div>
-</div>
-<a id="a24dc64a574d43f8f089d92f952ec09ba" name="a24dc64a574d43f8f089d92f952ec09ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a24dc64a574d43f8f089d92f952ec09ba">&#9670;&#160;</a></span>leftCurrent</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int MotorController::leftCurrent = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Left motor current </p>
-
-</div>
-</div>
-<a id="ade4a1c0633be15763515ce631b1e3f90" name="ade4a1c0633be15763515ce631b1e3f90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade4a1c0633be15763515ce631b1e3f90">&#9670;&#160;</a></span>rightCurrent</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int MotorController::rightCurrent = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Right motor current </p>
-
-</div>
-</div>
-<a id="a1d04910ab52d613a2e75c0d9f2b07fef" name="a1d04910ab52d613a2e75c0d9f2b07fef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d04910ab52d613a2e75c0d9f2b07fef">&#9670;&#160;</a></span>speed</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int MotorController::speed = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Current target speed </p>
+<p>Zeroes out the position count of all motors. </p>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">None</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

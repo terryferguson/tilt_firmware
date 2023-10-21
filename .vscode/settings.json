@@ -1,5 +1,6 @@
 {
   "arduino.analyzeOnSettingChange": true,
+  " C_Cpp.clang_format_sortIncludes": false,
   "files.associations": {
     "cstring": "cpp",
     "cmath": "cpp",

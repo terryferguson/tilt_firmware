@@ -1,5 +1,4 @@
 /*! \file defs.hpp */
-
 #ifndef _DEFS_HPP_
 #define _DEFS_HPP_
 
@@ -10,28 +9,34 @@
 #include "Direction.hpp"
 #include "MotorPins.hpp"
 
+extern int currentPWMChannel;
+
+/// @brief String representations of the directions
+extern const char *directions[];
+
 /// @brief String representations of the motor roles at instantiation
-const char *motor_roles[2] = {"LEADER", "FOLLOWER"};
+extern const char *motor_roles[];
 
 /** @brief Number of position slots supported by this firmware */
 constexpr int NUM_POSITION_SLOTS = 5;
 
 /** @brief String representations of the names of position slots */
-const char *save_position_slot_names[NUM_POSITION_SLOTS] = {
-    "tilt-1", "tilt-2", "tilt-3", "tilt-4", "tilt-5",
-};
+extern const char *save_position_slot_names[];
 
 /**
  * @brief Storage for position in hall sensor pusles relative to initial
  * position when powered on
  */
-int savedPositions[NUM_POSITION_SLOTS] = {0, 0, 0, 0, 0};
+extern int savedPositions[];
 
 /** @brief Whether PID is on or off */
-bool pid_on = true;
+extern bool pid_on;
 
 /** @brief Whether limit range is on or off */
-bool limit_range = true;
+extern bool limit_range;
+
+/// @brief Indicates whether debug messages should be sent to serial
+extern bool debugEnabled;
 
 constexpr int FORMAT_SPIFFS_IF_FAILED = true;
 
@@ -43,9 +48,6 @@ constexpr int LEADER_MAX_PULSES = 2845;
 
 /** @brief Number of pulses for follower motor's maximum extension */
 constexpr int FOLLOWER_MAX_PULSES = 2845;
-
-/// @brief Indicates whether debug messages should be sent to serial
-bool debugEnabled = false;
 
 /** @brief The frequency of the PWM signal sent to the motor controllers */
 constexpr int PWM_FREQUENCY = 20000;
@@ -73,7 +75,7 @@ constexpr int MOTOR_END_OF_RANGE_SPEED_DELTA =
     (DEFAULT_MOTOR_SPEED - MOTOR_END_OF_RANGE_SPEED);
 
 /** @brief Set position buffer in hall pulses */
-constexpr int SET_POSITION_BUFFER = 3;
+constexpr int SET_POSITION_BUFFER = 10;
 
 /** @brief The number of milliseconds in a second */
 constexpr int MILLIS_IN_SEC = 1000;
@@ -85,14 +87,14 @@ constexpr int MICROS_IN_MS = 1000;
 constexpr int MICROS_IN_SEC = (MILLIS_IN_SEC * MICROS_IN_MS);
 
 /** @brief The number of milliseconds over which the soft movement occurs */
-constexpr int SOFT_MOVEMENT_TIME_MS = 18000;
+constexpr int SOFT_MOVEMENT_TIME_MS = 500;
 
 /** @brief The number of microseconds over which the soft movement occurs */
 constexpr int SOFT_MOVEMENT_MICROS = (SOFT_MOVEMENT_TIME_MS * MICROS_IN_MS);
 
 /** @brief The minimum interval between PWM updates in microseconds */
 constexpr int SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS =
-    SOFT_MOVEMENT_TIME_MS / 20;
+    SOFT_MOVEMENT_MICROS / 2000;
 
 /** @brief The maximum number of PWM updates over which the soft movement occurs
  */
@@ -112,9 +114,6 @@ constexpr float ADC_LOGIC_VOLTAGE = 3.3f;
  */
 constexpr int MAX_ADC_VALUE = (1 << (ADC_RESOLUTION_BITS)) - 1;
 
-/** @brief The default minimum current in milliamps needed to trip alarm. */
-constexpr int CURRENT_ALARM_AMOUNT = 1400;
-
 /** @brief Maximum current in milliamps allowed before the system halts */
 constexpr int CURRENT_LIMIT = 2000;
 
@@ -123,11 +122,11 @@ constexpr int CURRENT_OFFSET = 17;
 
 /** @brief The minimum interval in microseconds between current reading updates.
  */
-constexpr int CURRENT_UPDATE_INTERVAL = 10000;
+constexpr int CURRENT_UPDATE_INTERVAL = 5000;
 
 /** @brief The minimum time the motors must be moving before enabling the
  * current alarm. */
-constexpr int CURRENT_ALARM_DELAY = 2500000;
+constexpr int CURRENT_ALARM_DELAY = 3000000;
 
 /** @brief The number of hall pulses to back up leader motor after hitting
  * bottom on homing routine */
@@ -183,6 +182,6 @@ constexpr float CURRENT_INCREASE_MULTIPLIER =
     1 + (CURRENT_INCREASE_TOLERANCE_PERCENTAGE / 100.0f);
 
 /** @brief Soft stop time in milliseconds */
-constexpr int SOFT_STOP_TIME_MS = 80;
+constexpr int SOFT_STOP_TIME_MS = 160;
 
 #endif // _DEFS_HPP_
