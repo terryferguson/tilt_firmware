@@ -1,0 +1,117 @@
+\doxysection{Motors\+Starting\+State Class Reference}
+\hypertarget{classMotorsStartingState}{}\label{classMotorsStartingState}\index{MotorsStartingState@{MotorsStartingState}}
+
+
+Handles the starting state for motor control system.  
+
+
+
+
+{\ttfamily \#include $<$Motors\+Starting\+State.\+hpp$>$}
+
+Inheritance diagram for Motors\+Starting\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMotorsStartingState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMotorsStartingState_a8fbc523ba2a864eb4754f701df7ce247}\label{classMotorsStartingState_a8fbc523ba2a864eb4754f701df7ce247} 
+{\bfseries Motors\+Starting\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+void \mbox{\hyperlink{classMotorsStartingState_a2877695d35e36beb02adedbcc8f73112}{enter}} ()
+\begin{DoxyCompactList}\small\item\em Handle the system entering the moving state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsStartingState_a478e9d8e679728d8b75a82e851cd03ad}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the motor control system in starting state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsStartingState_a4956b2e539e193f44be703f8daa5aee3}{leave}} ()
+\begin{DoxyCompactList}\small\item\em Handle leaving the starting state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Controller\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller=nullptr)
+\item 
+void \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{set\+Controller}} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*} {\bfseries controller}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the starting state for motor control system. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMotorsStartingState_a2877695d35e36beb02adedbcc8f73112}\label{classMotorsStartingState_a2877695d35e36beb02adedbcc8f73112} 
+\index{MotorsStartingState@{MotorsStartingState}!enter@{enter}}
+\index{enter@{enter}!MotorsStartingState@{MotorsStartingState}}
+\doxysubsubsection{\texorpdfstring{enter()}{enter()}}
+{\footnotesize\ttfamily void Motors\+Starting\+State\+::enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle the system entering the moving state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsStartingState_a4956b2e539e193f44be703f8daa5aee3}\label{classMotorsStartingState_a4956b2e539e193f44be703f8daa5aee3} 
+\index{MotorsStartingState@{MotorsStartingState}!leave@{leave}}
+\index{leave@{leave}!MotorsStartingState@{MotorsStartingState}}
+\doxysubsubsection{\texorpdfstring{leave()}{leave()}}
+{\footnotesize\ttfamily void Motors\+Starting\+State\+::leave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle leaving the starting state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsStartingState_a478e9d8e679728d8b75a82e851cd03ad}\label{classMotorsStartingState_a478e9d8e679728d8b75a82e851cd03ad} 
+\index{MotorsStartingState@{MotorsStartingState}!update@{update}}
+\index{update@{update}!MotorsStartingState@{MotorsStartingState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Motors\+Starting\+State\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the motor control system in starting state. 
+
+This function updates the motor control system when the motors are in the starting state. It checks if the controller is not null, and then performs various actions related to motor control. If the controller is null, it prints an error message.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{MotorsStartingState_8hpp}{Motors\+Starting\+State.\+hpp}}\item 
+Motors\+Starting\+State.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,167 @@
+\doxysection{PIDController Class Reference}
+\hypertarget{classPIDController}{}\label{classPIDController}\index{PIDController@{PIDController}}
+
+
+This is the PID controller for motor synchronization.  
+
+
+
+
+{\ttfamily \#include $<$PIDController.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPIDController_a8eea6ac267fcfac5aa36fe470308112f}{PIDController}} (const int kp=\mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\+\_\+\+KP}}, const float ki=\mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\+\_\+\+KI}}, const float kd=\mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\+\_\+\+KD}}, const float tau=1.\+0f, const int u\+Max=\mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\+\_\+\+SPEED}})
+\begin{DoxyCompactList}\small\item\em This is the PID controller for motor synchronization. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPIDController_a726ff1a9e7864eb2f4ff7dc223ef1c1a}{set\+Params}} (const int kp\+In, const float ki\+In=\mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\+\_\+\+KI}}, const float kd\+In=\mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\+\_\+\+KD}}, const int u\+Max\+In=\mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\+\_\+\+SPEED}})
+\item 
+int \mbox{\hyperlink{classPIDController_a4179077c8408485fa0d04c0000c81a74}{adjust\+Speed}} (\mbox{\hyperlink{classMotor}{Motor}} \&leader, \mbox{\hyperlink{classMotor}{Motor}} \&follower, const int speed, const float deltaT=0.\+0f)
+\begin{DoxyCompactList}\small\item\em Compute the adjusted speed based on the current value, target value, and speed. \end{DoxyCompactList}\item 
+\Hypertarget{classPIDController_a5244cc101c56e71f0211cd1b71ce6ba1}\label{classPIDController_a5244cc101c56e71f0211cd1b71ce6ba1} 
+void {\bfseries set\+Follower\+Max\+Accel} (float new\+Max\+Accel)
+\item 
+\Hypertarget{classPIDController_a5a035e809d9f3ac0d00da29e86147e11}\label{classPIDController_a5a035e809d9f3ac0d00da29e86147e11} 
+void {\bfseries set\+Follower\+Max\+Speed} (int new\+Max\+Speed)
+\item 
+void \mbox{\hyperlink{classPIDController_a6b30379029471cafe632884c6fa6729a}{report}} () const
+\begin{DoxyCompactList}\small\item\em Reports the PID parameters. \end{DoxyCompactList}\item 
+\Hypertarget{classPIDController_a3b1d0f85cef60fe25424e88a6adbb51a}\label{classPIDController_a3b1d0f85cef60fe25424e88a6adbb51a} 
+void {\bfseries set\+Kd} (float new\+Kd)
+\item 
+\Hypertarget{classPIDController_ab442bf567d1d1360578ce145765f4aa0}\label{classPIDController_ab442bf567d1d1360578ce145765f4aa0} 
+void {\bfseries set\+Ki} (float new\+Ki)
+\item 
+void \mbox{\hyperlink{classPIDController_ab6adfbffa30414f0a83b95ba999a2fea}{reset}} ()
+\begin{DoxyCompactList}\small\item\em Reset the PID Controller. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This is the PID controller for motor synchronization. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classPIDController_a8eea6ac267fcfac5aa36fe470308112f}\label{classPIDController_a8eea6ac267fcfac5aa36fe470308112f} 
+\index{PIDController@{PIDController}!PIDController@{PIDController}}
+\index{PIDController@{PIDController}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{PIDController()}{PIDController()}}
+{\footnotesize\ttfamily PIDController\+::\+PIDController (\begin{DoxyParamCaption}\item[{const int}]{kp = {\ttfamily \mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\+\_\+\+KP}}},  }\item[{const float}]{ki = {\ttfamily \mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\+\_\+\+KI}}},  }\item[{const float}]{kd = {\ttfamily \mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\+\_\+\+KD}}},  }\item[{const float}]{tau = {\ttfamily 1.0f},  }\item[{const int}]{u\+Max = {\ttfamily \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\+\_\+\+SPEED}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+This is the PID controller for motor synchronization. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em kp} & The proportional gain \\
+\hline
+{\em ki} & The integral gain \\
+\hline
+{\em kd} & The derivative gain \\
+\hline
+{\em tau} & The controller\textquotesingle{}s low-\/pass filter time constant \\
+\hline
+{\em u\+Max} & Max control signal (speed) for the motors \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classPIDController_a4179077c8408485fa0d04c0000c81a74}\label{classPIDController_a4179077c8408485fa0d04c0000c81a74} 
+\index{PIDController@{PIDController}!adjustSpeed@{adjustSpeed}}
+\index{adjustSpeed@{adjustSpeed}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{adjustSpeed()}{adjustSpeed()}}
+{\footnotesize\ttfamily int PIDController\+::adjust\+Speed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMotor}{Motor}} \&}]{leader,  }\item[{\mbox{\hyperlink{classMotor}{Motor}} \&}]{follower,  }\item[{const int}]{speed,  }\item[{const float}]{deltaT = {\ttfamily 0.0f} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Compute the adjusted speed based on the current value, target value, and speed. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em leader} & The leader motor \\
+\hline
+{\em follower} & The follower motor \\
+\hline
+{\em speed} & The reference to the speed variable \\
+\hline
+{\em deltaT} & The time difference between the current and previous iteration \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The adjusted speed 
+\end{DoxyReturn}
+\Hypertarget{classPIDController_a6b30379029471cafe632884c6fa6729a}\label{classPIDController_a6b30379029471cafe632884c6fa6729a} 
+\index{PIDController@{PIDController}!report@{report}}
+\index{report@{report}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{report()}{report()}}
+{\footnotesize\ttfamily void PIDController\+::report (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reports the PID parameters. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\Hypertarget{classPIDController_ab6adfbffa30414f0a83b95ba999a2fea}\label{classPIDController_ab6adfbffa30414f0a83b95ba999a2fea} 
+\index{PIDController@{PIDController}!reset@{reset}}
+\index{reset@{reset}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void PIDController\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Reset the PID Controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classPIDController_a726ff1a9e7864eb2f4ff7dc223ef1c1a}\label{classPIDController_a726ff1a9e7864eb2f4ff7dc223ef1c1a} 
+\index{PIDController@{PIDController}!setParams@{setParams}}
+\index{setParams@{setParams}!PIDController@{PIDController}}
+\doxysubsubsection{\texorpdfstring{setParams()}{setParams()}}
+{\footnotesize\ttfamily void PIDController\+::set\+Params (\begin{DoxyParamCaption}\item[{const int}]{kp\+In,  }\item[{const float}]{ki\+In = {\ttfamily \mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\+\_\+\+KI}}},  }\item[{const float}]{kd\+In = {\ttfamily \mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\+\_\+\+KD}}},  }\item[{const int}]{u\+Max\+In = {\ttfamily \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\+\_\+\+SPEED}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the parameters for the controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em kp\+In} & the proportional gain parameter \\
+\hline
+{\em ki\+In} & the integral gain parameter \\
+\hline
+{\em kd\+In} & the derivative gain parameter \\
+\hline
+{\em u\+Max\+In} & the maximum control signal value (default\+: MAX\+\_\+\+SPEED)\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+PIDController.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,26 @@
+\doxysection{EMA.\+hpp}
+\hypertarget{EMA_8hpp_source}{}\label{EMA_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cstdint>}\ \ \ \ \ \textcolor{comment}{//\ uint\_fast16\_t}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <limits>}\ \ \ \ \ \ \textcolor{comment}{//\ std::numeric\_limits}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <type\_traits>}\ \textcolor{comment}{//\ std::make\_unsigned\_t,\ make\_signed\_t,\ is\_unsigned}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{template}\ <u\textcolor{keywordtype}{int}8\_t\ K,\ \textcolor{keyword}{class}\ u\textcolor{keywordtype}{int}\_t\ =\ u\textcolor{keywordtype}{int}\_fast32\_t>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classEMA}{EMA}}\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ uint\_t\ \mbox{\hyperlink{classEMA_a31944c28111bf6314ce1955ff943202c}{operator()}}(uint\_t\ input)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ state\ +=\ input;}
+\DoxyCodeLine{00027\ \ \ \ \ uint\_t\ output\ =\ (state\ +\ \mbox{\hyperlink{classEMA_af17019166ce2c5e3515d79530247b54d}{half}})\ >>\ K;}
+\DoxyCodeLine{00028\ \ \ \ \ state\ -\/=\ output;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{00030\ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{constexpr}\ \textcolor{keyword}{static}\ uint\_t\ \mbox{\hyperlink{classEMA_af17019166ce2c5e3515d79530247b54d}{half}}\ =\ 1\ <<\ (K\ -\/\ 1);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{void}\ reset()\ \{\ state\ =\ 0;\ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ uint\_t\ state\ =\ 0;}
+\DoxyCodeLine{00039\ \};}
+
+\end{DoxyCode}

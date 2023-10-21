@@ -1,0 +1,437 @@
+\begin{theindex}
+
+  \item {ADC\_LOGIC\_VOLTAGE}
+    \subitem {defs.hpp}, \hyperpage{48}
+  \item {adjustSpeed}
+    \subitem {PIDController}, \hyperpage{38}
+  \item {ALL\_MOTORS}
+    \subitem {MotorController.hpp}, \hyperpage{56}
+
+  \indexspace
+
+  \item {Command}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {Commands.hpp}, \hyperpage{41}
+    \subitem {Command}, \hyperpage{41}
+    \subitem {EXTEND}, \hyperpage{41}
+    \subitem {GET\_TILT\_1}, \hyperpage{41}
+    \subitem {GET\_TILT\_2}, \hyperpage{41}
+    \subitem {GET\_TILT\_3}, \hyperpage{42}
+    \subitem {GET\_TILT\_4}, \hyperpage{42}
+    \subitem {GET\_TILT\_5}, \hyperpage{42}
+    \subitem {HOME}, \hyperpage{42}
+    \subitem {READ\_LIMIT}, \hyperpage{42}
+    \subitem {REPORT}, \hyperpage{41}
+    \subitem {RETRACT}, \hyperpage{41}
+    \subitem {SAVE\_TILT\_1}, \hyperpage{41}
+    \subitem {SAVE\_TILT\_2}, \hyperpage{41}
+    \subitem {SAVE\_TILT\_3}, \hyperpage{41}
+    \subitem {SAVE\_TILT\_4}, \hyperpage{41}
+    \subitem {SAVE\_TILT\_5}, \hyperpage{41}
+    \subitem {SET\_CURRENT\_ALARM}, \hyperpage{42}
+    \subitem {SET\_POSITION}, \hyperpage{42}
+    \subitem {STOP}, \hyperpage{41}
+    \subitem {SYSTEM\_RESET}, \hyperpage{42}
+    \subitem {TOGGLE\_LIMIT\_RANGE}, \hyperpage{42}
+    \subitem {TOGGLE\_PID}, \hyperpage{42}
+    \subitem {ZERO}, \hyperpage{42}
+  \item {CommandType}, \hyperpage{7}
+  \item {ControllerState}, \hyperpage{7}
+    \subitem {enter}, \hyperpage{8}
+    \subitem {leave}, \hyperpage{8}
+    \subitem {setController}, \hyperpage{8}
+    \subitem {update}, \hyperpage{9}
+  \item {ControllerState.hpp}, \hyperpage{43}
+  \item {ControlPins.hpp}, \hyperpage{43}
+  \item {CURRENT\_INCREASE\_MULTIPLIER}
+    \subitem {defs.hpp}, \hyperpage{48}
+  \item {currentAlarmTriggered}
+    \subitem {MotorController}, \hyperpage{21}
+  \item {CurrentSense}, \hyperpage{9}
+    \subitem {getCurrent}, \hyperpage{10}
+    \subitem {initialize}, \hyperpage{10}
+  \item {CurrentSense.hpp}, \hyperpage{44}
+
+  \indexspace
+
+  \item {defs.hpp}, \hyperpage{45}
+    \subitem {ADC\_LOGIC\_VOLTAGE}, \hyperpage{48}
+    \subitem {CURRENT\_INCREASE\_MULTIPLIER}, \hyperpage{48}
+    \subitem {MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}, \hyperpage{48}
+    \subitem {save\_position\_slot\_names}, \hyperpage{48}
+    \subitem {SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}, 
+		\hyperpage{48}
+    \subitem {SOFT\_MOVEMENT\_UPDATE\_STEPS}, \hyperpage{48}
+  \item {Direction}, \hyperpage{10}
+    \subitem {Direction.hpp}, \hyperpage{50}
+  \item {Direction.hpp}, \hyperpage{50}
+    \subitem {Direction}, \hyperpage{50}
+    \subitem {EXTEND}, \hyperpage{51}
+    \subitem {RETRACT}, \hyperpage{51}
+    \subitem {STOP}, \hyperpage{51}
+  \item {disableMotors}
+    \subitem {MotorController}, \hyperpage{21}
+  \item {displayCurrents}
+    \subitem {MotorController}, \hyperpage{21}
+  \item {displayInfo}
+    \subitem {Motor}, \hyperpage{14}
+  \item {drive}
+    \subitem {Motor}, \hyperpage{14}
+
+  \indexspace
+
+  \item {EMA$<$ K, uint\_t $>$}, \hyperpage{11}
+  \item {enter}
+    \subitem {ControllerState}, \hyperpage{8}
+    \subitem {MotorsSoftMovementState}, \hyperpage{32}
+    \subitem {MotorsStartingState}, \hyperpage{34}
+    \subitem {MotorsStoppedState}, \hyperpage{36}
+  \item {EXTEND}
+    \subitem {Commands.hpp}, \hyperpage{41}
+    \subitem {Direction.hpp}, \hyperpage{51}
+  \item {extend}
+    \subitem {MotorController}, \hyperpage{21}
+
+  \indexspace
+
+  \item {fmap}
+    \subitem {PinMacros.hpp}, \hyperpage{74}
+
+  \indexspace
+
+  \item {GET\_TILT\_1}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {GET\_TILT\_2}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {GET\_TILT\_3}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {GET\_TILT\_4}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {GET\_TILT\_5}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {getCurrent}
+    \subitem {CurrentSense}, \hyperpage{10}
+    \subitem {Motor}, \hyperpage{14}
+  \item {getNormalizedPos}
+    \subitem {Motor}, \hyperpage{14}
+
+  \indexspace
+
+  \item {hitBottom}
+    \subitem {Motor}, \hyperpage{15}
+  \item {HOME}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {home}
+    \subitem {MotorController}, \hyperpage{21}
+  \item {homing}
+    \subitem {Motor}, \hyperpage{16}
+
+  \indexspace
+
+  \item {immediateHalt}
+    \subitem {MotorController}, \hyperpage{22}
+  \item {initialize}
+    \subitem {CurrentSense}, \hyperpage{10}
+    \subitem {MotorController}, \hyperpage{22}
+  \item {isStopped}
+    \subitem {Motor}, \hyperpage{15}
+    \subitem {MotorController}, \hyperpage{23}
+
+  \indexspace
+
+  \item {KP\_POT\_PIN}
+    \subitem {PotentiometerPins.hpp}, \hyperpage{75}
+
+  \indexspace
+
+  \item {lastPos}
+    \subitem {Motor}, \hyperpage{16}
+  \item {leave}
+    \subitem {ControllerState}, \hyperpage{8}
+    \subitem {MotorsSoftMovementState}, \hyperpage{32}
+    \subitem {MotorsStartingState}, \hyperpage{34}
+    \subitem {MotorsStoppedState}, \hyperpage{36}
+  \item {LOAD\_SAVED\_POSITION}
+    \subitem {RouteMacros.hpp}, \hyperpage{76}
+
+  \indexspace
+
+  \item {Motor}, \hyperpage{11}
+    \subitem {displayInfo}, \hyperpage{14}
+    \subitem {drive}, \hyperpage{14}
+    \subitem {getCurrent}, \hyperpage{14}
+    \subitem {getNormalizedPos}, \hyperpage{14}
+    \subitem {hitBottom}, \hyperpage{15}
+    \subitem {homing}, \hyperpage{16}
+    \subitem {isStopped}, \hyperpage{15}
+    \subitem {lastPos}, \hyperpage{16}
+    \subitem {Motor}, \hyperpage{13}
+    \subitem {pos}, \hyperpage{16}
+    \subitem {setSpeed}, \hyperpage{15}
+    \subitem {speed}, \hyperpage{16}
+    \subitem {topReached}, \hyperpage{15}
+    \subitem {totalPulseCount}, \hyperpage{17}
+    \subitem {update}, \hyperpage{16}
+  \item {Motor.hpp}, \hyperpage{51}
+    \subitem {MOVE\_TO\_POS}, \hyperpage{52}
+  \item {MOTOR1\_HALL1\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR1\_HALL2\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR1\_L\_EN\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR1\_LPWM\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR1\_R\_EN\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR1\_RPWM\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR2\_HALL1\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR2\_HALL2\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR2\_L\_EN\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR2\_LPWM\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR2\_R\_EN\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR2\_RPWM\_PIN}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {MOTOR\_COMMAND}
+    \subitem {RouteMacros.hpp}, \hyperpage{76}
+  \item {MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}
+    \subitem {defs.hpp}, \hyperpage{48}
+  \item {MotorController}, \hyperpage{17}
+    \subitem {currentAlarmTriggered}, \hyperpage{21}
+    \subitem {disableMotors}, \hyperpage{21}
+    \subitem {displayCurrents}, \hyperpage{21}
+    \subitem {extend}, \hyperpage{21}
+    \subitem {home}, \hyperpage{21}
+    \subitem {immediateHalt}, \hyperpage{22}
+    \subitem {initialize}, \hyperpage{22}
+    \subitem {isStopped}, \hyperpage{23}
+    \subitem {MotorController}, \hyperpage{20}
+    \subitem {motorsCloseToEndOfRange}, \hyperpage{23}
+    \subitem {motorsDesynced}, \hyperpage{23}
+    \subitem {motorsStopped}, \hyperpage{23}
+    \subitem {printCurrent}, \hyperpage{23}
+    \subitem {report}, \hyperpage{24}
+    \subitem {resetCurrentInformation}, \hyperpage{24}
+    \subitem {resetMotorCurrentAlarms}, \hyperpage{24}
+    \subitem {resetPid}, \hyperpage{25}
+    \subitem {resetSoftMovement}, \hyperpage{25}
+    \subitem {retract}, \hyperpage{26}
+    \subitem {sampleCurrents}, \hyperpage{26}
+    \subitem {savePosition}, \hyperpage{26}
+    \subitem {setCurrentLimit}, \hyperpage{26}
+    \subitem {setPos}, \hyperpage{27}
+    \subitem {setSpeed}, \hyperpage{27}
+    \subitem {startMotion}, \hyperpage{27}
+    \subitem {stop}, \hyperpage{28}
+    \subitem {update}, \hyperpage{28}
+    \subitem {updateCurrentReadings}, \hyperpage{28}
+    \subitem {updateLeadingAndLaggingIndicies}, \hyperpage{29}
+    \subitem {updateMotors}, \hyperpage{29}
+    \subitem {updateSoftMovement}, \hyperpage{29}
+    \subitem {zero}, \hyperpage{30}
+  \item {MotorController.hpp}, \hyperpage{56}
+    \subitem {ALL\_MOTORS}, \hyperpage{56}
+    \subitem {SERIAL\_SAVE\_POSITION}, \hyperpage{56}
+  \item {MotorPin}
+    \subitem {MotorPins.hpp}, \hyperpage{67}
+  \item {MotorPins}, \hyperpage{30}
+  \item {MotorPins.hpp}, \hyperpage{67}
+    \subitem {MOTOR1\_HALL1\_PIN}, \hyperpage{68}
+    \subitem {MOTOR1\_HALL2\_PIN}, \hyperpage{68}
+    \subitem {MOTOR1\_L\_EN\_PIN}, \hyperpage{68}
+    \subitem {MOTOR1\_LPWM\_PIN}, \hyperpage{68}
+    \subitem {MOTOR1\_R\_EN\_PIN}, \hyperpage{68}
+    \subitem {MOTOR1\_RPWM\_PIN}, \hyperpage{68}
+    \subitem {MOTOR2\_HALL1\_PIN}, \hyperpage{68}
+    \subitem {MOTOR2\_HALL2\_PIN}, \hyperpage{68}
+    \subitem {MOTOR2\_L\_EN\_PIN}, \hyperpage{68}
+    \subitem {MOTOR2\_LPWM\_PIN}, \hyperpage{68}
+    \subitem {MOTOR2\_R\_EN\_PIN}, \hyperpage{68}
+    \subitem {MOTOR2\_RPWM\_PIN}, \hyperpage{68}
+    \subitem {MotorPin}, \hyperpage{67}
+    \subitem {UNASSIGNED}, \hyperpage{68}
+  \item {motorsCloseToEndOfRange}
+    \subitem {MotorController}, \hyperpage{23}
+  \item {motorsDesynced}
+    \subitem {MotorController}, \hyperpage{23}
+  \item {MotorsSoftMovementState}, \hyperpage{31}
+    \subitem {enter}, \hyperpage{32}
+    \subitem {leave}, \hyperpage{32}
+    \subitem {update}, \hyperpage{32}
+  \item {MotorsSoftMovementState.hpp}, \hyperpage{68}
+  \item {MotorsStartingState}, \hyperpage{33}
+    \subitem {enter}, \hyperpage{34}
+    \subitem {leave}, \hyperpage{34}
+    \subitem {update}, \hyperpage{34}
+  \item {MotorsStartingState.hpp}, \hyperpage{69}
+  \item {motorsStopped}
+    \subitem {MotorController}, \hyperpage{23}
+  \item {MotorsStoppedState}, \hyperpage{35}
+    \subitem {enter}, \hyperpage{36}
+    \subitem {leave}, \hyperpage{36}
+    \subitem {update}, \hyperpage{36}
+  \item {MotorsStoppedState.hpp}, \hyperpage{70}
+  \item {MOVE\_TO\_POS}
+    \subitem {Motor.hpp}, \hyperpage{52}
+
+  \indexspace
+
+  \item {PIDController}, \hyperpage{36}
+    \subitem {adjustSpeed}, \hyperpage{38}
+    \subitem {PIDController}, \hyperpage{37}
+    \subitem {report}, \hyperpage{38}
+    \subitem {reset}, \hyperpage{38}
+    \subitem {setParams}, \hyperpage{39}
+  \item {PinMacros.hpp}, \hyperpage{73}
+    \subitem {fmap}, \hyperpage{74}
+  \item {pos}
+    \subitem {Motor}, \hyperpage{16}
+  \item {PotentiometerPins}
+    \subitem {PotentiometerPins.hpp}, \hyperpage{75}
+  \item {PotentiometerPins.hpp}, \hyperpage{75}
+    \subitem {KP\_POT\_PIN}, \hyperpage{75}
+    \subitem {PotentiometerPins}, \hyperpage{75}
+    \subitem {SPEED\_POT\_PIN}, \hyperpage{75}
+  \item {printCurrent}
+    \subitem {MotorController}, \hyperpage{23}
+
+  \indexspace
+
+  \item {READ\_LIMIT}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {REPORT}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {report}
+    \subitem {MotorController}, \hyperpage{24}
+    \subitem {PIDController}, \hyperpage{38}
+  \item {reset}
+    \subitem {PIDController}, \hyperpage{38}
+  \item {resetCurrentInformation}
+    \subitem {MotorController}, \hyperpage{24}
+  \item {resetMotorCurrentAlarms}
+    \subitem {MotorController}, \hyperpage{24}
+  \item {resetPid}
+    \subitem {MotorController}, \hyperpage{25}
+  \item {resetSoftMovement}
+    \subitem {MotorController}, \hyperpage{25}
+  \item {RETRACT}
+    \subitem {Commands.hpp}, \hyperpage{41}
+    \subitem {Direction.hpp}, \hyperpage{51}
+  \item {retract}
+    \subitem {MotorController}, \hyperpage{26}
+  \item {RouteMacros.hpp}, \hyperpage{76}
+    \subitem {LOAD\_SAVED\_POSITION}, \hyperpage{76}
+    \subitem {MOTOR\_COMMAND}, \hyperpage{76}
+    \subitem {SET\_POS\_HANDLER}, \hyperpage{76}
+    \subitem {SET\_TILT}, \hyperpage{76}
+
+  \indexspace
+
+  \item {sampleCurrents}
+    \subitem {MotorController}, \hyperpage{26}
+  \item {save\_position\_slot\_names}
+    \subitem {defs.hpp}, \hyperpage{48}
+  \item {SAVE\_TILT\_1}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {SAVE\_TILT\_2}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {SAVE\_TILT\_3}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {SAVE\_TILT\_4}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {SAVE\_TILT\_5}
+    \subitem {Commands.hpp}, \hyperpage{41}
+  \item {savePosition}
+    \subitem {MotorController}, \hyperpage{26}
+  \item {SERIAL\_SAVE\_POSITION}
+    \subitem {MotorController.hpp}, \hyperpage{56}
+  \item {SET\_CURRENT\_ALARM}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {SET\_POS\_HANDLER}
+    \subitem {RouteMacros.hpp}, \hyperpage{76}
+  \item {SET\_POSITION}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {SET\_TILT}
+    \subitem {RouteMacros.hpp}, \hyperpage{76}
+  \item {setController}
+    \subitem {ControllerState}, \hyperpage{8}
+    \subitem {StateController}, \hyperpage{39}
+  \item {setCurrentLimit}
+    \subitem {MotorController}, \hyperpage{26}
+  \item {setParams}
+    \subitem {PIDController}, \hyperpage{39}
+  \item {setPos}
+    \subitem {MotorController}, \hyperpage{27}
+  \item {setSpeed}
+    \subitem {Motor}, \hyperpage{15}
+    \subitem {MotorController}, \hyperpage{27}
+  \item {setState}
+    \subitem {StateController}, \hyperpage{40}
+  \item {SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}
+    \subitem {defs.hpp}, \hyperpage{48}
+  \item {SOFT\_MOVEMENT\_UPDATE\_STEPS}
+    \subitem {defs.hpp}, \hyperpage{48}
+  \item {speed}
+    \subitem {Motor}, \hyperpage{16}
+  \item {SPEED\_POT\_PIN}
+    \subitem {PotentiometerPins.hpp}, \hyperpage{75}
+  \item {startMotion}
+    \subitem {MotorController}, \hyperpage{27}
+  \item {StateController}, \hyperpage{39}
+    \subitem {setController}, \hyperpage{39}
+    \subitem {setState}, \hyperpage{40}
+    \subitem {update}, \hyperpage{40}
+  \item {STOP}
+    \subitem {Commands.hpp}, \hyperpage{41}
+    \subitem {Direction.hpp}, \hyperpage{51}
+  \item {stop}
+    \subitem {MotorController}, \hyperpage{28}
+  \item {SYSTEM\_RESET}
+    \subitem {Commands.hpp}, \hyperpage{42}
+
+  \indexspace
+
+  \item {TOGGLE\_LIMIT\_RANGE}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {TOGGLE\_PID}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {topReached}
+    \subitem {Motor}, \hyperpage{15}
+  \item {totalPulseCount}
+    \subitem {Motor}, \hyperpage{17}
+
+  \indexspace
+
+  \item {UNASSIGNED}
+    \subitem {MotorPins.hpp}, \hyperpage{68}
+  \item {update}
+    \subitem {ControllerState}, \hyperpage{9}
+    \subitem {Motor}, \hyperpage{16}
+    \subitem {MotorController}, \hyperpage{28}
+    \subitem {MotorsSoftMovementState}, \hyperpage{32}
+    \subitem {MotorsStartingState}, \hyperpage{34}
+    \subitem {MotorsStoppedState}, \hyperpage{36}
+    \subitem {StateController}, \hyperpage{40}
+  \item {updateCurrentReadings}
+    \subitem {MotorController}, \hyperpage{28}
+  \item {updateLeadingAndLaggingIndicies}
+    \subitem {MotorController}, \hyperpage{29}
+  \item {updateMotors}
+    \subitem {MotorController}, \hyperpage{29}
+  \item {updateSoftMovement}
+    \subitem {MotorController}, \hyperpage{29}
+
+  \indexspace
+
+  \item {ZERO}
+    \subitem {Commands.hpp}, \hyperpage{42}
+  \item {zero}
+    \subitem {MotorController}, \hyperpage{30}
+
+\end{theindex}

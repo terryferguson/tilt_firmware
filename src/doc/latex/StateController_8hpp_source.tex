@@ -1,0 +1,48 @@
+\doxysection{State\+Controller.\+hpp}
+\hypertarget{StateController_8hpp_source}{}\label{StateController_8hpp_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_STATE\_CONTROLLER\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_STATE\_CONTROLLER\_}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MotorsMovingState_8hpp}{MotorsMovingState.hpp}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MotorsSoftMovementState_8hpp}{MotorsSoftMovementState.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MotorsStartingState_8hpp}{MotorsStartingState.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MotorsStoppedState_8hpp}{MotorsStoppedState.hpp}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{enum}\ MotorControllerState\ \{}
+\DoxyCodeLine{00012\ \ \ MOTORS\_STARTING\_STATE,}
+\DoxyCodeLine{00013\ \ \ MOTORS\_SOFT\_MOVEMENT\_STATE,}
+\DoxyCodeLine{00014\ \ \ MOTORS\_STOPPING\_STATE,}
+\DoxyCodeLine{00015\ \ \ MOTORS\_STOPPED\_STATE,}
+\DoxyCodeLine{00016\ \ \ MOTORS\_MOVING\_STATE}
+\DoxyCodeLine{00017\ \};}
+\DoxyCodeLine{00018\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ NUMBER\_OF\_MOTOR\_STATES\ =\ 5;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStateController}{StateController}}\ \{}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{classMotorsStartingState}{MotorsStartingState}}\ motorsStartingState;}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{classMotorsSoftMovementState}{MotorsSoftMovementState}}\ motorsSoftMovementState;}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{classMotorsStoppedState}{MotorsStoppedState}}\ motorsStoppedState;}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{classMotorsMovingState}{MotorsMovingState}}\ motorsMovingState;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{classControllerState}{ControllerState}}\ *motorsStateMap[NUMBER\_OF\_MOTOR\_STATES];}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{classControllerState}{ControllerState}}\ *currentState\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keywordtype}{void}\ initializeStateMap();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{classStateController}{StateController}}();}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{classStateController}{StateController}}(\mbox{\hyperlink{classMotorController}{MotorController}}\ *pMotorController);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStateController_a3b41bb5fa15da66b7ce050cf361fb2dd}{setController}}(\mbox{\hyperlink{classMotorController}{MotorController}}\ *pMotorController);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStateController_a4decf6c5c312beb33b88f54056bfb908}{setState}}(MotorControllerState\ newState);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classStateController_a3146a377d998badb22af4498b306533d}{update}}();}
+\DoxyCodeLine{00076\ \};\ \textcolor{comment}{//\ end\ class\ StateController}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_STATE\_CONTROLLER\_}}
+
+\end{DoxyCode}

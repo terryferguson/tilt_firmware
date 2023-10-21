@@ -1,0 +1,80 @@
+\doxysection{State\+Controller Class Reference}
+\hypertarget{classStateController}{}\label{classStateController}\index{StateController@{StateController}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classStateController_a1b92fe1ded3c26353ca96270a877a538}\label{classStateController_a1b92fe1ded3c26353ca96270a877a538} 
+{\bfseries State\+Controller} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+void \mbox{\hyperlink{classStateController_a3b41bb5fa15da66b7ce050cf361fb2dd}{set\+Controller}} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+void \mbox{\hyperlink{classStateController_a4decf6c5c312beb33b88f54056bfb908}{set\+State}} (Motor\+Controller\+State new\+State)
+\item 
+void \mbox{\hyperlink{classStateController_a3146a377d998badb22af4498b306533d}{update}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classStateController_a3b41bb5fa15da66b7ce050cf361fb2dd}\label{classStateController_a3b41bb5fa15da66b7ce050cf361fb2dd} 
+\index{StateController@{StateController}!setController@{setController}}
+\index{setController@{setController}!StateController@{StateController}}
+\doxysubsubsection{\texorpdfstring{setController()}{setController()}}
+{\footnotesize\ttfamily void State\+Controller\+::set\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}}]{p\+Motor\+Controller }\end{DoxyParamCaption})}
+
+Sets the \doxylink{classMotorController}{Motor\+Controller} for the state objects
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Motor\+Controller} & the \doxylink{classMotorController}{Motor\+Controller} object to set\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classStateController_a4decf6c5c312beb33b88f54056bfb908}\label{classStateController_a4decf6c5c312beb33b88f54056bfb908} 
+\index{StateController@{StateController}!setState@{setState}}
+\index{setState@{setState}!StateController@{StateController}}
+\doxysubsubsection{\texorpdfstring{setState()}{setState()}}
+{\footnotesize\ttfamily void State\+Controller\+::set\+State (\begin{DoxyParamCaption}\item[{Motor\+Controller\+State}]{new\+State }\end{DoxyParamCaption})}
+
+Sets the state of the controller to a new state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+State} & the new state to set the controller to\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classStateController_a3146a377d998badb22af4498b306533d}\label{classStateController_a3146a377d998badb22af4498b306533d} 
+\index{StateController@{StateController}!update@{update}}
+\index{update@{update}!StateController@{StateController}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void State\+Controller\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Updates the current state of the motor controller system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+None
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+State\+Controller.\+hpp\item 
+State\+Controller.\+cpp\end{DoxyCompactItemize}

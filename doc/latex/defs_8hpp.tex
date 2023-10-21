@@ -1,0 +1,242 @@
+\doxysection{defs.\+hpp File Reference}
+\hypertarget{defs_8hpp}{}\label{defs_8hpp}\index{defs.hpp@{defs.hpp}}
+{\ttfamily \#include "{}Commands.\+hpp"{}}\newline
+{\ttfamily \#include "{}Control\+Pins.\+hpp"{}}\newline
+{\ttfamily \#include "{}Direction.\+hpp"{}}\newline
+{\ttfamily \#include "{}Motor\+Pins.\+hpp"{}}\newline
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{defs_8hpp_aaa9c1c7d6be7812736a11e26b98f2455}\label{defs_8hpp_aaa9c1c7d6be7812736a11e26b98f2455} 
+\#define {\bfseries \+\_\+\+DEFS\+\_\+\+HPP\+\_\+}
+\item 
+\Hypertarget{defs_8hpp_a3c5cd622462bb50b6dab4c189e219eb9}\label{defs_8hpp_a3c5cd622462bb50b6dab4c189e219eb9} 
+\#define {\bfseries countof}(a)~(sizeof(a) / sizeof(\texorpdfstring{$\ast$}{*}(a)))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{defs_8hpp_aa1755ddcacd4dcebcf9280fdcb598e3a}\label{defs_8hpp_aa1755ddcacd4dcebcf9280fdcb598e3a} 
+int {\bfseries current\+PWMChannel}
+\item 
+\Hypertarget{defs_8hpp_a66ee0bd2ff8592573ed299a7582f086d}\label{defs_8hpp_a66ee0bd2ff8592573ed299a7582f086d} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries directions} \mbox{[}3\mbox{]}
+\begin{DoxyCompactList}\small\item\em String representations of the directions. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ab7b8d4434e693fed973ce8b78e9d5a6f}\label{defs_8hpp_ab7b8d4434e693fed973ce8b78e9d5a6f} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries motor\+\_\+roles} \mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em String representations of the motor roles at instantiation. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9}\label{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9} 
+constexpr int {\bfseries NUM\+\_\+\+POSITION\+\_\+\+SLOTS} = 5
+\begin{DoxyCompactList}\small\item\em Number of position slots supported by this firmware. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a4f3f73f84b09a711e5bb4b29ecf6b199}\label{defs_8hpp_a4f3f73f84b09a711e5bb4b29ecf6b199} 
+const char \texorpdfstring{$\ast$}{*} {\bfseries save\+\_\+position\+\_\+slot\+\_\+names} \mbox{[}\mbox{\hyperlink{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9}{NUM\+\_\+\+POSITION\+\_\+\+SLOTS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em String representations of the names of position slots. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d}\label{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d} 
+int {\bfseries saved\+Positions} \mbox{[}\mbox{\hyperlink{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9}{NUM\+\_\+\+POSITION\+\_\+\+SLOTS}}\mbox{]}
+\begin{DoxyCompactList}\small\item\em Storage for position in hall sensor pusles relative to initial position when powered on. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a9fb2aacf737e76b7c2b1fa0a065a8942}\label{defs_8hpp_a9fb2aacf737e76b7c2b1fa0a065a8942} 
+bool {\bfseries pid\+\_\+on}
+\begin{DoxyCompactList}\small\item\em Whether PID is on or off. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a40c1b2b9c0feb7f7481e7d3d9bb1f576}\label{defs_8hpp_a40c1b2b9c0feb7f7481e7d3d9bb1f576} 
+bool {\bfseries limit\+\_\+range}
+\begin{DoxyCompactList}\small\item\em Whether limit range is on or off. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}\label{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a} 
+bool {\bfseries debug\+Enabled}
+\begin{DoxyCompactList}\small\item\em Indicates whether debug messages should be sent to serial. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a77b92ab6635c56ec778203dc9ce218e8}\label{defs_8hpp_a77b92ab6635c56ec778203dc9ce218e8} 
+constexpr int {\bfseries FORMAT\+\_\+\+SPIFFS\+\_\+\+IF\+\_\+\+FAILED} = true
+\item 
+\Hypertarget{defs_8hpp_afcc019745aed213aaa07d37c7fa08440}\label{defs_8hpp_afcc019745aed213aaa07d37c7fa08440} 
+constexpr int {\bfseries NUMBER\+\_\+\+OF\+\_\+\+MOTORS} = 2
+\begin{DoxyCompactList}\small\item\em The number of motors controlled by this system. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a5d87212a0656bebc76d59352474ffbfc}\label{defs_8hpp_a5d87212a0656bebc76d59352474ffbfc} 
+constexpr int {\bfseries LEADER\+\_\+\+MAX\+\_\+\+PULSES} = 2845
+\begin{DoxyCompactList}\small\item\em Number of pulses for leader motor\textquotesingle{}s maximum extension. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_af08759ff4901d6c3978c9bac751be92a}\label{defs_8hpp_af08759ff4901d6c3978c9bac751be92a} 
+constexpr int {\bfseries FOLLOWER\+\_\+\+MAX\+\_\+\+PULSES} = 2845
+\begin{DoxyCompactList}\small\item\em Number of pulses for follower motor\textquotesingle{}s maximum extension. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a6f6cfbe0889a89dfbe582ad507b88ac5}\label{defs_8hpp_a6f6cfbe0889a89dfbe582ad507b88ac5} 
+constexpr int {\bfseries PWM\+\_\+\+FREQUENCY} = 20000
+\begin{DoxyCompactList}\small\item\em The frequency of the PWM signal sent to the motor controllers. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}\label{defs_8hpp_ab86e2bb308b2961dcb035be27767e697} 
+constexpr int {\bfseries PWM\+\_\+\+RESOLUTION\+\_\+\+BITS} = 8
+\begin{DoxyCompactList}\small\item\em The resolution of the PWM signal in bits (provides 2\texorpdfstring{$^\wedge$}{\string^}{\ttfamily PWM\+\_\+\+RESOLUTION\+\_\+\+BITS} of possible levels) \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ab85f7bc0b7abf319d8e5528f13aee861}\label{defs_8hpp_ab85f7bc0b7abf319d8e5528f13aee861} 
+constexpr int {\bfseries ADC\+\_\+\+RESOLUTION\+\_\+\+BITS} = 12
+\begin{DoxyCompactList}\small\item\em The resolution of the ADC used in bits. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}\label{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e} 
+constexpr int {\bfseries DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED} = (1 $<$$<$ \mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\+\_\+\+RESOLUTION\+\_\+\+BITS}}) -\/ 1
+\begin{DoxyCompactList}\small\item\em The default speed of the motors given in PWM value. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a1148b0dce2ba5f78aafe18450335e6f3}\label{defs_8hpp_a1148b0dce2ba5f78aafe18450335e6f3} 
+constexpr int {\bfseries MOTOR\+\_\+\+END\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+SPEED} = 155
+\begin{DoxyCompactList}\small\item\em The motor speed at the extremes of the range. Should be \texorpdfstring{$<$}{<} {\ttfamily DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED} \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a84bd9a418dd1da9665d0702e7c0294ff}\label{defs_8hpp_a84bd9a418dd1da9665d0702e7c0294ff} 
+constexpr int {\bfseries MIN\+\_\+\+MOTOR\+\_\+\+TRAVEL\+\_\+\+SPEED} = 105
+\begin{DoxyCompactList}\small\item\em Minimum travel speed. \end{DoxyCompactList}\item 
+constexpr int \mbox{\hyperlink{defs_8hpp_a2cec658ae5ceb61b8eaad40f10ac0957}{MOTOR\+\_\+\+END\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+SPEED\+\_\+\+DELTA}}
+\begin{DoxyCompactList}\small\item\em The difference in speed values between {\ttfamily DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED} and {\ttfamily MOTOR\+\_\+\+END\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+SPEED} \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a3ecf2e791bf346fff0f6460d6f6bf0f9}\label{defs_8hpp_a3ecf2e791bf346fff0f6460d6f6bf0f9} 
+constexpr int {\bfseries SET\+\_\+\+POSITION\+\_\+\+BUFFER} = 3
+\begin{DoxyCompactList}\small\item\em Set position buffer in hall pulses. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_af6313058b028674e360028041cc9a2d5}\label{defs_8hpp_af6313058b028674e360028041cc9a2d5} 
+constexpr int {\bfseries MILLIS\+\_\+\+IN\+\_\+\+SEC} = 1000
+\begin{DoxyCompactList}\small\item\em The number of milliseconds in a second. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a}\label{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a} 
+constexpr int {\bfseries MICROS\+\_\+\+IN\+\_\+\+MS} = 1000
+\begin{DoxyCompactList}\small\item\em The number of microseconds in a millisecond. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a0b388f4438f8035b812e65df7da9f575}\label{defs_8hpp_a0b388f4438f8035b812e65df7da9f575} 
+constexpr int {\bfseries MICROS\+\_\+\+IN\+\_\+\+SEC} = (\mbox{\hyperlink{defs_8hpp_af6313058b028674e360028041cc9a2d5}{MILLIS\+\_\+\+IN\+\_\+\+SEC}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a}{MICROS\+\_\+\+IN\+\_\+\+MS}})
+\begin{DoxyCompactList}\small\item\em The number of microseconds in a second. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}\label{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94} 
+constexpr int {\bfseries SOFT\+\_\+\+MOVEMENT\+\_\+\+TIME\+\_\+\+MS} = 18000
+\begin{DoxyCompactList}\small\item\em The number of milliseconds over which the soft movement occurs. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a74c3a2e08aeeda6d5977a7244fcc4178}\label{defs_8hpp_a74c3a2e08aeeda6d5977a7244fcc4178} 
+constexpr int {\bfseries SOFT\+\_\+\+MOVEMENT\+\_\+\+MICROS} = (\mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\+\_\+\+MOVEMENT\+\_\+\+TIME\+\_\+\+MS}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a}{MICROS\+\_\+\+IN\+\_\+\+MS}})
+\begin{DoxyCompactList}\small\item\em The number of microseconds over which the soft movement occurs. \end{DoxyCompactList}\item 
+constexpr int \mbox{\hyperlink{defs_8hpp_a22abad04b84529826598194eeca21fca}{SOFT\+\_\+\+MOVEMENT\+\_\+\+PWM\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MICROS}}
+\begin{DoxyCompactList}\small\item\em The minimum interval between PWM updates in microseconds. \end{DoxyCompactList}\item 
+constexpr int \mbox{\hyperlink{defs_8hpp_ac8fcdd83127701a6cf4e8fa2fd9dc7ce}{SOFT\+\_\+\+MOVEMENT\+\_\+\+UPDATE\+\_\+\+STEPS}}
+\begin{DoxyCompactList}\small\item\em The maximum number of PWM updates over which the soft movement occurs. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}\label{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c} 
+constexpr int {\bfseries MAX\+\_\+\+SPEED} = ((1 $<$$<$ (\mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\+\_\+\+RESOLUTION\+\_\+\+BITS}})) -\/ 1)
+\begin{DoxyCompactList}\small\item\em The maximum speed value that can be represented by PWM. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a39ec4a5ee2aa5355e76e11311159f06c}\label{defs_8hpp_a39ec4a5ee2aa5355e76e11311159f06c} 
+constexpr int {\bfseries MIN\+\_\+\+SPEED} = 0
+\begin{DoxyCompactList}\small\item\em The minimum speed value that can be represented by PWM. \end{DoxyCompactList}\item 
+constexpr float \mbox{\hyperlink{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba}{ADC\+\_\+\+LOGIC\+\_\+\+VOLTAGE}} = 3.\+3f
+\item 
+\Hypertarget{defs_8hpp_a5dcc52ed1e9a88431bafb98ef6ec9155}\label{defs_8hpp_a5dcc52ed1e9a88431bafb98ef6ec9155} 
+constexpr int {\bfseries MAX\+\_\+\+ADC\+\_\+\+VALUE} = (1 $<$$<$ (\mbox{\hyperlink{defs_8hpp_ab85f7bc0b7abf319d8e5528f13aee861}{ADC\+\_\+\+RESOLUTION\+\_\+\+BITS}})) -\/ 1
+\begin{DoxyCompactList}\small\item\em The maximum ADC value that can be represented by the ADC resolution. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a8fe324b985651b31fa0222b731d96d8c}\label{defs_8hpp_a8fe324b985651b31fa0222b731d96d8c} 
+constexpr int {\bfseries CURRENT\+\_\+\+LIMIT} = 2000
+\begin{DoxyCompactList}\small\item\em Maximum current in milliamps allowed before the system halts. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a2a07d9f782470a67f89446e547e30987}\label{defs_8hpp_a2a07d9f782470a67f89446e547e30987} 
+constexpr int {\bfseries CURRENT\+\_\+\+OFFSET} = 17
+\begin{DoxyCompactList}\small\item\em The current offset between the two motors. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ad9dd3666dde0eb03b963a2b7944c7cc3}\label{defs_8hpp_ad9dd3666dde0eb03b963a2b7944c7cc3} 
+constexpr int {\bfseries CURRENT\+\_\+\+UPDATE\+\_\+\+INTERVAL} = 5000
+\begin{DoxyCompactList}\small\item\em The minimum interval in microseconds between current reading updates. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a17bb703336b050e8eddfad5ee5956fd0}\label{defs_8hpp_a17bb703336b050e8eddfad5ee5956fd0} 
+constexpr int {\bfseries CURRENT\+\_\+\+ALARM\+\_\+\+DELAY} = 2500000
+\begin{DoxyCompactList}\small\item\em The minimum time the motors must be moving before enabling the current alarm. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ae63fa65bd20ef52b566eb9af4ca1b549}\label{defs_8hpp_ae63fa65bd20ef52b566eb9af4ca1b549} 
+constexpr int {\bfseries ALARM\+\_\+\+REVERSE\+\_\+\+AMOUNT} = 15
+\begin{DoxyCompactList}\small\item\em The number of hall pulses to back up leader motor after hitting bottom on homing routine. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_aaadc338cba55f87f08220e8a6e1b30ec}\label{defs_8hpp_aaadc338cba55f87f08220e8a6e1b30ec} 
+constexpr int {\bfseries FOLLOWER\+\_\+\+ALARM\+\_\+\+REVERSE\+\_\+\+AMOUNT} = (\mbox{\hyperlink{defs_8hpp_ae63fa65bd20ef52b566eb9af4ca1b549}{ALARM\+\_\+\+REVERSE\+\_\+\+AMOUNT}} + 30)
+\begin{DoxyCompactList}\small\item\em The number of hall pulses to back up follower motor after hitting bottom on homing routine. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a9c27a1267be359569c53664c3105a248}\label{defs_8hpp_a9c27a1267be359569c53664c3105a248} 
+constexpr int {\bfseries LEADER\+\_\+\+BUFFER} = 3
+\begin{DoxyCompactList}\small\item\em A buffer accounting for the lag in hall pulses between a stop request and the leader motor physically stopping. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a60b1b5d2cc6723238fca36a5a3fd2f80}\label{defs_8hpp_a60b1b5d2cc6723238fca36a5a3fd2f80} 
+constexpr int {\bfseries FOLLOWER\+\_\+\+BUFFER} = 3
+\begin{DoxyCompactList}\small\item\em A buffer accounting for the lag in hall pulses between a stop request and the follower motor physically stopping. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a9895a67f2f2779dc70acea8319ac63c5}\label{defs_8hpp_a9895a67f2f2779dc70acea8319ac63c5} 
+constexpr int {\bfseries DESYNC\+\_\+\+TOLERANCE} = 20
+\begin{DoxyCompactList}\small\item\em The number of hall pulse difference between the leader and follower motors before triggering an immediate halt. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_ad1ee198e620a87e147e7971347a45e85}\label{defs_8hpp_ad1ee198e620a87e147e7971347a45e85} 
+constexpr float {\bfseries PID\+\_\+\+ALPHA} = 33.\+333333f
+\begin{DoxyCompactList}\small\item\em The alpha ratio value used to PID calculation parameters. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}\label{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff} 
+constexpr int {\bfseries DEFAULT\+\_\+\+KP} = 79999
+\begin{DoxyCompactList}\small\item\em The default propotional gain used in PID calculation. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a2899ed2a6972faeac667323aea076f90}\label{defs_8hpp_a2899ed2a6972faeac667323aea076f90} 
+constexpr int {\bfseries RETRACT\+\_\+\+KP} = 79999
+\begin{DoxyCompactList}\small\item\em The propotional gain used in PID calculation for extension. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a7e1bf82fcadce30aaf6dfd6f6fa347e8}\label{defs_8hpp_a7e1bf82fcadce30aaf6dfd6f6fa347e8} 
+constexpr int {\bfseries STOP\+\_\+\+KP} = 79999
+\begin{DoxyCompactList}\small\item\em The propotional gain used in PID calculation for stopping. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a87a62a57be70fef27f6640be9971c6bb}\label{defs_8hpp_a87a62a57be70fef27f6640be9971c6bb} 
+constexpr int {\bfseries EXTEND\+\_\+\+RAMP\+\_\+\+KP} = 79999
+\begin{DoxyCompactList}\small\item\em The propotional gain used in PID calculation for extension ramping. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a73ea5aeacfd4a43909b4c21f439ec7d4}\label{defs_8hpp_a73ea5aeacfd4a43909b4c21f439ec7d4} 
+constexpr int {\bfseries RETRACT\+\_\+\+RAMP\+\_\+\+KP} = 79999
+\begin{DoxyCompactList}\small\item\em The propotional gain used in PID calculation for retraction ramping. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}\label{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21} 
+constexpr float {\bfseries DEFAULT\+\_\+\+KI} = ((\mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\+\_\+\+KP}} / \mbox{\hyperlink{defs_8hpp_ad1ee198e620a87e147e7971347a45e85}{PID\+\_\+\+ALPHA}}) \texorpdfstring{$\ast$}{*} 6)
+\begin{DoxyCompactList}\small\item\em The integral gain used in PID calculation. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}\label{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb} 
+constexpr float {\bfseries DEFAULT\+\_\+\+KD} = (\mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\+\_\+\+KP}} / (\mbox{\hyperlink{defs_8hpp_ad1ee198e620a87e147e7971347a45e85}{PID\+\_\+\+ALPHA}} \texorpdfstring{$\ast$}{*} 1.\+5))
+\begin{DoxyCompactList}\small\item\em The derivative gain used in PID calculation. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a3ded7176119905b421ddb815accbe77d}\label{defs_8hpp_a3ded7176119905b421ddb815accbe77d} 
+constexpr int {\bfseries CURRENT\+\_\+\+INCREASE\+\_\+\+TOLERANCE\+\_\+\+PERCENTAGE} = 30
+\begin{DoxyCompactList}\small\item\em The tolerance percentage for the current increase before alarm. \end{DoxyCompactList}\item 
+constexpr float \mbox{\hyperlink{defs_8hpp_a65079cba57eaae8a1d93acd287166fd7}{CURRENT\+\_\+\+INCREASE\+\_\+\+MULTIPLIER}}
+\begin{DoxyCompactList}\small\item\em The current increase multiplier based on the current increase tolerance percentage. \end{DoxyCompactList}\item 
+\Hypertarget{defs_8hpp_a2ea297d6206176df73dfe281acacd0cc}\label{defs_8hpp_a2ea297d6206176df73dfe281acacd0cc} 
+constexpr int {\bfseries SOFT\+\_\+\+STOP\+\_\+\+TIME\+\_\+\+MS} = 200
+\begin{DoxyCompactList}\small\item\em Soft stop time in milliseconds. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba}\label{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba} 
+\index{defs.hpp@{defs.hpp}!ADC\_LOGIC\_VOLTAGE@{ADC\_LOGIC\_VOLTAGE}}
+\index{ADC\_LOGIC\_VOLTAGE@{ADC\_LOGIC\_VOLTAGE}!defs.hpp@{defs.hpp}}
+\doxysubsubsection{\texorpdfstring{ADC\_LOGIC\_VOLTAGE}{ADC\_LOGIC\_VOLTAGE}}
+{\footnotesize\ttfamily constexpr float ADC\+\_\+\+LOGIC\+\_\+\+VOLTAGE = 3.\+3f\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+The logic level voltage of the ADC \Hypertarget{defs_8hpp_a65079cba57eaae8a1d93acd287166fd7}\label{defs_8hpp_a65079cba57eaae8a1d93acd287166fd7} 
+\index{defs.hpp@{defs.hpp}!CURRENT\_INCREASE\_MULTIPLIER@{CURRENT\_INCREASE\_MULTIPLIER}}
+\index{CURRENT\_INCREASE\_MULTIPLIER@{CURRENT\_INCREASE\_MULTIPLIER}!defs.hpp@{defs.hpp}}
+\doxysubsubsection{\texorpdfstring{CURRENT\_INCREASE\_MULTIPLIER}{CURRENT\_INCREASE\_MULTIPLIER}}
+{\footnotesize\ttfamily constexpr float CURRENT\+\_\+\+INCREASE\+\_\+\+MULTIPLIER\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ 1\ +\ (\mbox{\hyperlink{defs_8hpp_a3ded7176119905b421ddb815accbe77d}{CURRENT\_INCREASE\_TOLERANCE\_PERCENTAGE}}\ /\ 100.0f)}
+
+\end{DoxyCode}
+
+
+The current increase multiplier based on the current increase tolerance percentage. 
+
+\Hypertarget{defs_8hpp_a2cec658ae5ceb61b8eaad40f10ac0957}\label{defs_8hpp_a2cec658ae5ceb61b8eaad40f10ac0957} 
+\index{defs.hpp@{defs.hpp}!MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA@{MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}}
+\index{MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA@{MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}!defs.hpp@{defs.hpp}}
+\doxysubsubsection{\texorpdfstring{MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}{MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}}
+{\footnotesize\ttfamily constexpr int MOTOR\+\_\+\+END\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+SPEED\+\_\+\+DELTA\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ (\mbox{\hyperlink{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}{DEFAULT\_MOTOR\_SPEED}}\ -\/\ \mbox{\hyperlink{defs_8hpp_a1148b0dce2ba5f78aafe18450335e6f3}{MOTOR\_END\_OF\_RANGE\_SPEED}})}
+
+\end{DoxyCode}
+
+
+The difference in speed values between {\ttfamily DEFAULT\+\_\+\+MOTOR\+\_\+\+SPEED} and {\ttfamily MOTOR\+\_\+\+END\+\_\+\+OF\+\_\+\+RANGE\+\_\+\+SPEED} 
+
+\Hypertarget{defs_8hpp_a22abad04b84529826598194eeca21fca}\label{defs_8hpp_a22abad04b84529826598194eeca21fca} 
+\index{defs.hpp@{defs.hpp}!SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS@{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}}
+\index{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS@{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}!defs.hpp@{defs.hpp}}
+\doxysubsubsection{\texorpdfstring{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}}
+{\footnotesize\ttfamily constexpr int SOFT\+\_\+\+MOVEMENT\+\_\+\+PWM\+\_\+\+UPDATE\+\_\+\+INTERVAL\+\_\+\+MICROS\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\_MOVEMENT\_TIME\_MS}}\ /\ 20}
+
+\end{DoxyCode}
+
+
+The minimum interval between PWM updates in microseconds. 
+
+\Hypertarget{defs_8hpp_ac8fcdd83127701a6cf4e8fa2fd9dc7ce}\label{defs_8hpp_ac8fcdd83127701a6cf4e8fa2fd9dc7ce} 
+\index{defs.hpp@{defs.hpp}!SOFT\_MOVEMENT\_UPDATE\_STEPS@{SOFT\_MOVEMENT\_UPDATE\_STEPS}}
+\index{SOFT\_MOVEMENT\_UPDATE\_STEPS@{SOFT\_MOVEMENT\_UPDATE\_STEPS}!defs.hpp@{defs.hpp}}
+\doxysubsubsection{\texorpdfstring{SOFT\_MOVEMENT\_UPDATE\_STEPS}{SOFT\_MOVEMENT\_UPDATE\_STEPS}}
+{\footnotesize\ttfamily constexpr int SOFT\+\_\+\+MOVEMENT\+\_\+\+UPDATE\+\_\+\+STEPS\hspace{0.3cm}{\ttfamily [constexpr]}}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{=}
+\DoxyCodeLine{\ \ \ \ (\mbox{\hyperlink{defs_8hpp_a74c3a2e08aeeda6d5977a7244fcc4178}{SOFT\_MOVEMENT\_MICROS}}\ /\ \mbox{\hyperlink{defs_8hpp_a22abad04b84529826598194eeca21fca}{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}})}
+
+\end{DoxyCode}
+
+
+The maximum number of PWM updates over which the soft movement occurs. 
+

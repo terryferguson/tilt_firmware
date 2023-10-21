@@ -1,0 +1,115 @@
+\doxysection{Motors\+Soft\+Movement\+State Class Reference}
+\hypertarget{classMotorsSoftMovementState}{}\label{classMotorsSoftMovementState}\index{MotorsSoftMovementState@{MotorsSoftMovementState}}
+
+
+Represents the motors making a soft movement.  
+
+
+
+
+{\ttfamily \#include $<$Motors\+Soft\+Movement\+State.\+hpp$>$}
+
+Inheritance diagram for Motors\+Soft\+Movement\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMotorsSoftMovementState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMotorsSoftMovementState_a0fce67432ae0cba0b323dded5560a4a9}\label{classMotorsSoftMovementState_a0fce67432ae0cba0b323dded5560a4a9} 
+{\bfseries Motors\+Soft\+Movement\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+void \mbox{\hyperlink{classMotorsSoftMovementState_aee14396c42d62b4bd69ac888cac29127}{enter}} ()
+\begin{DoxyCompactList}\small\item\em Handle the system entering the soft movement state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsSoftMovementState_a23c74584dcfe81872e19743ba16eb129}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the motor control system in soft movement state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsSoftMovementState_ab9ea6cb27a950478d2f7d91b4e9196ca}{leave}} ()
+\begin{DoxyCompactList}\small\item\em Handle leaving the soft movement state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Controller\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller=nullptr)
+\item 
+void \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{set\+Controller}} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*} {\bfseries controller}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the motors making a soft movement. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMotorsSoftMovementState_aee14396c42d62b4bd69ac888cac29127}\label{classMotorsSoftMovementState_aee14396c42d62b4bd69ac888cac29127} 
+\index{MotorsSoftMovementState@{MotorsSoftMovementState}!enter@{enter}}
+\index{enter@{enter}!MotorsSoftMovementState@{MotorsSoftMovementState}}
+\doxysubsubsection{\texorpdfstring{enter()}{enter()}}
+{\footnotesize\ttfamily void Motors\+Soft\+Movement\+State\+::enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle the system entering the soft movement state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsSoftMovementState_ab9ea6cb27a950478d2f7d91b4e9196ca}\label{classMotorsSoftMovementState_ab9ea6cb27a950478d2f7d91b4e9196ca} 
+\index{MotorsSoftMovementState@{MotorsSoftMovementState}!leave@{leave}}
+\index{leave@{leave}!MotorsSoftMovementState@{MotorsSoftMovementState}}
+\doxysubsubsection{\texorpdfstring{leave()}{leave()}}
+{\footnotesize\ttfamily void Motors\+Soft\+Movement\+State\+::leave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle leaving the soft movement state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsSoftMovementState_a23c74584dcfe81872e19743ba16eb129}\label{classMotorsSoftMovementState_a23c74584dcfe81872e19743ba16eb129} 
+\index{MotorsSoftMovementState@{MotorsSoftMovementState}!update@{update}}
+\index{update@{update}!MotorsSoftMovementState@{MotorsSoftMovementState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Motors\+Soft\+Movement\+State\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the motor control system in soft movement state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{MotorsSoftMovementState_8hpp}{Motors\+Soft\+Movement\+State.\+hpp}}\item 
+Motors\+Soft\+Movement\+State.\+cpp\end{DoxyCompactItemize}

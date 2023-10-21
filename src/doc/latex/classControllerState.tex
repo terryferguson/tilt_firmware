@@ -1,0 +1,106 @@
+\doxysection{Controller\+State Class Reference}
+\hypertarget{classControllerState}{}\label{classControllerState}\index{ControllerState@{ControllerState}}
+
+
+Base class for controller state.  
+
+
+
+
+{\ttfamily \#include $<$Controller\+State.\+hpp$>$}
+
+Inheritance diagram for Controller\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.341317cm]{classControllerState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classControllerState_a46126bf83844ad89cff947915597b335}\label{classControllerState_a46126bf83844ad89cff947915597b335} 
+{\bfseries Controller\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller=nullptr)
+\item 
+void \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{set\+Controller}} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+virtual void \mbox{\hyperlink{classControllerState_a5a5718e9b8f359b95448e3f886bcf9e0}{enter}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classControllerState_a8f561cc422a139315a9b51cfdc1e9b19}{update}} ()=0
+\item 
+virtual void \mbox{\hyperlink{classControllerState_a320e751aa014afe036a67fddef0ab1ef}{leave}} ()=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classControllerState_a71bc554e18d61454cfa24917168e2967}\label{classControllerState_a71bc554e18d61454cfa24917168e2967} 
+\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*} {\bfseries controller}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for controller state. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classControllerState_a5a5718e9b8f359b95448e3f886bcf9e0}\label{classControllerState_a5a5718e9b8f359b95448e3f886bcf9e0} 
+\index{ControllerState@{ControllerState}!enter@{enter}}
+\index{enter@{enter}!ControllerState@{ControllerState}}
+\doxysubsubsection{\texorpdfstring{enter()}{enter()}}
+{\footnotesize\ttfamily virtual void Controller\+State\+::enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classMotorsMovingState_aa9978d3a93d51ff4e5b544b4ee9965a4}{Motors\+Moving\+State}}, \mbox{\hyperlink{classMotorsSoftMovementState_aee14396c42d62b4bd69ac888cac29127}{Motors\+Soft\+Movement\+State}}, \mbox{\hyperlink{classMotorsStartingState_a2877695d35e36beb02adedbcc8f73112}{Motors\+Starting\+State}}, \mbox{\hyperlink{classMotorsStoppedState_af6f76a24abcd5fa71c78fe103b3aaede}{Motors\+Stopped\+State}}, and \mbox{\hyperlink{classMotorsStoppingState_a5c8e208139eaf26364a50404f7ec3a67}{Motors\+Stopping\+State}}.
+
+\Hypertarget{classControllerState_a320e751aa014afe036a67fddef0ab1ef}\label{classControllerState_a320e751aa014afe036a67fddef0ab1ef} 
+\index{ControllerState@{ControllerState}!leave@{leave}}
+\index{leave@{leave}!ControllerState@{ControllerState}}
+\doxysubsubsection{\texorpdfstring{leave()}{leave()}}
+{\footnotesize\ttfamily virtual void Controller\+State\+::leave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classMotorsMovingState_ae2951f41f42521905c420d51fb5d6136}{Motors\+Moving\+State}}, \mbox{\hyperlink{classMotorsSoftMovementState_ab9ea6cb27a950478d2f7d91b4e9196ca}{Motors\+Soft\+Movement\+State}}, \mbox{\hyperlink{classMotorsStartingState_a4956b2e539e193f44be703f8daa5aee3}{Motors\+Starting\+State}}, \mbox{\hyperlink{classMotorsStoppedState_a0c9ee68d48273712457adaa1c9542d49}{Motors\+Stopped\+State}}, and \mbox{\hyperlink{classMotorsStoppingState_a177e6fe7c6e0a965478641025403aba0}{Motors\+Stopping\+State}}.
+
+\Hypertarget{classControllerState_ab57978aa283df7ee0065306a9597b8f7}\label{classControllerState_ab57978aa283df7ee0065306a9597b8f7} 
+\index{ControllerState@{ControllerState}!setController@{setController}}
+\index{setController@{setController}!ControllerState@{ControllerState}}
+\doxysubsubsection{\texorpdfstring{setController()}{setController()}}
+{\footnotesize\ttfamily void Controller\+State\+::set\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}}]{p\+Motor\+Controller }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Sets the \doxylink{classMotorController}{Motor\+Controller} for the object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Motor\+Controller} & The \doxylink{classMotorController}{Motor\+Controller} to set.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em None} & \\
+\hline
+\end{DoxyExceptions}
+\Hypertarget{classControllerState_a8f561cc422a139315a9b51cfdc1e9b19}\label{classControllerState_a8f561cc422a139315a9b51cfdc1e9b19} 
+\index{ControllerState@{ControllerState}!update@{update}}
+\index{update@{update}!ControllerState@{ControllerState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily virtual void Controller\+State\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classMotorsMovingState_a1977edd4ca6710839256c733f90e7764}{Motors\+Moving\+State}}, \mbox{\hyperlink{classMotorsSoftMovementState_a23c74584dcfe81872e19743ba16eb129}{Motors\+Soft\+Movement\+State}}, \mbox{\hyperlink{classMotorsStartingState_a478e9d8e679728d8b75a82e851cd03ad}{Motors\+Starting\+State}}, \mbox{\hyperlink{classMotorsStoppedState_a8ab9d41339c6a40bd4091e4e3f037131}{Motors\+Stopped\+State}}, and \mbox{\hyperlink{classMotorsStoppingState_ac5bb279247c6025cb4012dca82834ed3}{Motors\+Stopping\+State}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ControllerState_8hpp}{Controller\+State.\+hpp}}\end{DoxyCompactItemize}

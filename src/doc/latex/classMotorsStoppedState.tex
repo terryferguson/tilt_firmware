@@ -1,0 +1,115 @@
+\doxysection{Motors\+Stopped\+State Class Reference}
+\hypertarget{classMotorsStoppedState}{}\label{classMotorsStoppedState}\index{MotorsStoppedState@{MotorsStoppedState}}
+
+
+Handles the stopped state for motor control system.  
+
+
+
+
+{\ttfamily \#include $<$Motors\+Stopped\+State.\+hpp$>$}
+
+Inheritance diagram for Motors\+Stopped\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMotorsStoppedState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMotorsStoppedState_a533d3ee94fbbbb41184b7dc65723a8bf}\label{classMotorsStoppedState_a533d3ee94fbbbb41184b7dc65723a8bf} 
+{\bfseries Motors\+Stopped\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+void \mbox{\hyperlink{classMotorsStoppedState_af6f76a24abcd5fa71c78fe103b3aaede}{enter}} ()
+\begin{DoxyCompactList}\small\item\em Handle the system entering the stopped state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsStoppedState_a8ab9d41339c6a40bd4091e4e3f037131}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the motor control system in stopped state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsStoppedState_a0c9ee68d48273712457adaa1c9542d49}{leave}} ()
+\begin{DoxyCompactList}\small\item\em Handle leaving the stopped state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Controller\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller=nullptr)
+\item 
+void \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{set\+Controller}} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*} {\bfseries controller}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the stopped state for motor control system. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMotorsStoppedState_af6f76a24abcd5fa71c78fe103b3aaede}\label{classMotorsStoppedState_af6f76a24abcd5fa71c78fe103b3aaede} 
+\index{MotorsStoppedState@{MotorsStoppedState}!enter@{enter}}
+\index{enter@{enter}!MotorsStoppedState@{MotorsStoppedState}}
+\doxysubsubsection{\texorpdfstring{enter()}{enter()}}
+{\footnotesize\ttfamily void Motors\+Stopped\+State\+::enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle the system entering the stopped state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsStoppedState_a0c9ee68d48273712457adaa1c9542d49}\label{classMotorsStoppedState_a0c9ee68d48273712457adaa1c9542d49} 
+\index{MotorsStoppedState@{MotorsStoppedState}!leave@{leave}}
+\index{leave@{leave}!MotorsStoppedState@{MotorsStoppedState}}
+\doxysubsubsection{\texorpdfstring{leave()}{leave()}}
+{\footnotesize\ttfamily void Motors\+Stopped\+State\+::leave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle leaving the stopped state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsStoppedState_a8ab9d41339c6a40bd4091e4e3f037131}\label{classMotorsStoppedState_a8ab9d41339c6a40bd4091e4e3f037131} 
+\index{MotorsStoppedState@{MotorsStoppedState}!update@{update}}
+\index{update@{update}!MotorsStoppedState@{MotorsStoppedState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Motors\+Stopped\+State\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the motor control system in stopped state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{MotorsStoppedState_8hpp}{Motors\+Stopped\+State.\+hpp}}\item 
+Motors\+Stopped\+State.\+cpp\end{DoxyCompactItemize}

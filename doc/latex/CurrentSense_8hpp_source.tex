@@ -1,0 +1,94 @@
+\doxysection{Current\+Sense.\+hpp}
+\hypertarget{CurrentSense_8hpp_source}{}\label{CurrentSense_8hpp_source}\mbox{\hyperlink{CurrentSense_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_CURRENT\_SENSE\_HPP\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_CURRENT\_SENSE\_HPP\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <driver/adc.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <stdint.h>}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ControlPins_8hpp}{ControlPins.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{defs_8hpp}{defs.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classCurrentSense}{CurrentSense}}\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00026\ \ \ int\_fast32\_t\ CALIBRATE\_ITERATIONS\_SHIFT\ =\ 14;}
+\DoxyCodeLine{00027\ \ \ int\_fast32\_t\ SAMPLE\_CURRENT\_ITERATIONS\_SHIFT\ =\ 6;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00030\ \ \ int32\_t\ MV\_PER\_AMP\ =\ \textcolor{keyword}{static\_cast<}int32\_t\textcolor{keyword}{>}(185\ *\ 1.132);}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//\ negitive\ current\ flow.}}
+\DoxyCodeLine{00035\ \ \ int32\_t\ ACS\_OFFSET\ =\ 1885;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ adc1\_channel\_t\ currentSensePin;}
+\DoxyCodeLine{00038\ \ \ \textcolor{keywordtype}{double}\ logicVoltage\ =\ \mbox{\hyperlink{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba}{ADC\_LOGIC\_VOLTAGE}};}
+\DoxyCodeLine{00039\ \ \ int32\_t\ maxAdcValue\ =\ \mbox{\hyperlink{defs_8hpp_a5dcc52ed1e9a88431bafb98ef6ec9155}{MAX\_ADC\_VALUE}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{classCurrentSense}{CurrentSense}}(\textcolor{keyword}{const}\ adc1\_channel\_t\ pCurrentSensePin\ =\ ADC1\_CHANNEL\_0,}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ pLogicVoltage\ =\ \mbox{\hyperlink{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba}{ADC\_LOGIC\_VOLTAGE}},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ int32\_t\ pMaxAdcValue\ =\ \mbox{\hyperlink{defs_8hpp_a5dcc52ed1e9a88431bafb98ef6ec9155}{MAX\_ADC\_VALUE}})}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ :\ currentSensePin(pCurrentSensePin),\ logicVoltage(pLogicVoltage),}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ maxAdcValue(pMaxAdcValue)\ \{\}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classCurrentSense_a6f4546c4c66de7ffdba17fe93a870737}{initialize}}(\textcolor{keyword}{const}\ adc1\_channel\_t\ pCurrentSensePin\ =\ ADC1\_CHANNEL\_0)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Set\ the\ current\ sensing\ pin}}
+\DoxyCodeLine{00056\ \ \ \ \ currentSensePin\ =\ pCurrentSensePin;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ Configure\ ADC\ settings}}
+\DoxyCodeLine{00059\ \ \ \ \ adc1\_config\_width(ADC\_WIDTH\_12Bit);}
+\DoxyCodeLine{00060\ \ \ \ \ adc1\_config\_channel\_atten(currentSensePin,\ ADC\_ATTEN\_DB\_11);}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Pin:\ "{}});}
+\DoxyCodeLine{00063\ \ \ \ \ Serial.println(\textcolor{keyword}{static\_cast<}uint8\_t\textcolor{keyword}{>}(currentSensePin));}
+\DoxyCodeLine{00064\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Logic\ Voltage:\ "{}});}
+\DoxyCodeLine{00065\ \ \ \ \ Serial.println(logicVoltage);}
+\DoxyCodeLine{00066\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Max\ ADC\ Value:\ "{}});}
+\DoxyCodeLine{00067\ \ \ \ \ Serial.println(maxAdcValue);}
+\DoxyCodeLine{00068\ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}mV\ per\ A:\ "{}});}
+\DoxyCodeLine{00069\ \ \ \ \ Serial.println(MV\_PER\_AMP);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ Calibrate\ ACS\ offset}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ iterations\ =\ 1\ <<\ CALIBRATE\_ITERATIONS\_SHIFT;}
+\DoxyCodeLine{00073\ \ \ \ \ int32\_t\ adcSum\ =\ 0;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ i\ =\ 0;\ i\ <\ iterations;\ i++)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ adcSum\ +=\ adc1\_get\_raw(currentSensePin);}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ ACS\_OFFSET\ =\ adcSum\ >>\ CALIBRATE\_ITERATIONS\_SHIFT;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ Serial.printf(\textcolor{stringliteral}{"{}ACS\ Offset:\ \%d\(\backslash\)n"{}},\ ACS\_OFFSET);}
+\DoxyCodeLine{00082\ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classCurrentSense_a3ee919f39b0d70a7da1b540ed87ea1aa}{getCurrent}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ Number\ of\ iterations\ for\ current\ sampling}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ int32\_t\ iterations\ =\ 1\ <<\ SAMPLE\_CURRENT\_ITERATIONS\_SHIFT;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ int32\_t\ currentSum\ =\ 0;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ Perform\ current\ sampling\ iterations}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ iterations;\ i++)\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ ADC\ offset}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ adcOffset\ =\ adc1\_get\_raw(currentSensePin)\ -\/\ ACS\_OFFSET;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ voltage\ delta}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ voltageDelta\ =\ (adcOffset\ *\ (logicVoltage\ /\ maxAdcValue));}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \textcolor{comment}{//\ Accumulate\ current\ sum}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ currentSum\ +=\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(voltageDelta\ *\ 1000000.0\ /\ MV\_PER\_AMP);}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ Calculate\ average\ current}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ averageCurrent\ =\ std::abs(}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(currentSum\ >>\ SAMPLE\_CURRENT\_ITERATIONS\_SHIFT));}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ Return\ average\ current\ as\ an\ integer}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(averageCurrent);}
+\DoxyCodeLine{00113\ \ \ \}\ \textcolor{comment}{//\ end\ method\ getCurrent}}
+\DoxyCodeLine{00114\ \};\ \ \textcolor{comment}{//\ end\ class\ CurrentSense}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_CURRENT\_SENSE\_HPP\_}}
+
+\end{DoxyCode}

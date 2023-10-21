@@ -1,0 +1,117 @@
+\doxysection{Motors\+Moving\+State Class Reference}
+\hypertarget{classMotorsMovingState}{}\label{classMotorsMovingState}\index{MotorsMovingState@{MotorsMovingState}}
+
+
+Handles the movement of the motors.  
+
+
+
+
+{\ttfamily \#include $<$Motors\+Moving\+State.\+hpp$>$}
+
+Inheritance diagram for Motors\+Moving\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classMotorsMovingState}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classMotorsMovingState_a2f7964b492e494eb2326a01ef2daecad}\label{classMotorsMovingState_a2f7964b492e494eb2326a01ef2daecad} 
+{\bfseries Motors\+Moving\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\item 
+void \mbox{\hyperlink{classMotorsMovingState_aa9978d3a93d51ff4e5b544b4ee9965a4}{enter}} ()
+\begin{DoxyCompactList}\small\item\em Handle the system entering the moving state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsMovingState_a1977edd4ca6710839256c733f90e7764}{update}} ()
+\begin{DoxyCompactList}\small\item\em Update the motor control system in the moving state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classMotorsMovingState_ae2951f41f42521905c420d51fb5d6136}{leave}} ()
+\begin{DoxyCompactList}\small\item\em Handle leaving the moving state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Controller\+State} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller=nullptr)
+\item 
+void \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{set\+Controller}} (\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*}p\+Motor\+Controller)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classControllerState}{Controller\+State}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classMotorController}{Motor\+Controller}} \texorpdfstring{$\ast$}{*} {\bfseries controller}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the movement of the motors. 
+
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classMotorsMovingState_aa9978d3a93d51ff4e5b544b4ee9965a4}\label{classMotorsMovingState_aa9978d3a93d51ff4e5b544b4ee9965a4} 
+\index{MotorsMovingState@{MotorsMovingState}!enter@{enter}}
+\index{enter@{enter}!MotorsMovingState@{MotorsMovingState}}
+\doxysubsubsection{\texorpdfstring{enter()}{enter()}}
+{\footnotesize\ttfamily void Motors\+Moving\+State\+::enter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle the system entering the moving state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsMovingState_ae2951f41f42521905c420d51fb5d6136}\label{classMotorsMovingState_ae2951f41f42521905c420d51fb5d6136} 
+\index{MotorsMovingState@{MotorsMovingState}!leave@{leave}}
+\index{leave@{leave}!MotorsMovingState@{MotorsMovingState}}
+\doxysubsubsection{\texorpdfstring{leave()}{leave()}}
+{\footnotesize\ttfamily void Motors\+Moving\+State\+::leave (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle leaving the moving state. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+\Hypertarget{classMotorsMovingState_a1977edd4ca6710839256c733f90e7764}\label{classMotorsMovingState_a1977edd4ca6710839256c733f90e7764} 
+\index{MotorsMovingState@{MotorsMovingState}!update@{update}}
+\index{update@{update}!MotorsMovingState@{MotorsMovingState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void Motors\+Moving\+State\+::update (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Update the motor control system in the moving state. 
+
+This function updates the motor control system by performing various checks and actions. It checks if the motors are close to the end of the range and sets the speed accordingly. It also checks if the current time has exceeded the current alarm delay and handles the current alarm if triggered. Finally, it checks if the set position has been reached, handles the PID control, and updates the motors.
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classControllerState}{Controller\+State}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{MotorsMovingState_8hpp}{Motors\+Moving\+State.\+hpp}}\item 
+Motors\+Moving\+State.\+cpp\end{DoxyCompactItemize}

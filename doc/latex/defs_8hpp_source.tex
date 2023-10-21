@@ -1,0 +1,127 @@
+\doxysection{defs.\+hpp}
+\hypertarget{defs_8hpp_source}{}\label{defs_8hpp_source}\mbox{\hyperlink{defs_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ \_DEFS\_HPP\_}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ \_DEFS\_HPP\_}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ countof(a)\ (sizeof(a)\ /\ sizeof(*(a)))}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Commands_8hpp}{Commands.hpp}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ControlPins_8hpp}{ControlPins.hpp}}"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{Direction_8hpp}{Direction.hpp}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MotorPins_8hpp}{MotorPins.hpp}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ currentPWMChannel;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{defs_8hpp_a66ee0bd2ff8592573ed299a7582f086d}{directions}}[3];}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{defs_8hpp_ab7b8d4434e693fed973ce8b78e9d5a6f}{motor\_roles}}[2];}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9}{NUM\_POSITION\_SLOTS}}\ =\ 5;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{extern}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{defs_8hpp_a4f3f73f84b09a711e5bb4b29ecf6b199}{save\_position\_slot\_names}}[\mbox{\hyperlink{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9}{NUM\_POSITION\_SLOTS}}];}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a36ecb22e6d7f28e169936958b450c22d}{savedPositions}}[\mbox{\hyperlink{defs_8hpp_a6b5be8438b2dfd7b770b430e6a2966d9}{NUM\_POSITION\_SLOTS}}];}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{defs_8hpp_a9fb2aacf737e76b7c2b1fa0a065a8942}{pid\_on}};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{defs_8hpp_a40c1b2b9c0feb7f7481e7d3d9bb1f576}{limit\_range}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{defs_8hpp_ad0344eb1bc475981a837e350c08fb53a}{debugEnabled}};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ FORMAT\_SPIFFS\_IF\_FAILED\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00046\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_afcc019745aed213aaa07d37c7fa08440}{NUMBER\_OF\_MOTORS}}\ =\ 2;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a5d87212a0656bebc76d59352474ffbfc}{LEADER\_MAX\_PULSES}}\ =\ 2845;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_af08759ff4901d6c3978c9bac751be92a}{FOLLOWER\_MAX\_PULSES}}\ =\ 2845;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a6f6cfbe0889a89dfbe582ad507b88ac5}{PWM\_FREQUENCY}}\ =\ 20000;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\_RESOLUTION\_BITS}}\ =\ 8;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_ab85f7bc0b7abf319d8e5528f13aee861}{ADC\_RESOLUTION\_BITS}}\ =\ 12;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}{DEFAULT\_MOTOR\_SPEED}}\ =\ (1\ <<\ \mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\_RESOLUTION\_BITS}})\ -\/\ 1;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a1148b0dce2ba5f78aafe18450335e6f3}{MOTOR\_END\_OF\_RANGE\_SPEED}}\ =\ 155;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a84bd9a418dd1da9665d0702e7c0294ff}{MIN\_MOTOR\_TRAVEL\_SPEED}}\ =\ 105;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a2cec658ae5ceb61b8eaad40f10ac0957}{MOTOR\_END\_OF\_RANGE\_SPEED\_DELTA}}\ =}
+\DoxyCodeLine{00077\ \ \ \ \ (\mbox{\hyperlink{defs_8hpp_aa1ef4e7868e1fa0de8f34432bf9cb77e}{DEFAULT\_MOTOR\_SPEED}}\ -\/\ \mbox{\hyperlink{defs_8hpp_a1148b0dce2ba5f78aafe18450335e6f3}{MOTOR\_END\_OF\_RANGE\_SPEED}});}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a3ecf2e791bf346fff0f6460d6f6bf0f9}{SET\_POSITION\_BUFFER}}\ =\ 3;}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_af6313058b028674e360028041cc9a2d5}{MILLIS\_IN\_SEC}}\ =\ 1000;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a}{MICROS\_IN\_MS}}\ =\ 1000;}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a0b388f4438f8035b812e65df7da9f575}{MICROS\_IN\_SEC}}\ =\ (\mbox{\hyperlink{defs_8hpp_af6313058b028674e360028041cc9a2d5}{MILLIS\_IN\_SEC}}\ *\ \mbox{\hyperlink{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a}{MICROS\_IN\_MS}});}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\_MOVEMENT\_TIME\_MS}}\ =\ 18000;}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a74c3a2e08aeeda6d5977a7244fcc4178}{SOFT\_MOVEMENT\_MICROS}}\ =\ (\mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\_MOVEMENT\_TIME\_MS}}\ *\ \mbox{\hyperlink{defs_8hpp_a6728b9a305293d30e6fb728bc914bd6a}{MICROS\_IN\_MS}});}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a22abad04b84529826598194eeca21fca}{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}}\ =}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{defs_8hpp_ad3aecee3c049fa84a2397cd8ddf5ec94}{SOFT\_MOVEMENT\_TIME\_MS}}\ /\ 20;}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_ac8fcdd83127701a6cf4e8fa2fd9dc7ce}{SOFT\_MOVEMENT\_UPDATE\_STEPS}}\ =}
+\DoxyCodeLine{00104\ \ \ \ \ (\mbox{\hyperlink{defs_8hpp_a74c3a2e08aeeda6d5977a7244fcc4178}{SOFT\_MOVEMENT\_MICROS}}\ /\ \mbox{\hyperlink{defs_8hpp_a22abad04b84529826598194eeca21fca}{SOFT\_MOVEMENT\_PWM\_UPDATE\_INTERVAL\_MICROS}});}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a5ddf2283d980402c15e157a865fe3c1c}{MAX\_SPEED}}\ =\ ((1\ <<\ (\mbox{\hyperlink{defs_8hpp_ab86e2bb308b2961dcb035be27767e697}{PWM\_RESOLUTION\_BITS}}))\ -\/\ 1);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a39ec4a5ee2aa5355e76e11311159f06c}{MIN\_SPEED}}\ =\ 0;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{defs_8hpp_a6e33f84943fcca38a31e4f8aec7fe3ba}{ADC\_LOGIC\_VOLTAGE}}\ =\ 3.3f;}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a5dcc52ed1e9a88431bafb98ef6ec9155}{MAX\_ADC\_VALUE}}\ =\ (1\ <<\ (\mbox{\hyperlink{defs_8hpp_ab85f7bc0b7abf319d8e5528f13aee861}{ADC\_RESOLUTION\_BITS}}))\ -\/\ 1;}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a8fe324b985651b31fa0222b731d96d8c}{CURRENT\_LIMIT}}\ =\ 2000;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00123\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a2a07d9f782470a67f89446e547e30987}{CURRENT\_OFFSET}}\ =\ 17;}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00127\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_ad9dd3666dde0eb03b963a2b7944c7cc3}{CURRENT\_UPDATE\_INTERVAL}}\ =\ 5000;}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a17bb703336b050e8eddfad5ee5956fd0}{CURRENT\_ALARM\_DELAY}}\ =\ 2500000;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00135\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_ae63fa65bd20ef52b566eb9af4ca1b549}{ALARM\_REVERSE\_AMOUNT}}\ =\ 15;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_aaadc338cba55f87f08220e8a6e1b30ec}{FOLLOWER\_ALARM\_REVERSE\_AMOUNT}}\ =\ (\mbox{\hyperlink{defs_8hpp_ae63fa65bd20ef52b566eb9af4ca1b549}{ALARM\_REVERSE\_AMOUNT}}\ +\ 30);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a9c27a1267be359569c53664c3105a248}{LEADER\_BUFFER}}\ =\ 3;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a60b1b5d2cc6723238fca36a5a3fd2f80}{FOLLOWER\_BUFFER}}\ =\ 3;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a9895a67f2f2779dc70acea8319ac63c5}{DESYNC\_TOLERANCE}}\ =\ 20;}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{defs_8hpp_ad1ee198e620a87e147e7971347a45e85}{PID\_ALPHA}}\ =\ 33.333333f;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\_KP}}\ =\ 79999;}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00160\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a2899ed2a6972faeac667323aea076f90}{RETRACT\_KP}}\ =\ 79999;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a7e1bf82fcadce30aaf6dfd6f6fa347e8}{STOP\_KP}}\ =\ 79999;}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a87a62a57be70fef27f6640be9971c6bb}{EXTEND\_RAMP\_KP}}\ =\ 79999;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a73ea5aeacfd4a43909b4c21f439ec7d4}{RETRACT\_RAMP\_KP}}\ =\ 79999;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{defs_8hpp_aa59d9e5b54fc0bd20d97e0df17be6d21}{DEFAULT\_KI}}\ =\ ((\mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\_KP}}\ /\ \mbox{\hyperlink{defs_8hpp_ad1ee198e620a87e147e7971347a45e85}{PID\_ALPHA}})\ *\ 6);}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{defs_8hpp_a99953e55db79066c36ed8cf2cd7c09bb}{DEFAULT\_KD}}\ =\ (\mbox{\hyperlink{defs_8hpp_afeae84af3adb5eed1b263ab11960aeff}{DEFAULT\_KP}}\ /\ (\mbox{\hyperlink{defs_8hpp_ad1ee198e620a87e147e7971347a45e85}{PID\_ALPHA}}\ *\ 1.5));}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00179\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a3ded7176119905b421ddb815accbe77d}{CURRENT\_INCREASE\_TOLERANCE\_PERCENTAGE}}\ =\ 30;}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{defs_8hpp_a65079cba57eaae8a1d93acd287166fd7}{CURRENT\_INCREASE\_MULTIPLIER}}\ =}
+\DoxyCodeLine{00184\ \ \ \ \ 1\ +\ (\mbox{\hyperlink{defs_8hpp_a3ded7176119905b421ddb815accbe77d}{CURRENT\_INCREASE\_TOLERANCE\_PERCENTAGE}}\ /\ 100.0f);}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{constexpr}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{defs_8hpp_a2ea297d6206176df73dfe281acacd0cc}{SOFT\_STOP\_TIME\_MS}}\ =\ 200;}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_DEFS\_HPP\_}}
+
+\end{DoxyCode}

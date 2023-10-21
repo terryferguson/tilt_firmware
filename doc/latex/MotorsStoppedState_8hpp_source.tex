@@ -1,0 +1,31 @@
+\doxysection{Motors\+Stopped\+State.\+hpp}
+\hypertarget{MotorsStoppedState_8hpp_source}{}\label{MotorsStoppedState_8hpp_source}\mbox{\hyperlink{MotorsStoppedState_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_MOTORS\_STOPPED\_STATE\_HPP\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_MOTORS\_STOPPED\_STATE\_HPP\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{ControllerState_8hpp}{ControllerState.hpp}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{MotorController_8hpp}{MotorController.hpp}}"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Arduino.h>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMotorsStoppedState}{MotorsStoppedState}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classControllerState}{ControllerState}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{classMotorsStoppedState}{MotorsStoppedState}}()\ \{\}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{classMotorsStoppedState}{MotorsStoppedState}}(\mbox{\hyperlink{classMotorController}{MotorController}}\ *pMotorController)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{ControllerState::setController}}(pMotorController);}
+\DoxyCodeLine{00025\ \ \ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotorsStoppedState_af6f76a24abcd5fa71c78fe103b3aaede}{enter}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotorsStoppedState_a8ab9d41339c6a40bd4091e4e3f037131}{update}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classMotorsStoppedState_a0c9ee68d48273712457adaa1c9542d49}{leave}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{classMotorsStoppedState}{\string~MotorsStoppedState}}()\{\};}
+\DoxyCodeLine{00049\ \};\ \textcolor{comment}{//\ end\ class\ State}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MOTORS\_STOPPED\_STATE\_HPP\_}}
+
+\end{DoxyCode}

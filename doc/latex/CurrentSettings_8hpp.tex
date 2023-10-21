@@ -1,0 +1,50 @@
+\doxysection{/home/terry/\+Projects/motor\+\_\+control\+\_\+firmware/\+Current\+Settings.hpp File Reference}
+\hypertarget{CurrentSettings_8hpp}{}\label{CurrentSettings_8hpp}\index{/home/terry/Projects/motor\_control\_firmware/CurrentSettings.hpp@{/home/terry/Projects/motor\_control\_firmware/CurrentSettings.hpp}}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{CurrentSettings_8hpp_ae678d504181814806fe8acf281cb7c31}\label{CurrentSettings_8hpp_ae678d504181814806fe8acf281cb7c31} 
+\#define {\bfseries ADC\+\_\+\+BITS}~12
+\item 
+\Hypertarget{CurrentSettings_8hpp_a555a695bf58df062dc03f0e892d95cd7}\label{CurrentSettings_8hpp_a555a695bf58df062dc03f0e892d95cd7} 
+\#define {\bfseries ADC\+\_\+\+MAX}~(2 $<$$<$ ADC\+\_\+\+BITS)
+\item 
+\Hypertarget{CurrentSettings_8hpp_a3e7495c6edc492203617353ed97aa190}\label{CurrentSettings_8hpp_a3e7495c6edc492203617353ed97aa190} 
+\#define {\bfseries LOGICAL\+\_\+\+LEVEL\+\_\+\+VOLTAGE}~3.\+3f
+\item 
+\Hypertarget{CurrentSettings_8hpp_acb39cb2d381051a9dfaa0dd5fc242df2}\label{CurrentSettings_8hpp_acb39cb2d381051a9dfaa0dd5fc242df2} 
+\#define {\bfseries DEFAULT\+\_\+\+CURRENT\+\_\+\+INCREASE\+\_\+\+LIMIT}~  ((int)((0.\+07 \texorpdfstring{$\ast$}{*} LOGICAL\+\_\+\+LEVEL\+\_\+\+VOLTAGE) \texorpdfstring{$\ast$}{*} ADC\+\_\+\+MAX))
+\item 
+\Hypertarget{CurrentSettings_8hpp_a60506384c4228e25595c5fb982ad1755}\label{CurrentSettings_8hpp_a60506384c4228e25595c5fb982ad1755} 
+\#define {\bfseries CURRENT\+\_\+\+INCREASE\+\_\+\+LIMIT\+\_\+\+MAX}~  ((int)((0.\+15 \texorpdfstring{$\ast$}{*} LOGICAL\+\_\+\+LEVEL\+\_\+\+VOLTAGE) \texorpdfstring{$\ast$}{*} ADC\+\_\+\+MAX))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{CurrentSettings_8hpp_a1cd90167f6fd401747ff5c7ad87ad7d5}{current\+Increse\+Exceeds\+Threshold}} (const int current\+Sense\+Pin, const int base\+Value, const int threshold)
+\begin{DoxyCompactList}\small\item\em Indicate whether the increase in current on the driver current sense pin has exceeded the threshold. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{CurrentSettings_8hpp_a1cd90167f6fd401747ff5c7ad87ad7d5}\label{CurrentSettings_8hpp_a1cd90167f6fd401747ff5c7ad87ad7d5} 
+\index{CurrentSettings.hpp@{CurrentSettings.hpp}!currentIncreseExceedsThreshold@{currentIncreseExceedsThreshold}}
+\index{currentIncreseExceedsThreshold@{currentIncreseExceedsThreshold}!CurrentSettings.hpp@{CurrentSettings.hpp}}
+\doxysubsubsection{\texorpdfstring{currentIncreseExceedsThreshold()}{currentIncreseExceedsThreshold()}}
+{\footnotesize\ttfamily bool current\+Increse\+Exceeds\+Threshold (\begin{DoxyParamCaption}\item[{const int}]{current\+Sense\+Pin,  }\item[{const int}]{base\+Value,  }\item[{const int}]{threshold }\end{DoxyParamCaption})}
+
+
+
+Indicate whether the increase in current on the driver current sense pin has exceeded the threshold. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em current\+Sense\+Pin} & The current sense pin input from the motor driver \\
+\hline
+{\em base\+Value} & The base value of the current of the motor (min load) \\
+\hline
+{\em threshold} & The threshold value to use \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the increase exceeds threshold value, else false 
+\end{DoxyReturn}

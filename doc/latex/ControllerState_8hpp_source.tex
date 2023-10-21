@@ -1,0 +1,35 @@
+\doxysection{Controller\+State.\+hpp}
+\hypertarget{ControllerState_8hpp_source}{}\label{ControllerState_8hpp_source}\mbox{\hyperlink{ControllerState_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_CONTROLLER\_STATE\_HPP\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_CONTROLLER\_STATE\_HPP\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classMotorController}{MotorController}};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classControllerState}{ControllerState}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{classMotorController}{MotorController}}\ *controller;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{classControllerState}{ControllerState}}(\mbox{\hyperlink{classMotorController}{MotorController}}\ *pMotorController\ =\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{setController}}(pMotorController);}
+\DoxyCodeLine{00027\ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classControllerState_ab57978aa283df7ee0065306a9597b8f7}{setController}}(\mbox{\hyperlink{classMotorController}{MotorController}}\ *pMotorController)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ controller\ =\ pMotorController;}
+\DoxyCodeLine{00038\ \ \ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ enter()\ =\ 0;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update()\ =\ 0;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ leave()\ =\ 0;}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classControllerState}{\string~ControllerState}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00047\ \};\ \textcolor{comment}{//\ end\ class\ ControllerState}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\_CONTROLLER\_STATE\_HPP\_}}
+
+\end{DoxyCode}

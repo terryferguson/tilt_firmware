@@ -1,0 +1,51 @@
+\doxysection{EMA\texorpdfstring{$<$}{<} K, uint\+\_\+t \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classEMA}{}\label{classEMA}\index{EMA$<$ K, uint\_t $>$@{EMA$<$ K, uint\_t $>$}}
+
+
+Calculates a fast exponential moving average.  
+
+
+
+
+{\ttfamily \#include $<$EMA.\+hpp$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEMA_a31944c28111bf6314ce1955ff943202c}\label{classEMA_a31944c28111bf6314ce1955ff943202c} 
+uint\+\_\+t {\bfseries operator()} (uint\+\_\+t input)
+\begin{DoxyCompactList}\small\item\em Update the filter with the given input and return the filtered output. \end{DoxyCompactList}\item 
+\Hypertarget{classEMA_af45dc7e436ec74a980ea300d94290ee9}\label{classEMA_af45dc7e436ec74a980ea300d94290ee9} 
+void {\bfseries reset} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classEMA_af17019166ce2c5e3515d79530247b54d}\label{classEMA_af17019166ce2c5e3515d79530247b54d} 
+static constexpr uint\+\_\+t {\bfseries half} = 1 $<$$<$ (K -\/ 1)
+\begin{DoxyCompactList}\small\item\em Fixed point representation of one half, used for rounding. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\subsubsection*{template$<$uint8\+\_\+t K, class uint\+\_\+t = uint\+\_\+fast32\+\_\+t$>$\newline
+class EMA$<$ K, uint\+\_\+t $>$}
+Calculates a fast exponential moving average. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em K} & The amount of bits to shift by. This determines the location of the pole in the \doxylink{classEMA}{EMA} transfer function, and therefore the cut-\/off frequency. The higher this number, the more filtering takes place. The pole location is $ 1 - 2^{-K} $.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyAuthor}{Author}
+Terry Paul Ferguson 
+
+\href{mailto:terry@terryferguson.us}{\texttt{ terry@terryferguson.\+us}}
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+EMA.\+hpp\end{DoxyCompactItemize}
