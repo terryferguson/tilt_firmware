@@ -34,10 +34,13 @@ void MotorsHomingBottomFoundState::enter() {
 }
 
 void MotorsHomingBottomFoundState::update() {
-  hasTransition = true;
-  nextStateType = MOTORS_STARTING_STATE;
   // Check if the set position has been reached
   controller->checkIfSetPositionReached();
+  if (abs(controller->getPos() - ALARM_REVERSE_AMOUNT) <= 3) {
+    // Set the transition flag to true
+    hasTransition = true;
+    nextStateType = MOTORS_STOPPED_STATE;
+  }
   controller->handlePid();
   controller->updateMotors();
 }

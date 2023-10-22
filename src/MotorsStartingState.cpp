@@ -82,6 +82,8 @@ void MotorsStartingState::update() {
       // Sample the currents
       controller->sampleCurrents();
 
+      controller->updateLeadingAndLaggingIndicies();
+
       // Handle the PID control
       controller->handlePid();
 

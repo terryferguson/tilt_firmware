@@ -68,6 +68,8 @@ void MotorsMovingState::update() {
       // Check if the set position has been reached
       controller->checkIfSetPositionReached();
 
+      controller->updateLeadingAndLaggingIndicies();
+
       // Handle the PID control
       controller->handlePid();
 

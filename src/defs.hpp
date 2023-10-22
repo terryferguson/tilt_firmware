@@ -87,14 +87,14 @@ constexpr int MICROS_IN_MS = 1000;
 constexpr int MICROS_IN_SEC = (MILLIS_IN_SEC * MICROS_IN_MS);
 
 /** @brief The number of milliseconds over which the soft movement occurs */
-constexpr int SOFT_MOVEMENT_TIME_MS = 500;
+constexpr int SOFT_MOVEMENT_TIME_MS = 1250;
 
 /** @brief The number of microseconds over which the soft movement occurs */
 constexpr int SOFT_MOVEMENT_MICROS = (SOFT_MOVEMENT_TIME_MS * MICROS_IN_MS);
 
 /** @brief The minimum interval between PWM updates in microseconds */
 constexpr int SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS =
-    SOFT_MOVEMENT_MICROS / 2000;
+    SOFT_MOVEMENT_MICROS / 1024;
 
 /** @brief The maximum number of PWM updates over which the soft movement occurs
  */
@@ -182,6 +182,6 @@ constexpr float CURRENT_INCREASE_MULTIPLIER =
     1 + (CURRENT_INCREASE_TOLERANCE_PERCENTAGE / 100.0f);
 
 /** @brief Soft stop time in milliseconds */
-constexpr int SOFT_STOP_TIME_MS = 160;
+constexpr int SOFT_STOP_TIME_MS = 100;
 
 #endif // _DEFS_HPP_

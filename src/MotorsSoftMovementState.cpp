@@ -9,24 +9,33 @@
  * @return void
  */
 void MotorsSoftMovementState::enter() {
+  // Print separator lines to indicate the start of the soft movement state
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                  Entering Soft Movement State           |");
   Serial.println("-----------------------------------------------------------");
 
+  // Reset the transition flag to false
   hasTransition = false;
 
+  // Check if the controller is initialized
   if (nullptr != controller) {
+    // Clear the position change in the controller
     controller->clearPositionChange();
 
-    // Set travel speed to the minimum
+    // Set the travel speed to the default motor speed with the soft movement
+    // time limit
     controller->setSpeed(DEFAULT_MOTOR_SPEED, SOFT_MOVEMENT_TIME_MS);
 
     // Save the start time of the motors
     controller->moveStart = micros();
+
+    // Reset the transition flag to false
     hasTransition = false;
 
+    // Update the motors' positions
     controller->updateMotors();
   } else {
+    // Print error message if the controller is not initialized
     Serial.println("MotorsSoftMovementState - No controller");
   }
 }
@@ -67,6 +76,8 @@ void MotorsSoftMovementState::update() {
 
       // Update the pulse width modulation (PWM)
       updatePWM();
+
+      controller->updateLeadingAndLaggingIndicies();
 
       // Handle the proportional-integral-derivative (PID) control
       controller->handlePid();

@@ -44,10 +44,10 @@ private:
   const float MAX_ACCELERATION_LIMIT = 5.0f;
   const float SPEED_ALPHA = 0.5f;      // The filtering constant for speed.
   const float SETPOINT_WEIGHT = 1.15f; // or 0.8f as per your requirement
-  const int POSITION_DELTA_SPEED_SCALER_EXTEND = 70000;
-  const int POSITION_DELTA_SPEED_SCALER_RETRACT = 70000;
+  const int POSITION_DELTA_SPEED_SCALER_EXTEND = 85000;
+  const int POSITION_DELTA_SPEED_SCALER_RETRACT = 85000;
 
-  const int MAX_POSITION_SCALE_VALUE = 50;
+  const int MAX_POSITION_SCALE_VALUE = 55;
 
 public:
   /**

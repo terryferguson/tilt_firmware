@@ -2,6 +2,11 @@
 #include "MotorController.hpp"
 #include <Arduino.h>
 
+/**
+ * @brief Handle the system entering the find bottom homing state.
+ *
+ * @return void
+ */
 void MotorsHomingFindBottomState::enter() {
   controller->resetSoftMovement();
   controller->resetCurrentInformation();
@@ -15,9 +20,9 @@ void MotorsHomingFindBottomState::enter() {
 }
 
 /**
- * Updates the MotorsHomingFindBottomState.
+ * @brief Update the motor control system in the find bottom homing state.
  *
- * @throws ErrorType description of error
+ * @return void
  */
 void MotorsHomingFindBottomState::update() {
 
@@ -37,14 +42,29 @@ void MotorsHomingFindBottomState::update() {
   controller->updateMotors();
 }
 
+/**
+ * @brief Handle leaving the find bottom homing state
+ *
+ * @return void
+ */
 void MotorsHomingFindBottomState::leave() {
+  // Reset the soft movement of the controller
   controller->resetSoftMovement();
+
+  // Reset the current information of the controller
   controller->resetCurrentInformation();
+
+  // Reset the motor current alarms of the controller
   controller->resetMotorCurrentAlarms();
+
+  // Clear the position change of the controller
   controller->clearPositionChange();
 
+  // Set the hasTransition flag to false
   hasTransition = false;
 
+  // Print a message indicating that the function is leaving the Homing Find
+  // Bottom State
   Serial.println("-----------------------------------------------------------");
   Serial.println("|               Leaving Homing Find Bottom State          |");
   Serial.println("-----------------------------------------------------------");

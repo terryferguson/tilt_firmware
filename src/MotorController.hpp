@@ -49,9 +49,6 @@ private:
   const int motorPulseTotals[NUMBER_OF_MOTORS] = {LEADER_MAX_PULSES,
                                                   FOLLOWER_MAX_PULSES};
 
-  /** @brief Indicates whether system is homing */
-  bool homing = false;
-
   /// @brief Hall sensor pulse totals for the motor travel limit feature
   // const int motorPulseTotals[2] = {2055, 2050};
 
@@ -66,18 +63,6 @@ private:
 
   /** @brief On flash storage for positions motor positions */
   Preferences positionStorage;
-
-  /** @brief Indicates whether the system is stopping */
-  bool stopping = false;
-
-  /** @brief Indicates whether a soft start/stop is queued */
-  bool softStartQueued = true;
-
-  /** @brief Save current for leader after ramp up */
-  int leaderWorkingCurrent = -1;
-
-  /** @brief Save current for follower after ramp up */
-  int followerWorkingCurrent = -1;
 
   int maxCurrent = -1;
 
@@ -209,7 +194,7 @@ public:
   int followerCurrentVelocity = 0;
 
   /** @brief Minimum current to enable alarm system for motors  */
-  int minCurrent = 900;
+  int minCurrent = 300;
 
   /** @brief Current delay for overcurrent alarm system */
   int currentAlarmDelay = 250000;
@@ -255,22 +240,22 @@ public:
   long softMovingTime = -1;
 
   /** @brief Input filter for leader current readings */
-  EMA<1> leaderCurrentFilter;
+  EMA<2> leaderCurrentFilter;
 
   /** @brief Input filter for follower current readings */
-  EMA<1> followerCurrentFilter;
+  EMA<2> followerCurrentFilter;
 
   /** @brief Number of current samples */
   int_fast32_t samples = 0;
 
-  /** @brief Current offset */
-  int currentOffset = 0;
-
   /** @brief Current difference sum */
   int_fast32_t currentDifferenceSum = 0;
 
-  /** @brief Current Sum */
-  int_fast32_t currentSum = 0;
+  /** @brief Leader current sum */
+  int_fast32_t leaderCurrentSum = 0;
+
+  /** @brief Follower current sum */
+  int_fast32_t followerCurrentSum = 0;
 
   /** @brief Time since this movement began in microseconds */
   long moveTimeDelta = 0;
@@ -303,7 +288,7 @@ public:
     speed = targetSpeed = 0;
     systemDirection = Direction::STOP;
     ALL_MOTORS(motors[motor].speed = 0;)
-    ALL_MOTORS(motors[motor].currentAlarmLimit = 1000;)
+    ALL_MOTORS(motors[motor].currentAlarmLimit = CURRENT_LIMIT;)
   }
 
   /**
@@ -405,33 +390,6 @@ public:
     systemDirection = requestedDirection = Direction::RETRACT;
   }
 
-  /**
-   * @brief Stops the motorized system.
-   *
-   * This function stops the motorized system by resetting the soft movement and
-   * setting the speed to 0.
-   */
-  void stop() {
-    // Reset the soft movement
-    pidController.reset(); // Reset the time parameters for PID
-    resetSoftMovement();
-    softStartQueued = true; //
-    pidController.setParams(STOP_KP);
-
-    // Update the requested direction to STOP
-    requestedDirection = Direction::STOP;
-    resetCurrentInformation();
-    motors[LEADER].currentAlarmLimit = CURRENT_LIMIT;
-    motors[FOLLOWER].currentAlarmLimit = CURRENT_LIMIT;
-    if (systemDirection != Direction::RETRACT) {
-      stopping = true;
-      setSpeed(speed - 50, 80);
-      moveStart = micros();
-    } else {
-      immediateHalt();
-    }
-  }
-
   void clearOutOfRange() {
     ALL_MOTORS(motors[motor].outOfRange =
                    false;) ///< Set the outOfRange flag to false for all motors
@@ -439,6 +397,12 @@ public:
 
   /**
    * Halts the system immediately.
+   *
+   * This function immediately halts the system by setting the speed, target
+   * speed, system direction, and requested direction to 0. It also resets the
+   * soft movement and disables the motors. Additionally, it resets the current
+   * update interval, current information, motor current alarms, and position
+   * change.
    *
    * @param None
    *
@@ -448,18 +412,25 @@ public:
    */
   void immediateHalt() {
     speed = targetSpeed = 0;
+    ALL_MOTORS(motors[motor].speed = 0;)
     systemDirection = Direction::STOP;
     requestedDirection = Direction::STOP;
     resetSoftMovement();
-
-    disableMotors();
     currentUpdateInterval = CURRENT_UPDATE_INTERVAL;
-    resetCurrentInformation();
 
-    leaderLastPosChange = -1;
-    followerLastPosChange = -1;
+    resetCurrentInformation();
+    resetMotorCurrentAlarms();
+    clearPositionChange();
+
+    ALL_MOTORS_COMMAND(disable)
+    ALL_MOTORS_COMMAND(update)
   }
 
+  /**
+   * Set the outOfRange flag to false and homing range to true for all motors.
+   *
+   * @throws ErrorType description of error
+   */
   void setHoming() {
     ALL_MOTORS(motors[motor].outOfRange =
                    false;) ///< Set the outOfRange flag to false for all motors
@@ -523,11 +494,24 @@ public:
     }
   }
 
+  /**
+   * Clears the position change variables for the leader and follower.
+   *
+   * @param None
+   *
+   * @return None
+   *
+   * @throws None
+   */
   void clearPositionChange() {
-    leaderLastPos = -9999;
-    followerLastPos = -9999;
-    leaderLastPosChange = -1;
-    followerLastPosChange = -1;
+    leaderLastPos =
+        -9999; // Set the leader's last position to a negative sentinel value.
+    followerLastPos =
+        -9999; // Set the follower's last position to a negative sentinel value.
+    leaderLastPosChange = -1;   // Set the leader's last position change to a
+                                // negative sentinel value.
+    followerLastPosChange = -1; // Set the follower's last position change to a
+                                // negative sentinel value.
   }
 
   /**
@@ -554,7 +538,7 @@ public:
    * @throws None
    */
   void report() {
-    ALL_MOTORS_COMMAND(readPos)
+    ALL_MOTORS_COMMAND(update)
     Serial.printf("MotorController\n--------------------\nSpeed: %d\nTarget "
                   "Speed: %d\n\n",
                   speed, targetSpeed);
@@ -564,20 +548,6 @@ public:
     Serial.printf("Current Alarm Status: %s\n\n",
                   currentAlarmSet ? "true" : "false");
     ALL_MOTORS_COMMAND(displayInfo)
-  }
-
-  /**
-   * @brief Prints the current values of the leader and follower motors.
-   *
-   * @return void
-   */
-  void printCurrent() {
-    // Check if the motors are stopped
-    if (!motorsStopped()) {
-      // Print the current values
-      Serial.printf("Leader Current: %d\n", leaderCurrent);
-      Serial.printf("Follower Current: %d\n", followerCurrent);
-    }
   }
 
   /**
@@ -631,15 +601,16 @@ public:
     // Get the filtered current readings of the leader and follower motors
     leaderCurrent = leaderCurrentFilter(lCurrent);
     followerCurrent = followerCurrentFilter(fCurrent);
+    /*
+        // Calculate the time factor
+        const double timeFactor = 1000000.0 / elapsedTime;
 
-    // Calculate the time factor
-    const double timeFactor = 1000000.0 / elapsedTime;
-
-    // Calculate the velocities of the leader and follower currents
-    leaderCurrentVelocity = static_cast<int>(
-        (leaderCurrent - lastLeaderCurrent) * timeFactor + 0.5);
-    followerCurrentVelocity = static_cast<int>(
-        (followerCurrent - lastFollowerCurrent) * timeFactor + 0.5);
+        // Calculate the velocities of the leader and follower currents
+        leaderCurrentVelocity = static_cast<int>(
+            (leaderCurrent - lastLeaderCurrent) * timeFactor + 0.5);
+        followerCurrentVelocity = static_cast<int>(
+            (followerCurrent - lastFollowerCurrent) * timeFactor + 0.5);
+    */
   }
 
   /**
@@ -655,38 +626,43 @@ public:
    * @return True if both motors are stopped, false otherwise.
    */
   bool motorsStopped() {
+    // Get the current timestamp
     const int timestamp = micros();
 
-    // Check if the leader motor is stopped
-    // bool isLeaderStopped = motors[LEADER].isStopped();
-
-    // Check if the follower motor is stopped
-    // bool isFollowerStopped = motors[FOLLOWER].isStopped();
-
+    // Read the positions of all motors
     ALL_MOTORS_COMMAND(readPos)
 
+    // Get the positions of the leader and follower motors
     const int leaderPos = motors[LEADER].pos;
     const int followerPos = motors[FOLLOWER].pos;
+
+    // Check if the leader motor position has changed
     const bool leaderPositionChanged = leaderPos != leaderLastPos;
+    // Check if the follower motor position has changed
     const bool followerPositionChanged = followerPos != followerLastPos;
 
+    // Update the last position change timestamp for the leader motor
     leaderLastPosChange =
         leaderPositionChanged ? timestamp : leaderLastPosChange;
+    // Update the last position change timestamp for the follower motor
     followerLastPosChange =
         followerPositionChanged ? timestamp : followerLastPosChange;
 
+    // Check if the leader motor is stopped
     const bool isLeaderStopped =
         leaderPositionChanged
             ? false
             : (leaderLastPosChange > 0) &&
                   (timestamp - leaderLastPosChange) > MAX_TIME_SINCE_CHANGE;
 
+    // Check if the follower motor is stopped
     const bool isFollowerStopped =
         followerPositionChanged
             ? false
             : (followerLastPosChange > 0) &&
                   (timestamp - followerLastPosChange) > MAX_TIME_SINCE_CHANGE;
 
+    // Update the last positions of the leader and follower motors
     leaderLastPos = leaderPos;
     followerLastPos = followerPos;
 
@@ -750,21 +726,18 @@ public:
    */
   void handleCurrentAlarm() {
     // Print debug message if debugEnabled is true
-    /*
+
     displayCurrents();
     Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!ALARM!!!!!!!!!!!!!!!!!!");
     Serial.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
 
     immediateHalt();
     systemDirection = requestedDirection = Direction::STOP;
     resetSoftMovement();
     resetCurrentInformation();
 
-
     report();
-    */
   }
 
   /**
@@ -839,13 +812,14 @@ public:
 
     const int currentDifference = abs(leaderCurrent - followerCurrent);
     currentDifferenceSum += currentDifference;
-    currentSum += leaderCurrent;
+    leaderCurrentSum += leaderCurrent;
+    followerCurrentSum += followerCurrent;
     samples++;
   }
 
   /**
-   * Sets the current limit for the leader and follower motors based on the
-   * average current and current offset. Prints the current alarms set to the
+   * Sets the current limit for the leader and follower motors based on their
+   * average current. Prints the current alarms set to the
    * serial monitor.
    *
    * @param None
@@ -855,28 +829,23 @@ public:
    * @throws None
    */
   void setCurrentLimit() {
-    leaderWorkingCurrent = leaderCurrent;
+    if (samples > 0) {
+      const int leaderAverageCurrent = leaderCurrentSum / samples;
+      const int followerAverageCurrent = followerCurrentSum / samples;
 
-    const int averageCurrent = currentSum / samples;
+      const int leaderCurrentLimit =
+          static_cast<int>(leaderAverageCurrent * CURRENT_INCREASE_MULTIPLIER);
 
-    const int currentSetVal = static_cast<int>(
-        (((averageCurrent + ((leaderCurrent + followerCurrent) / 1.75)) / 2)) *
-        CURRENT_INCREASE_MULTIPLIER);
+      const int followerCurrentLimit = static_cast<int>(
+          followerAverageCurrent * CURRENT_INCREASE_MULTIPLIER);
+      Serial.printf("Current alarms set to: Leader => %d, Follower => %d\n",
+                    leaderCurrentLimit, followerCurrentLimit);
 
-    currentOffset = currentDifferenceSum / samples;
+      motors[LEADER].currentAlarmLimit = leaderCurrentLimit;
+      motors[FOLLOWER].currentAlarmLimit = followerCurrentLimit;
 
-    Serial.printf("Current alarms set to: Leader => %d, Follower => %d\n",
-                  currentSetVal, currentSetVal - currentOffset);
-
-    if (systemDirection == Direction::EXTEND) {
-      motors[LEADER].currentAlarmLimit = currentSetVal;
-      motors[FOLLOWER].currentAlarmLimit = currentSetVal - currentOffset;
-    } else if (systemDirection == Direction::RETRACT) {
-      motors[LEADER].currentAlarmLimit = currentSetVal - currentOffset;
-      motors[FOLLOWER].currentAlarmLimit = currentSetVal;
+      currentAlarmSet = true;
     }
-
-    currentAlarmSet = true;
   }
 
   /**
@@ -926,7 +895,6 @@ public:
             systemDirection = Direction::STOP;
 
             immediateHalt();
-            stopping = false;
             report();
           }
         }
@@ -962,6 +930,11 @@ public:
     }
   }
 
+  /**
+   * Handles the current update.
+   *
+   * @return void
+   */
   void handleCurrentUpdate() {
     // Get current time in microseconds
     const long currentTime = micros();
@@ -980,12 +953,12 @@ public:
         // Display the current readings if debug is enabled
         // displayCurrents();
 
-        if (!homing && !currentAlarmSet) {
+        if (!currentAlarmSet) {
           sampleCurrents();
         }
 
-        if (moveTimeDelta > CURRENT_ALARM_DELAY && !homing) {
-          if (!homing && !currentAlarmSet) {
+        if (moveTimeDelta > CURRENT_ALARM_DELAY) {
+          if (!currentAlarmSet) {
             setCurrentLimit();
           }
 
@@ -1027,7 +1000,6 @@ public:
     targetSpeed = -1;
     currentUpdateInterval = CURRENT_UPDATE_INTERVAL;
     pidController.setParams(DEFAULT_KP);
-    softStartQueued = false;
     followerLastPosChange = -1;
     leaderLastPosChange = -1;
   }
@@ -1046,8 +1018,8 @@ public:
     maxCurrent = -1;
     samples = 0;
     currentDifferenceSum = 0;
-    currentSum = 0;
-    currentOffset = 0;
+    leaderCurrentSum = 0;
+    followerCurrentSum = 0;
     resetMotorCurrentAlarms();
     leaderCurrentFilter.reset();
     followerCurrentFilter.reset();
@@ -1063,8 +1035,8 @@ public:
    * @throws None
    */
   void disableMotors() {
-    ALL_MOTORS_COMMAND(disable)
-    ALL_MOTORS_COMMAND(update)
+    immediateHalt();
+    Serial.println("Motors disabled.");
   }
 
   /**
@@ -1106,6 +1078,13 @@ public:
     motors[FOLLOWER].currentAlarmLimit = CURRENT_LIMIT;
   }
 
+  /**
+   * Set the bottom current limit for both the leader and follower motors.
+   *
+   * @param currentLimit the current limit to set
+   *
+   * @throws ErrorType if an error occurs while setting the current limit
+   */
   void setBottomCurrentLimit(const int currentLimit) {
     motors[LEADER].bottomCurrentLimit = currentLimit;
     motors[FOLLOWER].bottomCurrentLimit = currentLimit;

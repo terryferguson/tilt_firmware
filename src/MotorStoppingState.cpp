@@ -20,9 +20,6 @@ void MotorsStoppingState::enter() {
     // Reset PID controller
     controller->resetPid();
 
-    // Set travel speed to the minimum
-    controller->speed -= 50;
-
     // Save the start time of the motors
     controller->moveStart = micros();
 
