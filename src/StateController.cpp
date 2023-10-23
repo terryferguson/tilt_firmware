@@ -94,15 +94,22 @@ inline bool StateController::isStopped() const {
 /**
  * Sets the state of the controller to a new state.
  *
- * @param newState the new state to set the controller to
+ * @param newStateType the new state type to set the controller to
  *
  * @throws None
  */
-void StateController::setState(MotorControllerState newState) {
-  if (currentState != motorsStateMap[newState]) {
-    LEAVE_STATE()
+void StateController::setState(MotorControllerState newStateType) {
+  ControllerState *newState = motorsStateMap[newStateType];
 
-    currentState = motorsStateMap[newState];
+  if (currentState != newState) {
+    if (nullptr != currentState && nullptr != newState) {
+      Serial.printf("State Transition: %s -> %s\n", currentState->getName(), newState->getName());
+    } else if (nullptr == currentState && nullptr != newState) {
+      Serial.printf("Initial State: %s\n", newState->getName());
+    }
+
+    LEAVE_STATE()
+    currentState = newState;
     currentState->enter();
     currentState->update();
   }

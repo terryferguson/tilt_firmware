@@ -97,11 +97,11 @@ public:
   /**
    * Sets the state of the controller to a new state.
    *
-   * @param newState the new state to set the controller to
+   * @param newStateType the new state type to set the controller to
    *
    * @throws None
    */
-  void setState(MotorControllerState newState);
+  void setState(MotorControllerState newStateType);
 
   /**
    * Updates the current state of the motor controller system.
