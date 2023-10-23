@@ -25,6 +25,8 @@ void MotorsStoppingState::enter() {
 
     // Start the ramp down
     controller->setSpeed(0, SOFT_STOP_TIME_MS);
+
+    enteredStateTime = micros();
   } else {
     Serial.println("MotorsStoppingState - No controller");
   }
@@ -170,9 +172,12 @@ void MotorsStoppingState::updatePWM() {
 void MotorsStoppingState::leave() {
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                     Leaving Stopping State              |");
+  Serial.printf("|                Elapsed Time: %6d ms                  |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
   hasTransition = false;
   controller->resetSoftMovement();
   controller->resetCurrentInformation();
   controller->resetMotorCurrentAlarms();
+  enteredStateTime = 0;
 }

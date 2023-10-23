@@ -22,6 +22,8 @@ void MotorsHomingState::enter() {
   // Reset the transition flag
   hasTransition = false;
 
+  enteredStateTime = micros();
+
   // Reset the soft movement data
   controller->resetSoftMovement();
 
@@ -100,5 +102,7 @@ void MotorsHomingState::leave() {
   // Print a message indicating that the function is being executed
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                   Leaving Start Homing State            |");
+  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
 }

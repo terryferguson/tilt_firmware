@@ -43,6 +43,13 @@ public:
    */
   void leave();
 
+  /**
+   * @brief Get the name of this state
+   *
+   * @return name of the state
+   */
+  const char* getName() const { return "MotorsStoppedState"; }
+
   ~MotorsStoppedState(){};
 }; // end class State
 

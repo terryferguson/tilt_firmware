@@ -971,20 +971,6 @@ public:
   }
 
   /**
-   * @brief Checks if the system is stopped or motors are stopped/jammed
-   * and halts the system if so.
-   *
-   * @throws None
-   */
-  void handleMotorsHalted(void) {
-    if (Direction::STOP == systemDirection || motorsStopped()) {
-      ALL_MOTORS_COMMAND(disable)
-      ALL_MOTORS_COMMAND(update)
-      return;
-    }
-  }
-
-  /**
    * Reset the soft movement.
    *
    * @param None

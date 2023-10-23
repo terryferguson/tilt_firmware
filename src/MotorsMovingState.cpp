@@ -13,6 +13,7 @@ void MotorsMovingState::enter() {
   Serial.println("|                      Entering Moving State              |");
   Serial.println("-----------------------------------------------------------");
   hasTransition = false;
+  enteredStateTime = micros();
 }
 
 /**
@@ -91,5 +92,7 @@ void MotorsMovingState::leave() {
   hasTransition = false;
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                      Leaving Moving State               |");
+  Serial.printf("|                Elapsed Time: %6d ms                  |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
 }

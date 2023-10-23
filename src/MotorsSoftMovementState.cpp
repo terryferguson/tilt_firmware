@@ -17,6 +17,8 @@ void MotorsSoftMovementState::enter() {
   // Reset the transition flag to false
   hasTransition = false;
 
+  enteredStateTime = micros();
+
   // Check if the controller is initialized
   if (nullptr != controller) {
     // Clear the position change in the controller
@@ -184,6 +186,8 @@ void MotorsSoftMovementState::updatePWM() {
 void MotorsSoftMovementState::leave() {
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                  Leaving Soft Movement State            |");
+  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
 
   controller->resetSoftMovement();
@@ -191,4 +195,6 @@ void MotorsSoftMovementState::leave() {
   // State transition may cause sufficient lag to cause system to falsely think
   // motors have stopped, so reset timestamps
   controller->clearPositionChange();
+
+  enteredStateTime = 0;
 }

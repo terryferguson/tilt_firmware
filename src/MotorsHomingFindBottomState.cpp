@@ -14,6 +14,8 @@ void MotorsHomingFindBottomState::enter() {
 
   hasTransition = false;
 
+  enteredStateTime = micros();
+
   Serial.println("-----------------------------------------------------------");
   Serial.println("|              Entering Homing Find Bottom State          |");
   Serial.println("-----------------------------------------------------------");
@@ -67,5 +69,8 @@ void MotorsHomingFindBottomState::leave() {
   // Bottom State
   Serial.println("-----------------------------------------------------------");
   Serial.println("|               Leaving Homing Find Bottom State          |");
+  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
+  enteredStateTime = 0;
 }

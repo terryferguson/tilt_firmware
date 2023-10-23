@@ -34,6 +34,8 @@ void MotorsStartingState::enter() {
 
     // Save the start time of the motors
     controller->moveStart = micros();
+
+    enteredStateTime = micros();
     hasTransition = false;
   } else {
     Serial.println("MotorsStoppingState - No controller");
@@ -104,9 +106,12 @@ void MotorsStartingState::update() {
 void MotorsStartingState::leave() {
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                     Leaving Starting State              |");
+  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
   hasTransition = false;
   // State transition may cause sufficient lag to cause system to falsely think
   // motors have stopped, so reset timestamps
   controller->clearPositionChange();
+  enteredStateTime = 0;
 }

@@ -62,6 +62,13 @@ public:
  */
   void updatePWM();
 
+  /**
+   * @brief Get the name of this state
+   *
+   * @return name of the state
+   */
+  const char* getName() const { return "MotorsStoppingState"; }
+
   ~MotorsStoppingState() {}
 
 }; // end class MotorsStoppingState

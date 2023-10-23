@@ -12,6 +12,16 @@
 #include "MotorsStoppedState.hpp"
 #include "MotorsStoppingState.hpp"
 
+#define CHANGE_STATE(s)                                                        \
+  currentState = &s;                                                           \
+  currentState->enter();                                                       \
+  currentState->update();
+
+#define LEAVE_STATE()                                                          \
+  if (currentState != nullptr) {                                               \
+    currentState->leave();                                                     \
+  }
+
 constexpr int NUMBER_OF_MOTOR_STATES = 9;
 
 class StateController {
@@ -47,9 +57,33 @@ class StateController {
    */
   void initializeStateMap();
 
+  /**
+   * @brief Checks if the state can be transitioned to the home state.
+   *
+   * @return true if the state can be transitioned to the home state, false
+   * otherwise
+   */
+  bool canHome() const;
+
+  /**
+   * @brief Checks if the state controller can stop.
+   *
+   * @return true if the current state is not the motors stopping state and
+   *         not the motors stopped state, false otherwise.
+   */
+  bool canStop() const;
+
 public:
   StateController();
   StateController(MotorController *pMotorController);
+
+  /**
+   * @brief Checks if the StateController is in the stopped state.
+   *
+   * @return true if the StateController is in the stopped state, false
+   * otherwise.
+   */
+  bool isStopped() const;
 
   /**
    * Sets the MotorController for the state objects

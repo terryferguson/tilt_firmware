@@ -6,6 +6,8 @@
 #ifndef _CONTROLLER_STATE_HPP_
 #define _CONTROLLER_STATE_HPP_
 
+#include <Arduino.h>
+
 class MotorController;
 
 enum MotorControllerState {
@@ -32,10 +34,12 @@ enum MotorControllerState {
 class ControllerState {
 protected:
   MotorController *controller;
+  long enteredStateTime = 0L;
 
 public:
   ControllerState(MotorController *pMotorController = nullptr) {
     setController(pMotorController);
+    enteredStateTime = 0L;
   }
 
   MotorControllerState type;
@@ -58,6 +62,15 @@ public:
   virtual void update() = 0;
 
   virtual void leave() = 0;
+
+  /**
+   * @brief Get the name of this state
+   *
+   * @return name of the state
+   */
+  virtual const char* getName() const = 0;
+
+  long elapsedTime() const { return micros() - enteredStateTime; }
 
   bool operator==(const ControllerState &rhs) const { return type == rhs.type; }
 

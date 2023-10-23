@@ -60,6 +60,38 @@ void StateController::initializeStateMap() {
 }
 
 /**
+ * @brief Checks if the state can be transitioned to the home state.
+ *
+ * @return true if the state can be transitioned to the home state, false
+ * otherwise
+ */
+inline bool StateController::canHome() const {
+  return (currentState != &motorsHomingState) &&
+         (currentState != &motorsHomingFindBottomState) &&
+         (currentState != &motorsHomingBottomFoundState);
+}
+
+/**
+ * @brief Checks if the state controller can stop.
+ *
+ * @return true if the current state is not the motors stopping state and
+ *         not the motors stopped state, false otherwise.
+ */
+inline bool StateController::canStop() const {
+  return (currentState != &motorsStoppingState) &&
+         (currentState != &motorsStoppedState);
+}
+
+/**
+ * @brief Checks if the StateController is in the stopped state.
+ *
+ * @return true if the StateController is in the stopped state, false otherwise.
+ */
+inline bool StateController::isStopped() const {
+  return currentState == &motorsStoppedState;
+}
+
+/**
  * Sets the state of the controller to a new state.
  *
  * @param newState the new state to set the controller to
@@ -68,9 +100,7 @@ void StateController::initializeStateMap() {
  */
 void StateController::setState(MotorControllerState newState) {
   if (currentState != motorsStateMap[newState]) {
-    if (currentState != nullptr) {
-      currentState->leave();
-    }
+    LEAVE_STATE()
 
     currentState = motorsStateMap[newState];
     currentState->enter();
@@ -95,9 +125,7 @@ inline bool StateController::hasTransition() const {
 void StateController::OnStarting(const Direction &direction) {
   if ((currentState != &motorsStartingState) &&
       (motorController->systemDirection != direction)) {
-    if (currentState != nullptr) {
-      currentState->leave();
-    }
+    LEAVE_STATE()
 
     motorController->systemDirection = direction;
     if (direction == Direction::EXTEND) {
@@ -105,9 +133,7 @@ void StateController::OnStarting(const Direction &direction) {
     } else {
       motorController->retract();
     }
-    currentState = &motorsStartingState;
-    currentState->enter();
-    currentState->update();
+    CHANGE_STATE(motorsStartingState);
   }
 }
 
@@ -121,13 +147,8 @@ void StateController::OnStarting(const Direction &direction) {
  */
 void StateController::OnMoving() {
   if ((currentState == &motorsStartingState)) {
-    if (currentState != nullptr) {
-      currentState->leave();
-    }
-
-    currentState = &motorsMovingState;
-    currentState->enter();
-    currentState->update();
+    LEAVE_STATE()
+    CHANGE_STATE(motorsMovingState);
   }
 }
 
@@ -141,15 +162,9 @@ void StateController::OnMoving() {
  * @throws None
  */
 void StateController::OnStopping() {
-  if ((currentState != &motorsStoppingState &&
-       currentState != &motorsStoppedState)) {
-    if (currentState != nullptr) {
-      currentState->leave();
-    }
-
-    currentState = &motorsStoppingState;
-    currentState->enter();
-    currentState->update();
+  if ((canStop())) {
+    LEAVE_STATE()
+    CHANGE_STATE(motorsStoppingState);
   }
 }
 
@@ -161,14 +176,9 @@ void StateController::OnStopping() {
  * @throws None
  */
 void StateController::OnStopped() {
-  if ((currentState != &motorsStoppedState)) {
-    if (currentState != nullptr) {
-      currentState->leave();
-    }
-
-    currentState = &motorsStoppedState;
-    currentState->enter();
-    currentState->update();
+  if (!isStopped()) {
+    LEAVE_STATE()
+    CHANGE_STATE(motorsStoppedState);
   }
 }
 
@@ -180,15 +190,9 @@ void StateController::OnStopped() {
  * @throws None
  */
 void StateController::OnEndOfRange() {
-  if ((currentState != &motorsEndOfRangeState &&
-       currentState != &motorsStoppedState)) {
-    if (currentState != nullptr) {
-      currentState->leave();
-    }
-
-    currentState = &motorsEndOfRangeState;
-    currentState->enter();
-    currentState->update();
+  if ((currentState != &motorsEndOfRangeState && !isStopped())) {
+    LEAVE_STATE()
+    CHANGE_STATE(motorsEndOfRangeState);
   }
 }
 
@@ -207,16 +211,12 @@ void StateController::OnEndOfRange() {
  * @throws None
  */
 void StateController::OnHome() {
-  if ((currentState != &motorsHomingState &&
-       currentState != &motorsHomingFindBottomState &&
-       currentState != &motorsHomingBottomFoundState)) {
+  if (canHome()) {
     if (currentState != nullptr) {
       currentState->leave();
     }
 
-    currentState = &motorsHomingState;
-    currentState->enter();
-    currentState->update();
+    CHANGE_STATE(motorsHomingState);
   }
 }
 
@@ -229,11 +229,11 @@ void StateController::OnHome() {
  *
  * @throws None
  */
+
 void StateController::update() {
   if (currentState != nullptr && nullptr != motorController) {
     const long timestamp = micros();
-    const int moveStart = motorController->moveStart;
-    const int moveTimeDelta = timestamp - moveStart;
+    const int moveTimeDelta = timestamp - motorController->moveStart;
     const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
 
     motorController->deltaT = deltaT;

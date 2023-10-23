@@ -20,6 +20,8 @@ void MotorsEndOfRangeState::enter() {
   Serial.println("|                 Entering End of Range State             |");
   Serial.println("-----------------------------------------------------------");
 
+  enteredStateTime = micros();
+
   hasTransition = false;
 
   // Check if the motors are close to the end of the range of movement and
@@ -168,5 +170,8 @@ void MotorsEndOfRangeState::leave() {
   hasTransition = false;
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                 Leaving End of Range State              |");
+  Serial.printf("|                    Elapsed Time: %6d ms                  |\n",
+                elapsedTime() / 1000);
   Serial.println("-----------------------------------------------------------");
+  enteredStateTime = 0;
 }
