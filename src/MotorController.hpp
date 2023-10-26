@@ -424,6 +424,7 @@ public:
 
     ALL_MOTORS_COMMAND(disable)
     ALL_MOTORS_COMMAND(update)
+    moveStart = -1;
   }
 
   /**
@@ -857,48 +858,8 @@ public:
    *
    * @throws None
    */
-  void updateSoftMovement() {
-    const long currentTime = micros();
-
+  void updateSoftMovementSpeed() {
     if (targetSpeed >= 0) {
-      // Distance from the current speed to the target speed
-      const int speedDelta = abs(speed - targetSpeed);
-
-      // The time since soft movement started
-      moveTimeDelta = currentTime - softStart;
-
-      // Calculate the time since the last PWM update
-      const long updateTimeDelta = currentTime - lastPWMUpdate;
-
-      if (updateTimeDelta >= SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS) {
-        const bool timeToUpdate = moveTimeDelta < softMovingTime;
-        // Get the true PWM update amount based on the actual elapsed time
-        const float updateAmount =
-            pwmUpdateAmount * (static_cast<float>(updateTimeDelta) /
-                               SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS);
-        const bool speedDeltaEnough = speedDelta >= abs(updateAmount);
-
-        if (timeToUpdate && speedDeltaEnough) {
-
-          const float newSpeed = static_cast<float>(speed + updateAmount);
-          speed = static_cast<int>(floorf(newSpeed));
-          // Serial.printf("Speed <== %d\n", speed);
-          lastPWMUpdate = micros();
-        } else {
-          // Set the speed to the target speed and reset the soft movement if
-          // time expired or there is less than one full update step until we
-          // reach the target speed.
-          speed = targetSpeed;
-          resetSoftMovement();
-
-          if (requestedDirection == Direction::STOP) {
-            systemDirection = Direction::STOP;
-
-            immediateHalt();
-            report();
-          }
-        }
-      }
       if (intermediateSpeed >= 0) {
         // Transition to intermediate speed
         double output = control(intermediateSpeed,
@@ -957,7 +918,7 @@ public:
           sampleCurrents();
         }
 
-        if (moveTimeDelta > CURRENT_ALARM_DELAY) {
+        if (moveStart > -1 && moveTimeDelta > CURRENT_ALARM_DELAY) {
           if (!currentAlarmSet) {
             setCurrentLimit();
           }
