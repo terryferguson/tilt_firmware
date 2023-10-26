@@ -145,7 +145,10 @@ void MotorsStoppingState::updatePWM() {
         const auto newSpeed = controller->speed + truePWMUpdateAmount;
         controller->speed = floorf(newSpeed);
       }
+      controller->updateSoftMovementSpeed();
     } else {
+      controller->updateSoftMovementSpeed();
+      
       // Set the hasTransition flag to true
       hasTransition = true;
       

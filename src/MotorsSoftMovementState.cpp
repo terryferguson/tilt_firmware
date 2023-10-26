@@ -167,8 +167,12 @@ void MotorsSoftMovementState::updatePWM() {
         // Update the speed with the new value
         controller->speed = floorf(newSpeed);
       }
+
+      controller->updateSoftMovementSpeed();
     } else {
       // Set the speed to the target speed
+      controller->updateSoftMovementSpeed();
+
       controller->speed = targetSpeed;
 
       // Set the has transition flag to true

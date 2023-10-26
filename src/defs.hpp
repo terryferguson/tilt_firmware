@@ -152,26 +152,26 @@ constexpr int DESYNC_TOLERANCE = 20;
 constexpr float PID_ALPHA = 33.333333f;
 
 /** @brief The default propotional gain used in PID calculation */
-constexpr int DEFAULT_KP = 79999;
+constexpr int DEFAULT_KP = 433000;
 
 /** @brief The propotional gain used in PID calculation for extension */
-constexpr int RETRACT_KP = 79999;
+constexpr int RETRACT_KP = 433000;
 
 /** @brief The propotional gain used in PID calculation for stopping */
-constexpr int STOP_KP = 79999;
+constexpr int STOP_KP = 433000;
 
 /** @brief The propotional gain used in PID calculation for extension ramping */
-constexpr int EXTEND_RAMP_KP = 79999;
+constexpr int EXTEND_RAMP_KP = 433000;
 
 /** @brief The propotional gain used in PID calculation for retraction ramping
  */
-constexpr int RETRACT_RAMP_KP = 79999;
+constexpr int RETRACT_RAMP_KP = 433000;
 
 /** @brief The integral gain used in PID calculation */
-constexpr float DEFAULT_KI = ((DEFAULT_KP / PID_ALPHA) * 6);
+constexpr float DEFAULT_KI = ((DEFAULT_KP / PID_ALPHA) * 11);
 
 /** @brief The derivative gain used in PID calculation */
-constexpr float DEFAULT_KD = (DEFAULT_KP / (PID_ALPHA * 1.5));
+constexpr float DEFAULT_KD = (DEFAULT_KP / (PID_ALPHA * 23));
 
 /** @brief The tolerance percentage for the current increase before alarm */
 constexpr int CURRENT_INCREASE_TOLERANCE_PERCENTAGE = 30;
