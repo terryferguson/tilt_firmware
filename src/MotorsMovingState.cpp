@@ -52,7 +52,7 @@ void MotorsMovingState::update() {
       }
 
       // Check if the current time has exceeded the current alarm delay
-      if ((currentTime - moveStart) >= CURRENT_ALARM_DELAY) {
+      if (moveStart > -1 && (currentTime - moveStart) >= CURRENT_ALARM_DELAY) {
         // Check if the current alarm is not set, and set the current limit
         if (!currentAlarmSet) {
           controller->setCurrentLimit();

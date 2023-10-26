@@ -918,7 +918,7 @@ public:
           sampleCurrents();
         }
 
-        if (moveStart > 0 && moveTimeDelta > CURRENT_ALARM_DELAY) {
+        if (moveStart > -1 && moveTimeDelta > CURRENT_ALARM_DELAY) {
           if (!currentAlarmSet) {
             setCurrentLimit();
           }
