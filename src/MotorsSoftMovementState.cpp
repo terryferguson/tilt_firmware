@@ -28,9 +28,6 @@ void MotorsSoftMovementState::enter() {
     // time limit
     controller->setSpeed(DEFAULT_MOTOR_SPEED, SOFT_MOVEMENT_TIME_MS);
 
-    // Save the start time of the motors
-    controller->moveStart = micros();
-
     // Reset the transition flag to false
     hasTransition = false;
 

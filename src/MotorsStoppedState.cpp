@@ -36,6 +36,9 @@ void MotorsStoppedState::enter() {
     controller->speed = 0;
     controller->targetSpeed = -1;
 
+    // We're not moving, so there's no move start time. Set to the invalid sentinel value
+    controller->moveStart = -1;
+
     // Disable motors
     controller->disableMotors();
   } else {
@@ -57,6 +60,8 @@ void MotorsStoppedState::update() { controller->updateMotors(); }
  */
 void MotorsStoppedState::leave() {
   hasTransition = false;
+  controller->moveStart = -1;
+
   Serial.println("-----------------------------------------------------------");
   Serial.println("|                     Leaving Stopped State               |");
   Serial.println("-----------------------------------------------------------");
