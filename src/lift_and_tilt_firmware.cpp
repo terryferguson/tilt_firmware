@@ -348,8 +348,7 @@ void loop() {
   const unsigned long printDeltaTime = timestamp - lastPrintTimeStamp;
 
   state_controller.update();
-  if (state_controller.getState() != MOTORS_STOPPED_STATE &&
-      printDeltaTime > MIN_PRINT_TIME_DELTA) {
+  if (printDeltaTime > MIN_PRINT_TIME_DELTA) {
     display_motor_info();
     lastPrintTimeStamp = timestamp;
   }
