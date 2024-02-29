@@ -99,7 +99,7 @@ public:
         const MotorPin r_en, const MotorPin l_en, const MotorPin hall_1,
         const MotorPin hall_2, const adc1_channel_t currentSensePin,
         const int totalPulses, const int freq = PWM_FREQUENCY,
-        const int defSpeed = MIN_MOTOR_TRAVEL_SPEED,
+        const int defSpeed = DEFAULT_MOTOR_SPEED,
         const int pwmRes = PWM_RESOLUTION_BITS, const int bottomLimitPin = -1,
         const int currentLimit = -1, const int alarmCurrentLimit = -1,
         const int stopBuffer = 0);
@@ -147,14 +147,7 @@ public:
    * @return true if the current position has reached or exceeded the current
    * limit and the direction is set to retract, false otherwise.
    */
-  bool hitBottom() const {
-    const int current = getCurrent();
-    if (debugEnabled) {
-      Serial.printf("Current %d <=> Bottom current limit: %d\n", current,
-                    bottomCurrentLimit);
-    }
-    return (current >= bottomCurrentLimit) && (dir == Direction::RETRACT);
-  }
+  bool hitBottom() const;
 
   /**
    * @brief Check if the top has been reached.
@@ -202,13 +195,7 @@ public:
    *
    * @throws None
    */
-  void displayInfo() {
-    Serial.printf("Motor %s - Direction: %s, pos: %d, currentAlarm %d mA\n", id,
-                  directions[static_cast<int>(dir)], pos, currentAlarmLimit);
-    Serial.printf("Motor %s - Speed: %d, desired pos: %d\n", id, speed,
-                  desiredPos);
-    Serial.printf("Motor %s - Max hall position: %d \n\n", id, totalPulseCount);
-  }
+  void displayInfo();
 
   /**
    *@brief Retrieve the current value as milliamps
@@ -234,6 +221,8 @@ public:
     // the PWM resolution.
     speed = constrain(newSpeed, 0, MAX_SPEED);
   }
+
+  void setPos(int newPos);
 
   ~Motor() {}
 }; // end class Motor

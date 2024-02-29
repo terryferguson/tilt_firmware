@@ -4,10 +4,11 @@
 #define _PID_CONTROLLER_HPP__
 
 #include "defs.hpp"
-#include <cstring>
 #include <cmath>
-#include <stdio.h>
+#include <cstring>
 #include <limits>
+#include <stdio.h>
+
 
 /** @class PIDController
  *
@@ -21,36 +22,30 @@
 
 constexpr float MAX_ACCELERATION_INCREASE = 0.01f;
 constexpr float MAX_ACCELERATION_LIMIT = 5.0f;
-constexpr float SPEED_ALPHA = 0.5f; // The filtering constant for speed.
+constexpr float SPEED_ALPHA = 0.5f;     // The filtering constant for speed.
 constexpr float SETPOINT_WEIGHT = 1.1f; // or 0.8f as per your requirement
 
 class PIDController {
 private:
-  
-  
-  float errorIntegral = 0.0f;     /// The  error integral value
-  float previousMeasurement = 0.0f;      /// The previous follower motor measurement 
+  float errorIntegral = 0.0f;       /// The  error integral value
+  float previousMeasurement = 0.0f; /// The previous follower motor measurement
   float positionDifference = 0.0f;
-  float maxSpeedAdjustmentRate= 900.0f;
+  float maxSpeedAdjustmentRate = 900.0f;
   float filteredDerivative = 0.0f;
   const float alpha = 0.5; // Filter constant
-  int K_p;                /// the controller path proportional gain
-  float K_i = DEFAULT_KI; /// the controller's integral component
-  float K_d = DEFAULT_KD; /// the controller's differential component
-  float tau = 1.0f;       /// the controller's low-pass filter time constant
-  int uMax;                       /// Maximum magnitude of control signal
-  float derivative = 0.0f;        /// The derivative term value
+  int K_p;                 /// the controller path proportional gain
+  float K_i = DEFAULT_KI;  /// the controller's integral component
+  float K_d = DEFAULT_KD;  /// the controller's differential component
+  float tau = 1.0f;        /// the controller's low-pass filter time constant
+  int uMax;                /// Maximum magnitude of control signal
+  float derivative = 0.0f; /// The derivative term value
   float limMinInteg, limMaxInteg; /// Anti Windup Integrator Limits
   float lastError = 0.0f;         /// The last error value
   float followerMaxAccel = 1.5f; // New variable for follower's max acceleration
-  int followerMaxSpeed; // New variable for follower's max speed
-  float filteredSpeed = 0.0f;  // Declare filteredSpeed here
-
-  
+  int followerMaxSpeed;          // New variable for follower's max speed
+  float filteredSpeed = 0.0f;    // Declare filteredSpeed here
 
 public:
-  
-
   /**
    * @brief This is the PID controller for motor synchronization
    *
@@ -61,16 +56,20 @@ public:
    * @param uMax Max control signal (speed) for the motors
    */
   PIDController(const int kp = DEFAULT_KP, const float ki = DEFAULT_KI,
-              const float kd = DEFAULT_KD, const float tau = 1.0f,
-              const int uMax = MAX_SPEED)
-    : K_p(kp), K_i(ki), K_d(kd), tau(tau), uMax(uMax), 
-      followerMaxSpeed(0.9 * uMax), // Initialize followerMaxSpeed
-      limMinInteg(-std::numeric_limits<float>::infinity()), // Or another appropriate value
-      limMaxInteg(std::numeric_limits<float>::infinity()), // Or another appropriate value
-      errorIntegral(limMinInteg),  // Now it is safe to use limMinInteg
-      filteredSpeed(0.0f)    {
+                const float kd = DEFAULT_KD, const float tau = 1.0f,
+                const int uMax = MAX_SPEED)
+      : K_p(kp), K_i(ki), K_d(kd), tau(tau), uMax(uMax),
+        followerMaxSpeed(0.9 * uMax), // Initialize followerMaxSpeed
+        limMinInteg(
+            -std::numeric_limits<float>::infinity()), // Or another appropriate
+                                                      // value
+        limMaxInteg(
+            std::numeric_limits<float>::infinity()), // Or another appropriate
+                                                     // value
+        errorIntegral(limMinInteg), // Now it is safe to use limMinInteg
+        filteredSpeed(0.0f) {
 
-    if (debugEnabled) {
+    if (systemState.debugEnabled) {
       Serial.println("PID Controller Initialized");
       Serial.printf("PID Parameters:\n");
       Serial.printf("K_p: %d\n", K_p);
@@ -101,40 +100,48 @@ public:
    * @return The adjusted speed
    */
 
-int adjustSpeed(Motor &leader, Motor &follower, int speed, const float deltaT = 0.0f) {
-    
+  int adjustSpeed(Motor &leader, Motor &follower, int speed,
+                  const float deltaT = 0.0f) {
+
     const float leadingMotorPosition = leader.getNormalizedPos();
     const float laggingMotorPosition = follower.getNormalizedPos();
-    const float error = SETPOINT_WEIGHT * (laggingMotorPosition - leadingMotorPosition);
+    const float error =
+        SETPOINT_WEIGHT * (laggingMotorPosition - leadingMotorPosition);
     const float derivativeTerm = K_d * filteredDerivative;
     const float integralTerm = K_i * errorIntegral;
-    maxSpeedAdjustmentRate += MAX_ACCELERATION_INCREASE * 1000;  // scaling up the increment
-    maxSpeedAdjustmentRate = std::min(maxSpeedAdjustmentRate, followerMaxAccel * 1000);  // scale up the limit
-
+    maxSpeedAdjustmentRate +=
+        MAX_ACCELERATION_INCREASE * 1000; // scaling up the increment
+    maxSpeedAdjustmentRate = std::min(
+        maxSpeedAdjustmentRate, followerMaxAccel * 1000); // scale up the limit
 
     // Update filtered speed before it's used in PID calculations
     filteredSpeed = SPEED_ALPHA * filteredSpeed + (1 - SPEED_ALPHA) * speed;
 
-    // Calculate the derivative and then use it to calculate the filtered derivative
-    if(deltaT > 0.0f) { // Avoid division by zero
-        derivative = (error - lastError) / deltaT;
-        filteredDerivative = alpha * filteredDerivative + (1 - alpha) * derivative;
+    // Calculate the derivative and then use it to calculate the filtered
+    // derivative
+    if (deltaT > 0.0f) { // Avoid division by zero
+      derivative = (error - lastError) / deltaT;
+      filteredDerivative =
+          alpha * filteredDerivative + (1 - alpha) * derivative;
     } else {
-        derivative = 0.0f;
+      derivative = 0.0f;
     }
-    
-    const int proportionalTerm = static_cast<int>(round(error * K_p * 3 ));
-    
+
+    const int proportionalTerm = static_cast<int>(round(error * K_p * 3));
+
     errorIntegral += error * deltaT;
-    errorIntegral = constrain(errorIntegral, limMinInteg, limMaxInteg); // Anti-Windup
+    errorIntegral =
+        constrain(errorIntegral, limMinInteg, limMaxInteg); // Anti-Windup
 
     int u = speed - (proportionalTerm + integralTerm + derivativeTerm);
-    const float maxDeltaSpeed = maxSpeedAdjustmentRate * deltaT * 0.001;  // scaling down the adjustment rate
+    const float maxDeltaSpeed = maxSpeedAdjustmentRate * deltaT *
+                                0.001; // scaling down the adjustment rate
     int adjustedDeltaSpeed = constrain(u, -maxDeltaSpeed, maxDeltaSpeed);
     int adjustedSpeed = speed + adjustedDeltaSpeed;
-    adjustedSpeed = constrain(adjustedSpeed, 0, followerMaxSpeed); // Apply follower's speed limit
-    
-    if (debugEnabled) {
+    adjustedSpeed = constrain(adjustedSpeed, 0,
+                              followerMaxSpeed); // Apply follower's speed limit
+
+    if (systemState.debugEnabled) {
       // Debug prints
     }
 
@@ -144,12 +151,10 @@ int adjustSpeed(Motor &leader, Motor &follower, int speed, const float deltaT = 
   }
 
   void setFollowerMaxAccel(float newMaxAccel) {
-        followerMaxAccel = newMaxAccel;
-    }
+    followerMaxAccel = newMaxAccel;
+  }
 
-    void setFollowerMaxSpeed(int newMaxSpeed) {
-        followerMaxSpeed = newMaxSpeed;
-    }
+  void setFollowerMaxSpeed(int newMaxSpeed) { followerMaxSpeed = newMaxSpeed; }
 
   /**
    * @brief Reports the PID parameters.
@@ -167,25 +172,25 @@ int adjustSpeed(Motor &leader, Motor &follower, int speed, const float deltaT = 
     Serial.printf("Max Speed: %d\n", uMax);
     Serial.printf("Position Difference: %f\n", positionDifference);
     Serial.println("---------------------------");
-
   }
 
+  void setUMax(int newUMax) {
+    uMax = newUMax;
+    limMaxInteg =
+        K_i != 0.0f ? uMax / K_i : std::numeric_limits<float>::infinity();
+    // Ensure errorIntegral is within the new limits
+    errorIntegral = constrain(errorIntegral, limMinInteg, limMaxInteg);
+  }
 
-void setUMax(int newUMax) {
-        uMax = newUMax;
-        limMaxInteg = K_i != 0.0f ? uMax / K_i : std::numeric_limits<float>::infinity();
-        // Ensure errorIntegral is within the new limits
-        errorIntegral = constrain(errorIntegral, limMinInteg, limMaxInteg);
-    }
-
-void setKd(float newKd) {
-    K_d = newKd;
-}
-void setKi(float newKi) {
-    if(fabs(newKi) < 1e-6) { // Checks if newKi is almost zero
+  void setKd(float newKd) { K_d = newKd; }
+  void setKi(float newKi) {
+    if (fabs(newKi) < 1e-6) { // Checks if newKi is almost zero
       K_i = 0.0f;
-      limMinInteg = -std::numeric_limits<float>::infinity(); // Changed to negative infinity
-      limMaxInteg = std::numeric_limits<float>::infinity(); // Changed to positive infinity
+      limMinInteg =
+          -std::numeric_limits<float>::infinity(); // Changed to negative
+                                                   // infinity
+      limMaxInteg = std::numeric_limits<float>::infinity(); // Changed to
+                                                            // positive infinity
     } else {
       K_i = newKi;
       limMinInteg = -uMax / K_i; // Recalculated the minimum limit

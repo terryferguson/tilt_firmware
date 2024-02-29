@@ -16,8 +16,9 @@
  */
 class MotorsStartingState : public ControllerState {
 public:
-  MotorsStartingState() {}
+  MotorsStartingState() { type = MOTORS_STARTING_STATE; }
   MotorsStartingState(MotorController *pMotorController) {
+    type = MOTORS_STARTING_STATE;
     ControllerState::setController(pMotorController);
   }
 
@@ -52,7 +53,7 @@ public:
    *
    * @return name of the state
    */
-  const char* getName() const { return "MotorsStartingState"; }
+  const char *getName() const { return "MotorsStartingState"; }
 
   ~MotorsStartingState() {}
 

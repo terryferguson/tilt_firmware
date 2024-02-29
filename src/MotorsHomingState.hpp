@@ -21,25 +21,26 @@ private:
   long currentAlarmStart = 0;
 
 public:
-  MotorsHomingState() {}
+  MotorsHomingState() { type = MOTORS_START_HOMING_STATE; }
   MotorsHomingState(MotorController *pMotorController) {
+    type = MOTORS_START_HOMING_STATE;
     ControllerState::setController(pMotorController);
   }
 
   /**
- * @brief Enter the MotorsHomingState.
- *
- * This function enables the PID controller, resets the transition flag,
- * resets the soft movement data, resets the current information, resets
- * the motor current alarms, sets the motor speed to the minimum travel
- * speed, applies the motor speed, sets the bottom current limit, sets
- * the homing mode, records the current time, retracts the controller,
- * and prints a message indicating the start of the homing state.
- *
- * @throws None
- * 
- * @returns void
- */
+   * @brief Enter the MotorsHomingState.
+   *
+   * This function enables the PID controller, resets the transition flag,
+   * resets the soft movement data, resets the current information, resets
+   * the motor current alarms, sets the motor speed to the minimum travel
+   * speed, applies the motor speed, sets the bottom current limit, sets
+   * the homing mode, records the current time, retracts the controller,
+   * and prints a message indicating the start of the homing state.
+   *
+   * @throws None
+   *
+   * @returns void
+   */
   void enter();
 
   /**
@@ -61,7 +62,7 @@ public:
    *
    * @return name of the state
    */
-  const char* getName() const { return "MotorsHomingState"; }
+  const char *getName() const { return "MotorsHomingState"; }
 
 }; // end class MotorsHomingState
 

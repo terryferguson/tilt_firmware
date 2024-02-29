@@ -16,9 +16,10 @@
  */
 class MotorsStoppedState : public ControllerState {
 public:
-  MotorsStoppedState() {}
+  MotorsStoppedState() { type = MOTORS_STOPPED_STATE; }
 
   MotorsStoppedState(MotorController *pMotorController) {
+    type = MOTORS_STOPPED_STATE;
     ControllerState::setController(pMotorController);
   }
 
@@ -48,7 +49,7 @@ public:
    *
    * @return name of the state
    */
-  const char* getName() const { return "MotorsStoppedState"; }
+  const char *getName() const { return "MotorsStoppedState"; }
 
   ~MotorsStoppedState(){};
 }; // end class State

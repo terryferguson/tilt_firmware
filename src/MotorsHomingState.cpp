@@ -1,5 +1,6 @@
 #include "MotorsHomingState.hpp"
 #include "MotorController.hpp"
+#include "debugging.hpp"
 #include "defs.hpp"
 #include <Arduino.h>
 
@@ -52,9 +53,14 @@ void MotorsHomingState::enter() {
   controller->retract();
 
   // Print a message indicating the start of the homing state
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                  Entering Start Homing State            |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                  Entering Start Homing State            |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 }
 
 void MotorsHomingState::update() {
@@ -100,9 +106,14 @@ void MotorsHomingState::leave() {
   hasTransition = false;
 
   // Print a message indicating that the function is being executed
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                   Leaving Start Homing State            |");
-  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                   Leaving Start Homing State            |");
+    Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                  elapsedTime() / 1000);
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 }

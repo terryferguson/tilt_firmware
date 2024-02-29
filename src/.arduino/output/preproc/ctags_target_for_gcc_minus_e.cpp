@@ -490,7 +490,7 @@ void loop() {
 }
 
 void display_motor_info(void) {
-  if (debugEnabled) {
+  if (systemState.debugEnabled) {
     motor_controller.report();
   }
 }

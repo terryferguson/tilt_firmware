@@ -16,9 +16,14 @@ void MotorsHomingFindBottomState::enter() {
 
   enteredStateTime = micros();
 
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|              Entering Homing Find Bottom State          |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|              Entering Homing Find Bottom State          |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 }
 
 /**
@@ -31,7 +36,7 @@ void MotorsHomingFindBottomState::update() {
   // Check if the motors have stopped
   if (controller->motorsStopped()) {
     // Print message to serial monitor
-    Serial.println("Bottom Found.");
+    DebugPrintln("Bottom Found.");
 
     // Set transition flag to true
     hasTransition = true;
@@ -39,6 +44,8 @@ void MotorsHomingFindBottomState::update() {
     // Set next state type to MOTORS_HOMING_BOTTOM_FOUND_STATE
     nextStateType = MOTORS_HOMING_BOTTOM_FOUND_STATE;
   }
+
+  controller->handlePid();
 
   // Update the motors
   controller->updateMotors();
@@ -67,10 +74,15 @@ void MotorsHomingFindBottomState::leave() {
 
   // Print a message indicating that the function is leaving the Homing Find
   // Bottom State
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|               Leaving Homing Find Bottom State          |");
-  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|               Leaving Homing Find Bottom State          |");
+    Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                  elapsedTime() / 1000);
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
   enteredStateTime = 0;
 }

@@ -1,5 +1,6 @@
 #include "MotorsEndOfRangeState.hpp"
 #include "MotorController.hpp"
+#include "debugging.hpp"
 #include <Arduino.h>
 
 /**
@@ -12,13 +13,14 @@
  * @throws None
  */
 void MotorsEndOfRangeState::enter() {
-  // Store the relevant variables from the controller object
-  const auto speed = controller->speed;
-  const auto targetSpeed = controller->targetSpeed;
-
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                 Entering End of Range State             |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                 Entering End of Range State             |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 
   enteredStateTime = micros();
 
@@ -28,10 +30,13 @@ void MotorsEndOfRangeState::enter() {
   // are not in a soft-stop, and aren't ramping up/down, then set the speed
   // to end of range speed
   if (nullptr != controller) {
+    // Store the relevant variables from the controller object
+    const auto speed = controller->speed;
+
     if (speed != MOTOR_END_OF_RANGE_SPEED) {
       controller->setSpeed(MOTOR_END_OF_RANGE_SPEED, 80);
     } else {
-      Serial.println("MotorsEndOfRangeState - No controller");
+      DebugPrintln("MotorsEndOfRangeState - No controller");
     }
   }
 }
@@ -50,6 +55,7 @@ void MotorsEndOfRangeState::update() {
     const auto currentTime = micros();
     const auto moveStart = controller->moveStart;
     const auto currentAlarmSet = controller->currentAlarmSet;
+    const auto alarmTriggered = controller->alarmTriggered;
 
     // Check if the motors have stopped
     if (controller->motorsStopped()) {
@@ -77,6 +83,14 @@ void MotorsEndOfRangeState::update() {
       // Check if the set position has been reached
       controller->checkIfSetPositionReached();
 
+      // Check if we are close to the set position
+      if (controller->motorsNearDesiredPosition()) {
+        hasTransition = true;
+        nextStateType = MOTORS_STOPPING_STATE;
+      }
+
+      controller->updateLeadingAndLaggingIndicies();
+
       // Handle the PID control
       controller->handlePid();
 
@@ -85,7 +99,7 @@ void MotorsEndOfRangeState::update() {
     }
   } else {
     // Print error message if no controller object exists
-    Serial.println("MotorsEndOfRangeState - No controller");
+    DebugPrintln("MotorsEndOfRangeState - No controller");
   }
 }
 
@@ -168,10 +182,15 @@ void MotorsEndOfRangeState::updatePWM() {
  */
 void MotorsEndOfRangeState::leave() {
   hasTransition = false;
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                 Leaving End of Range State              |");
-  Serial.printf("|                    Elapsed Time: %6d ms                  |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                 Leaving End of Range State              |");
+    Serial.printf("|                    Elapsed Time: %6d ms        |\n",
+                  elapsedTime() / 1000);
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
   enteredStateTime = 0;
 }

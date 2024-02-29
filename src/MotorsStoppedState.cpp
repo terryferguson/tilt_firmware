@@ -1,6 +1,6 @@
-// clang-format off
 #include "MotorsStoppedState.hpp"
 #include "MotorController.hpp"
+#include "debugging.hpp"
 #include <Arduino.h>
 
 /**
@@ -9,15 +9,21 @@
  * @return void
  */
 void MotorsStoppedState::enter() {
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                    Entering Stopped State               |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                    Entering Stopped State               |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 
   hasTransition = false;
 
   if (nullptr != controller) {
     // Reset current information
     controller->resetCurrentInformation();
+    controller->alarmTriggered = false;
 
     // Reset the current alarms
     controller->resetMotorCurrentAlarms();
@@ -35,14 +41,21 @@ void MotorsStoppedState::enter() {
     // Reset speeds
     controller->speed = 0;
     controller->targetSpeed = -1;
+    controller->intermediateSpeed = -1;
 
-    // We're not moving, so there's no move start time. Set to the invalid sentinel value
+    // Reset desired position
+    controller->resetDesiredPosition();
+
+    // We're not moving, so there's no move start time. Set to the invalid
+    // sentinel value
     controller->moveStart = -1;
 
     // Disable motors
     controller->disableMotors();
+
+    controller->report();
   } else {
-    Serial.println("Motors Stopped State - No controller");
+    DebugPrintln("Motors Stopped State - No controller");
   }
 }
 
@@ -60,9 +73,35 @@ void MotorsStoppedState::update() { controller->updateMotors(); }
  */
 void MotorsStoppedState::leave() {
   hasTransition = false;
-  controller->moveStart = -1;
+  controller->resetCurrentInformation();
+  controller->alarmTriggered = false;
 
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                     Leaving Stopped State               |");
-  Serial.println("-----------------------------------------------------------");
+  // Reset the current alarms
+  controller->resetMotorCurrentAlarms();
+
+  // Reset soft movement
+  controller->resetSoftMovement();
+
+  // Clear timestamps for position changes
+  controller->clearPositionChange();
+
+  // We're not moving, so there's no move start time.
+  controller->moveStart = 0UL;
+
+  // Reset speeds
+  controller->speed = 0;
+  controller->targetSpeed = -1;
+  controller->intermediateSpeed = -1;
+
+  // Save the motor positions and system state
+  systemState.SaveMotorPostions();
+
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                     Leaving Stopped State               |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 }

@@ -1,5 +1,6 @@
 #include "MotorsHomingBottomFoundState.hpp"
 #include "MotorController.hpp"
+#include "debugging.hpp"
 #include <Arduino.h>
 
 void MotorsHomingBottomFoundState::enter() {
@@ -10,13 +11,18 @@ void MotorsHomingBottomFoundState::enter() {
   // Set the transition flag to false
   hasTransition = false;
 
-  enteredStateTime  = micros();
+  enteredStateTime = micros();
 
   // Print the message indicating that we are entering the Homing Bottom Found
   // State
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|              Entering Homing Bottom Found State         |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|              Entering Homing Bottom Found State         |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 
   // Zero the controller position
   controller->zero();
@@ -38,9 +44,11 @@ void MotorsHomingBottomFoundState::enter() {
 /**
  * Updates the MotorsHomingBottomFoundState.
  *
- * This function is responsible for updating the MotorsHomingBottomFoundState by performing the following steps:
+ * This function is responsible for updating the MotorsHomingBottomFoundState by
+ * performing the following steps:
  * 1. Checks if the set position has been reached.
- * 2. Checks if the current position is within 3 units of the reverse alarm position.
+ * 2. Checks if the current position is within 3 units of the reverse alarm
+ * position.
  * 3. Sets the transition flag to true if the condition is met.
  * 4. Sets the next state type to MOTORS_STOPPED_STATE if the condition is met.
  * 5. Updates the PID controller.
@@ -52,13 +60,17 @@ void MotorsHomingBottomFoundState::update() {
   // Check if the set position has been reached
   controller->checkIfSetPositionReached();
 
-  // Check if the current position is within 3 units of the reverse alarm position
+  // Check if the current position is within 3 units of the reverse alarm
+  // position
   if (abs(controller->getPos() - ALARM_REVERSE_AMOUNT) <= 3) {
     // Set the transition flag to true
     hasTransition = true;
 
     // Set the next state type to MOTORS_STOPPED_STATE
     nextStateType = MOTORS_STOPPED_STATE;
+
+    // Save system state
+    systemState.Serialize();
   }
 
   // Update the PID controller
@@ -99,10 +111,15 @@ void MotorsHomingBottomFoundState::leave() {
   // Set the motor speed to the default value
   controller->speed = DEFAULT_MOTOR_SPEED;
 
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|               Leaving Homing Bottom Found State         |");
-  Serial.printf("|                Elapsed Time: %6d ms                 |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|               Leaving Homing Bottom Found State         |");
+    Serial.printf("|                Elapsed Time: %6d ms                 |\n",
+                  elapsedTime() / 1000);
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
   enteredStateTime = 0;
 }

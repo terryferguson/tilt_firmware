@@ -1,5 +1,9 @@
 #include "Motor.hpp"
 #include "Arduino.h"
+#include "SystemState.hpp"
+#include "debugging.hpp"
+
+extern SystemState systemState;
 
 Motor::Motor() {}
 
@@ -46,10 +50,14 @@ void Motor::initialize() {
   ledcSetup(pwmLChannel, frequency, pwmResolution);
 
   motorAttachPin(rPWM_Pin, pwmRChannel);
-  Serial.printf("Attaching pin %d to RPWM Channel %d\n", rPWM_Pin, pwmRChannel);
   motorAttachPin(lPWM_Pin, pwmLChannel);
-  Serial.printf("Attaching pin %d to LPWM Channel %d\n\n", lPWM_Pin,
-                pwmLChannel);
+
+  if (systemState.debugEnabled) {
+    Serial.printf("Attaching pin %d to RPWM Channel %d\n", rPWM_Pin,
+                  pwmRChannel);
+    Serial.printf("Attaching pin %d to LPWM Channel %d\n\n", lPWM_Pin,
+                  pwmLChannel);
+  }
 
   pinMode(bottomLimitPin, INPUT_PULLUP);
 
@@ -68,26 +76,28 @@ void Motor::initialize() {
   pos = distanceSensor.getCount();
   currentSense.initialize(currentSensePin);
 
-  Serial.printf("Motor: %s\n"
-                "-------------------\n"
-                "Frequency:    %5d\n"
-                "Resolution:   %5d\n"
-                "Speed:        %5d\n"
-                "Position:     %5d\n"
-                "R_EN Pin:     %5d\n"
-                "L_EN Pin:     %5d\n"
-                "RPWM Pin:     %5d\n"
-                "LPWM Pin:     %5d\n"
-                "Hall 1 Pin:   %5d\n"
-                "Hall 2 Pin:   %5d\n"
-                "Max Position: %5d\n\n"
-                "Stop Buffer: %5d pulses\n\n"
-                "Alarm Current: %5d mA\n\n",
-                id, frequency, pwmResolution, speed, pos, r_EN_Pin, l_EN_Pin,
-                rPWM_Pin, lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount,
-                stopBuffer, currentAlarmLimit);
-  Serial.printf("RPWM Channel %d - LPWM Channel: %d\n\n", pwmRChannel,
-                pwmLChannel);
+  if (systemState.debugEnabled) {
+    Serial.printf("Motor: %s\n"
+                  "-------------------\n"
+                  "Frequency:    %5d\n"
+                  "Resolution:   %5d\n"
+                  "Speed:        %5d\n"
+                  "Position:     %5d\n"
+                  "R_EN Pin:     %5d\n"
+                  "L_EN Pin:     %5d\n"
+                  "RPWM Pin:     %5d\n"
+                  "LPWM Pin:     %5d\n"
+                  "Hall 1 Pin:   %5d\n"
+                  "Hall 2 Pin:   %5d\n"
+                  "Max Position: %5d\n\n"
+                  "Stop Buffer: %5d pulses\n\n"
+                  "Alarm Current: %5d mA\n\n",
+                  id, frequency, pwmResolution, speed, pos, r_EN_Pin, l_EN_Pin,
+                  rPWM_Pin, lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount,
+                  stopBuffer, currentAlarmLimit);
+    Serial.printf("RPWM Channel %d - LPWM Channel: %d\n\n", pwmRChannel,
+                  pwmLChannel);
+  }
 }
 
 /**
@@ -162,8 +172,25 @@ void Motor::disable() {
     motorPinWrite(r_EN_Pin, HIGH);
     motorPinWrite(l_EN_Pin, HIGH);
     speed = 0;
-    Serial.printf("Disabled motor: %s\n", id);
+    DebugPrint("Disabled motor: ");
+    DebugPrintln(id);
   }
+}
+
+/**
+ * @brief Checks if the current position has reached or exceeded the current
+ * limit and if the direction is set to retract.
+ *
+ * @return true if the current position has reached or exceeded the current
+ * limit and the direction is set to retract, false otherwise.
+ */
+bool Motor::hitBottom() const {
+  const int current = getCurrent();
+  if (systemState.debugEnabled) {
+    Serial.printf("Current %d <=> Bottom current limit: %d\n", current,
+                  bottomCurrentLimit);
+  }
+  return (current >= bottomCurrentLimit) && (dir == Direction::RETRACT);
 }
 
 /**
@@ -181,9 +208,9 @@ void Motor::update(const int newSpeed) {
   if (!homing) {
     goingPastBottom = (pos < stopBuffer) && dir == Direction::RETRACT;
   } else {
-    speed = speed <= MIN_MOTOR_TRAVEL_SPEED ? speed : MIN_MOTOR_TRAVEL_SPEED;
-    goingPastBottom = hitBottom();
-    // Serial.printf("Motor current: %d\n", getCurrent());
+    // speed = speed <= MIN_MOTOR_TRAVEL_SPEED ? speed : MIN_MOTOR_TRAVEL_SPEED;
+    //  goingPastBottom = hitBottom();
+    //  Serial.printf("Motor current: %d\n", getCurrent());
   }
 
   // Check if the motor is going past the top limit
@@ -191,6 +218,10 @@ void Motor::update(const int newSpeed) {
 
   // Check whether the motor is out of range
   outOfRange = goingPastTop || goingPastBottom;
+  if (outOfRange) {
+    DebugPrint("Motor out of range: ");
+    DebugPrintln(id);
+  }
 
   // If the motor is out of range or in the STOP direction, stop it
   if (outOfRange || dir == Direction::STOP) {
@@ -211,4 +242,30 @@ void Motor::update(const int newSpeed) {
   } else {
     drive(dir, newSpeed);
   }
+}
+
+/**
+ * @brief Displays information about the motor.
+ *
+ * @param None
+ *
+ * @return None
+ *
+ * @throws None
+ */
+void Motor::displayInfo() {
+  if (!systemState.debugEnabled) {
+    return;
+  }
+
+  Serial.printf("Motor %s - Direction: %s, pos: %d, currentAlarm %d mA\n", id,
+                directions[static_cast<int>(dir)], pos, currentAlarmLimit);
+  Serial.printf("Motor %s - Speed: %d, desired pos: %d\n", id, speed,
+                desiredPos);
+  Serial.printf("Motor %s - Max hall position: %d \n\n", id, totalPulseCount);
+}
+
+void Motor::setPos(int newPos) {
+  pos = newPos;
+  distanceSensor.setCount(newPos);
 }

@@ -6,20 +6,24 @@
 #ifndef _CONTROLLER_STATE_HPP_
 #define _CONTROLLER_STATE_HPP_
 
+#include "SystemState.hpp"
 #include <Arduino.h>
+
+extern SystemState systemState;
 
 class MotorController;
 
 enum MotorControllerState {
-  MOTORS_STOPPED_STATE,
-  MOTORS_STARTING_STATE,
-  MOTORS_SOFT_MOVEMENT_STATE,
-  MOTORS_STOPPING_STATE,
-  MOTORS_MOVING_STATE,
-  MOTORS_END_OF_RANGE_STATE,
-  MOTORS_START_HOMING_STATE,
-  MOTORS_HOMING_FIND_BOTTOM_STATE,
-  MOTORS_HOMING_BOTTOM_FOUND_STATE,
+  MOTORS_STOPPED_STATE,             // 1
+  MOTORS_STARTING_STATE,            // 2
+  MOTORS_SOFT_MOVEMENT_STATE,       // 3
+  MOTORS_STOPPING_STATE,            // 4
+  MOTORS_MOVING_STATE,              // 5
+  MOTORS_END_OF_RANGE_STATE,        // 6
+  MOTORS_START_HOMING_STATE,        // 7
+  MOTORS_HOMING_FIND_BOTTOM_STATE,  // 8
+  MOTORS_HOMING_BOTTOM_FOUND_STATE, // 9
+  MOTORS_CURRENT_ALARM_STATE,       // 10
 };
 
 /** @class ControllerState
@@ -34,12 +38,14 @@ enum MotorControllerState {
 class ControllerState {
 protected:
   MotorController *controller;
-  long enteredStateTime = 0L;
+  unsigned long enteredStateTime = 0L;
 
 public:
   ControllerState(MotorController *pMotorController = nullptr) {
     setController(pMotorController);
-    enteredStateTime = 0L;
+    enteredStateTime = 0UL;
+    nextStateType = MOTORS_STOPPED_STATE;
+    type = MOTORS_STOPPED_STATE;
   }
 
   MotorControllerState type;
@@ -68,9 +74,9 @@ public:
    *
    * @return name of the state
    */
-  virtual const char* getName() const = 0;
+  virtual const char *getName() const = 0;
 
-  long elapsedTime() const { return micros() - enteredStateTime; }
+  unsigned long elapsedTime() const { return (micros() - enteredStateTime); }
 
   bool operator==(const ControllerState &rhs) const { return type == rhs.type; }
 

@@ -1,8 +1,8 @@
 /*! \file defs.hpp */
 #ifndef _DEFS_HPP_
 #define _DEFS_HPP_
-
-#define countof(a) (sizeof(a) / sizeof(*(a)))
+#define countof(x)                                                             \
+  ((sizeof(x) / sizeof(0 [x])) / ((size_t)(!(sizeof(x) % sizeof(0 [x])))))
 
 #include "Commands.hpp"
 #include "ControlPins.hpp"
@@ -23,11 +23,20 @@ constexpr int NUM_POSITION_SLOTS = 5;
 /** @brief String representations of the names of position slots */
 extern const char *save_position_slot_names[];
 
+/** @brief String representations of the names of configuration slots */
+extern const char *save_configuration_slot_names[];
+
 /**
  * @brief Storage for position in hall sensor pusles relative to initial
  * position when powered on
  */
 extern int savedPositions[];
+
+/**
+ * @brief Storage for configuration position in hall sensor pusles relative to
+ * initial position when powered on
+ */
+extern int savedConfigurations[];
 
 /** @brief Whether PID is on or off */
 extern bool pid_on;
@@ -44,10 +53,10 @@ constexpr int FORMAT_SPIFFS_IF_FAILED = true;
 constexpr int NUMBER_OF_MOTORS = 2;
 
 /** @brief Number of pulses for leader motor's maximum extension */
-constexpr int LEADER_MAX_PULSES = 2845;
+constexpr int LEADER_MAX_PULSES = 8085;
 
 /** @brief Number of pulses for follower motor's maximum extension */
-constexpr int FOLLOWER_MAX_PULSES = 2845;
+constexpr int FOLLOWER_MAX_PULSES = 8085;
 
 /** @brief The frequency of the PWM signal sent to the motor controllers */
 constexpr int PWM_FREQUENCY = 20000;
@@ -60,14 +69,14 @@ constexpr int PWM_RESOLUTION_BITS = 8;
 constexpr int ADC_RESOLUTION_BITS = 12;
 
 /** @brief The default speed of the motors given in PWM value */
-constexpr int DEFAULT_MOTOR_SPEED = (1 << PWM_RESOLUTION_BITS) - 1;
+constexpr int DEFAULT_MOTOR_SPEED = 255;
 
 /** @brief The motor speed at the extremes of the range. Should be <
  * `DEFAULT_MOTOR_SPEED` */
 constexpr int MOTOR_END_OF_RANGE_SPEED = 155;
 
 /** @brief Minimum travel speed */
-constexpr int MIN_MOTOR_TRAVEL_SPEED = 105;
+constexpr int MIN_MOTOR_TRAVEL_SPEED = 155;
 
 /** @brief The difference in speed values between
  * `DEFAULT_MOTOR_SPEED` and `MOTOR_END_OF_RANGE_SPEED` */
@@ -78,28 +87,24 @@ constexpr int MOTOR_END_OF_RANGE_SPEED_DELTA =
 constexpr int SET_POSITION_BUFFER = 10;
 
 /** @brief The number of milliseconds in a second */
-constexpr int MILLIS_IN_SEC = 1000;
+constexpr unsigned long MILLIS_IN_SEC = 1000UL;
 
 /** @brief The number of microseconds in a millisecond */
-constexpr int MICROS_IN_MS = 1000;
+constexpr unsigned long MICROS_IN_MS = 1000UL;
 
 /** @brief The number of microseconds in a second */
-constexpr int MICROS_IN_SEC = (MILLIS_IN_SEC * MICROS_IN_MS);
+constexpr unsigned long MICROS_IN_SEC = (MILLIS_IN_SEC * MICROS_IN_MS);
 
 /** @brief The number of milliseconds over which the soft movement occurs */
-constexpr int SOFT_MOVEMENT_TIME_MS = 1250;
+constexpr unsigned long SOFT_MOVEMENT_TIME_MS = 1000UL;
 
 /** @brief The number of microseconds over which the soft movement occurs */
-constexpr int SOFT_MOVEMENT_MICROS = (SOFT_MOVEMENT_TIME_MS * MICROS_IN_MS);
+constexpr unsigned long SOFT_MOVEMENT_MICROS =
+    (SOFT_MOVEMENT_TIME_MS * MICROS_IN_MS);
 
 /** @brief The minimum interval between PWM updates in microseconds */
-constexpr int SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS =
-    SOFT_MOVEMENT_MICROS / 1024;
-
-/** @brief The maximum number of PWM updates over which the soft movement occurs
- */
-constexpr int SOFT_MOVEMENT_UPDATE_STEPS =
-    (SOFT_MOVEMENT_MICROS / SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS);
+constexpr unsigned long SOFT_MOVEMENT_PWM_UPDATE_INTERVAL_MICROS =
+    SOFT_MOVEMENT_MICROS / 1000UL;
 
 /** @brief The maximum speed value that can be represented by PWM */
 constexpr int MAX_SPEED = ((1 << (PWM_RESOLUTION_BITS)) - 1);
@@ -115,18 +120,15 @@ constexpr float ADC_LOGIC_VOLTAGE = 3.3f;
 constexpr int MAX_ADC_VALUE = (1 << (ADC_RESOLUTION_BITS)) - 1;
 
 /** @brief Maximum current in milliamps allowed before the system halts */
-constexpr int CURRENT_LIMIT = 2000;
-
-/** @brief The current offset between the two motors. */
-constexpr int CURRENT_OFFSET = 17;
+constexpr int CURRENT_LIMIT = 2000UL;
 
 /** @brief The minimum interval in microseconds between current reading updates.
  */
-constexpr int CURRENT_UPDATE_INTERVAL = 5000;
+constexpr unsigned long CURRENT_UPDATE_INTERVAL = 5000UL;
 
 /** @brief The minimum time the motors must be moving before enabling the
  * current alarm. */
-constexpr int CURRENT_ALARM_DELAY = 3000000;
+constexpr unsigned long CURRENT_ALARM_DELAY = SOFT_MOVEMENT_MICROS + 1000000UL;
 
 /** @brief The number of hall pulses to back up leader motor after hitting
  * bottom on homing routine */
@@ -152,29 +154,29 @@ constexpr int DESYNC_TOLERANCE = 20;
 constexpr float PID_ALPHA = 33.333333f;
 
 /** @brief The default propotional gain used in PID calculation */
-constexpr int DEFAULT_KP = 433000;
+constexpr int DEFAULT_KP = 163000;
 
 /** @brief The propotional gain used in PID calculation for extension */
-constexpr int RETRACT_KP = 433000;
+constexpr int RETRACT_KP = 53000;
 
 /** @brief The propotional gain used in PID calculation for stopping */
-constexpr int STOP_KP = 433000;
+constexpr int STOP_KP = 173000;
 
 /** @brief The propotional gain used in PID calculation for extension ramping */
-constexpr int EXTEND_RAMP_KP = 433000;
+constexpr int EXTEND_RAMP_KP = 15000;
 
 /** @brief The propotional gain used in PID calculation for retraction ramping
  */
-constexpr int RETRACT_RAMP_KP = 433000;
+constexpr int RETRACT_RAMP_KP = 15000;
 
 /** @brief The integral gain used in PID calculation */
-constexpr float DEFAULT_KI = ((DEFAULT_KP / PID_ALPHA) * 11);
+constexpr float DEFAULT_KI = ((DEFAULT_KP / PID_ALPHA) * 10);
 
 /** @brief The derivative gain used in PID calculation */
-constexpr float DEFAULT_KD = (DEFAULT_KP / (PID_ALPHA * 23));
+constexpr float DEFAULT_KD = (DEFAULT_KP / (PID_ALPHA * 4));
 
 /** @brief The tolerance percentage for the current increase before alarm */
-constexpr int CURRENT_INCREASE_TOLERANCE_PERCENTAGE = 30;
+constexpr int CURRENT_INCREASE_TOLERANCE_PERCENTAGE = 45;
 
 /** @brief The current increase multiplier based on the current increase
  * tolerance percentage */
@@ -182,6 +184,9 @@ constexpr float CURRENT_INCREASE_MULTIPLIER =
     1 + (CURRENT_INCREASE_TOLERANCE_PERCENTAGE / 100.0f);
 
 /** @brief Soft stop time in milliseconds */
-constexpr int SOFT_STOP_TIME_MS = 100;
+constexpr unsigned long SOFT_STOP_TIME_MS = 150UL;
+
+/** @brief Number of pulses difference before transitioning to stopping state */
+constexpr int DESIRED_POSITION_BUFFER = 50;
 
 #endif // _DEFS_HPP_

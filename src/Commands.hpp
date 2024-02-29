@@ -84,6 +84,42 @@ enum class Command : std::uint32_t {
 
   /** Set current alarm value - 38 */
   SET_CURRENT_ALARM,
+
+  /** Read state - 39 */
+  READ_STATE,
+
+  /** Save value to stored config slot 1 - 40 */
+  SAVE_CONFIG_1,
+
+  /** Save value to stored config slot 2 - 41 */
+  SAVE_CONFIG_2,
+
+  /** Save value to stored config slot 3 - 42 */
+  SAVE_CONFIG_3,
+
+  /** Save value to stored config slot 4 - 43 */
+  SAVE_CONFIG_4,
+
+  /** Save value to stored config slot 5 - 44 */
+  SAVE_CONFIG_5,
+
+  /** Get value from stored config slot 1 - 45 */
+  RESTORE_CONFIG_1,
+
+  /** Get value from stored config slot 2 - 46 */
+  RESTORE_CONFIG_2,
+
+  /** Get value from stored config slot 3 - 47 */
+  RESTORE_CONFIG_3,
+
+  /** Get value from stored config slot 4 - 48 */
+  RESTORE_CONFIG_4,
+
+  /** Get value from stored config slot 5 - 49 */
+  RESTORE_CONFIG_5,
+
+  /** Set the speed - 50 */
+  SET_SPEED,
 };
 
 #endif // _COMMANDS_HPP_

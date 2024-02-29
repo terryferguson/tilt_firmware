@@ -4,12 +4,13 @@
 #ifndef _MOTOR_HPP_
 #define _MOTOR_HPP_
 
-#include "PinMacros.hpp"
-#include "defs.hpp"
 #include "ControlPins.hpp"
 #include "CurrentSense.hpp"
+#include "PinMacros.hpp"
+#include "defs.hpp"
 #include <ESP32Encoder.h>
 #include <cstring>
+
 
 #define READ_POSITION_ENCODER() this->pos = distanceSensor.getCount();
 #define MOVE_TO_POS(setpoint, min_delta, buffer)                               \
@@ -44,8 +45,9 @@ private:
   MotorPin l_is_pin =
       MotorPin::UNASSIGNED; /** The pin for left PWM current sensor */
   MotorPin r_is_pin =
-      MotorPin::UNASSIGNED;      /** The pin for right PWM current sensor */
-  ControlPin currentSensePin = ControlPin::UNASSIGNED; /** The current sense pin */
+      MotorPin::UNASSIGNED; /** The pin for right PWM current sensor */
+  ControlPin currentSensePin =
+      ControlPin::UNASSIGNED;    /** The current sense pin */
   int frequency = PWM_FREQUENCY; /** The frequency of the PWM signal in hertz */
   int pwmResolution = 8;         /** The PWM bitdepth resolution */
   int desiredPos =
@@ -91,8 +93,9 @@ public:
         const int totalPulses, const int freq = PWM_FREQUENCY,
         const int defSpeed = 70, const int pwmRes = 8)
       : rPWM_Pin(rpwm), lPWM_Pin(lpwm), r_EN_Pin(r_en), l_EN_Pin(l_en),
-        hall_1_Pin(hall_1), hall_2_Pin(hall_2), currentSensePin(currentSensePin), totalPulseCount(totalPulses), frequency(freq),
-        speed(defSpeed), pwmResolution(pwmRes) {
+        hall_1_Pin(hall_1), hall_2_Pin(hall_2),
+        currentSensePin(currentSensePin), totalPulseCount(totalPulses),
+        frequency(freq), speed(defSpeed), pwmResolution(pwmRes) {
     /// Copy name of linear actuator into ID field
     strncpy(id, name, sizeof(id) - 1);
     id[sizeof(id) - 1] = '\0';
@@ -130,7 +133,7 @@ public:
     distanceSensor.clearCount();
     READ_POSITION_ENCODER()
 
-    if (debugEnabled) {
+    if (systemState.debugEnabled) {
       Serial.printf("Motor: %s\n"
                     "-------------------\n"
                     "Frequency:    %5d\n"
@@ -144,8 +147,9 @@ public:
                     "Hall 1 Pin:   %5d\n"
                     "Hall 2 Pin:   %5d\n"
                     "Max Position: %5d\n\n",
-                    id, frequency, pwmResolution, speed, pos, r_EN_Pin, l_EN_Pin, rPWM_Pin,
-                    lPWM_Pin, hall_1_Pin, hall_2_Pin, totalPulseCount);
+                    id, frequency, pwmResolution, speed, pos, r_EN_Pin,
+                    l_EN_Pin, rPWM_Pin, lPWM_Pin, hall_1_Pin, hall_2_Pin,
+                    totalPulseCount);
       Serial.printf("RPWM Channel %d - LPWM Channel: %d\n\n", pwmRChannel,
                     pwmLChannel);
     }
@@ -349,18 +353,16 @@ public:
    *
    * @throws None
    */
-   void displayInfo() {
-    Serial.printf("Motor %s - Direction: %s, pos: %d\n", id, directions[static_cast<int>(dir)],
-                  pos);
+  void displayInfo() {
+    Serial.printf("Motor %s - Direction: %s, pos: %d\n", id,
+                  directions[static_cast<int>(dir)], pos);
     Serial.printf("Motor %s - Speed: %d, desired pos: %d\n", id, speed,
                   desiredPos);
     Serial.printf("Motor %s - Max hall position: %d \n\n", id, totalPulseCount);
   }
 
   /// @return The current used by the motor
-  int getCurrent() const {
-    return currentSense.getCurrent();
-  }
+  int getCurrent() const { return currentSense.getCurrent(); }
 
   void setSpeed(int newSpeed) { speed = newSpeed; }
 }; // end class Motor

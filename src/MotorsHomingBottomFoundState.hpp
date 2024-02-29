@@ -7,7 +7,8 @@
 
 /** @class MotorsHomingBottomFoundState
  *
- * @brief Represents the state of the homing sequence after the bottom of the channel has been found.
+ * @brief Represents the state of the homing sequence after the bottom of the
+ * channel has been found.
  *
  * @author Terry Paul Ferguson
  * @author terry@terryferguson.us
@@ -19,8 +20,9 @@ private:
   bool motorsStopped;
 
 public:
-  MotorsHomingBottomFoundState() {}
+  MotorsHomingBottomFoundState() { type = MOTORS_HOMING_BOTTOM_FOUND_STATE; }
   MotorsHomingBottomFoundState(MotorController *pMotorController) {
+    type = MOTORS_HOMING_BOTTOM_FOUND_STATE;
     ControllerState::setController(pMotorController);
   }
 
@@ -50,7 +52,7 @@ public:
    *
    * @return name of the state
    */
-  const char* getName() const  { return "MotorsHomingBottomFoundState"; }
+  const char *getName() const { return "MotorsHomingBottomFoundState"; }
 
 }; // end class MotorsHomingFindBottomState
 

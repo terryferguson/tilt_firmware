@@ -1,10 +1,12 @@
 #include "StateController.hpp"
 #include "MotorController.hpp"
+#include "SystemState.hpp"
+#include "debugging.hpp"
 #include <Arduino.h>
 
-StateController::StateController() {
-  Serial.println("State Controller created");
-}
+extern SystemState systemState;
+
+StateController::StateController() { DebugPrintln("State Controller created"); }
 
 StateController::StateController(MotorController *pMotorController) {
   setController(pMotorController);
@@ -18,7 +20,7 @@ StateController::StateController(MotorController *pMotorController) {
  * @throws None
  */
 void StateController::setController(MotorController *pMotorController) {
-  Serial.println("State Controller - setController()");
+  DebugPrintln("State Controller - setController()");
   motorController = pMotorController;
   motorsStartingState.setController(pMotorController);
   motorsSoftMovementState.setController(pMotorController);
@@ -29,6 +31,7 @@ void StateController::setController(MotorController *pMotorController) {
   motorsHomingState.setController(pMotorController);
   motorsHomingFindBottomState.setController(pMotorController);
   motorsHomingBottomFoundState.setController(pMotorController);
+  motorsCurrentAlarmState.setController(pMotorController);
   initializeStateMap();
   setState(MOTORS_STOPPED_STATE);
 }
@@ -46,9 +49,9 @@ void StateController::setController(MotorController *pMotorController) {
  * @throws None
  */
 void StateController::initializeStateMap() {
+  motorsStateMap[MOTORS_STOPPED_STATE] = &motorsStoppedState;
   motorsStateMap[MOTORS_STARTING_STATE] = &motorsStartingState;
   motorsStateMap[MOTORS_SOFT_MOVEMENT_STATE] = &motorsSoftMovementState;
-  motorsStateMap[MOTORS_STOPPED_STATE] = &motorsStoppedState;
   motorsStateMap[MOTORS_STOPPING_STATE] = &motorsStoppingState;
   motorsStateMap[MOTORS_MOVING_STATE] = &motorsMovingState;
   motorsStateMap[MOTORS_END_OF_RANGE_STATE] = &motorsEndOfRangeState;
@@ -57,6 +60,7 @@ void StateController::initializeStateMap() {
       &motorsHomingFindBottomState;
   motorsStateMap[MOTORS_HOMING_BOTTOM_FOUND_STATE] =
       &motorsHomingBottomFoundState;
+  motorsStateMap[MOTORS_CURRENT_ALARM_STATE] = &motorsCurrentAlarmState;
 }
 
 /**
@@ -99,13 +103,17 @@ inline bool StateController::isStopped() const {
  * @throws None
  */
 void StateController::setState(MotorControllerState newStateType) {
-  ControllerState *newState = motorsStateMap[newStateType];
+  auto *newState = motorsStateMap[newStateType];
 
   if (currentState != newState) {
     if (nullptr != currentState && nullptr != newState) {
-      Serial.printf("State Transition: %s -> %s\n", currentState->getName(), newState->getName());
-    } else if (nullptr == currentState && nullptr != newState) {
-      Serial.printf("Initial State: %s\n", newState->getName());
+      DebugPrint("State Transition: ");
+      Serial.print(currentState->getName());
+      Serial.print(" -> ");
+      Serial.println(newState->getName());
+    } else if (nullptr == currentState) {
+      DebugPrint("Initial State: ");
+      Serial.println(newState->getName());
     }
 
     LEAVE_STATE()
@@ -130,17 +138,20 @@ inline bool StateController::hasTransition() const {
  * @throws None
  */
 void StateController::OnStarting(const Direction &direction) {
-  if ((currentState != &motorsStartingState) &&
-      (motorController->systemDirection != direction)) {
+  if (currentState != &motorsStartingState) {
     LEAVE_STATE()
 
-    motorController->systemDirection = direction;
-    if (direction == Direction::EXTEND) {
-      motorController->extend();
+    if (motorController->systemDirection == direction) {
+      CHANGE_STATE(motorsStoppingState);
     } else {
-      motorController->retract();
+      motorController->systemDirection = direction;
+      if (direction == Direction::EXTEND) {
+        motorController->extend();
+      } else {
+        motorController->retract();
+      }
+      CHANGE_STATE(motorsStartingState);
     }
-    CHANGE_STATE(motorsStartingState);
   }
 }
 
@@ -227,6 +238,45 @@ void StateController::OnHome() {
   }
 }
 
+void StateController::OnAlarm() {
+
+  const auto systemPosition = motorController->getPos();
+  const auto systemDirection = motorController->systemDirection;
+  constexpr auto backoffAmount = ALARM_REVERSE_AMOUNT;
+  constexpr auto maxPosForBackoff = LEADER_MAX_PULSES - backoffAmount - 1;
+  constexpr auto minPosForBackoff = ALARM_REVERSE_AMOUNT + 1;
+
+  if (systemDirection == Direction::EXTEND) {
+    if (systemPosition > minPosForBackoff) {
+      motorController->setPos(systemPosition - backoffAmount);
+      motorController->retract();
+      CHANGE_STATE(motorsCurrentAlarmState);
+    } else {
+      CHANGE_STATE(motorsStoppedState);
+    }
+  } else if (systemDirection == Direction::RETRACT) {
+    if (systemPosition < maxPosForBackoff) {
+      motorController->setPos(systemPosition + backoffAmount);
+      motorController->extend();
+      CHANGE_STATE(motorsCurrentAlarmState);
+    } else {
+      CHANGE_STATE(motorsStoppedState);
+    }
+  }
+}
+
+void StateController::Report() {
+  if (currentState != nullptr && systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "                   State Controller                        ");
+    Serial.printf("CurrentState: %s\n", currentState->getName());
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
+}
+
 /**
  * Updates the current state of the motor controller system.
  *
@@ -238,12 +288,16 @@ void StateController::OnHome() {
  */
 
 void StateController::update() {
-  if (currentState != nullptr && nullptr != motorController) {
-    const long timestamp = micros();
-    const int moveTimeDelta = timestamp - motorController->moveStart;
-    const float deltaT = ((float)(timestamp - lastTimestamp) / 1.0e6);
+  if (nullptr != currentState && nullptr != motorController) {
+    const unsigned long timestamp = micros();
+
+    const auto deltaT = ((timestamp - lastTimestamp) / 1.0e6);
 
     motorController->deltaT = deltaT;
+    if (currentState != &motorsCurrentAlarmState &&
+        motorController->currentAlarmTriggered()) {
+      OnAlarm();
+    }
     if (hasTransition()) {
       setState(currentState->nextStateType);
     }

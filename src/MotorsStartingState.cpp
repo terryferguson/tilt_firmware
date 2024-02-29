@@ -3,6 +3,7 @@
 #include "MotorController.hpp"
 #include "defs.hpp"
 #include <Arduino.h>
+#include "debugging.hpp"
 
 /**
  * @brief Handle the system entering the moving state.
@@ -10,9 +11,11 @@
  * @return void
  */
 void MotorsStartingState::enter() {
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                    Entering Starting State              |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println("-----------------------------------------------------------");
+    Serial.println("|                    Entering Starting State              |");
+    Serial.println("-----------------------------------------------------------");
+  }
 
   hasTransition = false;
 
@@ -38,7 +41,7 @@ void MotorsStartingState::enter() {
     enteredStateTime = micros();
     hasTransition = false;
   } else {
-    Serial.println("MotorsStoppingState - No controller");
+    DebugPrintln("MotorsStoppingState - No controller");
   }
 }
 
@@ -64,7 +67,7 @@ void MotorsStartingState::update() {
 
     // If the motors are halted, then stop
     if (controller->motorsStopped()) {
-      Serial.printf("MotorsStartingState - Motors are halted. Stopping.\n");
+      DebugPrintln("MotorsStartingState - Motors are halted. Stopping.");
       hasTransition = true;
       nextStateType = MOTORS_STOPPED_STATE;
     } else {
@@ -81,6 +84,12 @@ void MotorsStartingState::update() {
       // Check if the set position has been reached
       controller->checkIfSetPositionReached();
 
+      // Check if we are close to the set position
+      if (controller->motorsNearDesiredPosition(15)) {
+        hasTransition = true;
+        nextStateType = MOTORS_STOPPING_STATE;
+      }
+
       // Sample the currents
       controller->sampleCurrents();
 
@@ -94,7 +103,7 @@ void MotorsStartingState::update() {
     }
   } else {
     // Print an error message if the controller is null
-    Serial.println("MotorsStartingState - No controller");
+   DebugPrintln("MotorsStartingState - No controller");
   }
 }
 
@@ -104,14 +113,16 @@ void MotorsStartingState::update() {
  * @return void
  */
 void MotorsStartingState::leave() {
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                     Leaving Starting State              |");
-  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println("-----------------------------------------------------------");
+    Serial.println("|                     Leaving Starting State              |");
+    Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                  elapsedTime() / 1000);
+    Serial.println("-----------------------------------------------------------");
+  }
   hasTransition = false;
   // State transition may cause sufficient lag to cause system to falsely think
   // motors have stopped, so reset timestamps
   controller->clearPositionChange();
-  enteredStateTime = 0;
+  enteredStateTime = 0UL;
 }

@@ -3,6 +3,7 @@
 #include "MotorController.hpp"
 #include "defs.hpp"
 #include <Arduino.h>
+#include "debugging.hpp"
 
 /**
  * @brief Handle the system entering the moving state.
@@ -10,9 +11,11 @@
  * @return void
  */
 void MotorsStoppingState::enter() {
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                    Entering Stopping State              |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println("-----------------------------------------------------------");
+    Serial.println("|                    Entering Stopping State              |");
+    Serial.println("-----------------------------------------------------------");
+  }
 
   hasTransition = false;
 
@@ -28,7 +31,7 @@ void MotorsStoppingState::enter() {
 
     enteredStateTime = micros();
   } else {
-    Serial.println("MotorsStoppingState - No controller");
+    DebugPrintln("MotorsStoppingState - No controller");
   }
 }
 
@@ -47,7 +50,6 @@ void MotorsStoppingState::update() {
   if (nullptr != controller) {
     const auto speed = controller->speed;
     const auto targetSpeed = controller->targetSpeed;
-    const auto currentAlarmSet = controller->currentAlarmSet;
 
     if (controller->motorsStopped()) {
       hasTransition = true;
@@ -71,6 +73,8 @@ void MotorsStoppingState::update() {
     // Sample the currents
     controller->sampleCurrents();
 
+    controller->handleCurrentUpdate();
+
     // Handle the PID control
     controller->handlePid();
 
@@ -79,7 +83,7 @@ void MotorsStoppingState::update() {
 
   } else {
     // Print an error message if the controller is null
-    Serial.println("MotorsStoppingState - No controller");
+    DebugPrintln("MotorsStoppingState - No controller");
   }
 }
 
@@ -145,10 +149,7 @@ void MotorsStoppingState::updatePWM() {
         const auto newSpeed = controller->speed + truePWMUpdateAmount;
         controller->speed = floorf(newSpeed);
       }
-      controller->updateSoftMovementSpeed();
     } else {
-      controller->updateSoftMovementSpeed();
-      
       // Set the hasTransition flag to true
       hasTransition = true;
       
@@ -173,14 +174,18 @@ void MotorsStoppingState::updatePWM() {
  * @return void
  */
 void MotorsStoppingState::leave() {
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                     Leaving Stopping State              |");
-  Serial.printf("|                Elapsed Time: %6d ms                  |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println("-----------------------------------------------------------");
+    Serial.println("|                     Leaving Stopping State              |");
+    Serial.printf("|                Elapsed Time: %6d ms                  |\n",
+                  elapsedTime() / 1000);
+    Serial.println("-----------------------------------------------------------");
+  }
   hasTransition = false;
-  controller->resetSoftMovement();
-  controller->resetCurrentInformation();
-  controller->resetMotorCurrentAlarms();
+  if (nullptr != controller) {
+    controller->resetSoftMovement();
+    controller->resetCurrentInformation();
+    controller->resetMotorCurrentAlarms();
+  }
   enteredStateTime = 0;
 }

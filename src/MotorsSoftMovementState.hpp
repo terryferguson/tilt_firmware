@@ -15,9 +15,10 @@
  */
 class MotorsSoftMovementState : public ControllerState {
 public:
-  MotorsSoftMovementState() {}
+  MotorsSoftMovementState() { type = MOTORS_SOFT_MOVEMENT_STATE; }
 
   MotorsSoftMovementState(MotorController *pMotorController) {
+    type = MOTORS_SOFT_MOVEMENT_STATE;
     ControllerState::setController(pMotorController);
   }
 
@@ -47,9 +48,9 @@ public:
    *
    * @return name of the state
    */
-    const char* getName() const { return "MotorsSoftMovementState"; }
+  const char *getName() const { return "MotorsSoftMovementState"; }
 
-   void updatePWM();
+  void updatePWM();
 
   ~MotorsSoftMovementState() {}
 }; // end class MotorsSoftMovementState

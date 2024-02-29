@@ -16,8 +16,9 @@
  */
 class MotorsStoppingState : public ControllerState {
 public:
-  MotorsStoppingState() {}
+  MotorsStoppingState() { type = MOTORS_STOPPING_STATE; }
   MotorsStoppingState(MotorController *pMotorController) {
+    type = MOTORS_STOPPING_STATE;
     ControllerState::setController(pMotorController);
   }
 
@@ -48,18 +49,18 @@ public:
   void leave();
 
   /**
- * @brief Updates the PWM for the MotorsStoppingState.
- *
- * This function calculates the necessary updates for the PWM based on the current
- * state of the controller and the target speed. It checks if the target speed is
- * greater than -1 and if the movement is still updating. If so, it calculates the
- * true PWM update amount based on the elapsed time and updates the controller's
- * speed accordingly. If the movement is no longer updating, it sets the necessary
- * flags and variables for transitioning to the MOTORS_STOPPED_STATE and halts the
- * controller immediately.
- *
- * @throws None
- */
+   * @brief Updates the PWM for the MotorsStoppingState.
+   *
+   * This function calculates the necessary updates for the PWM based on the
+   * current state of the controller and the target speed. It checks if the
+   * target speed is greater than -1 and if the movement is still updating. If
+   * so, it calculates the true PWM update amount based on the elapsed time and
+   * updates the controller's speed accordingly. If the movement is no longer
+   * updating, it sets the necessary flags and variables for transitioning to
+   * the MOTORS_STOPPED_STATE and halts the controller immediately.
+   *
+   * @throws None
+   */
   void updatePWM();
 
   /**
@@ -67,7 +68,7 @@ public:
    *
    * @return name of the state
    */
-  const char* getName() const { return "MotorsStoppingState"; }
+  const char *getName() const { return "MotorsStoppingState"; }
 
   ~MotorsStoppingState() {}
 

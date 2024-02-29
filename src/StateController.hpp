@@ -2,6 +2,7 @@
 #define _STATE_CONTROLLER_
 
 #include "Direction.hpp"
+#include "MotorsCurrentAlarmState.hpp"
 #include "MotorsEndOfRangeState.hpp"
 #include "MotorsHomingBottomFoundState.hpp"
 #include "MotorsHomingFindBottomState.hpp"
@@ -22,7 +23,7 @@
     currentState->leave();                                                     \
   }
 
-constexpr int NUMBER_OF_MOTOR_STATES = 9;
+constexpr int NUMBER_OF_MOTOR_STATES = 10;
 
 class StateController {
   MotorsStartingState motorsStartingState;
@@ -36,12 +37,14 @@ class StateController {
   MotorsHomingFindBottomState motorsHomingFindBottomState;
   MotorsHomingBottomFoundState motorsHomingBottomFoundState;
 
+  MotorsCurrentAlarmState motorsCurrentAlarmState;
+
   ControllerState *motorsStateMap[NUMBER_OF_MOTOR_STATES];
   ControllerState *currentState = nullptr;
 
   MotorController *motorController;
 
-  int lastTimestamp = -1;
+  unsigned long lastTimestamp = 0UL;
 
   /**
    * Initializes the state map for the motors.
@@ -177,6 +180,10 @@ public:
   void OnEndOfRange();
 
   void OnHome();
+
+  void OnAlarm();
+
+  void Report();
 
   MotorControllerState getState(void) const { return currentState->type; }
 }; // end class StateController

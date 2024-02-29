@@ -1,7 +1,11 @@
 #include "MotorsSoftMovementState.hpp"
 #include "MotorController.hpp"
+#include "SystemState.hpp"
+#include "debugging.hpp"
 #include "defs.hpp"
 #include <Arduino.h>
+
+extern SystemState systemState;
 
 /**
  * @brief Handle the system entering the soft movement state.
@@ -10,9 +14,14 @@
  */
 void MotorsSoftMovementState::enter() {
   // Print separator lines to indicate the start of the soft movement state
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                  Entering Soft Movement State           |");
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                  Entering Soft Movement State           |");
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 
   // Reset the transition flag to false
   hasTransition = false;
@@ -21,12 +30,19 @@ void MotorsSoftMovementState::enter() {
 
   // Check if the controller is initialized
   if (nullptr != controller) {
+    const auto direction = controller->systemDirection;
+    if (Direction::EXTEND == direction) {
+      controller->setPidParams(EXTEND_RAMP_KP, 0, 0);
+    } else if (Direction::RETRACT == direction) {
+      controller->setPidParams(RETRACT_RAMP_KP, 0, 0);
+    }
+
     // Clear the position change in the controller
     controller->clearPositionChange();
 
     // Set the travel speed to the default motor speed with the soft movement
     // time limit
-    controller->setSpeed(DEFAULT_MOTOR_SPEED, SOFT_MOVEMENT_TIME_MS);
+    controller->setSpeed(systemState.systemSpeed, SOFT_MOVEMENT_TIME_MS);
 
     // Reset the transition flag to false
     hasTransition = false;
@@ -35,7 +51,7 @@ void MotorsSoftMovementState::enter() {
     controller->updateMotors();
   } else {
     // Print error message if the controller is not initialized
-    Serial.println("MotorsSoftMovementState - No controller");
+    DebugPrintln("MotorsSoftMovementState - No controller");
   }
 }
 
@@ -49,17 +65,17 @@ void MotorsSoftMovementState::enter() {
  * @throws None
  */
 void MotorsSoftMovementState::update() {
-  // Get the current speed and target speed from the controller
-  const auto speed = controller->speed;
-  const auto targetSpeed = controller->targetSpeed;
-
   // Check if the controller is not null
   if (nullptr != controller) {
+    // Get the current speed and target speed from the controller
+    const auto speed = controller->speed;
+    const auto targetSpeed = controller->targetSpeed;
+
     controller->updateMotors();
 
     // Check if the motors are stopped
     if (controller->motorsStopped()) {
-      Serial.println("MotorsSoftMovementState - Motors stopped");
+      DebugPrintln("MotorsSoftMovementState - Motors stopped");
       // Set the transition flag and the next state type
       hasTransition = true;
       nextStateType = MOTORS_STOPPED_STATE;
@@ -81,6 +97,9 @@ void MotorsSoftMovementState::update() {
       // Handle the proportional-integral-derivative (PID) control
       controller->handlePid();
 
+      // Sample the currents
+      controller->sampleCurrents();
+
       // Handle the current update
       controller->handleCurrentUpdate();
 
@@ -92,7 +111,7 @@ void MotorsSoftMovementState::update() {
     }
   } else {
     // Print an error message if the controller is null
-    Serial.println("MotorsSoftMovementState - No controller");
+    DebugPrintln("MotorsSoftMovementState - No controller");
   }
 }
 
@@ -164,12 +183,8 @@ void MotorsSoftMovementState::updatePWM() {
         // Update the speed with the new value
         controller->speed = floorf(newSpeed);
       }
-
-      controller->updateSoftMovementSpeed();
     } else {
       // Set the speed to the target speed
-      controller->updateSoftMovementSpeed();
-
       controller->speed = targetSpeed;
 
       // Set the has transition flag to true
@@ -185,11 +200,16 @@ void MotorsSoftMovementState::updatePWM() {
 }
 
 void MotorsSoftMovementState::leave() {
-  Serial.println("-----------------------------------------------------------");
-  Serial.println("|                  Leaving Soft Movement State            |");
-  Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
-                elapsedTime() / 1000);
-  Serial.println("-----------------------------------------------------------");
+  if (systemState.debugEnabled) {
+    Serial.println(
+        "-----------------------------------------------------------");
+    Serial.println(
+        "|                  Leaving Soft Movement State            |");
+    Serial.printf("|                 Elapsed Time: %6d ms                 |\n",
+                  elapsedTime() / 1000);
+    Serial.println(
+        "-----------------------------------------------------------");
+  }
 
   controller->resetSoftMovement();
   hasTransition = false;

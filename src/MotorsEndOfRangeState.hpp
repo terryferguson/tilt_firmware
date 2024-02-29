@@ -16,9 +16,10 @@
  */
 class MotorsEndOfRangeState : public ControllerState {
 public:
-  MotorsEndOfRangeState() {}
+  MotorsEndOfRangeState() { type = MOTORS_END_OF_RANGE_STATE; }
 
   MotorsEndOfRangeState(MotorController *pMotorController) {
+    type = MOTORS_END_OF_RANGE_STATE;
     ControllerState::setController(pMotorController);
   }
 
@@ -48,7 +49,7 @@ public:
    *
    * @return name of the state
    */
-  const char* getName() const { return "MotorsEndOfRangeState"; }
+  const char *getName() const { return "MotorsEndOfRangeState"; }
 
   void updatePWM();
 

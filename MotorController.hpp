@@ -22,9 +22,9 @@
 
 #define RESET_SOFT_MOVEMENT                                                    \
   pwmUpdateAmount = 0;                                                         \
-  lastPWMUpdate = -1;                                                          \
-  softStart = -1;                                                              \
-  targetSpeed = -1;                                                            \
+  lastPWMUpdate = 0UL;                                                         \
+  softStart = 0UL;                                                             \
+  targetSpeed = 0UL;                                                           \
   currentUpdateInterval = CURRENT_UPDATE_INTERVAL;                             \
   pidController.setParams(DEFAULT_KP);
 
@@ -71,10 +71,10 @@ private:
   int leadingIndex = 0;
 
   /** @brief The timestamp since soft start of movement */
-  int softStart = -1;
+  unsigned long softStart = 0UL;
 
   /** @brief The last PWM update interval in microseconds */
-  int lastPWMUpdate = -1;
+  unsigned long lastPWMUpdate = 0UL;
 
   /** @brief The target speed of soft movement */
   int targetSpeed = -1;
@@ -83,16 +83,16 @@ private:
   float pwmUpdateAmount = -1.0f;
 
   /** @brief The last time a debug serial print was sent */
-  int lastPrintTime = -1;
+  unsigned long lastPrintTime = 0UL;
 
   /** @brief Interval of time to pass between current updates microseconds  */
-  int currentUpdateInterval = CURRENT_UPDATE_INTERVAL;
+  unsigned long currentUpdateInterval = CURRENT_UPDATE_INTERVAL;
 
   /** @brief The time in microseconds since a motor movement started */
-  int moveStart = -1;
+  unsigned long moveStart = 0UL;
 
   /** @brief Time in microseconds since the last current update */
-  int lastCurrentUpdate = -1;
+  unsigned long lastCurrentUpdate = 0UL;
 
   /// @brief The requested system level direction
   Direction requestedDirection = Direction::STOP;
@@ -145,8 +145,6 @@ private:
     immediateHalt();
   }
 
-  
-
 public:
   /** @brief The proprotional gain for the PID controller  */
   int K_p = DEFAULT_KP;
@@ -193,7 +191,6 @@ public:
 
   /** @brief The current system level direction indicator */
   Direction systemDirection = Direction::STOP;
-  
 
   /**
    * @brief This is the class that controls the motors
@@ -530,7 +527,7 @@ public:
     }
 
     // Print debug information if debugEnabled is true
-    if (debugEnabled) {
+    if (systemState.debugEnabled) {
       Serial.printf("MotorController\n"
                     "------------\n"
                     "setSpeed(%d)\n"
@@ -835,7 +832,7 @@ public:
         lastCurrentUpdate = currentTime;
 
         // Display the current readings if debug is enabled
-         displayCurrents();
+        displayCurrents();
 
         if ((currentTime - moveStart) > CURRENT_ALARM_DELAY &&
             currentAlarmTriggered()) {
@@ -846,7 +843,7 @@ public:
 
     if (desiredPos != -1) {
       if (abs(desiredPos - motors[LEADER].pos) < 10) {
-        if (debugEnabled) {
+        if (systemState.debugEnabled) {
           Serial.printf("Desired Pos: %d - REACHED\n", desiredPos);
         }
         desiredPos = -1;
