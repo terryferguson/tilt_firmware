@@ -24,7 +24,7 @@ void display_network_info(void);
 
 unsigned long lastTimestamp = 0UL;
 unsigned long lastPrintTimeStamp = 0UL;
-constexpr unsigned long MIN_PRINT_TIME_DELTA = 100000UL;
+constexpr unsigned long MIN_PRINT_TIME_DELTA = 200000UL;
 const char *directions[3] = {"EXTEND", "STOP", "RETRACT"};
 /// @brief String representations of the motor roles at instantiation
 const char *motor_roles[2] = {"LEADER", "FOLLOWER"};
