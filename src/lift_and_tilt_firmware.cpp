@@ -149,6 +149,7 @@ void getTilt5() { RESTORE_POSITION(5); }
 void zero() { motor_controller.zero(); }
 void systemReset() {
   systemState.SaveMotorPostions();
+  systemState.Serialize();
   ESP.restart();
 }
 void togglePid() { pid_on = !pid_on; }

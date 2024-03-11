@@ -104,6 +104,8 @@ void MotorsCurrentAlarmState::leave() {
     controller->setSpeed(systemState.systemSpeed);
 
     systemState.DisableAlarm();
+
+    systemState.SaveMotorPostions();
   }
 
   if (systemState.debugEnabled) {
