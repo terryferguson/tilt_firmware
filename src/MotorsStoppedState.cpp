@@ -53,6 +53,9 @@ void MotorsStoppedState::enter() {
     // Disable motors
     controller->disableMotors();
 
+    // Save the motor positions and system state
+    systemState.SaveMotorPostions();
+
     controller->report();
   } else {
     DebugPrintln("Motors Stopped State - No controller");

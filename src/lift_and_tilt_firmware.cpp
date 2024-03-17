@@ -190,8 +190,8 @@ void setSpeed() {
 
 void setCurrentAlarm() {
   if (Serial.available() > 0) {
-    int newCurrent = Serial.parseInt();
-    motor_controller.minCurrent = newCurrent;
+    int newCurrentIncreasePercentage = Serial.parseInt();
+    systemState.SetCurrentTolerancePercentage(newCurrentIncreasePercentage);
   }
 }
 

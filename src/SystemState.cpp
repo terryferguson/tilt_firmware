@@ -14,6 +14,7 @@ void SystemState::Serialize() {
   systemState.putInt("systemSpeed", systemSpeed);
   systemState.putInt("leader", leaderMotorPosition);
   systemState.putInt("follower", followerMotorPosition);
+  systemState.putInt("curTolPercent", motorCurrentLimitTolerance);
 
   if (debugEnabled) {
     Serial.println("Serializing state");
@@ -34,6 +35,8 @@ void SystemState::Serialize() {
     Serial.println(leaderMotorPosition);
     Serial.print("Follower motor position: ");
     Serial.println(followerMotorPosition);
+    Serial.print("Motor current increase tolerance percentage: ");
+    Serial.println(motorCurrentLimitTolerance);
     Serial.println("**************************************************");
   }
   systemState.end();
@@ -49,6 +52,9 @@ void SystemState::Deserialize() {
   leaderMotorPosition = systemState.getInt("leader", 0);
   followerMotorPosition = systemState.getInt("follower", 0);
   systemSpeed = systemState.getInt("systemSpeed", DEFAULT_MOTOR_SPEED);
+  motorCurrentLimitTolerance = systemState.getInt(
+      "curTolPercent", CURRENT_INCREASE_TOLERANCE_PERCENTAGE);
+
   if (nullptr != controller) {
     controller->motors[MotorController::LEADER].setPos(leaderMotorPosition);
     controller->motors[MotorController::FOLLOWER].setPos(followerMotorPosition);
@@ -73,6 +79,8 @@ void SystemState::Deserialize() {
     Serial.println(leaderMotorPosition);
     Serial.print("Follower motor position: ");
     Serial.println(followerMotorPosition);
+    Serial.print("Motor current increase tolerance percentage: ");
+    Serial.println(motorCurrentLimitTolerance);
     Serial.println("**************************************************");
   }
   systemState.end();
@@ -107,5 +115,10 @@ void SystemState::DisableAlarm() {
 
 void SystemState::EnableAlarm() {
   alarmTriggered = true;
+  Serialize();
+}
+
+void SystemState::SetCurrentTolerancePercentage(const int newValue) {
+  motorCurrentLimitTolerance = newValue;
   Serialize();
 }

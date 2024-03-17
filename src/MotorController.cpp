@@ -529,12 +529,14 @@ void MotorController::setCurrentLimit() {
   if (samples > 0) {
     const int leaderAverageCurrent = leaderCurrentSum / samples;
     const int followerAverageCurrent = followerCurrentSum / samples;
+    const double currentIncreaseMultiplier =
+        1 + (systemState.motorCurrentLimitTolerance / 100.0);
 
     const int leaderCurrentLimit =
-        static_cast<int>(leaderAverageCurrent * CURRENT_INCREASE_MULTIPLIER);
+        static_cast<int>(leaderAverageCurrent * currentIncreaseMultiplier);
 
     const int followerCurrentLimit =
-        static_cast<int>(followerAverageCurrent * CURRENT_INCREASE_MULTIPLIER);
+        static_cast<int>(followerAverageCurrent * currentIncreaseMultiplier);
     if (systemState.debugEnabled) {
       Serial.print("Current alarms set to: Leader => ");
       Serial.print(leaderCurrentLimit);

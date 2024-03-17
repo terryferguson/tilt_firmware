@@ -23,11 +23,16 @@ struct SystemState {
 
   int systemSpeed = DEFAULT_MOTOR_SPEED;
 
+  int leaderMotorPosition = 0;
+
+  int followerMotorPosition = 0;
+
+  /** @brief Current limit of the motor that will trigger the alarm when
+   * exceeded */
+  int motorCurrentLimitTolerance = CURRENT_INCREASE_TOLERANCE_PERCENTAGE;
+
   Preferences systemState;
   MotorController *controller = nullptr;
-
-  int leaderMotorPosition = 0;
-  int followerMotorPosition = 0;
 
   void Initialize(MotorController *controller);
 
@@ -39,6 +44,7 @@ struct SystemState {
 
   void DisableAlarm();
   void EnableAlarm();
+  void SetCurrentTolerancePercentage(const int newValue);
 };
 
 #endif // _SYSTEM_STATE_HPP_
